@@ -15,7 +15,7 @@ from datetime import datetime, timedelta, timezone
 # aistudio.google.com → Get API Key → Create API key
 # 아래 "" 안에 본인 키 입력 (AIza... 로 시작)
 # ─────────────────────────────────────────
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+GEMINI_API_KEY = ""   # 예: "AIzaSy..."
 # aistudio.google.com → Get API Key → Create API key
 
 USE_AI = bool(GEMINI_API_KEY.strip())
@@ -139,8 +139,12 @@ CATEGORY_RULES: list[tuple[str, list[str]]] = [
 
 def gemini_analyze(title: str, raw_text: str, lang: str) -> dict:
     """Gemini Flash: 요약 + 키워드 + 해외 번역"""
-    import urllib.request, json as _json
+    import json as _json
     try:
+        import google.generativeai as genai
+        genai.configure(api_key=GEMINI_API_KEY)
+        model = genai.GenerativeModel("gemini-1.5-flash")
+
         if lang == "ko":
             prompt = f"""다음 F&B 뉴스를 분석해줘.
 
@@ -165,16 +169,11 @@ Reply ONLY in this JSON format, nothing else:
   "keywords": ["키워드1", "키워드2", "키워드3", "키워드4", "키워드5"]
 }}"""
 
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
-        body = _json.dumps({
-            "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.1, "maxOutputTokens": 300}
-        }).encode()
-        req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            data = _json.loads(resp.read())
-        raw = data["candidates"][0]["content"]["parts"][0]["text"].strip()
-        raw = raw.replace("```json","").replace("```","").strip()
+        response = model.generate_content(
+            prompt,
+            generation_config={"temperature": 0.1, "max_output_tokens": 300}
+        )
+        raw = response.text.strip().replace("```json","").replace("```","").strip()
         result = _json.loads(raw)
         time.sleep(AI_DELAY)
         return result
