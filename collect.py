@@ -150,25 +150,43 @@ def gemini_analyze(title: str, raw_text: str, lang: str) -> dict:
 제목: {title}
 본문: {raw_text[:600]}
 
-아래 JSON 형식으로만 답해. 다른 말 절대 하지 마.
-규칙: summary는 1~5개 항목, 전체 합산 300자 이내, 항목당 간결하게.
+JSON만 반환. 설명 금지.
+summary: 문자열 배열 1~5개, 전체 300자 이내, 핵심만.
+keywords: 각 키워드를 food_cat/ingredient/trend/brand 중 하나로 분류. skip이면 제외.
 {{
-  "summary": ["핵심 내용 (간결하게)"],
-  "keywords": ["키워드1", "키워드2", "키워드3", "키워드4", "키워드5"]
-}}"""
+  "summary": ["항목1", "항목2"],
+  "keywords": [
+    {{"word": "키워드", "cat": "food_cat|ingredient|trend|brand"}}
+  ]
+}}
+카테고리 기준:
+- food_cat: 구체적 식품 카테고리 (밀키트, 간편식, 그릭요거트, 오마카세 등)
+- ingredient: 구체적 식재료/원료 (귀리, 콜라겐, 피스타치오, 대체단백질 등)
+- trend: 소비 트렌드 키워드 (저속노화, 헬시플레저, 고단백, 저당, 홈술 등)
+- brand: 구체적 브랜드/기업명 (CJ, 롯데, 파리바게뜨, 배민 등)
+- 위 4개 해당 없으면 keywords 배열에서 제외"""
         else:
             prompt = f"""Analyze this F&B news article.
 
 Title: {title}
 Text: {raw_text[:600]}
 
-Reply ONLY in this JSON format, nothing else:
-Rules: summary 1~5 items, total under 300 chars, keep each item concise.
+JSON only. No explanation.
+summary: string array 1~5 items, total under 300 chars.
+keywords: classify each into food_cat/ingredient/trend/brand. Exclude if none match.
 {{
   "title_ko": "제목을 자연스러운 한국어로 번역",
-  "summary": ["핵심 내용 (간결하게)"],
-  "keywords": ["키워드1", "키워드2", "키워드3", "키워드4", "키워드5"]
-}}"""
+  "summary": ["item1", "item2"],
+  "keywords": [
+    {{"word": "keyword", "cat": "food_cat|ingredient|trend|brand"}}
+  ]
+}}
+Categories:
+- food_cat: specific food category (meal kit, greek yogurt, omakase, etc.)
+- ingredient: specific ingredient/raw material (oat, collagen, pistachio, etc.)
+- trend: consumer trend keyword (high-protein, low-sugar, home drinking, etc.)
+- brand: specific brand/company name (CJ, Lotte, Starbucks, etc.)
+- Exclude from keywords if none of the above"""
 
         response = client.models.generate_content(
             model="gemini-3.1-flash-lite",
@@ -359,11 +377,24 @@ def collect():
                     summary = raw_summary
                 else:
                     summary = shorten(raw_text, 150)
-                keywords = ai_result.get("keywords") or extract_keywords(title, summary or raw_text)
+                # keywords: AI가 [{word, cat}] 형태로 반환, 없으면 빈 리스트
+                raw_kws = ai_result.get("keywords", [])
+                if raw_kws and isinstance(raw_kws[0], dict):
+                    # 새 형식: [{word, cat}] → word만 추출 (cat은 별도 저장)
+                    keywords = [k["word"] for k in raw_kws if isinstance(k, dict) and k.get("word")]
+                    kw_cats  = {k["word"]: k.get("cat","") for k in raw_kws if isinstance(k, dict) and k.get("word")}
+                elif raw_kws and isinstance(raw_kws[0], str):
+                    # 구 형식: 문자열 리스트
+                    keywords = raw_kws
+                    kw_cats  = {}
+                else:
+                    keywords = extract_keywords(title, summary or raw_text)
+                    kw_cats  = {}
+
+                keywords = keywords[:5]
+
                 if src["lang"] != "ko" and ai_result.get("title_ko"):
                     title = ai_result["title_ko"]
-
-                keywords    = keywords[:5]
                 cats        = categorize(title, raw_text, src["cat_hint"])
                 parsed_date = parse_date(entry, lang=src["lang"])
 
@@ -384,6 +415,7 @@ def collect():
                     "category":   cats[0],
                     "summary":    summary,
                     "keywords":   keywords,
+                    "kw_cats":    kw_cats,
                     "date":       parsed_date,
                 }
                 added += 1
