@@ -511,6 +511,14 @@ body.signal-mode .view-signal { display: block; }
           <button class="ss-btn" data-ss="watch"    onclick="setSignalStage('watch')">👀 주목</button>
           <button class="ss-btn" data-ss="interest" onclick="setSignalStage('interest')">💡 관심사</button>
         </div>
+        <div class="sf-label" style="margin-top:12px;margin-bottom:8px">키워드 유형</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <button class="ss-btn on-all" data-kc="all"        onclick="setKwCat('all')">전체</button>
+          <button class="ss-btn" data-kc="food_cat"  onclick="setKwCat('food_cat')">🍽️ 식품 카테고리</button>
+          <button class="ss-btn" data-kc="ingredient" onclick="setKwCat('ingredient')">🌿 식재료·원료</button>
+          <button class="ss-btn" data-kc="trend"     onclick="setKwCat('trend')">📈 소비 트렌드</button>
+          <button class="ss-btn" data-kc="brand"     onclick="setKwCat('brand')">🏷️ 브랜드</button>
+        </div>
       </div>
     </div>
     <div class="sidebar-section">
@@ -775,6 +783,7 @@ function toggleRead(){
 let currentView = 'news';   // 'news' | 'signal'
 let signalPeriod = 90;      // days
 let signalStage = 'all';    // 'all'|'trend'|'watch'|'interest'
+let signalKwCat = 'all';   // 'all'|'food_cat'|'ingredient'|'trend'|'brand'
 
 // 점수 = 빈도 × 출처다양성
 // 트렌드:  출처 6개+ AND 빈도 10+  (score 60+)
@@ -782,59 +791,52 @@ let signalStage = 'all';    // 'all'|'trend'|'watch'|'interest'
 // 관심사:  출처 2개+ AND 빈도 3+   (score 6+)
 
 // ── 시그널 불용어 (의미 없는 일반 단어) ──────────────────
-const SIGNAL_STOPWORDS = new Set([
-  // 행위/이벤트 동사형
-  '출시','오픈','개최','강화','확대','론칭','진행','도입','시작','운영',
-  '출범','선보','선봬','선보여','선보임','시행','실시','추진','구축','마련',
-  // 업계 공통 일반명사
-  '신제품','제품','브랜드','매장','업체','기업','회사','소비자','시장','업계',
-  '관계자','대표','임원','관련','사업','서비스','플랫폼','솔루션','파트너',
-  // F&B 업계 기본 단어
-  '식품','외식','음식','요리','식재료','메뉴','레시피','음료','주류',
-  // 시간/수량 표현
-  '올해','최근','이번','지난','역대','증가','감소','성장','하락','상승',
-  '전년','분기','상반기','하반기','연간','월간','주간',
-  // 수식어
-  '최초','최대','글로벌','국내','해외','신규','새로운','다양한','본격',
-  '적극','지속','꾸준','대규모','소규모','프리미엄','스페셜',
-  // 영문 일반어
-  'New','The','This','That','For','With','And','Food','Brand',
-  'Product','Market','Launch','Company','Group','Korea',
-]);
+// 카테고리 레이블
+const KW_CAT_LABELS = {
+  food_cat:   { ko: '식품 카테고리', icon: '🍽️', color: '#34C759', bg: '#F0FBF2' },
+  ingredient: { ko: '식재료·원료',   icon: '🌿', color: '#FF6B35', bg: '#FFF2EE' },
+  trend:      { ko: '소비 트렌드',   icon: '📈', color: '#AF52DE', bg: '#F8F0FF' },
+  brand:      { ko: '브랜드',        icon: '🏷️', color: '#007AFF', bg: '#EBF4FF' },
+};
 
 function calcSignals(days) {
   const cutoff = Date.now() - days * 86400000;
-  const kwMap = {}; // keyword → { freq, sources: Set }
+  // kwMap: keyword → { freq, sources, kwCat }
+  const kwMap = {};
 
   for (const a of all) {
     if (new Date(a.date).getTime() < cutoff) continue;
-    const kws = Array.isArray(a.keywords) ? a.keywords : [];
-    // 제목에서도 단어 추출
-    const titleKws = (a.title || '').match(/[가-힣]{2,6}|[A-Z][A-Za-z]{2,}/g) || [];
-    const allKws = [...new Set([...kws, ...titleKws])];
-    for (const k of allKws) {
+    const kws     = Array.isArray(a.keywords) ? a.keywords : [];
+    const kwCats  = a.kw_cats || {};  // {word: cat} 매핑
+
+    for (const k of kws) {
       if (!k || k.length < 2) continue;
-      if (SIGNAL_STOPWORDS.has(k)) continue;  // 불용어 제외
-      if (!kwMap[k]) kwMap[k] = { freq: 0, sources: new Set() };
+      const cat = kwCats[k] || '';
+      // kw_cats가 있는 기사는 카테고리 검증, 없는 기사(구버전)는 일단 포함
+      if (Object.keys(kwCats).length > 0 && !KW_CAT_LABELS[cat]) continue;
+      if (!kwMap[k]) kwMap[k] = { freq: 0, sources: new Set(), kwCat: cat };
       kwMap[k].freq++;
       kwMap[k].sources.add(a.source);
+      if (!kwMap[k].kwCat && cat) kwMap[k].kwCat = cat;
     }
   }
 
-  // 점수 계산 + 필터링
   const results = [];
   for (const [kw, data] of Object.entries(kwMap)) {
     const srcCount = data.sources.size;
-    const freq = data.freq;
-    const score = freq * srcCount;
+    const freq     = data.freq;
+    const score    = freq * srcCount;
     let stage = null;
     if (srcCount >= 6 && freq >= 10) stage = 'trend';
     else if (srcCount >= 3 && freq >= 5) stage = 'watch';
     else if (srcCount >= 2 && freq >= 3) stage = 'interest';
     if (!stage) continue;
-    results.push({ kw, freq, srcCount, score, stage, sources: [...data.sources].slice(0, 5) });
+    results.push({
+      kw, freq, srcCount, score, stage,
+      kwCat: data.kwCat,
+      sources: [...data.sources].slice(0, 5)
+    });
   }
-
   results.sort((a, b) => b.score - a.score);
   return results;
 }
@@ -847,7 +849,8 @@ function stageLabel(s) {
 
 function renderSignal() {
   const signals = calcSignals(signalPeriod);
-  const filtered = signalStage === 'all' ? signals : signals.filter(s => s.stage === signalStage);
+  let filtered = signalStage === 'all' ? signals : signals.filter(s => s.stage === signalStage);
+  if (signalKwCat !== 'all') filtered = filtered.filter(s => s.kwCat === signalKwCat);
   const maxScore = filtered[0]?.score || 1;
 
   const html = !filtered.length
@@ -868,6 +871,7 @@ function renderSignal() {
             <div class="si-meta">
               <span class="si-badge ${badgeCls}">${label}</span>
               <span class="si-sources">${s.srcCount}개 매체 · ${s.freq}회</span>
+              ${s.kwCat && KW_CAT_LABELS[s.kwCat] ? `<span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;background:${KW_CAT_LABELS[s.kwCat].bg};color:${KW_CAT_LABELS[s.kwCat].color}">${KW_CAT_LABELS[s.kwCat].icon} ${KW_CAT_LABELS[s.kwCat].ko}</span>` : ''}
             </div>
             <div class="si-src-tags">${srcTags}</div>
           </div>
@@ -918,6 +922,15 @@ function setSignalStage(s) {
   document.querySelectorAll('[data-ss]').forEach(b => {
     b.classList.remove('on-all','on-trend','on-watch','on-interest');
     if (b.dataset.ss === s) b.classList.add(`on-${s}`);
+  });
+  renderSignal();
+}
+
+function setKwCat(c) {
+  signalKwCat = c;
+  document.querySelectorAll('[data-kc]').forEach(b => {
+    b.classList.remove('on-all','on-trend','on-watch','on-interest');
+    if (b.dataset.kc === c) b.classList.add(c === 'all' ? 'on-all' : 'on-watch');
   });
   renderSignal();
 }
