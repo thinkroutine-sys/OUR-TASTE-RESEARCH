@@ -11,13 +11,14 @@ import time
 from datetime import datetime, timedelta, timezone
 
 # ─────────────────────────────────────────
-# ★ API 키 설정 (여기에 입력하세요)
-# https://console.anthropic.com 에서 발급
+# ★ Gemini API 키 설정
+# aistudio.google.com → Get API Key → Create API key
+# 아래 "" 안에 본인 키 입력 (AIza... 로 시작)
 # ─────────────────────────────────────────
-ANTHROPIC_API_KEY = ""   # 예: "sk-ant-api03-xxxx..."
+GEMINI_API_KEY = "AQ.Ab8RN6L5RQMfK5Oh7cUS6M8d1V6EwyKCONaNOj4rcHHFwxk7Sg"   # 예: "AIzaSy..."
+# aistudio.google.com → Get API Key → Create API key
 
-# API 키 없으면 RSS 원문 그대로 사용, 있으면 AI 요약 생성
-USE_AI_SUMMARY = bool(ANTHROPIC_API_KEY.strip())
+USE_AI = bool(GEMINI_API_KEY.strip())
 
 # ─────────────────────────────────────────
 # 설정
@@ -136,39 +137,49 @@ CATEGORY_RULES: list[tuple[str, list[str]]] = [
 # AI 요약 (Claude Haiku)
 # ─────────────────────────────────────────
 
-_ai_client = None
-
-def get_ai_client():
-    global _ai_client
-    if _ai_client is None:
-        import anthropic
-        _ai_client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-    return _ai_client
-
-def ai_summarize(title: str, raw_text: str, lang: str) -> str:
-    """Claude Haiku로 2문장 요약 생성"""
+def gemini_analyze(title: str, raw_text: str, lang: str) -> dict:
+    """Gemini Flash: 요약 + 키워드 + 해외 번역"""
+    import urllib.request, json as _json
     try:
-        client = get_ai_client()
         if lang == "ko":
-            prompt = (
-                f"다음 F&B 뉴스를 핵심만 담아 2문장으로 요약해줘. "
-                f"자연스럽고 간결한 한국어로. 불필요한 수식어 없이.\n\n"
-                f"제목: {title}\n원문: {raw_text[:600]}"
-            )
+            prompt = f"""다음 F&B 뉴스를 분석해줘.
+
+제목: {title}
+본문: {raw_text[:600]}
+
+아래 JSON 형식으로만 답해. 다른 말 절대 하지 마.
+{{
+  "summary": "핵심 내용 2문장 요약 (한국어, 간결하게)",
+  "keywords": ["키워드1", "키워드2", "키워드3", "키워드4", "키워드5"]
+}}"""
         else:
-            prompt = (
-                f"Summarize this F&B news in 2 concise sentences. "
-                f"Focus on key facts only.\n\nTitle: {title}\nText: {raw_text[:600]}"
-            )
-        msg = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=120,
-            messages=[{"role": "user", "content": prompt}]
-        )
+            prompt = f"""Analyze this F&B news article.
+
+Title: {title}
+Text: {raw_text[:600]}
+
+Reply ONLY in this JSON format, nothing else:
+{{
+  "title_ko": "제목을 자연스러운 한국어로 번역",
+  "summary": "핵심 내용 2문장 요약 (한국어, 간결하게)",
+  "keywords": ["키워드1", "키워드2", "키워드3", "키워드4", "키워드5"]
+}}"""
+
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
+        body = _json.dumps({
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {"temperature": 0.1, "maxOutputTokens": 300}
+        }).encode()
+        req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = _json.loads(resp.read())
+        raw = data["candidates"][0]["content"]["parts"][0]["text"].strip()
+        raw = raw.replace("```json","").replace("```","").strip()
+        result = _json.loads(raw)
         time.sleep(AI_DELAY)
-        return msg.content[0].text.strip()
+        return result
     except Exception as e:
-        return ""   # 실패 시 빈 문자열 → 원문 요약으로 대체
+        return {}
 
 # ─────────────────────────────────────────
 # 키워드 추출
@@ -299,10 +310,10 @@ def collect():
         except Exception as e:
             print(f"  !! 기존 파일 로드 실패: {e}")
 
-    if USE_AI_SUMMARY:
-        print("  [AI 요약 모드] Claude Haiku 사용 중\n")
+    if USE_AI:
+        print("  [AI 모드] Gemini Flash — 요약+키워드+번역\n")
     else:
-        print("  [일반 모드] API 키 미설정 — RSS 원문 사용\n")
+        print("  [일반 모드] GEMINI_API_KEY 미설정 — RSS 원문 사용\n")
 
     new_total, errors = 0, []
 
@@ -333,15 +344,17 @@ def collect():
                 title    = strip_html(entry.get("title", "")).strip()
                 raw_text = shorten(entry.get("summary", entry.get("description", "")))
 
-                # 요약: AI 또는 RSS 원문
-                if USE_AI_SUMMARY and raw_text:
-                    summary = ai_summarize(title, raw_text, src["lang"])
-                    if not summary:
-                        summary = shorten(raw_text, 150)  # AI 실패 시 원문 축약
-                else:
-                    summary = shorten(raw_text, 150)
+                # AI 분석 (요약 + 키워드 + 해외 번역)
+                ai_result = {}
+                if USE_AI and raw_text:
+                    ai_result = gemini_analyze(title, raw_text, src["lang"])
 
-                keywords    = extract_keywords(title, summary or raw_text)
+                summary  = ai_result.get("summary") or shorten(raw_text, 150)
+                keywords = ai_result.get("keywords") or extract_keywords(title, summary or raw_text)
+                if src["lang"] != "ko" and ai_result.get("title_ko"):
+                    title = ai_result["title_ko"]
+
+                keywords    = keywords[:5]
                 cats        = categorize(title, raw_text, src["cat_hint"])
                 parsed_date = parse_date(entry, lang=src["lang"])
 
