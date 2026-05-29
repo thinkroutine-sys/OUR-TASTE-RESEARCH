@@ -442,12 +442,12 @@ function isRead(id){return getRead().has(id)}
 
 function fmtDate(iso){
   try{
-    const h=(Date.now()-new Date(iso))/3.6e6;
-    if(h<1)return '방금';
-    if(h<24)return Math.floor(h)+'시간 전';
-    const d=Math.floor(h/24);
-    if(d<7)return d+'일 전';
-    const dt=new Date(iso);return `${dt.getMonth()+1}/${dt.getDate()}`;
+    const d=new Date(iso);
+    const M=String(d.getMonth()+1).padStart(2,'0');
+    const D=String(d.getDate()).padStart(2,'0');
+    const h=d.getHours();
+    const mm=String(d.getMinutes()).padStart(2,'0');
+    return `${M}.${D} ${h<12?'오전':'오후'} ${String(h%12||12)}:${mm}`;
   }catch{return ''}
 }
 function dayKey(iso){
