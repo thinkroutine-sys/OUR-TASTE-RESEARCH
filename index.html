@@ -781,6 +781,27 @@ let signalStage = 'all';    // 'all'|'trend'|'watch'|'interest'
 // 주목:    출처 3개+ AND 빈도 5+   (score 15+)
 // 관심사:  출처 2개+ AND 빈도 3+   (score 6+)
 
+// ── 시그널 불용어 (의미 없는 일반 단어) ──────────────────
+const SIGNAL_STOPWORDS = new Set([
+  // 행위/이벤트 동사형
+  '출시','오픈','개최','강화','확대','론칭','진행','도입','시작','운영',
+  '출범','선보','선봬','선보여','선보임','시행','실시','추진','구축','마련',
+  // 업계 공통 일반명사
+  '신제품','제품','브랜드','매장','업체','기업','회사','소비자','시장','업계',
+  '관계자','대표','임원','관련','사업','서비스','플랫폼','솔루션','파트너',
+  // F&B 업계 기본 단어
+  '식품','외식','음식','요리','식재료','메뉴','레시피','음료','주류',
+  // 시간/수량 표현
+  '올해','최근','이번','지난','역대','증가','감소','성장','하락','상승',
+  '전년','분기','상반기','하반기','연간','월간','주간',
+  // 수식어
+  '최초','최대','글로벌','국내','해외','신규','새로운','다양한','본격',
+  '적극','지속','꾸준','대규모','소규모','프리미엄','스페셜',
+  // 영문 일반어
+  'New','The','This','That','For','With','And','Food','Brand',
+  'Product','Market','Launch','Company','Group','Korea',
+]);
+
 function calcSignals(days) {
   const cutoff = Date.now() - days * 86400000;
   const kwMap = {}; // keyword → { freq, sources: Set }
@@ -788,11 +809,12 @@ function calcSignals(days) {
   for (const a of all) {
     if (new Date(a.date).getTime() < cutoff) continue;
     const kws = Array.isArray(a.keywords) ? a.keywords : [];
-    // 제목에서도 단어 추출 (2글자 이상 한국어 / 영문 대문자 시작)
+    // 제목에서도 단어 추출
     const titleKws = (a.title || '').match(/[가-힣]{2,6}|[A-Z][A-Za-z]{2,}/g) || [];
     const allKws = [...new Set([...kws, ...titleKws])];
     for (const k of allKws) {
       if (!k || k.length < 2) continue;
+      if (SIGNAL_STOPWORDS.has(k)) continue;  // 불용어 제외
       if (!kwMap[k]) kwMap[k] = { freq: 0, sources: new Set() };
       kwMap[k].freq++;
       kwMap[k].sources.add(a.source);
