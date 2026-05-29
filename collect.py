@@ -28,7 +28,7 @@ DATA_DIR     = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 OUT_FILE     = os.path.join(DATA_DIR, "news.json")
 KEEP_DAYS    = 30
 MAX_PER_FEED = 30
-AI_DELAY     = 0.3   # API 호출 간격(초) — 과호출 방지
+AI_DELAY     = 5.0   # API 호출 간격(초) — 15 RPM 한도 대응
 
 feedparser.USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -152,7 +152,7 @@ def gemini_analyze(title: str, raw_text: str, lang: str) -> dict:
 
 아래 JSON 형식으로만 답해. 다른 말 절대 하지 마.
 {{
-  "summary": "핵심 내용 2문장 요약 (한국어, 간결하게)",
+  "summary": "핵심 내용을 80자 이내로 요약 (한국어, 간결하게, 초과 금지)",
   "keywords": ["키워드1", "키워드2", "키워드3", "키워드4", "키워드5"]
 }}"""
         else:
@@ -164,12 +164,12 @@ Text: {raw_text[:600]}
 Reply ONLY in this JSON format, nothing else:
 {{
   "title_ko": "제목을 자연스러운 한국어로 번역",
-  "summary": "핵심 내용 2문장 요약 (한국어, 간결하게)",
+  "summary": "핵심 내용을 80자 이내로 요약 (한국어, 간결하게, 초과 금지)",
   "keywords": ["키워드1", "키워드2", "키워드3", "키워드4", "키워드5"]
 }}"""
 
         response = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-3.1-flash-lite",
             contents=prompt,
             config={"temperature": 0.1, "max_output_tokens": 300}
         )
