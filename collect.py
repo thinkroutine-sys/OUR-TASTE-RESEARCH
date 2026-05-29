@@ -15,7 +15,7 @@ from datetime import datetime, timedelta, timezone
 # aistudio.google.com → Get API Key → Create API key
 # 아래 "" 안에 본인 키 입력 (AIza... 로 시작)
 # ─────────────────────────────────────────
-GEMINI_API_KEY = "AQ.Ab8RN6L5RQMfK5Oh7cUS6M8d1V6EwyKCONaNOj4rcHHFwxk7Sg"   # 예: "AIzaSy..."
+GEMINI_API_KEY = ""   # 예: "AIzaSy..."
 # aistudio.google.com → Get API Key → Create API key
 
 USE_AI = bool(GEMINI_API_KEY.strip())
@@ -179,6 +179,7 @@ Reply ONLY in this JSON format, nothing else:
         time.sleep(AI_DELAY)
         return result
     except Exception as e:
+        print(f"\n    !! Gemini 오류: {e}")
         return {}
 
 # ─────────────────────────────────────────
