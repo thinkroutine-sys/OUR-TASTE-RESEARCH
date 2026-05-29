@@ -311,6 +311,137 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 @keyframes rot{to{transform:rotate(360deg)}}
 
+
+/* ════════════════════════════════════
+   SIGNAL TAB
+   ════════════════════════════════════ */
+
+/* PC 뷰 전환 */
+.view-news { display: block; }
+.view-signal { display: none; }
+body.signal-mode .view-news { display: none; }
+body.signal-mode .view-signal { display: block; }
+
+/* PC 사이드바 뷰 버튼 */
+.view-toggle {
+  display: flex; gap: 4px;
+  background: var(--bg); border-radius: 10px;
+  padding: 3px; margin-bottom: 12px;
+}
+.vt-btn {
+  flex: 1; padding: 7px 0;
+  font-size: 12px; font-weight: 600;
+  border-radius: 7px; color: var(--text3);
+  transition: all .15s; text-align: center;
+}
+.vt-btn.on { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+
+/* 시그널 헤더 */
+.signal-header { margin-bottom: 20px; }
+.signal-period {
+  display: flex; gap: 6px; margin-bottom: 16px;
+}
+.sp-pill {
+  font-size: 12px; font-weight: 600;
+  padding: 5px 14px; border-radius: 20px;
+  border: 1.5px solid var(--border); color: var(--text3);
+  background: var(--surface); transition: all .15s;
+}
+.sp-pill.on { background: var(--text); border-color: var(--text); color: #fff; }
+
+/* 시그널 단계 필터 */
+.signal-stage-filter {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.ss-btn {
+  font-size: 12px; font-weight: 600;
+  padding: 4px 12px; border-radius: 20px;
+  border: 1.5px solid var(--border); color: var(--text3);
+  background: var(--surface); transition: all .15s;
+  display: flex; align-items: center; gap: 5px;
+}
+.ss-btn.on-trend  { background: #FFF0F0; border-color: #FF3B30; color: #FF3B30; }
+.ss-btn.on-watch  { background: #FFF8EB; border-color: #FF9500; color: #FF6A00; }
+.ss-btn.on-interest{ background: var(--blue-bg); border-color: var(--blue); color: var(--blue); }
+.ss-btn.on-all    { background: var(--text); border-color: var(--text); color: #fff; }
+
+/* 시그널 설명 */
+.signal-legend {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--surface);
+  border-radius: 10px; margin-bottom: 20px;
+  border: 1px solid var(--border);
+}
+.sl-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+.sl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.sl-dot-trend { background: #FF3B30; }
+.sl-dot-watch { background: #FF9500; }
+.sl-dot-interest { background: var(--blue); }
+
+/* 시그널 아이템 */
+.signal-list { display: flex; flex-direction: column; gap: 8px; }
+.signal-item {
+  background: var(--surface); border-radius: var(--radius);
+  padding: 16px 18px; box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 14px;
+  border-left: 4px solid transparent;
+  transition: box-shadow .15s, transform .15s;
+  cursor: default;
+}
+.signal-item:hover { box-shadow: var(--shadow-md); transform: translateX(2px); }
+.signal-item.s-trend   { border-left-color: #FF3B30; }
+.signal-item.s-watch   { border-left-color: #FF9500; }
+.signal-item.s-interest{ border-left-color: var(--blue); }
+
+.si-rank {
+  font-size: 13px; font-weight: 700; color: var(--text3);
+  width: 24px; text-align: center; flex-shrink: 0;
+}
+.si-body { flex: 1; min-width: 0; }
+.si-keyword {
+  font-size: 16px; font-weight: 700; color: var(--text);
+  margin-bottom: 4px;
+}
+.si-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.si-badge {
+  font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 20px;
+}
+.si-badge-trend    { background: #FFF0F0; color: #FF3B30; }
+.si-badge-watch    { background: #FFF8EB; color: #FF6A00; }
+.si-badge-interest { background: var(--blue-bg); color: var(--blue); }
+.si-sources { font-size: 11px; color: var(--text3); }
+.si-right { text-align: right; flex-shrink: 0; }
+.si-score {
+  font-size: 20px; font-weight: 700; color: var(--text);
+  line-height: 1;
+}
+.si-score-label { font-size: 10px; color: var(--text3); margin-top: 2px; }
+.si-bar-wrap { width: 80px; height: 4px; background: var(--bg); border-radius: 2px; margin-top: 6px; }
+.si-bar { height: 100%; border-radius: 2px; transition: width .4s; }
+.s-trend   .si-bar { background: #FF3B30; }
+.s-watch   .si-bar { background: #FF9500; }
+.s-interest .si-bar { background: var(--blue); }
+
+/* 시그널 출처 태그 */
+.si-src-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.si-src-tag {
+  font-size: 10px; color: var(--text3);
+  background: var(--bg); border: 1px solid var(--border);
+  padding: 1px 7px; border-radius: 10px;
+}
+
+/* 모바일 시그널 */
+@media(max-width:767px){
+  .view-news,.view-signal { display: block !important; }
+  body.signal-mode .view-news { display: none !important; }
+  body.signal-mode .view-signal { display: block !important; }
+  .mobile-main.view-signal { padding: 12px 16px 90px; }
+  .signal-item { padding: 12px 14px; gap: 10px; }
+  .si-score { font-size: 17px; }
+  .si-bar-wrap { width: 60px; }
+}
+
 /* scroll top (PC only) */
 .scroll-top{
   position:fixed;bottom:28px;right:28px;z-index:50;
@@ -350,8 +481,37 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <!-- PC 사이드바 -->
   <aside class="pc-sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-title">카테고리</div>
-      <div class="sidebar-cat" id="pc-cats"></div>
+      <div class="view-toggle">
+        <button class="vt-btn on" id="vt-news" onclick="setView('news')">📰 뉴스</button>
+        <button class="vt-btn" id="vt-signal" onclick="setView('signal')">📡 시그널</button>
+      </div>
+      <div class="sidebar-title view-news">카테고리</div>
+      <div class="sidebar-cat view-news" id="pc-cats"></div>
+      <div class="view-signal" id="pc-signal-filters">
+        <div class="sf-label" style="margin-bottom:8px">분석 기간</div>
+        <div class="sf-pills" style="margin-bottom:12px">
+          <button class="sf-pill" data-sp="30"  onclick="setSignalPeriod(30)">1개월</button>
+          <button class="sf-pill on" data-sp="90"  onclick="setSignalPeriod(90)">3개월</button>
+          <button class="sf-pill" data-sp="180" onclick="setSignalPeriod(180)">6개월</button>
+          <button class="sf-pill" data-sp="custom" onclick="setSignalPeriod('custom')">직접 설정</button>
+          <div id="custom-period-wrap" style="display:none;margin-top:8px;display:none">
+            <div style="display:flex;align-items:center;gap:6px">
+              <input id="custom-period-input" type="number" min="1" max="365" placeholder="일 수"
+                style="width:70px;padding:5px 8px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:13px;outline:none;color:var(--text);background:var(--surface)">
+              <span style="font-size:12px;color:var(--text3)">일</span>
+              <button onclick="applyCustomPeriod()"
+                style="padding:5px 10px;background:var(--text);color:#fff;border-radius:8px;font-size:12px;font-weight:600">적용</button>
+            </div>
+          </div>
+        </div>
+        <div class="sf-label" style="margin-bottom:8px">단계 필터</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <button class="ss-btn on-all" data-ss="all"      onclick="setSignalStage('all')">전체</button>
+          <button class="ss-btn" data-ss="trend"    onclick="setSignalStage('trend')">🔥 트렌드</button>
+          <button class="ss-btn" data-ss="watch"    onclick="setSignalStage('watch')">👀 주목</button>
+          <button class="ss-btn" data-ss="interest" onclick="setSignalStage('interest')">💡 관심사</button>
+        </div>
+      </div>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-filters">
@@ -384,8 +544,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </aside>
 
   <!-- PC 메인 -->
-  <div class="pc-main" id="pc-main">
-    <div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">불러오는 중…</div></div>
+  <div class="pc-main">
+    <div class="view-news" id="pc-main">
+      <div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">불러오는 중…</div></div>
+    </div>
+    <div class="view-signal" id="pc-signal">
+      <div class="empty"><div class="empty-icon">📡</div><div class="empty-title">시그널 분석 중…</div></div>
+    </div>
   </div>
 </div>
 
@@ -422,8 +587,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </div>
 
 <!-- 모바일 메인 -->
-<div class="mobile-main" id="mo-main" style="display:none">
+<div class="mobile-main view-news" id="mo-main" style="display:none">
   <div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">불러오는 중…</div></div>
+</div>
+<div class="mobile-main view-signal" id="mo-signal" style="display:none">
+  <div class="empty"><div class="empty-icon">📡</div><div class="empty-title">시그널 분석 중…</div></div>
 </div>
 
 <!-- 모바일 하단 탭바 -->
@@ -599,11 +767,146 @@ function toggleRead(){
   renderMain();
 }
 
+
+// ════════════════════════════════════
+// SIGNAL ENGINE
+// ════════════════════════════════════
+
+let currentView = 'news';   // 'news' | 'signal'
+let signalPeriod = 90;      // days
+let signalStage = 'all';    // 'all'|'trend'|'watch'|'interest'
+
+// 점수 = 빈도 × 출처다양성
+// 트렌드:  출처 6개+ AND 빈도 10+  (score 60+)
+// 주목:    출처 3개+ AND 빈도 5+   (score 15+)
+// 관심사:  출처 2개+ AND 빈도 3+   (score 6+)
+
+function calcSignals(days) {
+  const cutoff = Date.now() - days * 86400000;
+  const kwMap = {}; // keyword → { freq, sources: Set }
+
+  for (const a of all) {
+    if (new Date(a.date).getTime() < cutoff) continue;
+    const kws = Array.isArray(a.keywords) ? a.keywords : [];
+    // 제목에서도 단어 추출 (2글자 이상 한국어 / 영문 대문자 시작)
+    const titleKws = (a.title || '').match(/[가-힣]{2,6}|[A-Z][A-Za-z]{2,}/g) || [];
+    const allKws = [...new Set([...kws, ...titleKws])];
+    for (const k of allKws) {
+      if (!k || k.length < 2) continue;
+      if (!kwMap[k]) kwMap[k] = { freq: 0, sources: new Set() };
+      kwMap[k].freq++;
+      kwMap[k].sources.add(a.source);
+    }
+  }
+
+  // 점수 계산 + 필터링
+  const results = [];
+  for (const [kw, data] of Object.entries(kwMap)) {
+    const srcCount = data.sources.size;
+    const freq = data.freq;
+    const score = freq * srcCount;
+    let stage = null;
+    if (srcCount >= 6 && freq >= 10) stage = 'trend';
+    else if (srcCount >= 3 && freq >= 5) stage = 'watch';
+    else if (srcCount >= 2 && freq >= 3) stage = 'interest';
+    if (!stage) continue;
+    results.push({ kw, freq, srcCount, score, stage, sources: [...data.sources].slice(0, 5) });
+  }
+
+  results.sort((a, b) => b.score - a.score);
+  return results;
+}
+
+function stageLabel(s) {
+  if (s === 'trend')    return ['🔥 트렌드', 'si-badge-trend'];
+  if (s === 'watch')    return ['👀 주목',   'si-badge-watch'];
+  return                       ['💡 관심사', 'si-badge-interest'];
+}
+
+function renderSignal() {
+  const signals = calcSignals(signalPeriod);
+  const filtered = signalStage === 'all' ? signals : signals.filter(s => s.stage === signalStage);
+  const maxScore = filtered[0]?.score || 1;
+
+  const html = !filtered.length
+    ? `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">해당 시그널이 없습니다</div><div>기간을 늘리거나 더 많은 기사를 수집해보세요</div></div>`
+    : `<div class="signal-legend">
+        <div class="sl-item"><div class="sl-dot sl-dot-trend"></div>트렌드: 6개+ 매체 · 10회+</div>
+        <div class="sl-item"><div class="sl-dot sl-dot-watch"></div>주목: 3개+ 매체 · 5회+</div>
+        <div class="sl-item"><div class="sl-dot sl-dot-interest"></div>관심사: 2개+ 매체 · 3회+</div>
+      </div>
+      <div class="signal-list">${filtered.slice(0, 50).map((s, i) => {
+        const [label, badgeCls] = stageLabel(s.stage);
+        const barPct = Math.round(s.score / maxScore * 100);
+        const srcTags = s.sources.map(src => `<span class="si-src-tag">${src}</span>`).join('');
+        return `<div class="signal-item s-${s.stage}">
+          <div class="si-rank">${i + 1}</div>
+          <div class="si-body">
+            <div class="si-keyword">${s.kw}</div>
+            <div class="si-meta">
+              <span class="si-badge ${badgeCls}">${label}</span>
+              <span class="si-sources">${s.srcCount}개 매체 · ${s.freq}회</span>
+            </div>
+            <div class="si-src-tags">${srcTags}</div>
+          </div>
+          <div class="si-right">
+            <div class="si-score">${s.score}</div>
+            <div class="si-score-label">시그널 점수</div>
+            <div class="si-bar-wrap"><div class="si-bar" style="width:${barPct}%"></div></div>
+          </div>
+        </div>`;
+      }).join('')}</div>`;
+
+  document.getElementById('pc-signal').innerHTML = html;
+  if (document.getElementById('mo-signal')) document.getElementById('mo-signal').innerHTML = html;
+}
+
+function setView(v) {
+  currentView = v;
+  document.body.classList.toggle('signal-mode', v === 'signal');
+  document.getElementById('vt-news').classList.toggle('on', v === 'news');
+  document.getElementById('vt-signal').classList.toggle('on', v === 'signal');
+  // 모바일 layout
+  applyLayout();
+  if (v === 'signal') renderSignal();
+}
+
+function setSignalPeriod(d) {
+  const wrap = document.getElementById('custom-period-wrap');
+  if (d === 'custom') {
+    document.querySelectorAll('[data-sp]').forEach(p => p.classList.toggle('on', p.dataset.sp === 'custom'));
+    if (wrap) wrap.style.display = 'block';
+    return;
+  }
+  if (wrap) wrap.style.display = 'none';
+  signalPeriod = d;
+  document.querySelectorAll('[data-sp]').forEach(p => p.classList.toggle('on', +p.dataset.sp === d));
+  renderSignal();
+}
+
+function applyCustomPeriod() {
+  const val = parseInt(document.getElementById('custom-period-input').value);
+  if (!val || val < 1) return;
+  signalPeriod = Math.min(val, 365);
+  renderSignal();
+}
+
+function setSignalStage(s) {
+  signalStage = s;
+  document.querySelectorAll('[data-ss]').forEach(b => {
+    b.classList.remove('on-all','on-trend','on-watch','on-interest');
+    if (b.dataset.ss === s) b.classList.add(`on-${s}`);
+  });
+  renderSignal();
+}
+
 // 모바일/PC 메인 표시 전환
 function applyLayout(){
   const mo=isMobile();
-  document.getElementById('mo-main').style.display=mo?'block':'none';
-  // PC main은 항상 visible (CSS grid 안에 있음)
+  const isSignal = currentView==='signal';
+  document.getElementById('mo-main').style.display=(!isSignal&&mo)?'block':'none';
+  const moSig=document.getElementById('mo-signal');
+  if(moSig) moSig.style.display=(isSignal&&mo)?'block':'none';
 }
 
 async function loadNews(){
@@ -617,6 +920,7 @@ async function loadNews(){
     const pe=document.getElementById('pc-upd');if(pe)pe.textContent=upd;
     applyLayout();
     renderAll();
+    if(currentView==='signal') renderSignal();
   }catch(e){
     const err=`<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">불러올 수 없어요</div><div style="font-size:13px;margin-top:4px">${e.message}</div></div>`;
     document.getElementById('pc-main').innerHTML=err;
