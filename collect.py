@@ -15,7 +15,7 @@ from datetime import datetime, timedelta, timezone
 # aistudio.google.com → Get API Key → Create API key
 # 아래 "" 안에 본인 키 입력 (AIza... 로 시작)
 # ─────────────────────────────────────────
-GEMINI_API_KEY = ""   # 예: "AIzaSy..."
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 # aistudio.google.com → Get API Key → Create API key
 
 USE_AI = bool(GEMINI_API_KEY.strip())
