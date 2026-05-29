@@ -151,8 +151,9 @@ def gemini_analyze(title: str, raw_text: str, lang: str) -> dict:
 본문: {raw_text[:600]}
 
 아래 JSON 형식으로만 답해. 다른 말 절대 하지 마.
+규칙: summary는 1~5개 항목, 전체 합산 300자 이내, 항목당 간결하게.
 {{
-  "summary": "핵심 내용을 80자 이내로 요약 (한국어, 간결하게, 초과 금지)",
+  "summary": ["핵심 내용 (간결하게)"],
   "keywords": ["키워드1", "키워드2", "키워드3", "키워드4", "키워드5"]
 }}"""
         else:
@@ -162,9 +163,10 @@ Title: {title}
 Text: {raw_text[:600]}
 
 Reply ONLY in this JSON format, nothing else:
+Rules: summary 1~5 items, total under 300 chars, keep each item concise.
 {{
   "title_ko": "제목을 자연스러운 한국어로 번역",
-  "summary": "핵심 내용을 80자 이내로 요약 (한국어, 간결하게, 초과 금지)",
+  "summary": ["핵심 내용 (간결하게)"],
   "keywords": ["키워드1", "키워드2", "키워드3", "키워드4", "키워드5"]
 }}"""
 
@@ -349,7 +351,14 @@ def collect():
                 if USE_AI and raw_text:
                     ai_result = gemini_analyze(title, raw_text, src["lang"])
 
-                summary  = ai_result.get("summary") or shorten(raw_text, 150)
+                # summary: AI는 리스트, 없으면 RSS 원문 축약
+                raw_summary = ai_result.get("summary")
+                if isinstance(raw_summary, list):
+                    summary = raw_summary  # 불릿 포인트 리스트
+                elif isinstance(raw_summary, str) and raw_summary:
+                    summary = raw_summary
+                else:
+                    summary = shorten(raw_text, 150)
                 keywords = ai_result.get("keywords") or extract_keywords(title, summary or raw_text)
                 if src["lang"] != "ko" and ai_result.get("title_ko"):
                     title = ai_result["title_ko"]
