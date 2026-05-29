@@ -2,7 +2,7 @@ name: 우리맛연구 자동 수집
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 23 * * *'
   workflow_dispatch:
 
 jobs:
