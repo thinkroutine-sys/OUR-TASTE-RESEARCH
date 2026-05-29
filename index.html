@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#ffffff">
+<title>우리맛 연구</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F5F7;
+  --surface: #FFFFFF;
+  --surface2: #F5F5F7;
+  --border: #E8E8ED;
+  --text: #1D1D1F;
+  --text2: #6E6E73;
+  --text3: #AEAEB2;
+  --blue: #0066FF;
+  --blue-light: #EBF2FF;
+
+  --cat-new: #34C759;    --cat-new-bg: #F0FBF2;
+  --cat-trend: #AF52DE;  --cat-trend-bg: #F8F0FF;
+  --cat-cvs: #FF9500;    --cat-cvs-bg: #FFF8EB;
+  --cat-hm: #007AFF;     --cat-hm-bg: #EBF4FF;
+  --cat-ing: #FF6B35;    --cat-ing-bg: #FFF2EE;
+  --cat-ind: #8E8E93;    --cat-ind-bg: #F2F2F7;
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 12px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 24px rgba(0,0,0,.10);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  min-height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ── HEADER ── */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding-top: env(safe-area-inset-top);
+}
+.header-inner {
+  max-width: 720px; margin: 0 auto;
+  padding: 0 20px;
+  height: 56px;
+  display: flex; align-items: center; gap: 12px;
+}
+.logo-wrap { display: flex; flex-direction: column; gap: 1px; flex-shrink: 0; }
+.logo { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -.5px; }
+.logo-sub { font-size: 10px; color: var(--blue); font-weight: 600; letter-spacing: .5px; }
+
+.search-wrap {
+  flex: 1;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 0 12px; height: 36px;
+}
+.search-wrap svg { color: var(--text3); flex-shrink:0; }
+.search-wrap input {
+  background: none; border: none; outline: none;
+  font-family: inherit; font-size: 14px; color: var(--text);
+  width: 100%;
+}
+.search-wrap input::placeholder { color: var(--text3); }
+
+.header-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+#upd-txt { font-size: 11px; color: var(--text3); white-space: nowrap; display:none; }
+.btn-refresh {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--bg);
+  display: flex; align-items:center; justify-content:center;
+  color: var(--text2);
+  transition: background .15s;
+}
+.btn-refresh:hover { background: var(--border); }
+.btn-refresh.spin svg { animation: rot .5s linear infinite; }
+@keyframes rot { to { transform: rotate(360deg); } }
+
+/* ── CATEGORY TABS ── */
+.cat-wrap {
+  background: rgba(255,255,255,.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 57px; z-index: 90;
+}
+.cat-inner { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+.tabs { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display:none; }
+.tab {
+  padding: 12px 16px;
+  font-size: 14px; font-weight: 500;
+  color: var(--text3);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all .15s;
+  display: flex; align-items: center; gap: 5px;
+}
+.tab:hover { color: var(--text); }
+.tab.on { color: var(--blue); border-bottom-color: var(--blue); }
+.tab .n {
+  font-size: 10px; font-weight: 600;
+  background: var(--bg);
+  color: var(--text3);
+  padding: 1px 6px; border-radius: 20px;
+  min-width: 18px; text-align: center;
+}
+.tab.on .n { background: var(--blue-light); color: var(--blue); }
+
+/* ── FILTER ROW ── */
+.filter-wrap { background: var(--bg); border-bottom: 1px solid var(--border); }
+.filter-inner {
+  max-width: 720px; margin: 0 auto;
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 8px;
+  overflow-x: auto; scrollbar-width: none;
+  flex-wrap: nowrap;
+}
+.filter-inner::-webkit-scrollbar { display:none; }
+
+.filter-sep {
+  width: 1px; height: 16px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+.filter-group { display: flex; gap: 6px; flex-shrink: 0; }
+.filter-label {
+  font-size: 11px; font-weight: 600;
+  color: var(--text3); letter-spacing: .3px;
+  white-space: nowrap; align-self: center;
+  flex-shrink: 0;
+}
+
+.pill {
+  font-size: 13px; font-weight: 500;
+  padding: 5px 12px; border-radius: 20px;
+  border: 1.5px solid var(--border);
+  color: var(--text2);
+  background: var(--surface);
+  white-space: nowrap;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.pill:hover { border-color: var(--text3); color: var(--text); }
+.pill.on { background: var(--text); border-color: var(--text); color: #fff; }
+.pill.on-blue { background: var(--blue-light); border-color: var(--blue); color: var(--blue); }
+
+.src-sel {
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  color: var(--text2); background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 20px; padding: 5px 10px;
+  outline: none; cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ── MAIN ── */
+main { max-width: 720px; margin: 0 auto; padding: 20px 20px 100px; }
+
+/* date group */
+.date-group { margin-bottom: 28px; }
+.dg-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px;
+}
+.dg-title {
+  font-size: 13px; font-weight: 700;
+  color: var(--text3); letter-spacing: .3px;
+  text-transform: uppercase; white-space: nowrap;
+}
+.dg-line { flex:1; height: 1px; background: var(--border); }
+.dg-count { font-size: 12px; color: var(--text3); }
+
+/* article card */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+  box-shadow: var(--shadow);
+  border: none;
+  width: 100%;
+  text-align: left;
+  display: block;
+}
+.card:active { transform: scale(.99); }
+.card:hover { box-shadow: var(--shadow-md); }
+.card.read { opacity: .45; }
+
+.card-top {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 9px; flex-wrap: wrap;
+}
+.badge {
+  font-size: 11px; font-weight: 700;
+  padding: 3px 8px; border-radius: 6px;
+  letter-spacing: .1px;
+}
+.b-신제품     { color: var(--cat-new);   background: var(--cat-new-bg); }
+.b-트렌드     { color: var(--cat-trend); background: var(--cat-trend-bg); }
+.b-편의점     { color: var(--cat-cvs);   background: var(--cat-cvs-bg); }
+.b-간편식     { color: var(--cat-hm);    background: var(--cat-hm-bg); }
+.b-식재료·원료{ color: var(--cat-ing);   background: var(--cat-ing-bg); }
+.b-업계뉴스   { color: var(--cat-ind);   background: var(--cat-ind-bg); }
+
+.lang-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  flex-shrink: 0; display: inline-block;
+}
+.dot-ko { background: #34C759; }
+.dot-en { background: #007AFF; }
+.dot-ja { background: #FF3B30; }
+.card-src { font-size: 12px; color: var(--text3); font-weight: 500; }
+.card-date { font-size: 12px; color: var(--text3); margin-left: auto; }
+
+.card-title {
+  font-size: 15px; font-weight: 600;
+  line-height: 1.5; color: var(--text);
+  margin-bottom: 7px;
+  word-break: keep-all;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.card.read .card-title { color: var(--text2); }
+
+.card-summary {
+  font-size: 13px; color: var(--text2);
+  line-height: 1.6;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.card-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 10px; border-top: 1px solid var(--bg);
+}
+.unread-badge {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--blue);
+}
+.read .unread-badge { background: transparent; border: 1.5px solid var(--border); }
+.card-link { color: var(--text3); display: flex; align-items: center; }
+.card:hover .card-link { color: var(--blue); }
+
+/* empty */
+.empty { text-align: center; padding: 64px 0; color: var(--text3); }
+.empty-icon { font-size: 40px; margin-bottom: 12px; }
+.empty-title { font-size: 17px; font-weight: 600; color: var(--text2); margin-bottom: 6px; }
+
+/* Mobile bottom safe area */
+.bottom-spacer { height: calc(20px + env(safe-area-inset-bottom)); }
+
+/* Scroll to top */
+.scroll-top {
+  position: fixed; bottom: calc(28px + env(safe-area-inset-bottom));
+  right: 20px; z-index: 50;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--text); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.15);
+  opacity: 0; transition: opacity .2s, transform .2s;
+  transform: translateY(10px);
+}
+.scroll-top.show { opacity: 1; transform: translateY(0); }
+
+/* ── MOBILE ── */
+@media (max-width: 480px) {
+  .header-inner { height: 52px; gap: 10px; }
+  .logo { font-size: 16px; }
+  #upd-txt { display: none !important; }
+  .card { padding: 14px; }
+  .card-title { font-size: 14px; }
+  main { padding: 16px 16px 80px; }
+}
+
+@media (min-width: 768px) {
+  #upd-txt { display: block; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <div class="logo">우리맛 연구</div>
+      <div class="logo-sub">OUR TASTE RESEARCH</div>
+    </div>
+    <div class="search-wrap">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input id="q" type="text" placeholder="기사 검색">
+    </div>
+    <div class="header-right">
+      <span id="upd-txt"></span>
+      <button class="btn-refresh" id="ref-btn" onclick="loadNews()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+          <path d="M21 3v5h-5"/>
+          <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+          <path d="M8 16H3v5"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY TABS -->
+<div class="cat-wrap">
+  <div class="cat-inner">
+    <div class="tabs" id="tabs"></div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filter-wrap">
+  <div class="filter-inner">
+    <div class="filter-group">
+      <button class="pill" data-d="1"  onclick="setPeriod(1)">오늘</button>
+      <button class="pill" data-d="3"  onclick="setPeriod(3)">3일</button>
+      <button class="pill on" data-d="7" onclick="setPeriod(7)">7일</button>
+      <button class="pill" data-d="30" onclick="setPeriod(30)">30일</button>
+      <button class="pill" data-d="0"  onclick="setPeriod(0)">전체</button>
+    </div>
+    <div class="filter-sep"></div>
+    <div class="filter-group">
+      <button class="pill on-blue" data-l="all" onclick="setLang('all')">전체</button>
+      <button class="pill" data-l="ko" onclick="setLang('ko')">국내</button>
+      <button class="pill" data-l="en" onclick="setLang('en')">해외</button>
+      <button class="pill" data-l="ja" onclick="setLang('ja')">일본</button>
+    </div>
+    <div class="filter-sep"></div>
+    <select class="src-sel" id="src-sel" onchange="setSrc(this.value)">
+      <option value="all">전체 출처</option>
+    </select>
+    <div class="filter-sep"></div>
+    <button class="pill" id="read-btn" onclick="toggleRead()">읽은 것 숨기기</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main id="main">
+  <div class="empty">
+    <div class="empty-icon">⏳</div>
+    <div class="empty-title">불러오는 중…</div>
+  </div>
+</main>
+
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+    <path d="m18 15-6-6-6 6"/>
+  </svg>
+</button>
+
+<script>
+const CATS = ['전체','신제품','트렌드','편의점','간편식','식재료·원료','업계뉴스'];
+let all=[], tab='전체', period=7, lang='all', src='all', query='', hideRead=false;
+
+// read tracking
+const READ_KEY = 'urimat_read_v1';
+function getRead(){try{return new Set(JSON.parse(localStorage.getItem(READ_KEY)||'[]'))}catch{return new Set()}}
+function markRead(id){try{const s=getRead();s.add(id);localStorage.setItem(READ_KEY,JSON.stringify([...s]))}catch{}}
+function isRead(id){return getRead().has(id)}
+
+// date
+function fmtDate(iso){
+  try{
+    const d=new Date(iso),now=new Date();
+    const diffMs=now-d, diffH=diffMs/3.6e6, diffD=Math.floor(diffH/24);
+    if(diffH<1) return '방금';
+    if(diffH<24) return Math.floor(diffH)+'시간 전';
+    if(diffD<7) return diffD+'일 전';
+    return `${d.getMonth()+1}/${d.getDate()}`;
+  }catch{return ''}
+}
+function fmtDateFull(iso){
+  try{
+    const d=new Date(iso);
+    return `${d.getMonth()+1}.${String(d.getDate()).padStart(2,'0')} ${d.getHours()<12?'오전':'오후'} ${String(d.getHours()%12||12).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+  }catch{return ''}
+}
+function dayKey(iso){
+  try{
+    const d=new Date(iso),now=new Date();
+    const diff=Math.floor((now.setHours(0,0,0,0)-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/86400000);
+    if(diff===0) return '오늘';
+    if(diff===1) return '어제';
+    return diff+'일 전';
+  }catch{return '기타'}
+}
+function withinPeriod(iso){return period===0||(Date.now()-new Date(iso))/86400000<period}
+function fmtUpd(iso){
+  try{return new Date(iso).toLocaleString('ko-KR',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})+' 수집'}catch{return ''}
+}
+
+// filter
+function filtered(){
+  let r=all;
+  if(tab!=='전체') r=r.filter(a=>(a.categories||[a.category]).includes(tab));
+  if(lang!=='all') r=r.filter(a=>a.lang===lang);
+  if(src!=='all')  r=r.filter(a=>a.source===src);
+  if(period>0)     r=r.filter(a=>withinPeriod(a.date));
+  if(query){const lq=query.toLowerCase();r=r.filter(a=>a.title.toLowerCase().includes(lq)||(a.source||'').toLowerCase().includes(lq));}
+  if(hideRead)     r=r.filter(a=>!isRead(a.id));
+  return r;
+}
+
+function renderTabs(){
+  const base=all.filter(a=>{
+    if(lang!=='all'&&a.lang!==lang)return false;
+    if(src!=='all'&&a.source!==src)return false;
+    return withinPeriod(a.date);
+  });
+  const cnt={};
+  for(const a of base) for(const c of (a.categories||[a.category||'업계뉴스'])) cnt[c]=(cnt[c]||0)+1;
+  document.getElementById('tabs').innerHTML=CATS.map(c=>{
+    const n=c==='전체'?base.length:(cnt[c]||0);
+    if(c!=='전체'&&n===0) return '';
+    return `<button class="tab ${c===tab?'on':''}" onclick="setTab('${c}')">${c}<span class="n">${n}</span></button>`;
+  }).join('');
+}
+
+function renderSrcSel(){
+  const sources=[...new Set(all.map(a=>a.source))].sort();
+  document.getElementById('src-sel').innerHTML='<option value="all">전체 출처</option>'+sources.map(s=>`<option value="${s}"${src===s?' selected':''}>${s}</option>`).join('');
+}
+
+function renderMain(){
+  const items=filtered();
+  const main=document.getElementById('main');
+  if(!items.length){
+    main.innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">기사가 없습니다</div><div>다른 필터를 선택해보세요</div></div>`;
+    return;
+  }
+  const groups={};
+  for(const a of items){const k=dayKey(a.date);if(!groups[k])groups[k]=[];groups[k].push(a);}
+  const ORDER=['오늘','어제','2일 전','3일 전','4일 전','5일 전','6일 전'];
+  const keys=Object.keys(groups).sort((a,b)=>{const ai=ORDER.indexOf(a),bi=ORDER.indexOf(b);if(ai>=0&&bi>=0)return ai-bi;if(ai>=0)return -1;if(bi>=0)return 1;return parseInt(a)-parseInt(b);});
+  main.innerHTML=keys.map(k=>`
+    <div class="date-group">
+      <div class="dg-header">
+        <span class="dg-title">${k}</span>
+        <div class="dg-line"></div>
+        <span class="dg-count">${groups[k].length}건</span>
+      </div>
+      ${groups[k].map((a,i)=>cardHtml(a,i)).join('')}
+    </div>`).join('')+'<div class="bottom-spacer"></div>';
+}
+
+function cardHtml(a,i){
+  const cats=a.categories||[a.category||'업계뉴스'];
+  const read=isRead(a.id);
+  const badges=cats.map(c=>`<span class="badge b-${c}">${c}</span>`).join('');
+  const sum=a.summary?`<div class="card-summary">${a.summary}</div>`:'';
+  return `<button class="card${read?' read':''}" data-id="${a.id}" data-url="${a.url||''}" onclick="handleClick(this)">
+  <div class="card-top">
+    ${badges}
+    <span class="lang-dot dot-${a.lang||'ko'}"></span>
+    <span class="card-src">${a.source}</span>
+    <span class="card-date">${fmtDate(a.date)}</span>
+  </div>
+  <div class="card-title">${a.title}</div>
+  ${sum}
+  <div class="card-bottom">
+    <div class="unread-badge"></div>
+    <svg class="card-link" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+      <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+    </svg>
+  </div>
+</button>`;
+}
+
+function handleClick(el){
+  const id=el.dataset.id,url=el.dataset.url;
+  markRead(id); el.classList.add('read');
+  if(url&&url!=='#') window.open(url,'_blank','noopener');
+}
+
+function setTab(c){tab=c;renderTabs();renderMain();}
+function setPeriod(d){
+  period=d;
+  document.querySelectorAll('.pill[data-d]').forEach(p=>p.classList.toggle('on',+p.dataset.d===d));
+  renderTabs();renderMain();
+}
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.pill[data-l]').forEach(p=>{
+    p.classList.remove('on','on-blue');
+    if(p.dataset.l===l) p.classList.add(l==='all'?'on-blue':'on');
+  });
+  renderTabs();renderMain();
+}
+function setSrc(v){src=v;renderTabs();renderMain();}
+function toggleRead(){
+  hideRead=!hideRead;
+  const btn=document.getElementById('read-btn');
+  btn.classList.toggle('on',hideRead);
+  btn.textContent=hideRead?'읽은 것 보이기':'읽은 것 숨기기';
+  renderMain();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('ref-btn');
+  btn.classList.add('spin');
+  try{
+    const r=await fetch('data/news.json?t='+Date.now());
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d=await r.json();
+    all=d.articles||[];
+    document.getElementById('upd-txt').textContent=d.updated?fmtUpd(d.updated):'';
+    renderSrcSel();renderTabs();renderMain();
+  }catch(e){
+    document.getElementById('main').innerHTML=`<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">불러올 수 없어요</div><div style="font-size:13px;margin-top:4px">${e.message}</div></div>`;
+  }finally{btn.classList.remove('spin');}
+}
+
+document.getElementById('q').addEventListener('input',e=>{query=e.target.value.trim();renderMain();});
+window.addEventListener('scroll',()=>document.getElementById('scroll-top').classList.toggle('show',scrollY>300));
+loadNews();
+setInterval(loadNews,30*60*1000);
+</script>
+</body>
+</html>
