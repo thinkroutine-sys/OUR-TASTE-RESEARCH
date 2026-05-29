@@ -141,9 +141,8 @@ def gemini_analyze(title: str, raw_text: str, lang: str) -> dict:
     """Gemini Flash: 요약 + 키워드 + 해외 번역"""
     import json as _json
     try:
-        import google.generativeai as genai
-        genai.configure(api_key=GEMINI_API_KEY)
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        from google import genai
+        client = genai.Client(api_key=GEMINI_API_KEY)
 
         if lang == "ko":
             prompt = f"""다음 F&B 뉴스를 분석해줘.
@@ -169,9 +168,10 @@ Reply ONLY in this JSON format, nothing else:
   "keywords": ["키워드1", "키워드2", "키워드3", "키워드4", "키워드5"]
 }}"""
 
-        response = model.generate_content(
-            prompt,
-            generation_config={"temperature": 0.1, "max_output_tokens": 300}
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt,
+            config={"temperature": 0.1, "max_output_tokens": 300}
         )
         raw = response.text.strip().replace("```json","").replace("```","").strip()
         result = _json.loads(raw)
