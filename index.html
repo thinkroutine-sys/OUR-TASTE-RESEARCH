@@ -298,6 +298,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .card-link{color:var(--text3);display:flex;align-items:center;transition:color .15s}
 .card:hover .card-link{color:var(--blue)}
 
+.keywords{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.kw{font-size:11px;background:var(--bg);color:var(--text3);padding:2px 9px;border-radius:20px;border:1px solid var(--border);font-weight:500}
+
 /* empty */
 .empty{text-align:center;padding:64px 20px;color:var(--text3)}
 .empty-icon{font-size:36px;margin-bottom:12px}
@@ -538,10 +541,12 @@ function cardHtml(a,i){
   const read=isRead(a.id);
   const badges=cats.map(c=>`<span class="badge b-${c}">${c}</span>`).join('');
   const sum=a.summary?`<div class="card-summary">${a.summary}</div>`:'';
+  const kws=(a.keywords&&a.keywords.length)?`<div class="keywords">${a.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>`:'';
   return `<button class="card${read?' read':''}" data-id="${a.id}" data-url="${a.url||''}" onclick="handleClick(this)">
   <div class="card-top">${badges}<span class="lang-dot dot-${a.lang||'ko'}"></span><span class="card-src">${a.source}</span><span class="card-date">${fmtDate(a.date)}</span></div>
   <div class="card-title">${a.title}</div>
   ${sum}
+  ${kws}
   <div class="card-bottom"><div class="unread-badge"></div><svg class="card-link" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
 </button>`;
 }
