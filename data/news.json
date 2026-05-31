@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-30T00:41:28.793416+00:00",
+  "updated": "2026-05-31T00:26:42.468689+00:00",
   "total": 241,
   "articles": [
     {
@@ -5111,24 +5111,31 @@
       "date": "2026-05-03T07:00:00+00:00"
     },
     {
-      "id": "bb1c16e86213",
-      "title": "세븐일레븐, 창립 38주년 기념 '럭키세븐 감사제' 실시 - 전자신문",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5YM0ZCWi1OdGFPWkFsbWZ3RjN3TlhKWi0xa3prN0hvdlJ2VkRNTzgtbVg1VXE3Wkl1ZDlRdTNiSlQxSEZ2VEtDaUlwRTRMUQ?oc=5",
+      "id": "c1698b053128",
+      "title": "세븐일레븐, KIA 타이거즈 협업 '최강 호랑이즈' 상품 출시 - 전자신문",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1FYi1xTkg4V0x1bVlaNmxnWVpjazZOdXp2Y1l0elAzYUdWOWFhSFpSN3ZieFpYNWtRb3ljTmI1RFRyc19hUmZmeFJ6M2sxZw?oc=5",
       "source": "세븐일레븐 소식",
       "lang": "ko",
       "categories": [
+        "신제품",
         "편의점"
       ],
-      "category": "편의점",
-      "summary": "세븐일레븐이 창립 38주년을 맞아 고객 성원에 보답하기 위한 '럭키세븐 감사제' 프로모션을 실시합니다.",
+      "category": "신제품",
+      "summary": [
+        "세븐일레븐이 프로야구단 KIA 타이거즈와 협업하여 '최강 호랑이즈' 상품을 출시함",
+        "스포츠 팬덤을 겨냥한 마케팅으로 편의점 간편식 및 굿즈 시장 공략"
+      ],
       "keywords": [
         "세븐일레븐",
-        "창립38주년",
-        "럭키세븐감사제",
-        "편의점",
-        "프로모션"
+        "KIA 타이거즈",
+        "간편식"
       ],
-      "date": "2026-04-30T07:00:00+00:00"
+      "kw_cats": {
+        "세븐일레븐": "brand",
+        "KIA 타이거즈": "brand",
+        "간편식": "food_cat"
+      },
+      "date": "2026-05-03T07:00:00+00:00"
     }
   ]
 }
