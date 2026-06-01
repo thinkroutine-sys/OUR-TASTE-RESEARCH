@@ -243,8 +243,10 @@ def make_id(url: str) -> str:
 def strip_html(text: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", text)).strip()
 
-def shorten(text: str, n: int = 300) -> str:
-    t = strip_html(text)
+def shorten(text, n: int = 300) -> str:
+    if isinstance(text, list):
+        text = ' '.join(text)
+    t = strip_html(str(text))
     return (t[:n].rsplit(" ", 1)[0] + "…") if len(t) > n else t
 
 def parse_date(entry, lang: str = "en") -> str:
@@ -388,10 +390,13 @@ def collect():
                     keywords = raw_kws
                     kw_cats  = {}
                 else:
-                    keywords = extract_keywords(title, summary or raw_text)
+                    keywords = extract_keywords(title, raw_text)
                     kw_cats  = {}
 
                 keywords = keywords[:5]
+
+                # extract_keywords용: summary가 list면 합쳐서 문자열로
+                summary_str = ' '.join(summary) if isinstance(summary, list) else (summary or '')
 
                 if src["lang"] != "ko" and ai_result.get("title_ko"):
                     title = ai_result["title_ko"]
