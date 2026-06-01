@@ -157,7 +157,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 
   /* 숨김 처리 */
-  .mobile-header,.mobile-filter,.bottom-nav{display:none !important}
+  .mobile-header,.bottom-nav{display:none !important}
+.mobile-filter:not(#mo-signal-filter){display:none !important}
+#mo-signal-filter{display:none}
 }
 
 /* ════════════════════════════════════
@@ -436,6 +438,9 @@ body.signal-mode .view-signal { display: block; }
   .view-news,.view-signal { display: block !important; }
   body.signal-mode .view-news { display: none !important; }
   body.signal-mode .view-signal { display: block !important; }
+  /* 시그널 필터/메인은 JS로 display 제어하되 !important 없이 */
+  #mo-signal-filter { display: none; }
+  #mo-signal { display: none; }
   .mobile-main.view-signal { padding: 12px 16px 90px; }
   .signal-item { padding: 12px 14px; gap: 10px; }
   .si-score { font-size: 17px; }
@@ -594,6 +599,27 @@ body.signal-mode .view-signal { display: block; }
 </div>
 </div>
 
+<!-- 모바일 시그널 필터 -->
+<div class="mobile-filter view-signal" id="mo-signal-filter" style="display:none">
+<div class="mf-inner">
+  <button class="mf-pill" data-sp="30"  onclick="setSignalPeriod(30)">1개월</button>
+  <button class="mf-pill on" data-sp="90"  onclick="setSignalPeriod(90)">3개월</button>
+  <button class="mf-pill" data-sp="180" onclick="setSignalPeriod(180)">6개월</button>
+  <button class="mf-pill" data-sp="custom" onclick="setSignalPeriod('custom')">직접 설정</button>
+  <div class="mf-sep"></div>
+  <button class="mf-pill on-all" data-ss="all"       onclick="setSignalStage('all')">전체</button>
+  <button class="mf-pill" data-ss="trend"    onclick="setSignalStage('trend')">🔥 트렌드</button>
+  <button class="mf-pill" data-ss="watch"    onclick="setSignalStage('watch')">👀 주목</button>
+  <button class="mf-pill" data-ss="interest" onclick="setSignalStage('interest')">💡 관심사</button>
+  <div class="mf-sep"></div>
+  <button class="mf-pill on-all" data-kc="all"        onclick="setKwCat('all')">전체 유형</button>
+  <button class="mf-pill" data-kc="food_cat"  onclick="setKwCat('food_cat')">🍽️ 식품</button>
+  <button class="mf-pill" data-kc="ingredient" onclick="setKwCat('ingredient')">🌿 원료</button>
+  <button class="mf-pill" data-kc="trend"     onclick="setKwCat('trend')">📈 트렌드</button>
+  <button class="mf-pill" data-kc="brand"     onclick="setKwCat('brand')">🏷️ 브랜드</button>
+</div>
+</div>
+
 <!-- 모바일 메인 -->
 <div class="mobile-main view-news" id="mo-main" style="display:none">
   <div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">불러오는 중…</div></div>
@@ -677,15 +703,19 @@ function renderPcCats(){
 // 모바일 하단 탭바
 function renderBottomNav(){
   const{cnt,total}=catCounts();
-  const visible=CATS.filter(c=>c==='전체'||(cnt[c]||0)>0).slice(0,5);
-  document.getElementById('bottom-nav').innerHTML=visible.map(c=>{
-    const n=c==='전체'?total:(cnt[c]||0);
-    return `<button class="bn-tab ${c===tab?'on':''}" onclick="setTab('${c}')">
+  const visible=CATS.filter(c=>c==='전체'||(cnt[c]||0)>0).slice(0,4);
+  const isSignal = currentView==='signal';
+  document.getElementById('bottom-nav').innerHTML=
+    visible.map(c=>`<button class="bn-tab ${!isSignal&&c===tab?'on':''}" onclick="setView('news');setTab('${c}')">
       <span style="font-size:18px">${CAT_ICONS[c]||'📄'}</span>
       <span>${c}</span>
       <div class="bn-dot"></div>
+    </button>`).join('')+
+    `<button class="bn-tab ${isSignal?'on':''}" onclick="setView('signal')">
+      <span style="font-size:18px">📡</span>
+      <span>시그널</span>
+      <div class="bn-dot"></div>
     </button>`;
-  }).join('');
 }
 
 function renderSrcSel(){
@@ -942,6 +972,11 @@ function applyLayout(){
   document.getElementById('mo-main').style.display=(!isSignal&&mo)?'block':'none';
   const moSig=document.getElementById('mo-signal');
   if(moSig) moSig.style.display=(isSignal&&mo)?'block':'none';
+  const moSigFilter=document.getElementById('mo-signal-filter');
+  if(moSigFilter) moSigFilter.style.display=(isSignal&&mo)?'block':'none';
+  // 모바일 뉴스 필터바 숨기기/보이기
+  const moFilter=document.querySelector('.mobile-filter:not(#mo-signal-filter)');
+  if(moFilter) moFilter.style.display=(!isSignal&&mo)?'block':'none';
 }
 
 async function loadNews(){
