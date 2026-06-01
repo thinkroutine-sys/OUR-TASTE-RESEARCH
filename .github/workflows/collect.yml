@@ -1,37 +1,55 @@
 name: 우리맛연구 자동 수집
+
 on:
   schedule:
     - cron: '0 23 * * *'
   workflow_dispatch:
+
 jobs:
   collect:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - name: 저장소 체크아웃
         uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
+
       - name: Python 설정
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
+
       - name: 패키지 설치
         run: pip install -r requirements.txt
+
       - name: 뉴스 수집
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python collect.py
+
       - name: 커밋 & 푸시
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          
+          # news.json 백업
+          cp data/news.json /tmp/news.json
+          
+          # 최신 remote 상태로 완전히 리셋
           git fetch origin main
-          git reset --soft origin/main
+          git checkout origin/main -- .
+          
+          # 수집된 news.json 복원
+          cp /tmp/news.json data/news.json
+          
+          # 변경 없으면 종료
           git add data/news.json
           git diff --staged --quiet && echo "변경 없음" && exit 0
+          
           git commit -m "뉴스 업데이트 $(date +'%Y-%m-%d')"
           git push origin main
