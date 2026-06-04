@@ -94,44 +94,21 @@ SOURCES = [
 # ─────────────────────────────────────────
 
 # ─────────────────────────────────────────
-# 카테고리 기준 (복수 태그 허용)
+# 기사 카테고리 (6개 / Gemini가 분류)
 #
-# [신제품]  제품 출시·론칭·리뉴얼 소식
-# [트렌드]  시장 분석, 소비자 리포트, 통계, 성장 데이터
-# [편의점]  편의점 브랜드 언급 또는 편의점 채널 관련
-# [간편식]  HMR·밀키트·즉석식품·냉동식품 관련
-# [식재료·원료] 원료·식재료·성분·공법(발효·유기농 등)
-# [업계뉴스] 위에 해당 없는 기업 동향·정책·M&A 등
+# [신제품·NPD]      제품 출시·론칭·리뉴얼·신메뉴
+# [소비자·시장]     소비 트렌드·시장 리포트·소비자 조사
+# [식재료·원료]     원료·성분·발효기술·기능성 소재 중심 기사
+# [채널·유통]       편의점·마트·외식·배달 채널 전략
+# [브랜드·기업]     기업 전략·투자·M&A·브랜드 포지셔닝
+# [산업·정책]       규제·수급·식품안전·원가·수출입
 # ─────────────────────────────────────────
-CATEGORY_RULES: list[tuple[str, list[str]]] = [
-    ("신제품", [
-        "신제품", "출시", "론칭", "신규 출시", "새로 선보", "새로 나온", "리뉴얼", "리패키징",
-        "launch", "launches", "new product", "introduces", "unveiled",
-        "debut", "debuts", "released", "new launch",
-    ]),
-    ("트렌드", [
-        "트렌드", "성장세", "소비 트렌드", "리포트", "조사 결과", "시장 분석",
-        "급증", "소비자 선호", "인기 급상승", "%", "억원", "조원",
-        "trend", "report", "survey", "forecast", "consumer insight",
-        "market data", "growing demand", "rise of",
-    ]),
-    ("편의점", [
-        "편의점", "CU", "GS25", "세븐일레븐", "이마트24", "미니스톱",
-        "convenience store", "CVS",
-    ]),
-    ("간편식", [
-        "간편식", "밀키트", "HMR", "즉석식품", "냉동식품", "레토르트",
-        "가정간편식", "즉석조리", "냉동",
-        "ready meal", "meal kit", "instant food", "frozen food",
-        "heat and eat", "ready-to-eat",
-    ]),
-    ("식재료·원료", [
-        "식재료", "원료", "원산지", "성분", "첨가물", "발효", "유기농",
-        "비건", "식물성", "대체단백질", "배양육", "천연",
-        "ingredient", "raw material", "organic", "fermented",
-        "plant-based", "vegan", "alternative protein", "cultivated meat",
-    ]),
+# 편의점 여부는 채널 태그로 별도 저장 (is_cvs 필드)
+VALID_CATEGORIES = [
+    "신제품·NPD", "소비자·시장", "식재료·원료",
+    "채널·유통", "브랜드·기업", "산업·정책"
 ]
+CVS_KEYWORDS = ["편의점", "CU", "GS25", "세븐일레븐", "이마트24", "미니스톱", "convenience store"]
 
 # ─────────────────────────────────────────
 # AI 요약 (Claude Haiku)
@@ -151,20 +128,31 @@ def gemini_analyze(title: str, raw_text: str, lang: str) -> dict:
 본문: {raw_text[:600]}
 
 JSON만 반환. 설명 금지.
-summary: 문자열 배열 1~5개, 전체 300자 이내, 핵심만.
-keywords: 각 키워드를 food_cat/ingredient/trend/brand 중 하나로 분류. skip이면 제외.
+
+[기사 주카테고리 - 반드시 1개]
+아래 6개 중 기사의 핵심 성격에 맞는 것 1개만 선택:
+- 신제품·NPD: 제품 출시·론칭·리뉴얼·신메뉴가 핵심 (출시가 핵심이면 편의점 기사도 이걸로)
+- 소비자·시장: 소비자 니즈 변화·시장 성장·리포트·조사 결과가 핵심
+- 식재료·원료: 특정 원료·성분·발효기술·기능성 소재가 기사 중심
+- 채널·유통: 편의점·마트·외식·배달 채널 전략 변화가 핵심
+- 브랜드·기업: 기업 전략·투자·M&A·브랜드 포지셔닝이 핵심
+- 산업·정책: 규제·수급·식품안전·원가·수출입이 핵심
+
+[시그널 키워드 - 메뉴 개발 관점]
+food_cat/ingredient/trend/brand 중 하나로 분류. 애매하면 제외.
+- food_cat: 매대/메뉴판에서 바로 고를 수 있는 완성형 식품 (그릭요거트, HMR, 오마카세 등)
+- ingredient: 제품 안에 들어가는 원재료·성분 (귀리, 피스타치오, 콜라겐, 누룩 등)
+- trend: 여러 카테고리에 걸친 소비자 니즈·가치관·섭취 맥락 (저속노화, 고단백, 홈술 등)
+- brand: 기업·브랜드·유통사·외식체인 이름 (CJ, 파리바게뜨, CU 등)
+- 일반어(인기, 출시, 건강, 프리미엄 등) 단독 저장 금지
+
 {{
-  "summary": ["항목1", "항목2"],
+  "primary_category": "신제품·NPD|소비자·시장|식재료·원료|채널·유통|브랜드·기업|산업·정책",
+  "summary": ["핵심 포인트1", "포인트2"],
   "keywords": [
     {{"word": "키워드", "cat": "food_cat|ingredient|trend|brand"}}
   ]
-}}
-카테고리 기준:
-- food_cat: 구체적 식품 카테고리 (밀키트, 간편식, 그릭요거트, 오마카세 등)
-- ingredient: 구체적 식재료/원료 (귀리, 콜라겐, 피스타치오, 대체단백질 등)
-- trend: 소비 트렌드 키워드 (저속노화, 헬시플레저, 고단백, 저당, 홈술 등)
-- brand: 구체적 브랜드/기업명 (CJ, 롯데, 파리바게뜨, 배민 등)
-- 위 4개 해당 없으면 keywords 배열에서 제외"""
+}}"""
         else:
             prompt = f"""Analyze this F&B news article.
 
@@ -172,33 +160,51 @@ Title: {title}
 Text: {raw_text[:600]}
 
 JSON only. No explanation.
-summary: string array 1~5 items, total under 300 chars.
-keywords: classify each into food_cat/ingredient/trend/brand. Exclude if none match.
+
+[Primary category - pick exactly 1]
+- 신제품·NPD: New product launch/renewal is the main focus
+- 소비자·시장: Consumer trends, market growth, reports
+- 식재료·원료: Specific ingredient, functional material, fermentation tech
+- 채널·유통: Retail channel strategy (convenience store, delivery, etc.)
+- 브랜드·기업: Corporate strategy, M&A, brand positioning
+- 산업·정책: Regulation, supply chain, food safety, pricing
+
+[Signal keywords - menu development perspective]
+- food_cat: Ready-to-buy complete food/menu (greek yogurt, HMR, omakase)
+- ingredient: Raw material inside products (oat, pistachio, collagen, yeast)
+- trend: Consumer need/value across categories (high-protein, low-sugar, home dining)
+- brand: Company/brand/retailer name (CJ, Starbucks, CU)
+- Exclude generic words (popular, launch, health, premium)
+
 {{
-  "title_ko": "제목을 자연스러운 한국어로 번역",
-  "summary": ["item1", "item2"],
+  "title_ko": "자연스러운 한국어 제목 번역",
+  "primary_category": "신제품·NPD|소비자·시장|식재료·원료|채널·유통|브랜드·기업|산업·정책",
+  "summary": ["key point 1", "point 2"],
   "keywords": [
     {{"word": "keyword", "cat": "food_cat|ingredient|trend|brand"}}
   ]
-}}
-Categories:
-- food_cat: specific food category (meal kit, greek yogurt, omakase, etc.)
-- ingredient: specific ingredient/raw material (oat, collagen, pistachio, etc.)
-- trend: consumer trend keyword (high-protein, low-sugar, home drinking, etc.)
-- brand: specific brand/company name (CJ, Lotte, Starbucks, etc.)
-- Exclude from keywords if none of the above"""
+}}"""
 
-        response = client.models.generate_content(
-            model="gemini-3.1-flash-lite",
-            contents=prompt,
-            config={"temperature": 0.1, "max_output_tokens": 300}
-        )
-        raw = response.text.strip().replace("```json","").replace("```","").strip()
-        result = _json.loads(raw)
-        time.sleep(AI_DELAY)
-        return result
-    except Exception as e:
-        print(f"\n    !! Gemini 오류: {e}")
+        # 최대 3회 재시도 (503 일시적 과부하 대응)
+        for attempt in range(3):
+            try:
+                response = client.models.generate_content(
+                    model="gemini-3.1-flash-lite",
+                    contents=prompt,
+                    config={"temperature": 0.1, "max_output_tokens": 300}
+                )
+                raw = response.text.strip().replace("```json","").replace("```","").strip()
+                result = _json.loads(raw)
+                time.sleep(AI_DELAY)
+                return result
+            except Exception as e:
+                err_str = str(e)
+                if '503' in err_str and attempt < 2:
+                    print(f"\n    !! 503 일시 과부하, {10*(attempt+1)}초 후 재시도...", end="")
+                    time.sleep(10 * (attempt + 1))
+                    continue
+                print(f"\n    !! Gemini 오류: {e}")
+                return {}
         return {}
 
 # ─────────────────────────────────────────
@@ -303,19 +309,27 @@ def parse_date(entry, lang: str = "en") -> str:
     # ③ 최후 수단: 수집 시각
     return datetime.now(timezone.utc).isoformat()
 
-def categorize(title: str, summary: str, cat_hint) -> list[str]:
-    """복수 카테고리 반환. cat_hint 있으면 해당 카테고리 + 키워드 매칭 추가."""
+def categorize_fallback(title: str, summary: str) -> str:
+    """Gemini 분류 실패 시 키워드 기반 fallback."""
     text = (title + " " + summary).lower()
-    matched = []
-    for cat, kws in CATEGORY_RULES:
-        if any(kw.lower() in text for kw in kws):
-            matched.append(cat)
-    # cat_hint(편의점 등)는 항상 포함, 중복 제거
-    if cat_hint and cat_hint not in matched:
-        matched.insert(0, cat_hint)
-    if not matched:
-        matched = ["업계뉴스"]
-    return matched
+    if any(k in text for k in ["출시", "론칭", "신제품", "리뉴얼", "launch", "new product"]):
+        return "신제품·NPD"
+    if any(k in text for k in ["트렌드", "리포트", "성장", "조사", "trend", "report", "survey"]):
+        return "소비자·시장"
+    if any(k in text for k in ["원료", "식재료", "성분", "발효", "ingredient", "ferment"]):
+        return "식재료·원료"
+    if any(k in text for k in ["편의점", "cu", "gs25", "세븐일레븐", "배달", "유통"]):
+        return "채널·유통"
+    if any(k in text for k in ["전략", "투자", "m&a", "인수", "브랜드", "기업"]):
+        return "브랜드·기업"
+    if any(k in text for k in ["규제", "정책", "수급", "안전", "수출", "수입"]):
+        return "산업·정책"
+    return "브랜드·기업"
+
+def is_cvs(title: str, summary: str) -> bool:
+    """편의점 관련 기사 여부."""
+    text = (title + " " + summary).lower()
+    return any(k.lower() in text for k in CVS_KEYWORDS)
 
 # ─────────────────────────────────────────
 # 수집
@@ -400,7 +414,14 @@ def collect():
 
                 if src["lang"] != "ko" and ai_result.get("title_ko"):
                     title = ai_result["title_ko"]
-                cats        = categorize(title, raw_text, src["cat_hint"])
+
+                # 기사 카테고리: Gemini 결과 우선, 실패 시 fallback
+                primary_cat = ai_result.get("primary_category", "")
+                if primary_cat not in VALID_CATEGORIES:
+                    primary_cat = categorize_fallback(title, raw_text)
+                # 편의점 채널 태그
+                cvs_tag = is_cvs(title, raw_text)
+
                 parsed_date = parse_date(entry, lang=src["lang"])
 
                 # 디버그: 소스별 첫 기사 날짜 원문 출력
@@ -416,8 +437,8 @@ def collect():
                     "url":        url,
                     "source":     name,
                     "lang":       src["lang"],
-                    "categories": cats,
-                    "category":   cats[0],
+                    "category":   primary_cat,
+                    "is_cvs":     cvs_tag,
                     "summary":    summary,
                     "keywords":   keywords,
                     "kw_cats":    kw_cats,
