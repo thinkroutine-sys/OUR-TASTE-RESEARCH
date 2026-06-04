@@ -449,6 +449,29 @@ body.signal-mode .cat-header { display: none; }
   .si-bar-wrap { width: 60px; }
 }
 
+
+/* ─── 댓글 시스템 ─── */
+.comment-section{margin-top:12px;border-top:1px solid var(--border);padding-top:12px}
+.comment-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);background:none;border:none;cursor:pointer;padding:0;font-weight:500}
+.comment-toggle:hover{color:var(--text)}
+.comment-count-badge{background:var(--blue-bg);color:var(--blue);font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px}
+.comment-box{margin-top:10px;display:none}
+.comment-box.open{display:block}
+.comment-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;max-height:200px;overflow-y:auto}
+.comment-item{background:var(--bg);border-radius:8px;padding:8px 10px}
+.comment-header{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.comment-name{font-size:12px;font-weight:700;color:var(--text)}
+.comment-time{font-size:10px;color:var(--text3)}
+.comment-content{font-size:12px;color:var(--text2);line-height:1.5}
+.comment-form{display:flex;flex-direction:column;gap:6px}
+.comment-inputs{display:flex;gap:6px}
+.comment-name-input{width:80px;flex-shrink:0;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;outline:none;background:var(--surface);color:var(--text)}
+.comment-name-input:focus{border-color:var(--blue)}
+.comment-text-input{flex:1;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;outline:none;background:var(--surface);color:var(--text);resize:none}
+.comment-text-input:focus{border-color:var(--blue)}
+.comment-submit{align-self:flex-end;padding:5px 12px;background:var(--blue);color:#fff;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer}
+.comment-submit:hover{opacity:.85}
+.comment-empty{font-size:11px;color:var(--text3);text-align:center;padding:8px 0}
 /* ─── 분류 기준 팝업 ─── */
 .guide-btn{
   width:18px;height:18px;border-radius:50%;
@@ -758,7 +781,8 @@ function renderBottomNav(){
       <span style="font-size:18px">📡</span>
       <span>시그널</span>
       <div class="bn-dot"></div>
-    </button>`;
+    ${commentHtml}
+  </button>`;
 }
 
 function renderSrcSel(){
@@ -801,6 +825,22 @@ function cardHtml(a,i){
     }
   }
   const kws=(a.keywords&&a.keywords.length)?`<div class="keywords">${a.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>`:'';
+  const commentHtml = `
+    <div class="comment-section">
+      <button class="comment-toggle" data-cid="${a.id}" onclick="event.stopPropagation();toggleComments('${a.id}',this)">
+        💬 의견 <span class="comment-count-badge">-</span>
+      </button>
+      <div class="comment-box" id="cb-${a.id}">
+        <div class="comment-list"></div>
+        <div class="comment-form">
+          <div class="comment-inputs">
+            <input class="comment-name-input" id="cn-${a.id}" placeholder="이름" maxlength="10" onclick="event.stopPropagation()">
+            <textarea class="comment-text-input" id="ct-${a.id}" placeholder="의견을 남겨주세요" rows="2" onclick="event.stopPropagation()"></textarea>
+          </div>
+          <button class="comment-submit" onclick="event.stopPropagation();submitComment('${a.id}')">등록</button>
+        </div>
+      </div>
+    </div>`;
   return `<button class="card${read?' read':''}" data-id="${a.id}" data-url="${a.url||''}" onclick="handleClick(this)">
   <div class="card-top">${badges}<span class="lang-dot dot-${a.lang||'ko'}"></span><span class="card-src">${a.source}</span><span class="card-date">${fmtDate(a.date)}</span></div>
   <div class="card-title">${a.title}</div>
@@ -848,6 +888,105 @@ function toggleRead(){
   renderMain();
 }
 
+
+
+// ════════════════════════════════════
+// 댓글 시스템 (Supabase)
+// ════════════════════════════════════
+
+const SB_URL = 'https://cnfxyqmhtvcuhbjyxjrk.supabase.co';
+const SB_KEY = 'sb_publishable_kxjyYPiZgj1I-a2nUnfCcQ_oeK4r639';
+
+async function sbFetch(path, options={}) {
+  const res = await fetch(SB_URL + path, {
+    ...options,
+    headers: {
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer ' + SB_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': options.method === 'POST' ? 'return=minimal' : '',
+      ...(options.headers || {})
+    }
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return options.method === 'POST' ? null : res.json();
+}
+
+async function loadComments(articleId) {
+  try {
+    const data = await sbFetch(`/rest/v1/comments?article_id=eq.${articleId}&order=created_at.asc`);
+    return data || [];
+  } catch(e) { return []; }
+}
+
+async function postComment(articleId, name, content) {
+  await sbFetch('/rest/v1/comments', {
+    method: 'POST',
+    body: JSON.stringify({ article_id: articleId, name, content })
+  });
+}
+
+function fmtCommentTime(iso) {
+  try {
+    const d = new Date(iso);
+    return d.toLocaleString('ko-KR', {month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+  } catch { return ''; }
+}
+
+function renderCommentHtml(comments) {
+  if (!comments.length) return '<div class="comment-empty">아직 의견이 없어요</div>';
+  return comments.map(c => `
+    <div class="comment-item">
+      <div class="comment-header">
+        <span class="comment-name">${c.name}</span>
+        <span class="comment-time">${fmtCommentTime(c.created_at)}</span>
+      </div>
+      <div class="comment-content">${c.content}</div>
+    </div>
+  `).join('');
+}
+
+async function toggleComments(articleId, btn) {
+  const box = document.getElementById('cb-' + articleId);
+  if (!box) return;
+  if (box.classList.contains('open')) {
+    box.classList.remove('open');
+    return;
+  }
+  box.classList.add('open');
+  const list = box.querySelector('.comment-list');
+  list.innerHTML = '<div class="comment-empty">불러오는 중...</div>';
+  const comments = await loadComments(articleId);
+  list.innerHTML = renderCommentHtml(comments);
+  // 댓글 수 뱃지 업데이트
+  const badge = btn.querySelector('.comment-count-badge');
+  if (badge) badge.textContent = comments.length + '개';
+}
+
+async function submitComment(articleId) {
+  const nameEl = document.getElementById('cn-' + articleId);
+  const textEl = document.getElementById('ct-' + articleId);
+  const name = nameEl.value.trim();
+  const content = textEl.value.trim();
+  if (!name) { nameEl.focus(); return; }
+  if (!content) { textEl.focus(); return; }
+  try {
+    await postComment(articleId, name, content);
+    textEl.value = '';
+    // 댓글 목록 새로고침
+    const list = document.getElementById('cb-' + articleId).querySelector('.comment-list');
+    const comments = await loadComments(articleId);
+    list.innerHTML = renderCommentHtml(comments);
+    const btn = document.querySelector(`[data-cid="${articleId}"]`);
+    if (btn) {
+      const badge = btn.querySelector('.comment-count-badge');
+      if (badge) badge.textContent = comments.length + '개';
+    }
+    list.scrollTop = list.scrollHeight;
+  } catch(e) {
+    alert('댓글 등록 실패: ' + e.message);
+  }
+}
 
 // ════════════════════════════════════
 // SIGNAL ENGINE
@@ -967,134 +1106,4 @@ function setView(v) {
   document.getElementById('vt-signal').classList.toggle('on', v === 'signal');
   // 모바일 layout
   applyLayout();
-  if (v === 'signal') renderSignal();
-}
-
-function setSignalPeriod(d) {
-  const wrap = document.getElementById('custom-period-wrap');
-  if (d === 'custom') {
-    document.querySelectorAll('[data-sp]').forEach(p => p.classList.toggle('on', p.dataset.sp === 'custom'));
-    if (wrap) wrap.style.display = 'block';
-    return;
-  }
-  if (wrap) wrap.style.display = 'none';
-  signalPeriod = d;
-  document.querySelectorAll('[data-sp]').forEach(p => p.classList.toggle('on', +p.dataset.sp === d));
-  renderSignal();
-}
-
-function applyCustomPeriod() {
-  const val = parseInt(document.getElementById('custom-period-input').value);
-  if (!val || val < 1) return;
-  signalPeriod = Math.min(val, 365);
-  renderSignal();
-}
-
-function setSignalStage(s) {
-  signalStage = s;
-  document.querySelectorAll('[data-ss]').forEach(b => {
-    b.classList.remove('on-all','on-trend','on-watch','on-interest');
-    if (b.dataset.ss === s) b.classList.add(`on-${s}`);
-  });
-  renderSignal();
-}
-
-function setKwCat(c) {
-  signalKwCat = c;
-  document.querySelectorAll('[data-kc]').forEach(b => {
-    b.classList.remove('on-all','on-trend','on-watch','on-interest');
-    if (b.dataset.kc === c) b.classList.add(c === 'all' ? 'on-all' : 'on-watch');
-  });
-  renderSignal();
-}
-
-// 모바일/PC 메인 표시 전환
-function applyLayout(){
-  const mo=isMobile();
-  const isSignal = currentView==='signal';
-  document.getElementById('mo-main').style.display=(!isSignal&&mo)?'block':'none';
-  const moSig=document.getElementById('mo-signal');
-  if(moSig) moSig.style.display=(isSignal&&mo)?'block':'none';
-  const moSigFilter=document.getElementById('mo-signal-filter');
-  if(moSigFilter) moSigFilter.style.display=(isSignal&&mo)?'block':'none';
-  // 모바일 뉴스 필터바 숨기기/보이기
-  const moFilter=document.querySelector('.mobile-filter:not(#mo-signal-filter)');
-  if(moFilter) moFilter.style.display=(!isSignal&&mo)?'block':'none';
-}
-
-async function loadNews(){
-  ['pc-ref','mo-ref'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.add('spin');});
-  try{
-    const r=await fetch('data/news.json?t='+Date.now());
-    if(!r.ok)throw new Error('HTTP '+r.status);
-    const d=await r.json();
-    all=d.articles||[];
-    const upd=d.updated?fmtUpd(d.updated):'';
-    const pe=document.getElementById('pc-upd');if(pe)pe.textContent=upd;
-    applyLayout();
-    renderAll();
-    if(currentView==='signal') renderSignal();
-  }catch(e){
-    const err=`<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">불러올 수 없어요</div><div style="font-size:13px;margin-top:4px">${e.message}</div></div>`;
-    document.getElementById('pc-main').innerHTML=err;
-    document.getElementById('mo-main').innerHTML=err;
-  }finally{
-    ['pc-ref','mo-ref'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.remove('spin');});
-  }
-}
-
-// 검색 — PC / 모바일 각각
-document.getElementById('pc-q').addEventListener('input',e=>{query=e.target.value.trim();renderMain();});
-document.getElementById('mo-q').addEventListener('input',e=>{query=e.target.value.trim();renderMain();});
-
-window.addEventListener('scroll',()=>document.getElementById('scroll-top').classList.toggle('show',scrollY>300));
-window.addEventListener('resize',()=>{applyLayout();renderAll();});
-
-applyLayout();
-loadNews();
-setInterval(loadNews,30*60*1000);
-</script>
-
-<!-- 뉴스 카테고리 분류 기준 팝업 -->
-<div class="guide-overlay" id="guide-news" onclick="if(event.target===this)closeGuide('news')">
-  <div class="guide-modal">
-    <button class="guide-close" onclick="closeGuide('news')">✕</button>
-    <h3>📰 기사 분류 기준</h3>
-    <p style="font-size:11px;color:var(--text3);margin-bottom:14px">기사의 핵심 성격에 따라 1개의 카테고리를 부여합니다. 같은 기사도 출시가 핵심이면 신제품·NPD, 시장 변화가 핵심이면 소비자·시장으로 분류됩니다.</p>
-    <table class="guide-table">
-      <tr><th>카테고리</th><th>이런 기사</th><th>예시</th></tr>
-      <tr><td>🆕 신제품·NPD</td><td>제품 출시·론칭·리뉴얼·신메뉴가 핵심</td><td>CU, 고단백 그릭요거트 출시</td></tr>
-      <tr><td>📊 소비자·시장</td><td>소비자 니즈 변화·시장 성장·리포트·조사가 핵심</td><td>저당 간식 수요 증가, 발효식품 관심 확대</td></tr>
-      <tr><td>🌿 식재료·원료</td><td>특정 원료·성분·발효기술·기능성 소재가 기사 중심</td><td>피스타치오 활용 확산, 발효 기술 기반 소스 개발</td></tr>
-      <tr><td>🏪 채널·유통</td><td>편의점·마트·외식·배달 채널 전략이 핵심</td><td>편의점 디저트 강화, 배달 채널 아침식 수요</td></tr>
-      <tr><td>🏢 브랜드·기업</td><td>기업 전략·투자·M&A·브랜드 운영이 핵심</td><td>CJ, 건강식 포트폴리오 확대</td></tr>
-      <tr><td>📋 산업·정책</td><td>규제·수급·식품안전·원가·수출입이 핵심</td><td>카카오 가격 상승, 식품 표시 규정 개정</td></tr>
-    </table>
-    <p style="font-size:11px;color:var(--text3);margin-top:12px">💡 편의점 기사는 출시가 핵심이면 신제품·NPD, 채널 전략이 핵심이면 채널·유통으로 분류됩니다. 편의점 필터를 별도로 사용하세요.</p>
-  </div>
-</div>
-
-<!-- 시그널 키워드 유형 기준 팝업 -->
-<div class="guide-overlay" id="guide-signal" onclick="if(event.target===this)closeGuide('signal')">
-  <div class="guide-modal">
-    <button class="guide-close" onclick="closeGuide('signal')">✕</button>
-    <h3>📡 시그널 키워드 유형 기준</h3>
-    <p style="font-size:11px;color:var(--text3);margin-bottom:14px">메뉴 개발 관점에서 의미 있는 키워드만 추출하고 4가지 유형으로 분류합니다. 시그널 점수 = 빈도 × 출처 다양성.</p>
-    <table class="guide-table">
-      <tr><th>유형</th><th>정의</th><th>예시</th><th>제외</th></tr>
-      <tr><td>🍽️ 식품 카테고리</td><td>매대/메뉴판에서 바로 고를 수 있는 완성형 식품</td><td>그릭요거트, HMR, 밀키트, 오마카세</td><td>귀리, 비건, CJ</td></tr>
-      <tr><td>🌿 식재료·원료</td><td>제품 안에 들어가는 원재료·성분·기능성 소재</td><td>귀리, 피스타치오, 콜라겐, 누룩</td><td>그릭요거트, 저당, HMR</td></tr>
-      <tr><td>📈 소비 트렌드</td><td>여러 카테고리에 걸친 소비자 니즈·가치관·섭취 맥락</td><td>저속노화, 고단백, 저당, 홈술, 비건</td><td>CJ, 귀리, 그릭요거트</td></tr>
-      <tr><td>🏷️ 브랜드</td><td>기업·브랜드·유통사·외식 체인 이름</td><td>CJ제일제당, 파리바게뜨, CU, 배민</td><td>HMR, 고단백, 피스타치오</td></tr>
-    </table>
-    <p style="font-size:11px;color:var(--text3);margin-top:12px">💡 인기·출시·건강·프리미엄 등 일반어는 단독 저장하지 않습니다. 애매한 키워드는 제외됩니다.</p>
-  </div>
-</div>
-
-<script>
-function openGuide(type){ document.getElementById('guide-'+type).classList.add('on'); }
-function closeGuide(type){ document.getElementById('guide-'+type).classList.remove('on'); }
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeGuide('news');closeGuide('signal');} });
-</script>
-</body>
-</html>
+  if (v === 'sign
