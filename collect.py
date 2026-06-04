@@ -206,6 +206,9 @@ JSON only. No explanation.
                 print(f"\n    !! Gemini 오류: {e}")
                 return {}
         return {}
+    except Exception as e:
+        print(f"\n    !! Gemini 초기화 오류: {e}")
+        return {}
 
 # ─────────────────────────────────────────
 # 키워드 추출
