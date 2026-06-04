@@ -1,7 +1,304 @@
 {
-  "updated": "2026-06-04T01:12:09.803180+00:00",
-  "total": 452,
+  "updated": "2026-06-04T01:59:25.295524+00:00",
+  "total": 463,
   "articles": [
+    {
+      "id": "75e7e64e0bac",
+      "title": "롯데칠성, 지난해 온실가스 6400톤 감축…‘2040 탄소중립’ 목표 달성 순항",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=118840",
+      "source": "식품뉴스",
+      "lang": "ko",
+      "categories": [
+        "업계뉴스"
+      ],
+      "category": "업계뉴스",
+      "summary": [
+        "롯데칠성음료, 공정 혁신 및 설비 개선으로 지난해 온실가스 6,400톤 감축",
+        "2021년 선언한 '2040 탄소중립' 목표 달성을 위해 재생에너지 확대 및 연료 전환 등 전략 추진",
+        "에너지 효율 제고와 전기차 도입 등 ESG 경영 실천 가속화"
+      ],
+      "keywords": [
+        "롯데칠성",
+        "탄소중립",
+        "ESG경영"
+      ],
+      "kw_cats": {
+        "롯데칠성": "brand",
+        "탄소중립": "trend",
+        "ESG경영": "trend"
+      },
+      "date": "2026-06-04T01:34:49+00:00"
+    },
+    {
+      "id": "1e0b6d595531",
+      "title": "CJ웰케어, ‘국제 인체 마이크로바이옴 컨소시엄’서 유산균 기능 고도화 기술 공개",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=118839",
+      "source": "식품뉴스",
+      "lang": "ko",
+      "categories": [
+        "업계뉴스"
+      ],
+      "category": "업계뉴스",
+      "summary": [
+        "CJ웰케어, 국제 인체 마이크로바이옴 컨소시엄(IHMC 2026) 참가",
+        "유산균 생존력과 기능을 극대화하는 '균주 특성 기반 포뮬러 설계 기술' 발표",
+        "자체 R&D를 통해 균주별 최적화된 신바이오틱스 연구 성과 공개"
+      ],
+      "keywords": [
+        "CJ웰케어",
+        "유산균",
+        "신바이오틱스",
+        "마이크로바이옴"
+      ],
+      "kw_cats": {
+        "CJ웰케어": "brand",
+        "유산균": "ingredient",
+        "신바이오틱스": "ingredient",
+        "마이크로바이옴": "trend"
+      },
+      "date": "2026-06-04T01:33:14+00:00"
+    },
+    {
+      "id": "8da59451ea6e",
+      "title": "서울우유, ‘푸루소’와 캄보디아 수출 확대 협약…동남아 시장 공략 속도",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=118838",
+      "source": "식품뉴스",
+      "lang": "ko",
+      "categories": [
+        "업계뉴스"
+      ],
+      "category": "업계뉴스",
+      "summary": [
+        "서울우유가 캄보디아 유통사 '푸루소'와 수출 확대 업무협약을 체결함.",
+        "푸루소의 현지 유통망을 활용해 캄보디아 시장 내 서울우유 제품 공급을 본격화함.",
+        "이번 협약을 통해 동남아시아 시장 공략에 속도를 낼 계획임."
+      ],
+      "keywords": [
+        "서울우유",
+        "푸루소",
+        "원유"
+      ],
+      "kw_cats": {
+        "서울우유": "brand",
+        "푸루소": "brand",
+        "원유": "ingredient"
+      },
+      "date": "2026-06-04T01:17:58+00:00"
+    },
+    {
+      "id": "b718c85875c5",
+      "title": "농촌진흥청, 중국 연변대학교와 농업기술 협력 업무협약",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=33946",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "categories": [
+        "업계뉴스"
+      ],
+      "category": "업계뉴스",
+      "summary": [
+        "농촌진흥청과 중국 연변대학교가 농업기술 협력 업무협약 체결",
+        "기후변화 대응 및 식량안보 강화를 위한 고위도 작물 재배 연구 추진",
+        "그린바이오 분야 농업과학 기술 교류 및 협력 거점 구축"
+      ],
+      "keywords": [
+        "농촌진흥청",
+        "연변대학교",
+        "그린바이오"
+      ],
+      "kw_cats": {
+        "농촌진흥청": "brand",
+        "연변대학교": "brand",
+        "그린바이오": "trend"
+      },
+      "date": "2026-06-04T01:13:00+00:00"
+    },
+    {
+      "id": "3605fe6eab99",
+      "title": "식품영양정보 DB, 급식 조리식품 분야까지 확대…가이드라인 마련",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=118837",
+      "source": "식품뉴스",
+      "lang": "ko",
+      "categories": [
+        "식재료·원료"
+      ],
+      "category": "식재료·원료",
+      "summary": [
+        "식약처, 국가 식품영양정보 DB를 급식 조리식품 분야까지 확대 추진",
+        "급식소 영양성분 자율표시 확산을 위한 가이드라인 마련 계획",
+        "식품영양정보 민관협의체 4기 출범 및 오픈 포럼 개최"
+      ],
+      "keywords": [
+        "급식",
+        "영양성분"
+      ],
+      "kw_cats": {
+        "급식": "trend",
+        "영양성분": "trend"
+      },
+      "date": "2026-06-04T01:05:43+00:00"
+    },
+    {
+      "id": "0c15903a1027",
+      "title": "CJ웰케어, 국제 무대서 특허 균주 ‘CJLP133’ 차세대 신바이오틱스 기술 공개",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200477",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "categories": [
+        "업계뉴스"
+      ],
+      "category": "업계뉴스",
+      "summary": [
+        "CJ웰케어, 국제 마이크로바이옴 학회(IHMC 2026)에서 차세대 신바이오틱스 기술 발표",
+        "자체 특허 균주 'CJLP133' 기반의 균주별 최적화 포뮬러 설계 기술 공개",
+        "유산균과 먹이(프리바이오틱스)의 시너지를 극대화하는 R&D 성과 강조"
+      ],
+      "keywords": [
+        "CJ웰케어",
+        "유산균",
+        "프리바이오틱스",
+        "신바이오틱스",
+        "CJLP133"
+      ],
+      "kw_cats": {
+        "CJ웰케어": "brand",
+        "유산균": "ingredient",
+        "프리바이오틱스": "ingredient",
+        "신바이오틱스": "trend",
+        "CJLP133": "ingredient"
+      },
+      "date": "2026-06-04T01:04:06+00:00"
+    },
+    {
+      "id": "64e98056ace4",
+      "title": "서울우유, 캄보디아 푸루소와 MOU…동남아 유제품 영토 확장 가속페달",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200476",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "categories": [
+        "업계뉴스"
+      ],
+      "category": "업계뉴스",
+      "summary": [
+        "서울우유협동조합이 캄보디아 식품 유통 기업 '푸루소'와 수출 확대를 위한 MOU를 체결함.",
+        "이번 협약을 통해 동남아시아 시장 내 한국 유제품의 입지를 강화하고 글로벌 영토 확장에 속도를 낼 전망임."
+      ],
+      "keywords": [
+        "서울우유",
+        "푸루소",
+        "우유"
+      ],
+      "kw_cats": {
+        "서울우유": "brand",
+        "푸루소": "brand",
+        "우유": "food_cat"
+      },
+      "date": "2026-06-04T01:02:29+00:00"
+    },
+    {
+      "id": "aca7afb41bdf",
+      "title": "급식도 영양성분 표시 시대…식약처, 국가 식품영양정보 DB 전면 확대",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=33942",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "categories": [
+        "식재료·원료"
+      ],
+      "category": "식재료·원료",
+      "summary": [
+        "식약처, 집단급식소 조리식품 대상 국가 식품영양정보 DB 확대",
+        "집단급식소 자율 영양표시 제도 도입으로 건강한 식생활 선택권 강화",
+        "제4기 식품영양정보 민관협의체 출범 및 오픈포럼 개최"
+      ],
+      "keywords": [
+        "헬시플레저",
+        "식품의약품안전처"
+      ],
+      "kw_cats": {
+        "헬시플레저": "trend",
+        "식품의약품안전처": "brand"
+      },
+      "date": "2026-06-04T01:00:00+00:00"
+    },
+    {
+      "id": "1b36135d0782",
+      "title": "로로멜로, GS25서 ‘촉촉한 황치즈 바치케’ 출시 - 세계일보",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBzNHZiblRnNDh5Z2szbXZkaHMzQUFWVjc3ZWM3Zkp6VXBjcUoydkR2VkxNSzVNQ2IwSXJNSU5JZDhPbmRCbE9MNGZhN0diYkZjdkl1UV8tdnfSAVRBVV95cUxPWnl6TXdOT1NuLUFWRURZVk4zcm5WYTREaHJCSXZtVmM4Um9ETllvUVRMNmxWdHFBcURLUFpOdi1Ibl9henRwVDY5RktzRzZOVFRJWWY?oc=5",
+      "source": "GS25 소식",
+      "lang": "ko",
+      "categories": [
+        "신제품",
+        "편의점"
+      ],
+      "category": "신제품",
+      "summary": [
+        "디저트 브랜드 로로멜로가 GS25와 협업하여 ‘촉촉한 황치즈 바치케’를 출시함.",
+        "편의점 디저트 시장에서 인기 있는 황치즈 맛과 바스크 치즈 케이크를 결합한 제품임."
+      ],
+      "keywords": [
+        "로로멜로",
+        "GS25",
+        "바스크 치즈 케이크",
+        "황치즈"
+      ],
+      "kw_cats": {
+        "로로멜로": "brand",
+        "GS25": "brand",
+        "바스크 치즈 케이크": "food_cat",
+        "황치즈": "ingredient"
+      },
+      "date": "2026-06-04T01:00:00+00:00"
+    },
+    {
+      "id": "e32dc911f87d",
+      "title": "아누가푸드텍, ‘서울푸드 2026’서 상담 부스 운영…국내 F&B 해외 진출 정조준",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200475",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "categories": [
+        "트렌드"
+      ],
+      "category": "트렌드",
+      "summary": [
+        "세계 최대 식음료 기술 전시회 '아누가 푸드텍'이 '서울푸드 2026'에 참가함",
+        "국내 기업의 글로벌 기술 트렌드 습득 및 해외 진출 지원을 위한 상담 부스 운영",
+        "6월 9일부터 12일까지 일산 킨텍스에서 개최 예정"
+      ],
+      "keywords": [
+        "아누가 푸드텍",
+        "서울푸드 2026",
+        "쾰른메쎄"
+      ],
+      "kw_cats": {
+        "아누가 푸드텍": "brand",
+        "서울푸드 2026": "brand",
+        "쾰른메쎄": "brand"
+      },
+      "date": "2026-06-04T00:59:08+00:00"
+    },
+    {
+      "id": "350e7c3880dc",
+      "title": "롯데칠성음료, 지난해 온실가스 6400톤 감축…‘2040 탄소중립’ 순항",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200473",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "categories": [
+        "업계뉴스"
+      ],
+      "category": "업계뉴스",
+      "summary": [
+        "롯데칠성음료, 공정 혁신 및 에너지 효율 개선으로 지난해 온실가스 6400톤 감축",
+        "2021년 선언한 '2040 탄소중립' 목표 달성을 위해 ESG 경영 및 친환경 사업 전략 가속화"
+      ],
+      "keywords": [
+        "롯데칠성음료",
+        "탄소중립"
+      ],
+      "kw_cats": {
+        "롯데칠성음료": "brand",
+        "탄소중립": "trend"
+      },
+      "date": "2026-06-04T00:54:54+00:00"
+    },
     {
       "id": "28390c345473",
       "title": "한식과 그림책의 특별한 만남…한식진흥원, ‘퓨전 한식 핫초코’ 체험행사",
