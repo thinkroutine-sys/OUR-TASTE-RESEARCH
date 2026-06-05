@@ -339,6 +339,7 @@ body.signal-mode .view-signal { display: block; }
 .vt-btn.on { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
 .cat-header { display: flex; align-items: center; justify-content: space-between; }
 body.signal-mode .cat-header { display: none; }
+body.signal-mode .news-period-filter { display: none; }
 
 /* 시그널 헤더 */
 .signal-header { margin-bottom: 20px; }
@@ -451,9 +452,9 @@ body.signal-mode .cat-header { display: none; }
 
 
 /* ─── 댓글 시스템 ─── */
-.comment-section{margin-top:12px;border-top:1px solid var(--border);padding-top:12px}
-.comment-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);background:none;border:none;cursor:pointer;padding:0;font-weight:500}
-.comment-toggle:hover{color:var(--text)}
+.comment-section{margin-top:12px;border-top:1px solid var(--border);padding-top:10px;padding-bottom:2px}
+.comment-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);background:var(--bg);border:1px solid var(--border);cursor:pointer;padding:5px 10px;border-radius:20px;font-weight:500;transition:all .15s}
+.comment-toggle:hover{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
 .comment-count-badge{background:var(--blue-bg);color:var(--blue);font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px}
 .comment-box{margin-top:10px;display:none}
 .comment-box.open{display:block}
@@ -560,9 +561,9 @@ body.signal-mode .cat-header { display: none; }
         </div>
         <div class="sf-label" style="margin-bottom:8px">분석 기간</div>
         <div class="sf-pills" style="margin-bottom:12px">
-          <button class="sf-pill" data-sp="30"  onclick="setSignalPeriod(30)">1개월</button>
-          <button class="sf-pill on" data-sp="90"  onclick="setSignalPeriod(90)">3개월</button>
-          <button class="sf-pill" data-sp="180" onclick="setSignalPeriod(180)">6개월</button>
+          <button class="sf-pill" data-sp="1"   onclick="setSignalPeriod(1)">오늘</button>
+          <button class="sf-pill" data-sp="7"   onclick="setSignalPeriod(7)">7일</button>
+          <button class="sf-pill on" data-sp="30" onclick="setSignalPeriod(30)">한달</button>
           <button class="sf-pill" data-sp="custom" onclick="setSignalPeriod('custom')">직접 설정</button>
           <div id="custom-period-wrap" style="display:none;margin-top:8px;display:none">
             <div style="display:flex;align-items:center;gap:6px">
@@ -574,14 +575,7 @@ body.signal-mode .cat-header { display: none; }
             </div>
           </div>
         </div>
-        <div class="sf-label" style="margin-bottom:8px">단계 필터</div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <button class="ss-btn on-all" data-ss="all"      onclick="setSignalStage('all')">전체</button>
-          <button class="ss-btn" data-ss="trend"    onclick="setSignalStage('trend')">🔥 트렌드</button>
-          <button class="ss-btn" data-ss="watch"    onclick="setSignalStage('watch')">👀 주목</button>
-          <button class="ss-btn" data-ss="interest" onclick="setSignalStage('interest')">💡 관심사</button>
-        </div>
-        <div class="sf-label" style="margin-top:12px;margin-bottom:8px">키워드 유형</div>
+        <div class="sf-label" style="margin-bottom:8px">키워드 유형</div>
         <div style="display:flex;flex-direction:column;gap:5px">
           <button class="ss-btn on-all" data-kc="all"        onclick="setKwCat('all')">전체</button>
           <button class="ss-btn" data-kc="food_cat"  onclick="setKwCat('food_cat')">🍽️ 식품 카테고리</button>
@@ -593,23 +587,21 @@ body.signal-mode .cat-header { display: none; }
     </div>
     <div class="sidebar-section">
       <div class="sidebar-filters">
-        <div>
+        <div class="news-period-filter">
           <div class="sf-label">기간</div>
           <div class="sf-pills">
             <button class="sf-pill" data-d="1" onclick="setPeriod(1)">오늘</button>
-            <button class="sf-pill" data-d="3" onclick="setPeriod(3)">3일</button>
             <button class="sf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
-            <button class="sf-pill" data-d="30" onclick="setPeriod(30)">30일</button>
-            <button class="sf-pill" data-d="0" onclick="setPeriod(0)">전체</button>
+            <button class="sf-pill" data-d="30" onclick="setPeriod(30)">한달</button>
+            <button class="sf-pill" data-d="0" onclick="setPeriod(0)">직접설정</button>
           </div>
         </div>
         <div style="margin-top:4px">
-          <div class="sf-label">언어</div>
+          <div class="sf-label">국가</div>
           <div class="sf-pills">
             <button class="sf-pill on-blue" data-l="all" onclick="setLang('all')">전체</button>
             <button class="sf-pill" data-l="ko" onclick="setLang('ko')">국내</button>
             <button class="sf-pill" data-l="en" onclick="setLang('en')">해외</button>
-            <button class="sf-pill" data-l="ja" onclick="setLang('ja')">일본</button>
           </div>
         </div>
         <div style="margin-top:4px">
@@ -647,35 +639,36 @@ body.signal-mode .cat-header { display: none; }
 </div>
 
 <!-- 모바일 필터 -->
-<div class="mobile-filter">
+<div class="mobile-filter" id="mo-news-filter">
 <div class="mf-inner">
   <button class="mf-pill" data-d="1" onclick="setPeriod(1)">오늘</button>
-  <button class="mf-pill" data-d="3" onclick="setPeriod(3)">3일</button>
   <button class="mf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
-  <button class="mf-pill" data-d="30" onclick="setPeriod(30)">30일</button>
-  <button class="mf-pill" data-d="0" onclick="setPeriod(0)">전체</button>
+  <button class="mf-pill" data-d="30" onclick="setPeriod(30)">한달</button>
+  <button class="mf-pill" data-d="0" onclick="setPeriod(0)">직접설정</button>
   <div class="mf-sep"></div>
   <button class="mf-pill on-blue" data-l="all" onclick="setLang('all')">전체</button>
   <button class="mf-pill" data-l="ko" onclick="setLang('ko')">국내</button>
   <button class="mf-pill" data-l="en" onclick="setLang('en')">해외</button>
-  <button class="mf-pill" data-l="ja" onclick="setLang('ja')">일본</button>
+  <div class="mf-sep"></div>
+  <button class="mf-pill on-blue" data-cat="all" onclick="setMoCat('all')">전체</button>
+  <button class="mf-pill" data-cat="신제품·NPD" onclick="setMoCat('신제품·NPD')">🆕 신제품</button>
+  <button class="mf-pill" data-cat="소비자·시장" onclick="setMoCat('소비자·시장')">📊 시장</button>
+  <button class="mf-pill" data-cat="식재료·원료" onclick="setMoCat('식재료·원료')">🌿 원료</button>
+  <button class="mf-pill" data-cat="채널·유통" onclick="setMoCat('채널·유통')">🏪 채널</button>
+  <button class="mf-pill" data-cat="브랜드·기업" onclick="setMoCat('브랜드·기업')">🏢 브랜드</button>
+  <button class="mf-pill" data-cat="산업·정책" onclick="setMoCat('산업·정책')">📋 정책</button>
   <div class="mf-sep"></div>
   <select class="mf-select" id="mo-src" onchange="setSrc(this.value)"><option value="all">전체 출처</option></select>
 </div>
 </div>
 
 <!-- 모바일 시그널 필터 -->
-<div class="mobile-filter view-signal" id="mo-signal-filter" style="display:none">
+<div class="mobile-filter" id="mo-signal-filter" style="display:none">
 <div class="mf-inner">
-  <button class="mf-pill" data-sp="30"  onclick="setSignalPeriod(30)">1개월</button>
-  <button class="mf-pill on" data-sp="90"  onclick="setSignalPeriod(90)">3개월</button>
-  <button class="mf-pill" data-sp="180" onclick="setSignalPeriod(180)">6개월</button>
+  <button class="mf-pill" data-sp="1"  onclick="setSignalPeriod(1)">오늘</button>
+  <button class="mf-pill" data-sp="7"  onclick="setSignalPeriod(7)">7일</button>
+  <button class="mf-pill on" data-sp="30" onclick="setSignalPeriod(30)">한달</button>
   <button class="mf-pill" data-sp="custom" onclick="setSignalPeriod('custom')">직접 설정</button>
-  <div class="mf-sep"></div>
-  <button class="mf-pill on-all" data-ss="all"       onclick="setSignalStage('all')">전체</button>
-  <button class="mf-pill" data-ss="trend"    onclick="setSignalStage('trend')">🔥 트렌드</button>
-  <button class="mf-pill" data-ss="watch"    onclick="setSignalStage('watch')">👀 주목</button>
-  <button class="mf-pill" data-ss="interest" onclick="setSignalStage('interest')">💡 관심사</button>
   <div class="mf-sep"></div>
   <button class="mf-pill on-all" data-kc="all"        onclick="setKwCat('all')">전체 유형</button>
   <button class="mf-pill" data-kc="food_cat"  onclick="setKwCat('food_cat')">🍽️ 식품</button>
@@ -768,16 +761,14 @@ function renderPcCats(){
 
 // 모바일 하단 탭바
 function renderBottomNav(){
-  const{cnt,total}=catCounts();
-  const visible=CATS.filter(c=>c==='전체'||(cnt[c]||0)>0).slice(0,4);
   const isSignal = currentView==='signal';
   document.getElementById('bottom-nav').innerHTML=
-    visible.map(c=>`<button class="bn-tab ${!isSignal&&c===tab?'on':''}" onclick="setView('news');setTab('${c}')">
-      <span style="font-size:18px">${CAT_ICONS[c]||'📄'}</span>
-      <span>${c}</span>
+    `<button class="bn-tab ${!isSignal?'on':''}" onclick="setView('news')">
+      <span style="font-size:18px">📰</span>
+      <span>뉴스</span>
       <div class="bn-dot"></div>
-    </button>`).join('')+
-    `<button class="bn-tab ${isSignal?'on':''}" onclick="setView('signal')">
+    </button>
+    <button class="bn-tab ${isSignal?'on':''}" onclick="setView('signal')">
       <span style="font-size:18px">📡</span>
       <span>시그널</span>
       <div class="bn-dot"></div>
@@ -827,7 +818,7 @@ function cardHtml(a,i){
   const commentHtml = `
     <div class="comment-section">
       <button class="comment-toggle" data-cid="${a.id}" onclick="event.stopPropagation();toggleComments('${a.id}',this)">
-        💬 의견 <span class="comment-count-badge">-</span>
+        <span style="font-size:14px">💬</span> 의견 <span class="comment-count-badge">0개</span>
       </button>
       <div class="comment-box" id="cb-${a.id}">
         <div class="comment-list"></div>
@@ -840,20 +831,24 @@ function cardHtml(a,i){
         </div>
       </div>
     </div>`;
-  return `<button class="card${read?' read':''}" data-id="${a.id}" data-url="${a.url||''}" onclick="handleClick(this)">
+  return `<div class="card${read?' read':''}" data-id="${a.id}" data-url="${a.url||''}" onclick="handleClick(event,this)" style="cursor:pointer">
   <div class="card-top">${badges}<span class="lang-dot dot-${a.lang||'ko'}"></span><span class="card-src">${a.source}</span><span class="card-date">${fmtDate(a.date)}</span></div>
   <div class="card-title">${a.title}</div>
   ${sum}
   ${kws}
   ${commentHtml}
   <div class="card-bottom"><div class="unread-badge"></div><svg class="card-link" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-</button>`;
+</div>`;
 }
 
-function handleClick(el){
+function handleClick(e,el){
+  // 댓글 버튼/인풋 클릭은 무시
+  const t=e.target;
+  if(t.closest('.comment-section'))return;
   const id=el.dataset.id,url=el.dataset.url;
   markRead(id);el.classList.add('read');
-  el.querySelector('.unread-badge').style.cssText='background:transparent;border:1.5px solid var(--border)';
+  const badge=el.querySelector('.unread-badge');
+  if(badge)badge.style.cssText='background:transparent;border:1.5px solid var(--border)';
   if(url&&url!=='#')window.open(url,'_blank','noopener');
 }
 
@@ -865,9 +860,22 @@ function renderAll(){
 }
 
 function setTab(c){tab=c;renderAll();}
+function setMoCat(c){
+  tab=c;
+  document.querySelectorAll('[data-cat]').forEach(b=>{
+    b.classList.remove('on','on-blue');
+    if(b.dataset.cat===c)b.classList.add(c==='all'?'on-blue':'on');
+  });
+  renderAll();
+}
 function setPeriod(d){
+  if(d===0){
+    const v=prompt('기간을 입력하세요 (일 수):');
+    if(!v||isNaN(+v))return;
+    d=+v;
+  }
   period=d;
-  document.querySelectorAll('[data-d]').forEach(p=>p.classList.toggle('on',+p.dataset.d===d));
+  document.querySelectorAll('[data-d]').forEach(p=>p.classList.toggle('on',+p.dataset.d===d||p.dataset.d==='0'));
   renderAll();
 }
 function setLang(l){
@@ -947,6 +955,7 @@ function renderCommentHtml(comments) {
 }
 
 async function toggleComments(articleId, btn) {
+  event.stopPropagation();
   const box = document.getElementById('cb-' + articleId);
   if (!box) return;
   if (box.classList.contains('open')) {
@@ -958,32 +967,43 @@ async function toggleComments(articleId, btn) {
   list.innerHTML = '<div class="comment-empty">불러오는 중...</div>';
   const comments = await loadComments(articleId);
   list.innerHTML = renderCommentHtml(comments);
-  // 댓글 수 뱃지 업데이트
-  const badge = btn.querySelector('.comment-count-badge');
-  if (badge) badge.textContent = comments.length + '개';
+  updateBadge(articleId, comments.length);
+}
+
+function updateBadge(articleId, count) {
+  document.querySelectorAll(`[data-cid="${articleId}"] .comment-count-badge`).forEach(b=>{
+    b.textContent = count > 0 ? count + '개' : '0개';
+    b.style.background = count > 0 ? 'var(--blue-bg)' : '';
+    b.style.color = count > 0 ? 'var(--blue)' : 'var(--text3)';
+  });
 }
 
 async function submitComment(articleId) {
   const nameEl = document.getElementById('cn-' + articleId);
   const textEl = document.getElementById('ct-' + articleId);
+  const submitBtn = textEl.closest('.comment-form').querySelector('.comment-submit');
   const name = nameEl.value.trim();
-  const content = textEl.value.trim();
-  if (!name) { nameEl.focus(); return; }
-  if (!content) { textEl.focus(); return; }
+  const content_val = textEl.value.trim();
+  if (!name) { nameEl.focus(); nameEl.style.borderColor='#FF3B30'; return; }
+  if (!content_val) { textEl.focus(); textEl.style.borderColor='#FF3B30'; return; }
+  nameEl.style.borderColor='';
+  textEl.style.borderColor='';
+  submitBtn.textContent = '등록 중...';
+  submitBtn.disabled = true;
   try {
-    await postComment(articleId, name, content);
+    await postComment(articleId, name, content_val);
     textEl.value = '';
-    // 댓글 목록 새로고침
-    const list = document.getElementById('cb-' + articleId).querySelector('.comment-list');
+    submitBtn.textContent = '✓ 등록됨';
+    setTimeout(()=>{ submitBtn.textContent='등록'; submitBtn.disabled=false; }, 1500);
+    const box = document.getElementById('cb-' + articleId);
+    const list = box.querySelector('.comment-list');
     const comments = await loadComments(articleId);
     list.innerHTML = renderCommentHtml(comments);
-    const btn = document.querySelector(`[data-cid="${articleId}"]`);
-    if (btn) {
-      const badge = btn.querySelector('.comment-count-badge');
-      if (badge) badge.textContent = comments.length + '개';
-    }
+    updateBadge(articleId, comments.length);
     list.scrollTop = list.scrollHeight;
   } catch(e) {
+    submitBtn.textContent = '등록';
+    submitBtn.disabled = false;
     alert('댓글 등록 실패: ' + e.message);
   }
 }
@@ -993,7 +1013,7 @@ async function submitComment(articleId) {
 // ════════════════════════════════════
 
 let currentView = 'news';   // 'news' | 'signal'
-let signalPeriod = 90;      // days
+let signalPeriod = 30;      // days
 let signalStage = 'all';    // 'all'|'trend'|'watch'|'interest'
 let signalKwCat = 'all';   // 'all'|'food_cat'|'ingredient'|'trend'|'brand'
 
@@ -1110,15 +1130,13 @@ function setView(v) {
 }
 
 function setSignalPeriod(d) {
-  const wrap = document.getElementById('custom-period-wrap');
   if (d === 'custom') {
-    document.querySelectorAll('[data-sp]').forEach(p => p.classList.toggle('on', p.dataset.sp === 'custom'));
-    if (wrap) wrap.style.display = 'block';
-    return;
+    const v = prompt('분석 기간을 입력하세요 (일 수):');
+    if (!v || isNaN(+v)) return;
+    d = +v;
   }
-  if (wrap) wrap.style.display = 'none';
   signalPeriod = d;
-  document.querySelectorAll('[data-sp]').forEach(p => p.classList.toggle('on', +p.dataset.sp === d));
+  document.querySelectorAll('[data-sp]').forEach(p => p.classList.toggle('on', +p.dataset.sp === d || p.dataset.sp === 'custom' && typeof d !== 'number'));
   renderSignal();
 }
 
@@ -1157,8 +1175,8 @@ function applyLayout(){
   const moSigFilter=document.getElementById('mo-signal-filter');
   if(moSigFilter) moSigFilter.style.display=(isSignal&&mo)?'block':'none';
   // 모바일 뉴스 필터바 숨기기/보이기
-  const moFilter=document.querySelector('.mobile-filter:not(#mo-signal-filter)');
-  if(moFilter) moFilter.style.display=(!isSignal&&mo)?'block':'none';
+  const moNewsFilter=document.getElementById('mo-news-filter');
+  if(moNewsFilter) moNewsFilter.style.display=(!isSignal&&mo)?'block':'none';
 }
 
 async function loadNews(){
