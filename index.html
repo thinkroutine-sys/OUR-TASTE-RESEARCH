@@ -896,7 +896,7 @@ function cardHtml(a,i){
           <input id="cn-${aid}" class="comment-name-input" placeholder="이름" maxlength="10">
           <textarea id="ct-${aid}" class="comment-text-input" placeholder="의견을 남겨주세요" rows="2"></textarea>
         </div>
-        <button type="button" id="cs-${aid}" class="comment-submit" data-cid="${aid}">등록</button>
+        <button type="button" id="cs-${aid}" class="comment-submit" data-cid="${aid}" onclick="cmtSubmit(this.dataset.cid)">등록</button>
       </div>
     </div>`;
   return `<div class="card${read?' read':''}" data-id="${a.id}" data-url="${(a.url||'')}">
@@ -1021,8 +1021,11 @@ async function sbFetch(path, options={}) {
       ...(options.headers || {})
     }
   });
-  if (!res.ok) throw new Error(await res.text());
-  return options.method === 'POST' ? null : res.json();
+  if (!res.ok) { const t = await res.text(); throw new Error(t || res.status); }
+  if (res.status === 204) return null;
+  const ct = res.headers.get('content-type') || '';
+  if (!ct.includes('json')) return null;
+  return res.json();
 }
 
 async function loadComments(articleId) {
@@ -1097,7 +1100,7 @@ async function deleteComment(id) {
     await sbFetch('/rest/v1/comments?id=eq.' + id, { method: 'DELETE' });
     var item = document.querySelector('[data-cmt-id="' + id + '"]');
     if (item) item.remove();
-  } catch(e) { alert('삭제 실패: ' + e.message); }
+  } catch(e) { console.error('삭제 오류:', e); }
 }
 
 async function loadAllCommentCounts() {
