@@ -762,6 +762,7 @@ body.signal-mode .news-period-filter { display: none; }
 const CATS=['전체','신제품·NPD','소비자·시장','식재료·원료','채널·유통','브랜드·기업','산업·정책'];
 const CAT_ICONS={'전체':'🗂️','신제품·NPD':'🆕','소비자·시장':'📊','식재료·원료':'🌿','채널·유통':'🏪','브랜드·기업':'🏢','산업·정책':'📋'};
 let all=[],tab='전체',period=7,lang='all',src='all',query='',hideRead=false,showCvsOnly=false;
+let _cmtCounts={}; // 의견 수 캐시
 
 const isMobile=()=>window.innerWidth<768;
 
@@ -864,7 +865,8 @@ function renderMain(){
   const html=groupedHtml(items);
   document.getElementById('pc-main').innerHTML=html;
   document.getElementById('mo-main').innerHTML=html;
-  loadAllCommentCounts();
+  applyCachedCounts();   // 캐시된 값 즉시 적용
+  loadAllCommentCounts(); // 최신 값 새로고침
 }
 
 function cardHtml(a,i){
@@ -1076,8 +1078,16 @@ async function loadAllCommentCounts() {
 }
 
 function updateCmtBadge(aid, count) {
+  _cmtCounts[aid] = count;
   var badge = document.getElementById('cb-badge-' + aid);
   if (badge) badge.textContent = count + '개';
+}
+
+function applyCachedCounts() {
+  Object.keys(_cmtCounts).forEach(function(aid) {
+    var badge = document.getElementById('cb-badge-' + aid);
+    if (badge) badge.textContent = _cmtCounts[aid] + '개';
+  });
 }
 
 function cmtToggle(aid) {
