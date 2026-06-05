@@ -463,13 +463,13 @@ body.signal-mode .news-period-filter { display: none; }
 .comment-name{font-size:12px;font-weight:700;color:var(--text)}
 .comment-time{font-size:10px;color:var(--text3)}
 .comment-content{font-size:12px;color:var(--text2);line-height:1.5}
-.comment-form{display:flex;flex-direction:column;gap:6px}
-.comment-inputs{display:flex;gap:6px}
-.comment-name-input{width:80px;flex-shrink:0;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;outline:none;background:var(--surface);color:var(--text)}
+.comment-form{margin-top:6px}
+.comment-inputs{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.comment-name-input{width:72px;flex-shrink:0;padding:7px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;outline:none;background:var(--surface);color:var(--text)}
 .comment-name-input:focus{border-color:var(--blue)}
-.comment-text-input{flex:1;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;outline:none;background:var(--surface);color:var(--text);resize:none}
+.comment-text-input{flex:1;padding:7px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;outline:none;background:var(--surface);color:var(--text);resize:none}
 .comment-text-input:focus{border-color:var(--blue)}
-.comment-submit{align-self:flex-end;padding:5px 12px;background:var(--blue);color:#fff;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer}
+.comment-submit{display:block;margin-left:auto;padding:6px 16px;background:var(--blue);color:#fff;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer}
 .comment-submit:hover{opacity:.85}
 .comment-empty{font-size:11px;color:var(--text3);text-align:center;padding:8px 0}
 
@@ -894,7 +894,7 @@ function cardHtml(a,i){
       <div class="comment-form" style="display:none">
         <div class="comment-inputs">
           <input id="cn-${aid}" class="comment-name-input" placeholder="이름" maxlength="10">
-          <textarea id="ct-${aid}" class="comment-text-input" placeholder="의견을 남겨주세요" rows="2"></textarea>
+          <textarea id="ct-${aid}" class="comment-text-input" placeholder="의견을 남겨주세요" rows="1"></textarea>
         </div>
         <button type="button" id="cs-${aid}" class="comment-submit" data-cid="${aid}" onclick="cmtSubmit(this.dataset.cid)">등록</button>
       </div>
