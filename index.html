@@ -294,7 +294,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 .card-bottom{
   display:flex;align-items:center;justify-content:space-between;
-  padding-top:10px;border-top:1px solid var(--bg);
+  padding-top:8px;margin-bottom:8px;
 }
 .unread-badge{width:7px;height:7px;border-radius:50%;background:var(--blue)}
 .card.read .unread-badge{background:transparent;border:1.5px solid var(--border)}
@@ -446,7 +446,7 @@ body.signal-mode .news-period-filter { display: none; }
 
 
 /* ─── 댓글 시스템 ─── */
-.comment-section{margin-top:12px;border-top:1px solid var(--border);padding-top:10px;padding-bottom:2px;position:relative;z-index:2}
+.comment-section{margin-top:8px;padding-top:10px;border-top:1px solid var(--border)}
 .comment-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);background:var(--bg);border:1px solid var(--border);cursor:pointer;padding:5px 10px;border-radius:20px;font-weight:500;transition:all .15s;position:relative;z-index:2;-webkit-tap-highlight-color:transparent}
 .comment-toggle:hover,.comment-toggle:active{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
 .comment-count-badge{background:var(--blue-bg);color:var(--blue);font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px}
@@ -810,6 +810,20 @@ function renderMain(){
   const html=groupedHtml(items);
   document.getElementById('pc-main').innerHTML=html;
   document.getElementById('mo-main').innerHTML=html;
+  // 현재 보이는 기사들 댓글 수 로드
+  loadVisibleCommentCounts();
+}
+
+function loadVisibleCommentCounts() {
+  const ids = [...document.querySelectorAll('[id^="cb-badge-"]')].map(el => el.id.replace('cb-badge-',''));
+  ids.forEach(aid => {
+    loadComments(aid).then(function(c) {
+      const badge = document.getElementById('cb-badge-' + aid);
+      const list  = document.getElementById('cb-list-'  + aid);
+      if (badge) badge.textContent = c.length + '개';
+      if (list)  list.innerHTML = renderCommentHtml(c);
+    }).catch(function(){});
+  });
 }
 
 function cardHtml(a,i){
@@ -828,14 +842,15 @@ function cardHtml(a,i){
   const aid = a.id;
   const commentHtml = `
     <div class="comment-section">
-      <button type="button" class="comment-toggle" data-cid="${aid}">
-        <span style="font-size:14px">💬</span> 의견 <span id="cb-badge-${aid}">0개</span>
-      </button>
-      <div id="cb-${aid}" style="display:none;margin-top:10px">
-        <div id="cb-list-${aid}"></div>
-        <div style="display:flex;gap:6px;margin-top:6px">
+      <div class="comment-header">
+        <span style="font-size:13px;font-weight:600;color:var(--text2)">💬 의견</span>
+        <span id="cb-badge-${aid}" style="font-size:11px;color:var(--text3);margin-left:4px">0개</span>
+      </div>
+      <div id="cb-list-${aid}" class="comment-list"></div>
+      <div class="comment-form">
+        <div class="comment-inputs">
           <input id="cn-${aid}" class="comment-name-input" placeholder="이름" maxlength="10">
-          <textarea id="ct-${aid}" class="comment-text-input" placeholder="의견" rows="2"></textarea>
+          <textarea id="ct-${aid}" class="comment-text-input" placeholder="의견을 남겨주세요" rows="2"></textarea>
         </div>
         <button type="button" id="cs-${aid}" class="comment-submit" onclick="cmtSubmit('${aid}')">등록</button>
       </div>
@@ -861,8 +876,6 @@ function openArticle(url, id) {
 
 // 카드 클릭 이벤트 (기사 열기 + 댓글 토글)
 document.addEventListener('click', function(e) {
-  const cmt = e.target.closest('.comment-toggle');
-  if (cmt) { e.stopPropagation(); cmtToggle(cmt.getAttribute('data-cid')); return; }
   const sub = e.target.closest('.comment-submit');
   if (sub) { e.stopPropagation(); cmtSubmit(sub.getAttribute('data-cid')); return; }
   const card = e.target.closest('.card');
