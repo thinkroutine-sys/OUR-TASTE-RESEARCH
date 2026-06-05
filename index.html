@@ -1019,7 +1019,7 @@ async function sbFetch(path, options={}) {
       'apikey': SB_KEY,
       'Authorization': 'Bearer ' + SB_KEY,
       'Content-Type': 'application/json',
-      'Prefer': options.method === 'POST' ? 'return=minimal' : '',
+      'Prefer': (options.method === 'POST' || options.method === 'PATCH') ? 'return=minimal' : '',
       ...(options.headers || {})
     }
   });
@@ -1051,14 +1051,55 @@ function fmtCommentTime(iso) {
 function renderCommentHtml(comments) {
   if (!comments.length) return '<div class="comment-empty">아직 의견이 없어요</div>';
   return comments.map(c => `
-    <div class="comment-item">
+    <div class="comment-item" data-cmt-id="${c.id}">
       <div class="comment-header">
         <span class="comment-name">${c.name}</span>
         <span class="comment-time">${fmtCommentTime(c.created_at)}</span>
+        <span style="margin-left:auto;display:flex;gap:6px">
+          <button onclick="editComment('${c.id}','${c.content.replace(/'/g,"&#39;")}')" style="font-size:10px;color:var(--text3);background:none;border:none;cursor:pointer;padding:2px 4px">수정</button>
+          <button onclick="deleteComment('${c.id}')" style="font-size:10px;color:#FF3B30;background:none;border:none;cursor:pointer;padding:2px 4px">삭제</button>
+        </span>
       </div>
-      <div class="comment-content">${c.content}</div>
+      <div class="comment-content" id="cmt-content-${c.id}">${c.content}</div>
+      <div id="cmt-edit-${c.id}" style="display:none;margin-top:6px">
+        <textarea id="cmt-edit-text-${c.id}" rows="2" style="width:100%;padding:6px 8px;border:1.5px solid var(--blue);border-radius:8px;font-size:12px;font-family:inherit;resize:none;outline:none">${c.content}</textarea>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button onclick="saveEditComment('${c.id}')" style="font-size:11px;font-weight:600;color:#fff;background:var(--blue);border:none;border-radius:6px;padding:4px 10px;cursor:pointer">저장</button>
+          <button onclick="cancelEditComment('${c.id}')" style="font-size:11px;color:var(--text3);background:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px;cursor:pointer">취소</button>
+        </div>
+      </div>
     </div>
   `).join('');
+}
+
+function editComment(id, content) {
+  document.getElementById('cmt-content-' + id).style.display = 'none';
+  document.getElementById('cmt-edit-' + id).style.display = 'block';
+}
+function cancelEditComment(id) {
+  document.getElementById('cmt-content-' + id).style.display = 'block';
+  document.getElementById('cmt-edit-' + id).style.display = 'none';
+}
+async function saveEditComment(id) {
+  var text = document.getElementById('cmt-edit-text-' + id).value.trim();
+  if (!text) return;
+  try {
+    await sbFetch('/rest/v1/comments?id=eq.' + id, {
+      method: 'PATCH',
+      headers: {'Content-Type':'application/json','Prefer':'return=minimal'},
+      body: JSON.stringify({content: text})
+    });
+    document.getElementById('cmt-content-' + id).textContent = text;
+    cancelEditComment(id);
+  } catch(e) { alert('수정 실패: ' + e.message); }
+}
+async function deleteComment(id) {
+  if (!confirm('의견을 삭제할까요?')) return;
+  try {
+    await sbFetch('/rest/v1/comments?id=eq.' + id, { method: 'DELETE' });
+    var item = document.querySelector('[data-cmt-id="' + id + '"]');
+    if (item) item.remove();
+  } catch(e) { alert('삭제 실패: ' + e.message); }
 }
 
 async function loadAllCommentCounts() {
@@ -1079,14 +1120,12 @@ async function loadAllCommentCounts() {
 
 function updateCmtBadge(aid, count) {
   _cmtCounts[aid] = count;
-  var badge = document.getElementById('cb-badge-' + aid);
-  if (badge) badge.textContent = count + '개';
+  document.querySelectorAll('[id="cb-badge-' + aid + '"]').forEach(function(b){ b.textContent = count + '개'; });
 }
 
 function applyCachedCounts() {
   Object.keys(_cmtCounts).forEach(function(aid) {
-    var badge = document.getElementById('cb-badge-' + aid);
-    if (badge) badge.textContent = _cmtCounts[aid] + '개';
+    document.querySelectorAll('[id="cb-badge-' + aid + '"]').forEach(function(b){ b.textContent = _cmtCounts[aid] + '개'; });
   });
 }
 
@@ -1166,11 +1205,13 @@ function closeCommentSheet() {
 
 async function sheetSubmit() {
   if (!sheetArticleId) return;
-  var name = document.getElementById('sheet-name').value.trim();
-  var text = document.getElementById('sheet-text').value.trim();
+  var nameEl = document.getElementById('sheet-name');
+  var textEl = document.getElementById('sheet-text');
+  var name = nameEl ? nameEl.value.trim() : '';
+  var text = textEl ? textEl.value.trim() : '';
   var btn  = document.querySelector('.comment-sheet-submit');
-  if (!name) { alert('이름을 입력해주세요'); return; }
-  if (!text)  { alert('의견을 입력해주세요'); return; }
+  if (!name) { nameEl && nameEl.focus(); return; }
+  if (!text)  { textEl && textEl.focus(); return; }
   btn.textContent = '등록 중...'; btn.disabled = true;
   try {
     await postComment(sheetArticleId, name, text);
