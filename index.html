@@ -896,7 +896,7 @@ function cardHtml(a,i){
           <input id="cn-${aid}" class="comment-name-input" placeholder="이름" maxlength="10">
           <textarea id="ct-${aid}" class="comment-text-input" placeholder="의견을 남겨주세요" rows="2"></textarea>
         </div>
-        <button type="button" id="cs-${aid}" class="comment-submit" onclick="cmtSubmit('${aid}')">등록</button>
+        <button type="button" id="cs-${aid}" class="comment-submit" data-cid="${aid}">등록</button>
       </div>
     </div>`;
   return `<div class="card${read?' read':''}" data-id="${a.id}" data-url="${(a.url||'')}">
@@ -947,8 +947,6 @@ document.addEventListener('click', function(e) {
     }
     return;
   }
-  const sub = e.target.closest('.comment-submit');
-  if (sub) { e.stopPropagation(); cmtSubmit(sub.getAttribute('data-cid')); return; }
   const card = e.target.closest('.card');
   if (card && !e.target.closest('.comment-section')) {
     openArticle(card.dataset.url, card.dataset.id);
@@ -1155,11 +1153,17 @@ function updateBadge(articleId, count) {
 }
 
 async function cmtSubmit(aid) {
-  var name = (document.getElementById('cn-' + aid)||{}).value;
-  var text = (document.getElementById('ct-' + aid)||{}).value;
+  if (!aid) return;
+  var nameEl = document.getElementById('cn-' + aid);
+  var textEl = document.getElementById('ct-' + aid);
+  if (!nameEl || !textEl) return;
+  var name = nameEl.value.trim();
+  var text = textEl.value.trim();
   var btn  = document.getElementById('cs-' + aid);
-  if (!name || !name.trim()) { alert('이름을 입력해주세요'); return; }
-  if (!text || !text.trim()) { alert('의견을 입력해주세요'); return; }
+  if (!name) { nameEl.style.borderColor='#FF3B30'; nameEl.focus(); return; }
+  if (!text) { textEl.style.borderColor='#FF3B30'; textEl.focus(); return; }
+  nameEl.style.borderColor='';
+  textEl.style.borderColor='';
   if (btn) { btn.textContent = '등록 중...'; btn.disabled = true; }
   try {
     await postComment(aid, name.trim(), text.trim());
@@ -1210,8 +1214,8 @@ async function sheetSubmit() {
   var name = nameEl ? nameEl.value.trim() : '';
   var text = textEl ? textEl.value.trim() : '';
   var btn  = document.querySelector('.comment-sheet-submit');
-  if (!name) { nameEl && nameEl.focus(); return; }
-  if (!text)  { textEl && textEl.focus(); return; }
+  if (!name) { if(nameEl) nameEl.focus(); return; }
+  if (!text)  { if(textEl) textEl.focus(); return; }
   btn.textContent = '등록 중...'; btn.disabled = true;
   try {
     await postComment(sheetArticleId, name, text);
