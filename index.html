@@ -864,6 +864,7 @@ function renderMain(){
   const html=groupedHtml(items);
   document.getElementById('pc-main').innerHTML=html;
   document.getElementById('mo-main').innerHTML=html;
+  loadAllCommentCounts();
 }
 
 function cardHtml(a,i){
@@ -1056,6 +1057,22 @@ function renderCommentHtml(comments) {
       <div class="comment-content">${c.content}</div>
     </div>
   `).join('');
+}
+
+async function loadAllCommentCounts() {
+  try {
+    const data = await sbFetch('/rest/v1/comments?select=article_id&order=article_id');
+    if (!data) return;
+    // article_id별 카운트 집계
+    const counts = {};
+    data.forEach(function(row) {
+      counts[row.article_id] = (counts[row.article_id] || 0) + 1;
+    });
+    // 모든 배지 업데이트
+    Object.entries(counts).forEach(function([aid, count]) {
+      updateCmtBadge(aid, count);
+    });
+  } catch(e) {}
 }
 
 function updateCmtBadge(aid, count) {
