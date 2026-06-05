@@ -197,26 +197,25 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   /* 모바일 필터 */
   .mobile-filter{
     background:var(--surface);border-bottom:1px solid var(--border);
-    overflow-x:auto;scrollbar-width:none;
   }
-  .mobile-filter::-webkit-scrollbar{display:none}
   .mf-inner{
-    display:flex;align-items:center;gap:6px;
-    padding:8px 16px;white-space:nowrap;
+    display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+    padding:10px 14px;
   }
-  .mf-sep{width:1px;height:14px;background:var(--border);flex-shrink:0}
+  .mf-sep{width:100%;height:0;border-top:1px solid var(--border);margin:2px 0}
   .mf-pill{
     font-size:12px;font-weight:500;
-    padding:4px 11px;border-radius:20px;
+    padding:5px 12px;border-radius:20px;
     border:1.5px solid var(--border);color:var(--text2);
-    background:var(--surface);flex-shrink:0;transition:all .15s;
+    background:var(--surface);transition:all .15s;
+    -webkit-tap-highlight-color:transparent;
   }
   .mf-pill.on{background:var(--text);border-color:var(--text);color:#fff}
   .mf-pill.on-blue{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
   .mf-select{
     font-family:inherit;font-size:12px;color:var(--text2);
     background:var(--surface);border:1.5px solid var(--border);
-    border-radius:20px;padding:4px 10px;outline:none;flex-shrink:0;
+    border-radius:20px;padding:5px 10px;outline:none;width:100%;margin-top:2px;
   }
 
   /* 모바일 메인 */
@@ -394,9 +393,7 @@ body.signal-mode .news-period-filter { display: none; }
   cursor: default;
 }
 .signal-item:hover { box-shadow: var(--shadow-md); transform: translateX(2px); }
-.signal-item.s-trend   { border-left-color: #FF3B30; }
-.signal-item.s-watch   { border-left-color: #FF9500; }
-.signal-item.s-interest{ border-left-color: var(--blue); }
+.signal-item { border-left-color: var(--blue); }
 
 .si-rank {
   font-size: 13px; font-weight: 700; color: var(--text3);
@@ -424,9 +421,7 @@ body.signal-mode .news-period-filter { display: none; }
 .si-score-label { font-size: 10px; color: var(--text3); margin-top: 2px; }
 .si-bar-wrap { width: 80px; height: 4px; background: var(--bg); border-radius: 2px; margin-top: 6px; }
 .si-bar { height: 100%; border-radius: 2px; transition: width .4s; }
-.s-trend   .si-bar { background: #FF3B30; }
-.s-watch   .si-bar { background: #FF9500; }
-.s-interest .si-bar { background: var(--blue); }
+.si-bar { background: var(--blue); }
 
 /* 시그널 출처 태그 */
 .si-src-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
@@ -506,7 +501,11 @@ body.signal-mode .news-period-filter { display: none; }
 }
 @media(max-width:767px){.guide-modal{padding:16px;border-radius:12px}}
 
-.si-news-list{margin-top:10px;border-top:1px solid var(--border);padding-top:8px;display:flex;flex-direction:column;gap:4px}
+.si-news-list{margin-top:10px;border-top:1px solid var(--border);padding-top:8px}
+.si-news-scroll{max-height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:4px;scrollbar-width:thin}
+.si-news-scroll::-webkit-scrollbar{width:4px}
+.si-news-scroll::-webkit-scrollbar-track{background:var(--bg)}
+.si-news-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .si-news-item{display:flex;flex-direction:column;gap:2px;padding:7px 8px;border-radius:8px;background:var(--bg);text-decoration:none;transition:background .15s}
 .si-news-item:hover{background:var(--blue-bg)}
 .si-news-title{font-size:12px;color:var(--text);font-weight:500;line-height:1.4}
@@ -829,7 +828,7 @@ function cardHtml(a,i){
   const kws=(a.keywords&&a.keywords.length)?`<div class="keywords">${a.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>`:'';
   const commentHtml = `
     <div class="comment-section">
-      <button class="comment-toggle" data-cid="${a.id}" onclick="event.stopPropagation();toggleComments('${a.id}',this)">
+      <button class="comment-toggle" data-cid="${a.id}" onclick="toggleComments(event,'${a.id}',this)">
         <span style="font-size:14px">💬</span> 의견 <span class="comment-count-badge">0개</span>
       </button>
       <div class="comment-box" id="cb-${a.id}">
@@ -839,7 +838,7 @@ function cardHtml(a,i){
             <input class="comment-name-input" id="cn-${a.id}" placeholder="이름" maxlength="10" onclick="event.stopPropagation()">
             <textarea class="comment-text-input" id="ct-${a.id}" placeholder="의견을 남겨주세요" rows="2" onclick="event.stopPropagation()"></textarea>
           </div>
-          <button class="comment-submit" onclick="event.stopPropagation();submitComment('${a.id}')">등록</button>
+          <button class="comment-submit" onclick="submitComment(event,'${a.id}')">등록</button>
         </div>
       </div>
     </div>`;
@@ -970,8 +969,9 @@ function renderCommentHtml(comments) {
   `).join('');
 }
 
-async function toggleComments(articleId, btn) {
-  event.stopPropagation();
+async function toggleComments(e, articleId, btn) {
+  e.stopPropagation();
+  e.preventDefault();
   const box = document.getElementById('cb-' + articleId);
   if (!box) return;
   if (box.classList.contains('open')) {
@@ -994,7 +994,8 @@ function updateBadge(articleId, count) {
   });
 }
 
-async function submitComment(articleId) {
+async function submitComment(e, articleId) {
+  e.stopPropagation();
   const nameEl = document.getElementById('cn-' + articleId);
   const textEl = document.getElementById('ct-' + articleId);
   const submitBtn = textEl.closest('.comment-form').querySelector('.comment-submit');
@@ -1103,36 +1104,34 @@ function renderSignal() {
 
   const html = !filtered.length
     ? `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">해당 시그널이 없습니다</div><div>기간을 늘리거나 더 많은 기사를 수집해보세요</div></div>`
-    : `<div class="signal-legend">
-        <div class="sl-item"><div class="sl-dot sl-dot-trend"></div>트렌드: 6개+ 매체 · 10회+</div>
-        <div class="sl-item"><div class="sl-dot sl-dot-watch"></div>주목: 3개+ 매체 · 5회+</div>
-        <div class="sl-item"><div class="sl-dot sl-dot-interest"></div>관심사: 2개+ 매체 · 3회+</div>
+    : `<div style="font-size:11px;color:var(--text3);margin-bottom:12px;padding:10px 12px;background:var(--bg);border-radius:10px;border:1px solid var(--border)">
+        📊 시그널 점수 = 빈도(기간 내 등장 횟수) × 매체수(출처 다양성). 점수가 높을수록 더 많은 곳에서 반복 등장한 키워드예요.
       </div>
       <div class="signal-list">${filtered.slice(0, 50).map((s, i) => {
-        const [label, badgeCls] = stageLabel(s.stage);
         const barPct = Math.round(s.score / maxScore * 100);
         const srcTags = s.sources.map(src => `<span class="si-src-tag">${src}</span>`).join('');
-        const relNews = all.filter(a=>(a.keywords||[]).includes(s.kw)).slice(0,5);
-        const relHtml = relNews.length ? relNews.map(a=>`
+        const cutoffMs = Date.now() - signalPeriod * 86400000;
+        const relNews = all.filter(a=>(a.keywords||[]).includes(s.kw) && new Date(a.date).getTime() >= cutoffMs);
+        const relHtml = relNews.length ? `<div class="si-news-scroll">${relNews.map(a=>`
           <a class="si-news-item" href="${a.url}" target="_blank" rel="noopener">
             <span class="si-news-title">${a.title}</span>
-            <span class="si-news-src">${a.source}</span>
-          </a>`).join('') : '<div style="font-size:11px;color:var(--text3);padding:8px 0">관련 기사 없음</div>';
-        return `<div class="signal-item s-${s.stage}" onclick="toggleSignalNews(this)">
+            <span class="si-news-src">${a.source} · ${fmtDate(a.date)}</span>
+          </a>`).join('')}</div>` : '<div style="font-size:11px;color:var(--text3);padding:8px 0">관련 기사 없음</div>';
+        const catBadge = s.kwCat && KW_CAT_LABELS[s.kwCat] ? `<span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;background:${KW_CAT_LABELS[s.kwCat].bg};color:${KW_CAT_LABELS[s.kwCat].color}">${KW_CAT_LABELS[s.kwCat].icon} ${KW_CAT_LABELS[s.kwCat].ko}</span>` : '';
+        return `<div class="signal-item" onclick="toggleSignalNews(this)">
           <div class="si-rank">${i + 1}</div>
           <div class="si-body">
             <div class="si-keyword">${s.kw}</div>
             <div class="si-meta">
-              <span class="si-badge ${badgeCls}">${label}</span>
-              <span class="si-sources">${s.srcCount}개 매체 · ${s.freq}회</span>
-              ${s.kwCat && KW_CAT_LABELS[s.kwCat] ? `<span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;background:${KW_CAT_LABELS[s.kwCat].bg};color:${KW_CAT_LABELS[s.kwCat].color}">${KW_CAT_LABELS[s.kwCat].icon} ${KW_CAT_LABELS[s.kwCat].ko}</span>` : ''}
+              ${catBadge}
+              <span class="si-sources">${s.freq}회 언급 (${s.srcCount}개 매체)</span>
             </div>
             <div class="si-src-tags">${srcTags}</div>
             <div class="si-news-list" style="display:none">${relHtml}</div>
           </div>
           <div class="si-right">
             <div class="si-score">${s.score}</div>
-            <div class="si-score-label">시그널 점수</div>
+            <div class="si-score-label">빈도 × 매체수</div>
             <div class="si-bar-wrap"><div class="si-bar" style="width:${barPct}%"></div></div>
           </div>
         </div>`;
