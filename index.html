@@ -828,7 +828,7 @@ function cardHtml(a,i){
   const kws=(a.keywords&&a.keywords.length)?`<div class="keywords">${a.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>`:'';
   const commentHtml = `
     <div class="comment-section">
-      <button class="comment-toggle" data-cid="${a.id}" onclick="toggleComments(event,'${a.id}',this)">
+      <button class="comment-toggle" data-cid="${a.id}">
         <span style="font-size:14px">💬</span> 의견 <span class="comment-count-badge">0개</span>
       </button>
       <div class="comment-box" id="cb-${a.id}">
@@ -838,7 +838,7 @@ function cardHtml(a,i){
             <input class="comment-name-input" id="cn-${a.id}" placeholder="이름" maxlength="10" onclick="event.stopPropagation()">
             <textarea class="comment-text-input" id="ct-${a.id}" placeholder="의견을 남겨주세요" rows="2" onclick="event.stopPropagation()"></textarea>
           </div>
-          <button class="comment-submit" onclick="submitComment(event,'${a.id}')">등록</button>
+          <button class="comment-submit" data-cid="${a.id}">등록</button>
         </div>
       </div>
     </div>`;
@@ -1283,6 +1283,37 @@ setInterval(loadNews,30*60*1000);
 function openGuide(type){ document.getElementById('guide-'+type).classList.add('on'); }
 function closeGuide(type){ document.getElementById('guide-'+type).classList.remove('on'); }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeGuide('news');closeGuide('signal');} });
+// ── 댓글 이벤트 위임 (모바일/PC 공통)
+document.addEventListener('click', function(e) {
+  // 의견 토글 버튼
+  const toggleBtn = e.target.closest('.comment-toggle');
+  if (toggleBtn) {
+    e.stopPropagation();
+    const aid = toggleBtn.dataset.cid;
+    const box = document.getElementById('cb-' + aid);
+    if (!box) return;
+    const isOpen = box.style.display === 'block';
+    box.style.display = isOpen ? 'none' : 'block';
+    if (isOpen) return;
+    const list = box.querySelector('.comment-list');
+    list.innerHTML = '<div class="comment-empty">불러오는 중...</div>';
+    loadComments(aid).then(comments => {
+      list.innerHTML = renderCommentHtml(comments);
+      updateBadge(aid, comments.length);
+    }).catch(() => {
+      list.innerHTML = '<div class="comment-empty">불러오기 실패</div>';
+    });
+    return;
+  }
+  // 등록 버튼
+  const submitBtn = e.target.closest('.comment-submit');
+  if (submitBtn) {
+    e.stopPropagation();
+    const aid = submitBtn.dataset.cid;
+    submitComment(null, aid);
+    return;
+  }
+});
 </script>
 </body>
 </html>
