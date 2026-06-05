@@ -842,25 +842,25 @@ function cardHtml(a,i){
         </div>
       </div>
     </div>`;
-  return `<div class="card${read?' read':''}" data-id="${a.id}" data-url="${a.url||''}" onclick="handleClick(event,this)" style="cursor:pointer">
-  <div class="card-top">${badges}<span class="lang-dot dot-${a.lang||'ko'}"></span><span class="card-src">${a.source}</span><span class="card-date">${fmtDate(a.date)}</span></div>
-  <div class="card-title">${a.title}</div>
-  ${sum}
-  ${kws}
+  return `<div class="card${read?' read':''}" data-id="${a.id}">
+  <div class="card-body" onclick="openArticle('${a.url||''}','${a.id}')" style="cursor:pointer">
+    <div class="card-top">${badges}<span class="lang-dot dot-${a.lang||'ko'}"></span><span class="card-src">${a.source}</span><span class="card-date">${fmtDate(a.date)}</span></div>
+    <div class="card-title">${a.title}</div>
+    ${sum}
+    ${kws}
+    <div class="card-bottom"><div class="unread-badge" id="rb-${a.id}"></div><svg class="card-link" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+  </div>
   ${commentHtml}
-  <div class="card-bottom"><div class="unread-badge"></div><svg class="card-link" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
 </div>`;
 }
 
-function handleClick(e,el){
-  // 댓글 버튼/인풋 클릭은 무시
-  const t=e.target;
-  if(t.closest('.comment-section'))return;
-  const id=el.dataset.id,url=el.dataset.url;
-  markRead(id);el.classList.add('read');
-  const badge=el.querySelector('.unread-badge');
-  if(badge)badge.style.cssText='background:transparent;border:1.5px solid var(--border)';
-  if(url&&url!=='#')window.open(url,'_blank','noopener');
+function openArticle(url, id) {
+  markRead(id);
+  const card = document.querySelector(`[data-id="${id}"]`);
+  if(card) card.classList.add('read');
+  const badge = document.getElementById('rb-'+id);
+  if(badge) badge.style.cssText='background:transparent;border:1.5px solid var(--border)';
+  if(url && url!=='#') window.open(url,'_blank','noopener');
 }
 
 function renderAll(){
