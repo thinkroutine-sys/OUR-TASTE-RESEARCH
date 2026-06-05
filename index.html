@@ -498,20 +498,23 @@ body.signal-mode .news-period-filter { display: none; }
 .comment-sheet-form{
   padding:10px 16px;border-top:1px solid var(--border);flex-shrink:0;
 }
-.comment-sheet-inputs{display:flex;gap:6px;margin-bottom:6px}
+.comment-sheet-inputs{display:flex;align-items:center;gap:6px;margin-bottom:6px}
 .comment-sheet-name{
-  width:80px;flex-shrink:0;padding:8px 10px;
+  width:72px;flex-shrink:0;padding:9px 10px;
   border:1.5px solid var(--border);border-radius:10px;
   font-size:13px;font-family:inherit;background:var(--bg);color:var(--text);outline:none;
 }
+.comment-sheet-name:focus{border-color:var(--blue)}
 .comment-sheet-text{
-  flex:1;padding:8px 10px;
+  flex:1;padding:9px 10px;
   border:1.5px solid var(--border);border-radius:10px;
   font-size:13px;font-family:inherit;background:var(--bg);color:var(--text);
   resize:none;outline:none;
 }
+.comment-sheet-text:focus{border-color:var(--blue)}
+.comment-sheet-actions{display:flex;justify-content:flex-end;margin-bottom:6px}
 .comment-sheet-submit{
-  width:100%;padding:10px;background:var(--blue);color:#fff;
+  padding:10px 24px;background:var(--blue);color:#fff;
   border-radius:10px;font-size:14px;font-weight:600;border:none;cursor:pointer;
 }
 
@@ -1099,14 +1102,11 @@ async function deleteComment(id) {
   try {
     await sbFetch('/rest/v1/comments?id=eq.' + id, { method: 'DELETE' });
     var item = document.querySelector('[data-cmt-id="' + id + '"]');
-    if (item) {
-      var sec = item.closest('.comment-section');
-      var aid = sec ? sec.dataset.aid : null;
-      item.remove();
-      if (aid) {
-        var remaining = (document.getElementById('cb-list-' + aid) || document.getElementById('sheet-list') || {}).querySelectorAll ? document.querySelectorAll('[data-cmt-id]').length : 0;
-        loadComments(aid).then(function(c){ updateCmtBadge(aid, c.length); }).catch(function(){});
-      }
+    if (item) item.remove();
+    // PC: comment-section에서 aid 찾기, 모바일: sheetArticleId 사용
+    var aid = (item && item.closest('.comment-section') ? item.closest('.comment-section').dataset.aid : null) || sheetArticleId;
+    if (aid) {
+      loadComments(aid).then(function(c){ updateCmtBadge(aid, c.length); }).catch(function(){});
     }
   } catch(e) { console.error('삭제 오류:', e); }
 }
@@ -1470,9 +1470,11 @@ setInterval(loadNews,30*60*1000);
   <div class="comment-sheet-form">
     <div class="comment-sheet-inputs">
       <input class="comment-sheet-name" id="sheet-name" placeholder="이름" maxlength="10">
-      <textarea class="comment-sheet-text" id="sheet-text" placeholder="의견을 남겨주세요" rows="2"></textarea>
+      <textarea class="comment-sheet-text" id="sheet-text" placeholder="의견을 남겨주세요" rows="1"></textarea>
     </div>
-    <button class="comment-sheet-submit" onclick="sheetSubmit()">등록</button>
+    <div class="comment-sheet-actions">
+      <button class="comment-sheet-submit" onclick="sheetSubmit()">등록</button>
+    </div>
   </div>
 </div>
 
