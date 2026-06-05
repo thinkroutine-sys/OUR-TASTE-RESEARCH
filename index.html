@@ -430,9 +430,6 @@ body.signal-mode .news-period-filter { display: none; }
   padding: 1px 7px; border-radius: 10px;
 }
 
-/* 모바일 의견 숨기기 */
-@media(max-width:767px){ .comment-section{display:none!important} }
-
 /* 모바일 시그널 */
 @media(max-width:767px){
   .view-news,.view-signal { display: block !important; }
@@ -470,6 +467,55 @@ body.signal-mode .news-period-filter { display: none; }
 .comment-submit{align-self:flex-end;padding:5px 12px;background:var(--blue);color:#fff;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer}
 .comment-submit:hover{opacity:.85}
 .comment-empty{font-size:11px;color:var(--text3);text-align:center;padding:8px 0}
+
+/* ── 모바일 바텀 시트 댓글 ── */
+.comment-sheet-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:500;
+}
+.comment-sheet-overlay.on{display:block}
+.comment-sheet{
+  position:fixed;bottom:0;left:0;right:0;z-index:501;
+  background:var(--surface);border-radius:20px 20px 0 0;
+  padding:0 0 env(safe-area-inset-bottom);
+  max-height:80vh;display:flex;flex-direction:column;
+  transform:translateY(100%);transition:transform .3s ease;
+}
+.comment-sheet.on{transform:translateY(0)}
+.comment-sheet-handle{
+  width:36px;height:4px;background:var(--border);border-radius:2px;
+  margin:12px auto 8px;flex-shrink:0;
+}
+.comment-sheet-title{
+  font-size:14px;font-weight:700;padding:0 16px 10px;
+  border-bottom:1px solid var(--border);flex-shrink:0;color:var(--text);
+}
+.comment-sheet-list{flex:1;overflow-y:auto;padding:12px 16px}
+.comment-sheet-form{
+  padding:10px 16px;border-top:1px solid var(--border);flex-shrink:0;
+}
+.comment-sheet-inputs{display:flex;gap:6px;margin-bottom:6px}
+.comment-sheet-name{
+  width:80px;flex-shrink:0;padding:8px 10px;
+  border:1.5px solid var(--border);border-radius:10px;
+  font-size:13px;font-family:inherit;background:var(--bg);color:var(--text);outline:none;
+}
+.comment-sheet-text{
+  flex:1;padding:8px 10px;
+  border:1.5px solid var(--border);border-radius:10px;
+  font-size:13px;font-family:inherit;background:var(--bg);color:var(--text);
+  resize:none;outline:none;
+}
+.comment-sheet-submit{
+  width:100%;padding:10px;background:var(--blue);color:#fff;
+  border-radius:10px;font-size:14px;font-weight:600;border:none;cursor:pointer;
+}
+
+/* 모바일에서 카드 내 comment-section은 숨기고 버튼만 보이게 */
+@media(max-width:767px){
+  .comment-section .comment-list,
+  .comment-section .comment-form { display:none; }
+  .comment-section .comment-header { cursor:pointer; }
+}
 /* ─── 분류 기준 팝업 ─── */
 .guide-btn{
   width:18px;height:18px;border-radius:50%;
@@ -830,13 +876,13 @@ function cardHtml(a,i){
   const kws=(a.keywords&&a.keywords.length)?`<div class="keywords">${a.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>`:'';
   const aid = a.id;
   const commentHtml = `
-    <div class="comment-section">
+    <div class="comment-section" data-aid="${aid}">
       <div class="comment-header">
         <span style="font-size:13px;font-weight:600;color:var(--text2)">💬 의견</span>
         <span id="cb-badge-${aid}" style="font-size:11px;color:var(--text3);margin-left:4px">0개</span>
       </div>
-      <div id="cb-list-${aid}" class="comment-list"></div>
-      <div class="comment-form">
+      <div id="cb-list-${aid}" class="comment-list" style="display:none"></div>
+      <div class="comment-form" style="display:none">
         <div class="comment-inputs">
           <input id="cn-${aid}" class="comment-name-input" placeholder="이름" maxlength="10">
           <textarea id="ct-${aid}" class="comment-text-input" placeholder="의견을 남겨주세요" rows="2"></textarea>
@@ -865,6 +911,33 @@ function openArticle(url, id) {
 
 // 카드 클릭 이벤트 (기사 열기 + 댓글 토글)
 document.addEventListener('click', function(e) {
+  // 댓글 헤더 클릭 (모바일: 바텀시트, PC: 인라인)
+  const hdr = e.target.closest('.comment-header');
+  if (hdr) {
+    e.stopPropagation();
+    const sec = hdr.closest('.comment-section');
+    const aid = sec ? sec.dataset.aid : null;
+    if (!aid) return;
+    if (window.innerWidth < 768) {
+      const card = hdr.closest('.card');
+      const title = card ? card.querySelector('.card-title').textContent : '';
+      openCommentSheet(aid, title.substring(0, 20));
+    } else {
+      const listEl = sec.querySelector('.comment-list');
+      const formEl = sec.querySelector('.comment-form');
+      const isOpen = listEl && listEl.style.display !== 'none';
+      if (listEl) listEl.style.display = isOpen ? 'none' : 'block';
+      if (formEl) formEl.style.display = isOpen ? 'none' : 'block';
+      if (!isOpen && aid) {
+        loadComments(aid).then(function(c) {
+          if (listEl) listEl.innerHTML = renderCommentHtml(c);
+          var badge = document.getElementById('cb-badge-' + aid);
+          if (badge) badge.textContent = c.length + '개';
+        }).catch(function(){});
+      }
+    }
+    return;
+  }
   const sub = e.target.closest('.comment-submit');
   if (sub) { e.stopPropagation(); cmtSubmit(sub.getAttribute('data-cid')); return; }
   const card = e.target.closest('.card');
@@ -1026,6 +1099,56 @@ async function cmtSubmit(aid) {
   }
 }
 async function submitComment(e, aid) { cmtSubmit(aid); }
+
+
+// ── 모바일 댓글 바텀 시트 ──
+let sheetArticleId = null;
+
+function openCommentSheet(aid, title) {
+  sheetArticleId = aid;
+  document.getElementById('sheet-title').textContent = '💬 ' + (title || '의견');
+  document.getElementById('sheet-list').innerHTML = '<div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">불러오는 중...</div>';
+  document.getElementById('comment-sheet-overlay') || (document.getElementById('sheet-overlay').classList.add('on'));
+  document.getElementById('sheet-overlay').classList.add('on');
+  document.getElementById('comment-sheet').classList.add('on');
+  document.body.style.overflow = 'hidden';
+  loadComments(aid).then(function(c) {
+    document.getElementById('sheet-list').innerHTML = renderCommentHtml(c) || '<div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">아직 의견이 없어요</div>';
+    // 배지 업데이트
+    var badge = document.getElementById('cb-badge-' + aid);
+    if (badge) badge.textContent = c.length + '개';
+  }).catch(function(){});
+}
+
+function closeCommentSheet() {
+  document.getElementById('sheet-overlay').classList.remove('on');
+  document.getElementById('comment-sheet').classList.remove('on');
+  document.body.style.overflow = '';
+  sheetArticleId = null;
+}
+
+async function sheetSubmit() {
+  if (!sheetArticleId) return;
+  var name = document.getElementById('sheet-name').value.trim();
+  var text = document.getElementById('sheet-text').value.trim();
+  var btn  = document.querySelector('.comment-sheet-submit');
+  if (!name) { alert('이름을 입력해주세요'); return; }
+  if (!text)  { alert('의견을 입력해주세요'); return; }
+  btn.textContent = '등록 중...'; btn.disabled = true;
+  try {
+    await postComment(sheetArticleId, name, text);
+    document.getElementById('sheet-text').value = '';
+    btn.textContent = '✓ 등록됨';
+    setTimeout(function(){ btn.textContent='등록'; btn.disabled=false; }, 1500);
+    var c = await loadComments(sheetArticleId);
+    document.getElementById('sheet-list').innerHTML = renderCommentHtml(c) || '<div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">아직 의견이 없어요</div>';
+    var badge = document.getElementById('cb-badge-' + sheetArticleId);
+    if (badge) badge.textContent = c.length + '개';
+  } catch(e) {
+    btn.textContent = '등록'; btn.disabled = false;
+    alert('등록 실패: ' + e.message);
+  }
+}
 
 // ════════════════════════════════════
 // SIGNAL ENGINE
@@ -1243,6 +1366,23 @@ applyLayout();
 loadNews();
 setInterval(loadNews,30*60*1000);
 </script>
+
+<!-- 모바일 댓글 바텀 시트 -->
+<div class="comment-sheet-overlay" id="sheet-overlay" onclick="closeCommentSheet()"></div>
+<div class="comment-sheet" id="comment-sheet">
+  <div class="comment-sheet-handle"></div>
+  <div class="comment-sheet-title" id="sheet-title">💬 의견</div>
+  <div class="comment-sheet-list" id="sheet-list">
+    <div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">불러오는 중...</div>
+  </div>
+  <div class="comment-sheet-form">
+    <div class="comment-sheet-inputs">
+      <input class="comment-sheet-name" id="sheet-name" placeholder="이름" maxlength="10">
+      <textarea class="comment-sheet-text" id="sheet-text" placeholder="의견을 남겨주세요" rows="2"></textarea>
+    </div>
+    <button class="comment-sheet-submit" onclick="sheetSubmit()">등록</button>
+  </div>
+</div>
 
 <!-- 뉴스 카테고리 분류 기준 팝업 -->
 <div class="guide-overlay" id="guide-news" onclick="if(event.target===this)closeGuide('news')">
