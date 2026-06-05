@@ -262,7 +262,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   transition:box-shadow .15s;
 }
 .card:hover{box-shadow:var(--shadow-md)}
-.card.read{opacity:.42}
+/* .card.read opacity removed */
 
 .card-top{display:flex;align-items:center;gap:6px;margin-bottom:9px;flex-wrap:wrap}
 .badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;letter-spacing:.1px}
@@ -447,6 +447,11 @@ body.signal-mode .news-period-filter { display: none; }
 
 /* ─── 댓글 시스템 ─── */
 .comment-section{margin-top:8px;padding-top:10px;border-top:1px solid var(--border)}
+.comment-header{
+  display:flex;align-items:center;gap:6px;width:100%;
+  padding:6px 0;background:none;border:none;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
 .comment-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);background:var(--bg);border:1px solid var(--border);cursor:pointer;padding:5px 10px;border-radius:20px;font-weight:500;transition:all .15s;position:relative;z-index:2;-webkit-tap-highlight-color:transparent}
 .comment-toggle:hover,.comment-toggle:active{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
 .comment-count-badge{background:var(--blue-bg);color:var(--blue);font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px}
@@ -877,10 +882,11 @@ function cardHtml(a,i){
   const aid = a.id;
   const commentHtml = `
     <div class="comment-section" data-aid="${aid}">
-      <div class="comment-header">
-        <span style="font-size:13px;font-weight:600;color:var(--text2)">💬 의견</span>
-        <span id="cb-badge-${aid}" style="font-size:11px;color:var(--text3);margin-left:4px">0개</span>
-      </div>
+      <button type="button" class="comment-header" onclick="event.stopPropagation()">
+        <span style="font-size:13px">💬</span>
+        <span style="font-size:13px;font-weight:600;color:var(--text2)">의견</span>
+        <span id="cb-badge-${aid}" style="font-size:11px;color:var(--blue);font-weight:600;background:var(--blue-bg);padding:1px 7px;border-radius:10px">0개</span>
+      </button>
       <div id="cb-list-${aid}" class="comment-list" style="display:none"></div>
       <div class="comment-form" style="display:none">
         <div class="comment-inputs">
@@ -912,10 +918,10 @@ function openArticle(url, id) {
 // 카드 클릭 이벤트 (기사 열기 + 댓글 토글)
 document.addEventListener('click', function(e) {
   // 댓글 헤더 클릭 (모바일: 바텀시트, PC: 인라인)
-  const hdr = e.target.closest('.comment-header');
+  const hdr = e.target.closest('.comment-header') || (e.target.closest('.comment-section') && !e.target.closest('.comment-list') && !e.target.closest('.comment-form') ? e.target.closest('.comment-section') : null);
   if (hdr) {
     e.stopPropagation();
-    const sec = hdr.closest('.comment-section');
+    const sec = hdr.classList.contains('comment-section') ? hdr : hdr.closest('.comment-section');
     const aid = sec ? sec.dataset.aid : null;
     if (!aid) return;
     if (window.innerWidth < 768) {
@@ -1052,6 +1058,11 @@ function renderCommentHtml(comments) {
   `).join('');
 }
 
+function updateCmtBadge(aid, count) {
+  var badge = document.getElementById('cb-badge-' + aid);
+  if (badge) badge.textContent = count + '개';
+}
+
 function cmtToggle(aid) {
   var box = document.getElementById('cb-' + aid);
   if (!box) return;
@@ -1091,8 +1102,7 @@ async function cmtSubmit(aid) {
     var list = document.getElementById('cb-list-' + aid);
     var comments = await loadComments(aid);
     if (list) { list.innerHTML = renderCommentHtml(comments); list.scrollTop = list.scrollHeight; }
-    var badge = document.getElementById('cb-badge-' + aid);
-    if (badge) badge.textContent = comments.length + '개';
+    updateCmtBadge(aid, comments.length);
   } catch(err) {
     if (btn) { btn.textContent = '등록'; btn.disabled = false; }
     alert('등록 실패: ' + err.message);
@@ -1142,8 +1152,7 @@ async function sheetSubmit() {
     setTimeout(function(){ btn.textContent='등록'; btn.disabled=false; }, 1500);
     var c = await loadComments(sheetArticleId);
     document.getElementById('sheet-list').innerHTML = renderCommentHtml(c) || '<div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">아직 의견이 없어요</div>';
-    var badge = document.getElementById('cb-badge-' + sheetArticleId);
-    if (badge) badge.textContent = c.length + '개';
+    updateCmtBadge(sheetArticleId, c.length);
   } catch(e) {
     btn.textContent = '등록'; btn.disabled = false;
     alert('등록 실패: ' + e.message);
