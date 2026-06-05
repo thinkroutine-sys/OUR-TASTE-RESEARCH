@@ -810,20 +810,6 @@ function renderMain(){
   const html=groupedHtml(items);
   document.getElementById('pc-main').innerHTML=html;
   document.getElementById('mo-main').innerHTML=html;
-  // 현재 보이는 기사들 댓글 수 로드
-  loadVisibleCommentCounts();
-}
-
-function loadVisibleCommentCounts() {
-  const ids = [...document.querySelectorAll('[id^="cb-badge-"]')].map(el => el.id.replace('cb-badge-',''));
-  ids.forEach(aid => {
-    loadComments(aid).then(function(c) {
-      const badge = document.getElementById('cb-badge-' + aid);
-      const list  = document.getElementById('cb-list-'  + aid);
-      if (badge) badge.textContent = c.length + '개';
-      if (list)  list.innerHTML = renderCommentHtml(c);
-    }).catch(function(){});
-  });
 }
 
 function cardHtml(a,i){
