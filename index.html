@@ -452,9 +452,9 @@ body.signal-mode .news-period-filter { display: none; }
 
 
 /* ─── 댓글 시스템 ─── */
-.comment-section{margin-top:12px;border-top:1px solid var(--border);padding-top:10px;padding-bottom:2px}
-.comment-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);background:var(--bg);border:1px solid var(--border);cursor:pointer;padding:5px 10px;border-radius:20px;font-weight:500;transition:all .15s}
-.comment-toggle:hover{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
+.comment-section{margin-top:12px;border-top:1px solid var(--border);padding-top:10px;padding-bottom:2px;position:relative;z-index:2}
+.comment-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);background:var(--bg);border:1px solid var(--border);cursor:pointer;padding:5px 10px;border-radius:20px;font-weight:500;transition:all .15s;position:relative;z-index:2;-webkit-tap-highlight-color:transparent}
+.comment-toggle:hover,.comment-toggle:active{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
 .comment-count-badge{background:var(--blue-bg);color:var(--blue);font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px}
 .comment-box{margin-top:10px;display:none}
 .comment-box.open{display:block}
@@ -505,6 +505,14 @@ body.signal-mode .news-period-filter { display: none; }
   color:var(--text3);cursor:pointer;padding:0;margin-top:-4px;
 }
 @media(max-width:767px){.guide-modal{padding:16px;border-radius:12px}}
+
+.si-news-list{margin-top:10px;border-top:1px solid var(--border);padding-top:8px;display:flex;flex-direction:column;gap:4px}
+.si-news-item{display:flex;flex-direction:column;gap:2px;padding:7px 8px;border-radius:8px;background:var(--bg);text-decoration:none;transition:background .15s}
+.si-news-item:hover{background:var(--blue-bg)}
+.si-news-title{font-size:12px;color:var(--text);font-weight:500;line-height:1.4}
+.si-news-src{font-size:10px;color:var(--text3)}
+.signal-item{cursor:pointer}
+.signal-item:hover .si-keyword{color:var(--blue)}
 
 /* scroll top (PC only) */
 .scroll-top{
@@ -651,14 +659,16 @@ body.signal-mode .news-period-filter { display: none; }
   <button class="mf-pill" data-l="en" onclick="setLang('en')">해외</button>
   <div class="mf-sep"></div>
   <button class="mf-pill on-blue" data-cat="all" onclick="setMoCat('all')">전체</button>
-  <button class="mf-pill" data-cat="신제품·NPD" onclick="setMoCat('신제품·NPD')">🆕 신제품</button>
-  <button class="mf-pill" data-cat="소비자·시장" onclick="setMoCat('소비자·시장')">📊 시장</button>
-  <button class="mf-pill" data-cat="식재료·원료" onclick="setMoCat('식재료·원료')">🌿 원료</button>
-  <button class="mf-pill" data-cat="채널·유통" onclick="setMoCat('채널·유통')">🏪 채널</button>
-  <button class="mf-pill" data-cat="브랜드·기업" onclick="setMoCat('브랜드·기업')">🏢 브랜드</button>
-  <button class="mf-pill" data-cat="산업·정책" onclick="setMoCat('산업·정책')">📋 정책</button>
+  <button class="mf-pill" data-cat="신제품·NPD" onclick="setMoCat('신제품·NPD')">🆕 신제품·NPD</button>
+  <button class="mf-pill" data-cat="소비자·시장" onclick="setMoCat('소비자·시장')">📊 소비자·시장</button>
+  <button class="mf-pill" data-cat="식재료·원료" onclick="setMoCat('식재료·원료')">🌿 식재료·원료</button>
+  <button class="mf-pill" data-cat="채널·유통" onclick="setMoCat('채널·유통')">🏪 채널·유통</button>
+  <button class="mf-pill" data-cat="브랜드·기업" onclick="setMoCat('브랜드·기업')">🏢 브랜드·기업</button>
+  <button class="mf-pill" data-cat="산업·정책" onclick="setMoCat('산업·정책')">📋 산업·정책</button>
   <div class="mf-sep"></div>
   <select class="mf-select" id="mo-src" onchange="setSrc(this.value)"><option value="all">전체 출처</option></select>
+  <div class="mf-sep"></div>
+  <button class="mf-pill" style="color:var(--blue);border-color:var(--blue)" onclick="openGuide('news')">분류 기준 ↗</button>
 </div>
 </div>
 
@@ -675,6 +685,8 @@ body.signal-mode .news-period-filter { display: none; }
   <button class="mf-pill" data-kc="ingredient" onclick="setKwCat('ingredient')">🌿 원료</button>
   <button class="mf-pill" data-kc="trend"     onclick="setKwCat('trend')">📈 트렌드</button>
   <button class="mf-pill" data-kc="brand"     onclick="setKwCat('brand')">🏷️ 브랜드</button>
+  <div class="mf-sep"></div>
+  <button class="mf-pill" style="color:var(--blue);border-color:var(--blue)" onclick="openGuide('signal')">유형 기준 ↗</button>
 </div>
 </div>
 
@@ -865,6 +877,10 @@ function setMoCat(c){
   document.querySelectorAll('[data-cat]').forEach(b=>{
     b.classList.remove('on','on-blue');
     if(b.dataset.cat===c)b.classList.add(c==='all'?'on-blue':'on');
+  });
+  // PC 카테고리도 동기화
+  document.querySelectorAll('.s-cat-btn').forEach(b=>{
+    b.classList.toggle('on', b.textContent.includes(c)||(c==='전체'&&b.textContent.includes('전체')));
   });
   renderAll();
 }
@@ -1096,7 +1112,13 @@ function renderSignal() {
         const [label, badgeCls] = stageLabel(s.stage);
         const barPct = Math.round(s.score / maxScore * 100);
         const srcTags = s.sources.map(src => `<span class="si-src-tag">${src}</span>`).join('');
-        return `<div class="signal-item s-${s.stage}">
+        const relNews = all.filter(a=>(a.keywords||[]).includes(s.kw)).slice(0,5);
+        const relHtml = relNews.length ? relNews.map(a=>`
+          <a class="si-news-item" href="${a.url}" target="_blank" rel="noopener">
+            <span class="si-news-title">${a.title}</span>
+            <span class="si-news-src">${a.source}</span>
+          </a>`).join('') : '<div style="font-size:11px;color:var(--text3);padding:8px 0">관련 기사 없음</div>';
+        return `<div class="signal-item s-${s.stage}" onclick="toggleSignalNews(this)">
           <div class="si-rank">${i + 1}</div>
           <div class="si-body">
             <div class="si-keyword">${s.kw}</div>
@@ -1106,6 +1128,7 @@ function renderSignal() {
               ${s.kwCat && KW_CAT_LABELS[s.kwCat] ? `<span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;background:${KW_CAT_LABELS[s.kwCat].bg};color:${KW_CAT_LABELS[s.kwCat].color}">${KW_CAT_LABELS[s.kwCat].icon} ${KW_CAT_LABELS[s.kwCat].ko}</span>` : ''}
             </div>
             <div class="si-src-tags">${srcTags}</div>
+            <div class="si-news-list" style="display:none">${relHtml}</div>
           </div>
           <div class="si-right">
             <div class="si-score">${s.score}</div>
@@ -1124,8 +1147,8 @@ function setView(v) {
   document.body.classList.toggle('signal-mode', v === 'signal');
   document.getElementById('vt-news').classList.toggle('on', v === 'news');
   document.getElementById('vt-signal').classList.toggle('on', v === 'signal');
-  // 모바일 layout
   applyLayout();
+  renderBottomNav();
   if (v === 'signal') renderSignal();
 }
 
@@ -1145,6 +1168,14 @@ function applyCustomPeriod() {
   if (!val || val < 1) return;
   signalPeriod = Math.min(val, 365);
   renderSignal();
+}
+
+function toggleSignalNews(el) {
+  const list = el.querySelector('.si-news-list');
+  if (!list) return;
+  const isOpen = list.style.display !== 'none';
+  list.style.display = isOpen ? 'none' : 'block';
+  el.style.cursor = 'pointer';
 }
 
 function setSignalStage(s) {
@@ -1227,7 +1258,7 @@ setInterval(loadNews,30*60*1000);
       <tr><td>🏢 브랜드·기업</td><td>기업 전략·투자·M&A·브랜드 운영이 핵심</td><td>CJ, 건강식 포트폴리오 확대</td></tr>
       <tr><td>📋 산업·정책</td><td>규제·수급·식품안전·원가·수출입이 핵심</td><td>카카오 가격 상승, 식품 표시 규정 개정</td></tr>
     </table>
-    <p style="font-size:11px;color:var(--text3);margin-top:12px">💡 편의점 기사는 출시가 핵심이면 신제품·NPD, 채널 전략이 핵심이면 채널·유통으로 분류됩니다. 편의점 필터를 별도로 사용하세요.</p>
+
   </div>
 </div>
 
