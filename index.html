@@ -256,13 +256,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
    ════════════════════════════════════ */
 .card{
   background:var(--surface);border-radius:var(--radius);
-  padding:16px;cursor:pointer;
-  box-shadow:var(--shadow);border:none;
+  padding:16px;
+  box-shadow:var(--shadow);
   width:100%;text-align:left;display:block;
-  transition:transform .15s,box-shadow .15s;
 }
-.card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
-.card:active{transform:scale(.99)}
+.card-body{cursor:pointer;transition:transform .15s,box-shadow .15s}
+.card-body:hover{transform:translateY(-2px)}
+.card-body:active{transform:scale(.99)}
 .card.read{opacity:.42}
 
 .card-top{display:flex;align-items:center;gap:6px;margin-bottom:9px;flex-wrap:wrap}
