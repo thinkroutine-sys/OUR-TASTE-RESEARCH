@@ -882,7 +882,7 @@ function cardHtml(a,i){
   const aid = a.id;
   const commentHtml = `
     <div class="comment-section" data-aid="${aid}">
-      <button type="button" class="comment-header" onclick="event.stopPropagation()">
+      <button type="button" class="comment-header">
         <span style="font-size:13px">💬</span>
         <span style="font-size:13px;font-weight:600;color:var(--text2)">의견</span>
         <span id="cb-badge-${aid}" style="font-size:11px;color:var(--blue);font-weight:600;background:var(--blue-bg);padding:1px 7px;border-radius:10px">0개</span>
@@ -918,10 +918,10 @@ function openArticle(url, id) {
 // 카드 클릭 이벤트 (기사 열기 + 댓글 토글)
 document.addEventListener('click', function(e) {
   // 댓글 헤더 클릭 (모바일: 바텀시트, PC: 인라인)
-  const hdr = e.target.closest('.comment-header') || (e.target.closest('.comment-section') && !e.target.closest('.comment-list') && !e.target.closest('.comment-form') ? e.target.closest('.comment-section') : null);
+  const hdr = e.target.closest('.comment-header');
   if (hdr) {
     e.stopPropagation();
-    const sec = hdr.classList.contains('comment-section') ? hdr : hdr.closest('.comment-section');
+    const sec = hdr.closest('.comment-section');
     const aid = sec ? sec.dataset.aid : null;
     if (!aid) return;
     if (window.innerWidth < 768) {
