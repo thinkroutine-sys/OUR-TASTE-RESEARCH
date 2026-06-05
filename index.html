@@ -256,13 +256,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
    ════════════════════════════════════ */
 .card{
   background:var(--surface);border-radius:var(--radius);
-  padding:16px;
+  padding:16px;cursor:pointer;
   box-shadow:var(--shadow);
   width:100%;text-align:left;display:block;
+  transition:box-shadow .15s;
 }
-.card-body{cursor:pointer;transition:transform .15s,box-shadow .15s}
-.card-body:hover{transform:translateY(-2px)}
-.card-body:active{transform:scale(.99)}
+.card:hover{box-shadow:var(--shadow-md)}
 .card.read{opacity:.42}
 
 .card-top{display:flex;align-items:center;gap:6px;margin-bottom:9px;flex-wrap:wrap}
@@ -841,14 +840,13 @@ function cardHtml(a,i){
         <button type="button" id="cs-${aid}" class="comment-submit" onclick="cmtSubmit('${aid}')">등록</button>
       </div>
     </div>`;
-  return `<div class="card${read?' read':''}" data-id="${a.id}">
-  <div class="card-body" onclick="openArticle('${a.url||''}','${a.id}')" style="cursor:pointer">
-    <div class="card-top">${badges}<span class="lang-dot dot-${a.lang||'ko'}"></span><span class="card-src">${a.source}</span><span class="card-date">${fmtDate(a.date)}</span></div>
-    <div class="card-title">${a.title}</div>
-    ${sum}
-    ${kws}
-    <div class="card-bottom"><div class="unread-badge" id="rb-${a.id}"></div><svg class="card-link" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-  </div>
+  return `<div class="card${read?' read':''}" data-id="${a.id}" data-url="${(a.url||'')}">
+  <div class="card-top">${badges}<span class="lang-dot dot-${a.lang||'ko'}"></span><span class="card-src">${a.source}</span><span class="card-date">${fmtDate(a.date)}</span></div>
+  <div class="card-title">${a.title}</div>
+  ${sum}
+  ${kws}
+  <div class="card-bottom"><div class="unread-badge" id="rb-${a.id}"></div><svg class="card-link" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+  <hr style="margin:10px 0;border:none;border-top:1px solid var(--border)">
   ${commentHtml}
 </div>`;
 }
@@ -861,6 +859,18 @@ function openArticle(url, id) {
   if(badge) badge.style.cssText='background:transparent;border:1.5px solid var(--border)';
   if(url && url!=='#') window.open(url,'_blank','noopener');
 }
+
+// 카드 클릭 이벤트 (기사 열기 + 댓글 토글)
+document.addEventListener('click', function(e) {
+  const cmt = e.target.closest('.comment-toggle');
+  if (cmt) { e.stopPropagation(); cmtToggle(cmt.getAttribute('data-cid')); return; }
+  const sub = e.target.closest('.comment-submit');
+  if (sub) { e.stopPropagation(); cmtSubmit(sub.getAttribute('data-cid')); return; }
+  const card = e.target.closest('.card');
+  if (card && !e.target.closest('.comment-section')) {
+    openArticle(card.dataset.url, card.dataset.id);
+  }
+});
 
 function renderAll(){
   renderPcCats();
