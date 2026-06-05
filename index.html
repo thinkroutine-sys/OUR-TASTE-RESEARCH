@@ -826,20 +826,19 @@ function cardHtml(a,i){
     }
   }
   const kws=(a.keywords&&a.keywords.length)?`<div class="keywords">${a.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>`:'';
+  const aid = a.id;
   const commentHtml = `
     <div class="comment-section">
-      <button class="comment-toggle" data-cid="${a.id}">
-        <span style="font-size:14px">💬</span> 의견 <span class="comment-count-badge">0개</span>
+      <button type="button" class="comment-toggle" onclick="cmtToggle('${aid}')">
+        <span style="font-size:14px">💬</span> 의견 <span id="cb-badge-${aid}">0개</span>
       </button>
-      <div class="comment-box" id="cb-${a.id}">
-        <div class="comment-list"></div>
-        <div class="comment-form">
-          <div class="comment-inputs">
-            <input class="comment-name-input" id="cn-${a.id}" placeholder="이름" maxlength="10" onclick="event.stopPropagation()">
-            <textarea class="comment-text-input" id="ct-${a.id}" placeholder="의견을 남겨주세요" rows="2" onclick="event.stopPropagation()"></textarea>
-          </div>
-          <button class="comment-submit" data-cid="${a.id}">등록</button>
+      <div id="cb-${aid}" style="display:none;margin-top:10px">
+        <div id="cb-list-${aid}"></div>
+        <div style="display:flex;gap:6px;margin-top:6px">
+          <input id="cn-${aid}" class="comment-name-input" placeholder="이름" maxlength="10">
+          <textarea id="ct-${aid}" class="comment-text-input" placeholder="의견" rows="2"></textarea>
         </div>
+        <button type="button" id="cs-${aid}" class="comment-submit" onclick="cmtSubmit('${aid}')">등록</button>
       </div>
     </div>`;
   return `<div class="card${read?' read':''}" data-id="${a.id}">
@@ -969,23 +968,22 @@ function renderCommentHtml(comments) {
   `).join('');
 }
 
-async function toggleComments(e, articleId, btn) {
-  if(e){ e.stopPropagation(); }
-  const box = document.getElementById('cb-' + articleId);
+function cmtToggle(aid) {
+  var box = document.getElementById('cb-' + aid);
   if (!box) return;
-  const isOpen = box.style.display === 'block';
-  box.style.display = isOpen ? 'none' : 'block';
-  if(isOpen) return;
-  const list = box.querySelector('.comment-list');
-  list.innerHTML = '<div class="comment-empty">불러오는 중...</div>';
-  try {
-    const comments = await loadComments(articleId);
-    list.innerHTML = renderCommentHtml(comments);
-    updateBadge(articleId, comments.length);
-  } catch(err) {
-    list.innerHTML = '<div class="comment-empty">불러오기 실패</div>';
-  }
+  if (box.style.display === 'block') { box.style.display = 'none'; return; }
+  box.style.display = 'block';
+  var list = document.getElementById('cb-list-' + aid);
+  if (list) list.innerHTML = '<div style="font-size:12px;color:var(--text3);padding:8px 0">불러오는 중...</div>';
+  loadComments(aid).then(function(c) {
+    if (list) list.innerHTML = renderCommentHtml(c);
+    var badge = document.getElementById('cb-badge-' + aid);
+    if (badge) badge.textContent = c.length + '개';
+  }).catch(function(err) {
+    if (list) list.innerHTML = '<div style="font-size:12px;color:#FF3B30;padding:8px 0">오류: ' + err.message + '</div>';
+  });
 }
+async function toggleComments(e, articleId, btn) { cmtToggle(articleId); }
 
 function updateBadge(articleId, count) {
   document.querySelectorAll(`[data-cid="${articleId}"] .comment-count-badge`).forEach(b=>{
@@ -995,36 +993,28 @@ function updateBadge(articleId, count) {
   });
 }
 
-async function submitComment(e, articleId) {
-  e.stopPropagation();
-  const nameEl = document.getElementById('cn-' + articleId);
-  const textEl = document.getElementById('ct-' + articleId);
-  const submitBtn = textEl.closest('.comment-form').querySelector('.comment-submit');
-  const name = nameEl.value.trim();
-  const content_val = textEl.value.trim();
-  if (!name) { nameEl.focus(); nameEl.style.borderColor='#FF3B30'; return; }
-  if (!content_val) { textEl.focus(); textEl.style.borderColor='#FF3B30'; return; }
-  nameEl.style.borderColor='';
-  textEl.style.borderColor='';
-  submitBtn.textContent = '등록 중...';
-  submitBtn.disabled = true;
+async function cmtSubmit(aid) {
+  var name = (document.getElementById('cn-' + aid)||{}).value;
+  var text = (document.getElementById('ct-' + aid)||{}).value;
+  var btn  = document.getElementById('cs-' + aid);
+  if (!name || !name.trim()) { alert('이름을 입력해주세요'); return; }
+  if (!text || !text.trim()) { alert('의견을 입력해주세요'); return; }
+  if (btn) { btn.textContent = '등록 중...'; btn.disabled = true; }
   try {
-    await postComment(articleId, name, content_val);
-    textEl.value = '';
-    submitBtn.textContent = '✓ 등록됨';
-    setTimeout(()=>{ submitBtn.textContent='등록'; submitBtn.disabled=false; }, 1500);
-    const box = document.getElementById('cb-' + articleId);
-    const list = box.querySelector('.comment-list');
-    const comments = await loadComments(articleId);
-    list.innerHTML = renderCommentHtml(comments);
-    updateBadge(articleId, comments.length);
-    list.scrollTop = list.scrollHeight;
-  } catch(e) {
-    submitBtn.textContent = '등록';
-    submitBtn.disabled = false;
-    alert('댓글 등록 실패: ' + e.message);
+    await postComment(aid, name.trim(), text.trim());
+    document.getElementById('ct-' + aid).value = '';
+    if (btn) { btn.textContent = '✓ 등록됨'; setTimeout(()=>{ btn.textContent='등록'; btn.disabled=false; }, 1500); }
+    var list = document.getElementById('cb-list-' + aid);
+    var comments = await loadComments(aid);
+    if (list) { list.innerHTML = renderCommentHtml(comments); list.scrollTop = list.scrollHeight; }
+    var badge = document.getElementById('cb-badge-' + aid);
+    if (badge) badge.textContent = comments.length + '개';
+  } catch(err) {
+    if (btn) { btn.textContent = '등록'; btn.disabled = false; }
+    alert('등록 실패: ' + err.message);
   }
 }
+async function submitComment(e, aid) { cmtSubmit(aid); }
 
 // ════════════════════════════════════
 // SIGNAL ENGINE
@@ -1283,37 +1273,7 @@ setInterval(loadNews,30*60*1000);
 function openGuide(type){ document.getElementById('guide-'+type).classList.add('on'); }
 function closeGuide(type){ document.getElementById('guide-'+type).classList.remove('on'); }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeGuide('news');closeGuide('signal');} });
-// ── 댓글 이벤트 위임 (모바일/PC 공통)
-document.addEventListener('click', function(e) {
-  // 의견 토글 버튼
-  const toggleBtn = e.target.closest('.comment-toggle');
-  if (toggleBtn) {
-    e.stopPropagation();
-    const aid = toggleBtn.dataset.cid;
-    const box = document.getElementById('cb-' + aid);
-    if (!box) return;
-    const isOpen = box.style.display === 'block';
-    box.style.display = isOpen ? 'none' : 'block';
-    if (isOpen) return;
-    const list = box.querySelector('.comment-list');
-    list.innerHTML = '<div class="comment-empty">불러오는 중...</div>';
-    loadComments(aid).then(comments => {
-      list.innerHTML = renderCommentHtml(comments);
-      updateBadge(aid, comments.length);
-    }).catch(() => {
-      list.innerHTML = '<div class="comment-empty">불러오기 실패</div>';
-    });
-    return;
-  }
-  // 등록 버튼
-  const submitBtn = e.target.closest('.comment-submit');
-  if (submitBtn) {
-    e.stopPropagation();
-    const aid = submitBtn.dataset.cid;
-    submitComment(null, aid);
-    return;
-  }
-});
+
 </script>
 </body>
 </html>
