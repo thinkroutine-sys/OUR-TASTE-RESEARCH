@@ -970,20 +970,21 @@ function renderCommentHtml(comments) {
 }
 
 async function toggleComments(e, articleId, btn) {
-  e.stopPropagation();
-  e.preventDefault();
+  if(e){ e.stopPropagation(); }
   const box = document.getElementById('cb-' + articleId);
   if (!box) return;
-  if (box.classList.contains('open')) {
-    box.classList.remove('open');
-    return;
-  }
-  box.classList.add('open');
+  const isOpen = box.style.display === 'block';
+  box.style.display = isOpen ? 'none' : 'block';
+  if(isOpen) return;
   const list = box.querySelector('.comment-list');
   list.innerHTML = '<div class="comment-empty">불러오는 중...</div>';
-  const comments = await loadComments(articleId);
-  list.innerHTML = renderCommentHtml(comments);
-  updateBadge(articleId, comments.length);
+  try {
+    const comments = await loadComments(articleId);
+    list.innerHTML = renderCommentHtml(comments);
+    updateBadge(articleId, comments.length);
+  } catch(err) {
+    list.innerHTML = '<div class="comment-empty">불러오기 실패</div>';
+  }
 }
 
 function updateBadge(articleId, count) {
