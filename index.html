@@ -1099,7 +1099,15 @@ async function deleteComment(id) {
   try {
     await sbFetch('/rest/v1/comments?id=eq.' + id, { method: 'DELETE' });
     var item = document.querySelector('[data-cmt-id="' + id + '"]');
-    if (item) item.remove();
+    if (item) {
+      var sec = item.closest('.comment-section');
+      var aid = sec ? sec.dataset.aid : null;
+      item.remove();
+      if (aid) {
+        var remaining = (document.getElementById('cb-list-' + aid) || document.getElementById('sheet-list') || {}).querySelectorAll ? document.querySelectorAll('[data-cmt-id]').length : 0;
+        loadComments(aid).then(function(c){ updateCmtBadge(aid, c.length); }).catch(function(){});
+      }
+    }
   } catch(e) { console.error('삭제 오류:', e); }
 }
 
