@@ -1,7 +1,868 @@
 {
-  "updated": "2026-06-07T00:30:52.202702+00:00",
-  "total": 307,
+  "updated": "2026-06-08T00:38:35.149123+00:00",
+  "total": 343,
   "articles": [
+    {
+      "id": "abb94d2a6d3b",
+      "title": "[SEOUL FOOD 2026] 노보네시스, 맛ㆍ식감ㆍ영양 품질 향상 방안 제시",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=118874",
+      "source": "식품뉴스",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": [
+        "노보네시스, SEOUL FOOD 2026에서 식품 품질 향상을 위한 바이오솔루션 제시",
+        "미생물, 효소, 단백질 기술을 활용한 식품 생산 효율성 개선 및 소비자 니즈 대응"
+      ],
+      "keywords": [
+        "노보네시스",
+        "효소",
+        "미생물",
+        "단백질"
+      ],
+      "kw_cats": {
+        "노보네시스": "brand",
+        "효소": "ingredient",
+        "미생물": "ingredient",
+        "단백질": "ingredient"
+      },
+      "date": "2026-06-08T00:07:30+00:00"
+    },
+    {
+      "id": "24f57c348086",
+      "title": "식약처, 수입식품 안전관리 정책 설명회 개최",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=33971",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "식약처, 수입식품 영업자 대상 안전관리 정책 설명회 개최",
+        "수입식품 법령 개정사항 안내 및 업계 현장 의견 수렴"
+      ],
+      "keywords": [
+        "식품의약품안전처"
+      ],
+      "kw_cats": {
+        "식품의약품안전처": "brand"
+      },
+      "date": "2026-06-08T00:07:00+00:00"
+    },
+    {
+      "id": "672865cf16ef",
+      "title": "농진원, 저탄소 농산물 인증 지원 농가 모집",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=33970",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농진원, 저탄소 농산물 인증 지원사업 참여 농가 모집",
+        "온실가스 배출량 10% 이상 감축 농산물에 대한 국가 인증 제도 확대"
+      ],
+      "keywords": [
+        "저탄소 농산물",
+        "한국농업기술진흥원"
+      ],
+      "kw_cats": {
+        "저탄소 농산물": "trend",
+        "한국농업기술진흥원": "brand"
+      },
+      "date": "2026-06-07T23:58:54+00:00"
+    },
+    {
+      "id": "54fc2283737a",
+      "title": "[오늘의 새상품] 대상 종가 ‘썰어담은 갓김치’/동서식품 ‘카누 바리스타’ 아이스용 캡슐 2종",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=33968",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "대상 종가, 한 입 크기로 손질해 편의성을 높인 '썰어담은 갓김치' 출시",
+        "포기김치 외 별미김치를 찾는 소비자 니즈를 반영하여 간편식 형태의 갓김치 라인업 확대"
+      ],
+      "keywords": [
+        "종가",
+        "갓김치",
+        "별미김치",
+        "카누 바리스타",
+        "캡슐커피"
+      ],
+      "kw_cats": {
+        "종가": "brand",
+        "갓김치": "food_cat",
+        "별미김치": "food_cat",
+        "카누 바리스타": "brand",
+        "캡슐커피": "food_cat"
+      },
+      "date": "2026-06-07T23:51:47+00:00"
+    },
+    {
+      "id": "9584254b93e0",
+      "title": "롯데웰푸드, 돼지바 빵집 팝업스토어 오픈",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=33967",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "롯데웰푸드, 돼지바 브랜드 헤리티지를 활용한 '돼지바 빵집' 팝업스토어 오픈",
+        "신제품 '돼지바빵' 홍보 및 '돼장님' 세계관을 활용한 오프라인 고객 경험 강화"
+      ],
+      "keywords": [
+        "돼지바",
+        "롯데웰푸드",
+        "돼지바빵",
+        "뉴트로"
+      ],
+      "kw_cats": {
+        "돼지바": "brand",
+        "롯데웰푸드": "brand",
+        "돼지바빵": "food_cat",
+        "뉴트로": "trend"
+      },
+      "date": "2026-06-07T23:48:27+00:00"
+    },
+    {
+      "id": "eb1ad34399d6",
+      "title": "[미리보는 서울푸드 2026-국내관] K-푸드 상승기 50개국 1800여 기업 참가 비즈니스 창출",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200469",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "K-푸드 수출 확대를 위한 국제 식품 전시회 '서울푸드 2026' 개최",
+        "전 세계 50개국 1800여 개 기업이 참여하는 글로벌 비즈니스 상담 및 네트워킹 장 마련"
+      ],
+      "keywords": [
+        "K-푸드",
+        "서울푸드 2026",
+        "KOTRA"
+      ],
+      "kw_cats": {
+        "K-푸드": "trend",
+        "서울푸드 2026": "brand",
+        "KOTRA": "brand"
+      },
+      "date": "2026-06-07T22:56:00+00:00"
+    },
+    {
+      "id": "9c25472cb001",
+      "title": "[미리보는 서울푸드 2026-해외관] 웰니스·친환경 등 글로벌 식품 산업 나침반 역할",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200452",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "서울푸드 2026을 통해 글로벌 식품 산업의 웰니스, 친환경, 프리미엄 원물 트렌드 조망",
+        "해외 기업들의 한국 시장 진출 확대 및 고도화된 물류·패키징 기술 공유"
+      ],
+      "keywords": [
+        "웰니스",
+        "친환경",
+        "프리미엄 원물",
+        "서울푸드 2026"
+      ],
+      "kw_cats": {
+        "웰니스": "trend",
+        "친환경": "trend",
+        "프리미엄 원물": "ingredient",
+        "서울푸드 2026": "brand"
+      },
+      "date": "2026-06-07T22:51:00+00:00"
+    },
+    {
+      "id": "34daec08e1cc",
+      "title": "왜 가공식품만 죄인인가? 정치 논리에 무너지는 국내 식품 가격 정책-하상도의 식품 바로보기(439)",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200466",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "식재료비 및 원가 상승으로 인한 외식·급식업계의 경영 부담 심화",
+        "가공식품에 편중된 물가 규제 정책의 한계와 공급망 전반의 구조적 문제 지적"
+      ],
+      "keywords": [
+        "밥상 물가",
+        "외식업계"
+      ],
+      "kw_cats": {
+        "밥상 물가": "trend",
+        "외식업계": "brand"
+      },
+      "date": "2026-06-07T22:46:00+00:00"
+    },
+    {
+      "id": "3e8501f10eeb",
+      "title": "여름철 레지오넬라증 예방 이제는 공기 살균까지 확대해야-C.S 칼럼(554)",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200479",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "여름철 고온다습한 환경에서 냉각탑 및 공조설비 내 레지오넬라균 증식 위험 증가",
+        "식중독 예방을 넘어 공기 살균 등 시설물 위생 관리 범위 확대 필요성 제기"
+      ],
+      "keywords": [
+        "레지오넬라증",
+        "공기 살균"
+      ],
+      "kw_cats": {
+        "레지오넬라증": "trend",
+        "공기 살균": "trend"
+      },
+      "date": "2026-06-07T22:40:00+00:00"
+    },
+    {
+      "id": "8ec409a05ffd",
+      "title": "기후 거버넌스에서 책임 있는 데이터 기반 의사결정: ‘책임 있는 데이터 기반 의사결정’이 왜 지금 중요한가",
+      "url": "https://vegilog.com/just-climate-future-responsible-data-governance/",
+      "source": "비거로그",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "기후 거버넌스 내 데이터 기반 의사결정의 중요성 증대",
+        "데이터 수집 및 활용 방식이 정책의 정의와 피해 분배에 미치는 영향 강조"
+      ],
+      "keywords": [
+        "기후 거버넌스",
+        "데이터 기반 의사결정"
+      ],
+      "kw_cats": {
+        "기후 거버넌스": "trend",
+        "데이터 기반 의사결정": "trend"
+      },
+      "date": "2026-06-07T16:06:46+00:00"
+    },
+    {
+      "id": "53022e855212",
+      "title": "연구: 어린이·청소년, 성인보다 ‘고기 없는 식단’에 더 개방적…유지에는 가족 지원이 관건",
+      "url": "https://vegilog.com/kids-teens-more-open-meat-free-diets-family-support-study/",
+      "source": "비거로그",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "어린이·청소년층의 채식 식단에 대한 높은 수용도 확인",
+        "지속적인 채식 실천을 위한 가족 단위의 식습관 지원 및 환경 조성의 중요성 대두"
+      ],
+      "keywords": [
+        "채식",
+        "고기 없는 식단"
+      ],
+      "kw_cats": {
+        "채식": "trend",
+        "고기 없는 식단": "trend"
+      },
+      "date": "2026-06-07T14:31:51+00:00"
+    },
+    {
+      "id": "5d4456b244d2",
+      "title": "[리얼푸드] 프리미엄 외식시장 확대…UAE ‘Dubai Restaurant Week 2026’",
+      "url": "https://www.realfoods.co.kr/article/10765441",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "UAE 두바이에서 125개 이상의 레스토랑이 참여하는 '두바이 레스토랑 위크' 개최",
+        "외식 소비 촉진 및 미식 관광 경쟁력 강화를 통한 프리미엄 외식 시장 확대"
+      ],
+      "keywords": [
+        "두바이 레스토랑 위크",
+        "프리미엄 외식"
+      ],
+      "kw_cats": {
+        "두바이 레스토랑 위크": "brand",
+        "프리미엄 외식": "trend"
+      },
+      "date": "2026-06-07T07:19:15+00:00"
+    },
+    {
+      "id": "e7897c5558e8",
+      "title": "[리얼푸드] 캐나다 SIAL, 한국 콤부차 브랜드 혁신상",
+      "url": "https://www.realfoods.co.kr/article/10765440",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "북미 식품 시장의 핵심 트렌드로 건강, 지속가능성, 편의성 부상",
+        "장 건강, 고단백, 저당, 식이섬유 강화 제품에 대한 소비자 니즈 확대"
+      ],
+      "keywords": [
+        "콤부차",
+        "장 건강",
+        "고단백",
+        "저당",
+        "식이섬유"
+      ],
+      "kw_cats": {
+        "콤부차": "food_cat",
+        "장 건강": "trend",
+        "고단백": "trend",
+        "저당": "trend",
+        "식이섬유": "ingredient"
+      },
+      "date": "2026-06-07T07:19:08+00:00"
+    },
+    {
+      "id": "7000b5d9b1e1",
+      "title": "[리얼푸드] 외식도 양과 가성비 중요…프랑스, 뷔페 식당이 뜬다",
+      "url": "https://www.realfoods.co.kr/article/10765439",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "프랑스 내 물가 상승으로 인해 외식 선택 시 '가성비'와 '충분한 양'이 핵심 고려 요소로 부상",
+        "가격 대비 가치를 중시하는 소비 트렌드 확산으로 프랑스 내 뷔페 식당의 인기 상승"
+      ],
+      "keywords": [
+        "가성비",
+        "뷔페"
+      ],
+      "kw_cats": {
+        "가성비": "trend",
+        "뷔페": "food_cat"
+      },
+      "date": "2026-06-07T07:19:00+00:00"
+    },
+    {
+      "id": "b6d915761614",
+      "title": "[리얼푸드] 이탈리아, 고단백과 고섬유 ‘투트랙 성장’",
+      "url": "https://www.realfoods.co.kr/article/10765438",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "이탈리아 식품 시장에서 기존 고단백 트렌드와 함께 식이섬유가 새로운 성장 축으로 부상",
+        "장 건강 및 마이크로바이옴 관리에 대한 관심 증가로 시리얼, 스낵, 유제품 등 다양한 카테고리로 고섬유 제품 확산"
+      ],
+      "keywords": [
+        "고단백",
+        "식이섬유",
+        "장 건강",
+        "마이크로바이옴",
+        "프리바이오틱스"
+      ],
+      "kw_cats": {
+        "고단백": "trend",
+        "식이섬유": "ingredient",
+        "장 건강": "trend",
+        "마이크로바이옴": "trend",
+        "프리바이오틱스": "ingredient"
+      },
+      "date": "2026-06-07T07:18:50+00:00"
+    },
+    {
+      "id": "71ba6af90853",
+      "title": "[리얼푸드] 뉴질랜드 주류 마켓으로 간 K-푸드",
+      "url": "https://www.realfoods.co.kr/article/10765412",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "K-푸드가 뉴질랜드 현지 일반 식품 카테고리로 확장하며 일상 소비재로 자리 잡는 중",
+        "불고기, 치킨, 김치 등 강한 풍미의 음식과 라면, 만두, 김밥 등 간편식 중심의 수요 증가"
+      ],
+      "keywords": [
+        "K-푸드",
+        "라면",
+        "만두",
+        "김밥",
+        "불고기"
+      ],
+      "kw_cats": {
+        "K-푸드": "trend",
+        "라면": "food_cat",
+        "만두": "food_cat",
+        "김밥": "food_cat",
+        "불고기": "food_cat",
+        "Korean fried chicken": "food_cat"
+      },
+      "date": "2026-06-07T06:20:13+00:00"
+    },
+    {
+      "id": "334ffc82c04e",
+      "title": "[리얼푸드] 단백질 푸딩과 무스…기능성 스페인 다이어트 시장",
+      "url": "https://www.realfoods.co.kr/article/10765411",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "스페인 다이어트 시장의 핵심 트렌드는 건강한 체중 관리와 고단백·고섬유 기능성 식품",
+        "시켄(Siken), 비마난(BiManán) 등 전문 브랜드가 디저트형 제품과 식사대용식을 통해 시장 주도"
+      ],
+      "keywords": [
+        "단백질 푸딩",
+        "고단백",
+        "시켄",
+        "비마난",
+        "식사대용식"
+      ],
+      "kw_cats": {
+        "단백질 푸딩": "food_cat",
+        "고단백": "trend",
+        "시켄": "brand",
+        "비마난": "brand",
+        "식사대용식": "food_cat"
+      },
+      "date": "2026-06-07T06:20:06+00:00"
+    },
+    {
+      "id": "07f610b1d550",
+      "title": "[리얼푸드] 호텔과 고급 음식점서 다시 주목, 브라질 ‘클럽 샌드위치’",
+      "url": "https://www.realfoods.co.kr/article/10765410",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "브라질 외식업계에서 클럽 샌드위치가 프리미엄 메뉴로 재해석되며 다시 주목받음",
+        "익숙한 메뉴를 현대적 감각으로 재해석하는 글로벌 외식 트렌드 확산"
+      ],
+      "keywords": [
+        "클럽 샌드위치",
+        "프리미엄"
+      ],
+      "kw_cats": {
+        "클럽 샌드위치": "food_cat",
+        "프리미엄": "trend"
+      },
+      "date": "2026-06-07T06:19:53+00:00"
+    },
+    {
+      "id": "05e7b5f1d604",
+      "title": "[리얼푸드] 불닭볶음면 먹고 막걸리…미국 주류 소비 감소 속 커지는 ‘K-주류’",
+      "url": "https://www.realfoods.co.kr/article/10765409",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "미국 내 K-콘텐츠 확산으로 한국 음식과 한국 술(막걸리)을 함께 즐기는 페어링 문화 형성",
+        "미국 주류 소비 감소 추세 속에서도 한국 술 시장은 꾸준한 성장세 기록"
+      ],
+      "keywords": [
+        "막걸리",
+        "불닭볶음면",
+        "홈술",
+        "페어링"
+      ],
+      "kw_cats": {
+        "막걸리": "food_cat",
+        "불닭볶음면": "food_cat",
+        "홈술": "trend",
+        "페어링": "trend"
+      },
+      "date": "2026-06-07T06:19:39+00:00"
+    },
+    {
+      "id": "1a934108853c",
+      "title": "[리얼푸드] 규모 커진 일본 아이스크림, 한국산 3배 급증",
+      "url": "https://www.realfoods.co.kr/article/10765408",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "일본 아이스크림 시장 규모 6451억 엔으로 역대 최고치 기록",
+        "일본 내 한국산 아이스크림 수입량 3배 급증 및 겨울 아이스크림 수요 확대"
+      ],
+      "keywords": [
+        "아이스크림",
+        "겨울 아이스크림"
+      ],
+      "kw_cats": {
+        "아이스크림": "food_cat",
+        "겨울 아이스크림": "trend"
+      },
+      "date": "2026-06-07T06:19:26+00:00"
+    },
+    {
+      "id": "8baac3cb150b",
+      "title": "[리얼푸드] ‘기능성 슈퍼푸드’로 부상한 스웨덴 K-푸드",
+      "url": "https://www.realfoods.co.kr/article/10765407",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "스웨덴 내 K-푸드가 건강하고 역동적인 대안 식품으로 인식되며 시장 안착",
+        "라면은 간편식 및 매운맛 챌린지, 김치는 퓨전 요리 식재료로 소비 확대"
+      ],
+      "keywords": [
+        "라면",
+        "김치",
+        "소스류",
+        "매운맛",
+        "ICA"
+      ],
+      "kw_cats": {
+        "라면": "food_cat",
+        "김치": "food_cat",
+        "소스류": "food_cat",
+        "매운맛": "trend",
+        "ICA": "brand",
+        "Coop": "brand",
+        "Axfood": "brand"
+      },
+      "date": "2026-06-07T06:19:12+00:00"
+    },
+    {
+      "id": "83673d45aa84",
+      "title": "[리얼푸드] 인도네시아, ‘볼드 플레이버’ 트렌드 확산",
+      "url": "https://www.realfoods.co.kr/article/10765379",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "인도네시아 외식업계 내 강렬하고 개성 있는 맛을 뜻하는 '볼드 플레이버' 트렌드 확산",
+        "MZ세대를 중심으로 단맛, 감칠맛, 매운맛을 조합한 복합적인 풍미의 메뉴 수요 증가"
+      ],
+      "keywords": [
+        "볼드 플레이버",
+        "토스트"
+      ],
+      "kw_cats": {
+        "볼드 플레이버": "trend",
+        "토스트": "food_cat"
+      },
+      "date": "2026-06-07T05:12:02+00:00"
+    },
+    {
+      "id": "0532e01469b5",
+      "title": "[리얼푸드] 오스트리아에서 즐기는 미식 ‘2026 잘츠부르크 페스티벌’",
+      "url": "https://www.realfoods.co.kr/article/10765378",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "2026 잘츠부르크 페스티벌과 연계한 오스트리아 미식 및 음악 여행 코스 소개",
+        "모차르트 탄생 270주년 및 '사랑(Liebe)'을 테마로 한 문화·미식 관광 마케팅"
+      ],
+      "keywords": [
+        "잘츠부르크 페스티벌",
+        "오스트리아 관광청"
+      ],
+      "kw_cats": {
+        "잘츠부르크 페스티벌": "trend",
+        "오스트리아 관광청": "brand"
+      },
+      "date": "2026-06-07T05:11:36+00:00"
+    },
+    {
+      "id": "73671141f5ce",
+      "title": "[리얼푸드] VINEXPO ASIA 2026 홍콩, 38개 생산국 참가",
+      "url": "https://www.realfoods.co.kr/article/10765377",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "비넥스포 아시아 2026, 38개국 참여 및 76개 시장 관계자 방문으로 규모 확대",
+        "아시아·태평양 지역 와인 및 주류 산업의 핵심 비즈니스 플랫폼으로서의 입지 강화"
+      ],
+      "keywords": [
+        "비넥스포 아시아",
+        "와인",
+        "주류"
+      ],
+      "kw_cats": {
+        "비넥스포 아시아": "brand",
+        "와인": "food_cat",
+        "주류": "food_cat"
+      },
+      "date": "2026-06-07T05:11:26+00:00"
+    },
+    {
+      "id": "2e5dea812077",
+      "title": "[리얼푸드] “한국시장 공략 강화”…아일랜드 식품청, ‘서울국제식품산업대전’ 참가",
+      "url": "https://www.realfoods.co.kr/article/10765338",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "아일랜드 식품청(보드비아), 서울국제식품산업대전 참가로 한국 시장 공략 가속화",
+        "아일랜드산 소고기 한국 수출량 전년 대비 1064% 급증하며 시장 내 입지 확대"
+      ],
+      "keywords": [
+        "보드비아",
+        "소고기"
+      ],
+      "kw_cats": {
+        "보드비아": "brand",
+        "소고기": "ingredient"
+      },
+      "date": "2026-06-07T02:41:29+00:00"
+    },
+    {
+      "id": "2502c96bbaaf",
+      "title": "검역본부, 축산물 잔류물질 검사 능력 국제적 인정받아",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=118873",
+      "source": "식품뉴스",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농림축산검역본부, 축산물 잔류물질 검사 분야 국제 숙련도 시험 3년 연속 '만족' 판정",
+        "국제적 수준의 축산물 안전성 검사 정확도 및 신뢰도 입증"
+      ],
+      "keywords": [
+        "축산물",
+        "항생제"
+      ],
+      "kw_cats": {
+        "축산물": "food_cat",
+        "항생제": "ingredient"
+      },
+      "date": "2026-06-07T02:00:00+00:00"
+    },
+    {
+      "id": "6927e2318c7d",
+      "title": "농관원 시험연구소, 염소고기 원산지 판별 기술 개발",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=118872",
+      "source": "식품뉴스",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농관원, 염소고기 원산지 판별 기술(IR-MS 및 DNA 분석) 확립",
+        "국내산과 호주산 염소고기 판별 정확도 95% 이상 확보로 원산지 위반 단속 강화"
+      ],
+      "keywords": [
+        "염소고기"
+      ],
+      "kw_cats": {
+        "염소고기": "ingredient"
+      },
+      "date": "2026-06-07T02:00:00+00:00"
+    },
+    {
+      "id": "fa725566fe25",
+      "title": "국가대표 쌀가공식품 한자리에…‘쌀가공식품산업대전’ 9일 개막!",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=118871",
+      "source": "식품뉴스",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "국내 유일 B2B 쌀가공식품 전시회 '라이스쇼 2026' 9일 개최",
+        "국내 유망 쌀가공식품의 판로 확대 및 기업 간 거래(B2B) 촉진 목적"
+      ],
+      "keywords": [
+        "쌀가공식품",
+        "라이스쇼",
+        "서울국제식품산업대전"
+      ],
+      "kw_cats": {
+        "쌀가공식품": "food_cat",
+        "라이스쇼": "brand",
+        "서울국제식품산업대전": "brand"
+      },
+      "date": "2026-06-07T02:00:00+00:00"
+    },
+    {
+      "id": "13b3aa80ba3c",
+      "title": "농진청 개발 ‘바실러스 메소나에’·‘바실러스 시아멘시스’ 기반 친환경 미생물제 제품 국내 시장 안착",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=33966",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": [
+        "농촌진흥청, 국내 토양 유래 미생물(바실러스 메소나에·시아멘시스) 기반 친환경 미생물제 제품화 성공",
+        "이상기후 및 토양 염류 집적 문제 해결을 위한 민관 협력 기술 이전 및 시장 안착"
+      ],
+      "keywords": [
+        "바실러스 메소나에",
+        "바실러스 시아멘시스",
+        "친환경 미생물제",
+        "농촌진흥청"
+      ],
+      "kw_cats": {
+        "바실러스 메소나에": "ingredient",
+        "바실러스 시아멘시스": "ingredient",
+        "친환경 미생물제": "ingredient",
+        "농촌진흥청": "brand"
+      },
+      "date": "2026-06-07T02:00:00+00:00"
+    },
+    {
+      "id": "90d25701c260",
+      "title": "“젖소 씨수소 정액, 사용 전 최신 정보 확인하세요~“",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=33965",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농촌진흥청, 2026년 2분기 젖소 씨수소 유전체 유전능력 평가 결과 및 친자 감정 정보 공개",
+        "농가의 효율적인 씨수소 정액 선택 및 젖소 혈통 관리 지원을 위한 데이터 제공"
+      ],
+      "keywords": [
+        "젖소",
+        "농촌진흥청"
+      ],
+      "kw_cats": {
+        "젖소": "ingredient",
+        "농촌진흥청": "brand"
+      },
+      "date": "2026-06-07T02:00:00+00:00"
+    },
+    {
+      "id": "d5cc7ecb8a08",
+      "title": "[리얼푸드] 한우자조금 심포지엄 개최…“농가의 현장 경쟁력 높인다”",
+      "url": "https://www.realfoods.co.kr/article/10765314",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "한우자조금관리위원회, 한우농가 생산성 향상을 위한 디지털 정보 활용 심포지엄 개최",
+        "데이터 기반의 사육 기술 및 경영 전략 공유를 통한 한우 농가 현장 경쟁력 강화 도모"
+      ],
+      "keywords": [
+        "한우자조금관리위원회",
+        "한우"
+      ],
+      "kw_cats": {
+        "한우자조금관리위원회": "brand",
+        "한우": "ingredient"
+      },
+      "date": "2026-06-07T01:53:16+00:00"
+    },
+    {
+      "id": "79c0916604d5",
+      "title": "[리얼푸드] 파파존스, ‘2026 마인드마라톤’에 공식 후원…“갓 구운 피자 제공”",
+      "url": "https://www.realfoods.co.kr/article/10765313",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "한국파파존스, ‘2026 마인드마라톤’ 공식 후원 및 참가자 대상 피자 무료 제공",
+        "매직카를 활용한 현장 즉석 조리 서비스로 브랜드 경험 및 접점 확대"
+      ],
+      "keywords": [
+        "파파존스",
+        "존스 페이버릿 크루아상 크러스트"
+      ],
+      "kw_cats": {
+        "파파존스": "brand",
+        "존스 페이버릿 크루아상 크러스트": "food_cat"
+      },
+      "date": "2026-06-07T01:52:35+00:00"
+    },
+    {
+      "id": "51fc04ab1bdb",
+      "title": "[리얼푸드] “시식 만족도 매우 높아”…UAE 홍삼 인식 조사",
+      "url": "https://www.realfoods.co.kr/article/10765279",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "UAE 아부다비 프리미엄 병원 방문객 대상 한국 홍삼 시식 만족도 조사 결과 5점 만점에 4.74점 기록",
+        "한국 의료 서비스와 연계한 신뢰도 마케팅을 통해 중동 시장 내 홍삼의 긍정적 인식 확인"
+      ],
+      "keywords": [
+        "홍삼",
+        "UAE"
+      ],
+      "kw_cats": {
+        "홍삼": "ingredient",
+        "UAE": "trend"
+      },
+      "date": "2026-06-07T00:27:08+00:00"
+    },
+    {
+      "id": "d2c7f24150ec",
+      "title": "[리얼푸드] “빵이 된 돼지바?” 롯데웰푸드, 돼지바 빵집 팝업스토어",
+      "url": "https://www.realfoods.co.kr/article/10765278",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "롯데웰푸드, 돼지바 브랜드 캐릭터를 활용한 이색 팝업스토어 '돼지바 빵집 since 1983' 운영",
+        "돼지바를 빵으로 재해석한 신메뉴 출시 및 커스텀 토핑 체험 등 소비자 경험 중심의 마케팅 전개"
+      ],
+      "keywords": [
+        "돼지바",
+        "돼지바빵",
+        "롯데웰푸드"
+      ],
+      "kw_cats": {
+        "돼지바": "brand",
+        "돼지바빵": "food_cat",
+        "롯데웰푸드": "brand"
+      },
+      "date": "2026-06-07T00:26:42+00:00"
+    },
+    {
+      "id": "bb4b16290839",
+      "title": "[리얼푸드] “골드키위 케이크 맛보세요” 신세계푸드, 여름 케이크 2종",
+      "url": "https://www.realfoods.co.kr/article/10765277",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "신세계푸드, 이마트 베이커리 통해 제스프리 골드키위 활용 여름 케이크 2종 출시",
+        "비타민C 함량이 높은 골드키위를 활용해 건강과 맛을 강조한 시즌 한정 디저트 전략"
+      ],
+      "keywords": [
+        "골드키위",
+        "신세계푸드",
+        "케이크",
+        "제스프리"
+      ],
+      "kw_cats": {
+        "골드키위": "ingredient",
+        "신세계푸드": "brand",
+        "케이크": "food_cat",
+        "제스프리": "brand"
+      },
+      "date": "2026-06-07T00:21:56+00:00"
+    },
+    {
+      "id": "1df400925796",
+      "title": "[리얼푸드] 정관장, 면세 채널 경쟁력 확대…롯데면세점과 MOU 체결",
+      "url": "https://www.realfoods.co.kr/article/10765273",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "정관장과 롯데면세점, 면세 채널 경쟁력 강화를 위한 전략적 업무협약(MOU) 체결",
+        "뿌리삼 단독 상품 개발 및 추석 시즌 맞춤형 캐릭터 상품 등 공동 기획 추진"
+      ],
+      "keywords": [
+        "정관장",
+        "롯데면세점",
+        "뿌리삼"
+      ],
+      "kw_cats": {
+        "정관장": "brand",
+        "롯데면세점": "brand",
+        "뿌리삼": "ingredient"
+      },
+      "date": "2026-06-07T00:21:15+00:00"
+    },
     {
       "id": "9e380a2ebfc8",
       "title": "칙필레, 마이애미에 고스트 키친 오픈",
