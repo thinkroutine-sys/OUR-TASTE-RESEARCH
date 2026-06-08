@@ -528,9 +528,13 @@ body.signal-mode .news-period-filter { display: none; }
 /* ── Auth ── */
 .auth-btn{font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
 .auth-btn:hover{border-color:var(--blue);color:var(--blue)}
-.auth-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.auth-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:flex-end;justify-content:center;padding:0}
 .auth-overlay.on{display:flex}
-.auth-modal{background:var(--surface);border-radius:16px;padding:28px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.auth-modal{background:var(--surface);border-radius:20px 20px 0 0;padding:24px 24px calc(24px + env(safe-area-inset-bottom));width:100%;max-width:480px;box-shadow:0 -4px 30px rgba(0,0,0,.15);max-height:90vh;overflow-y:auto}
+@media(min-width:600px){
+  .auth-overlay{align-items:center;padding:20px}
+  .auth-modal{border-radius:16px;padding:28px}
+}
 .auth-modal h3{font-size:17px;font-weight:700;margin-bottom:20px;color:var(--text)}
 .auth-field{margin-bottom:12px}
 .auth-field label{font-size:12px;font-weight:600;color:var(--text2);display:block;margin-bottom:5px}
@@ -961,6 +965,7 @@ document.addEventListener('click', function(e) {
       const title = card ? card.querySelector('.card-title').textContent : '';
       openCommentSheet(aid, title.substring(0, 20));
     } else {
+      if (!currentUser) { openAuth('로그인 후 의견을 남길 수 있어요 👆'); return; }
       const listEl = sec.querySelector('.comment-list');
       const formEl = sec.querySelector('.comment-form');
       const isOpen = listEl && listEl.style.display !== 'none';
@@ -969,9 +974,17 @@ document.addEventListener('click', function(e) {
       if (!isOpen && aid) {
         loadComments(aid).then(function(c) {
           if (listEl) listEl.innerHTML = renderCommentHtml(c);
-          var badge = document.getElementById('cb-badge-' + aid);
-          if (badge) badge.textContent = c.length + '개';
+          updateCmtBadge(aid, c.length);
         }).catch(function(){});
+        var nameEl = document.getElementById('cn-' + aid);
+        if (nameEl && currentUser) {
+          nameEl.value = (currentUser.user_metadata && currentUser.user_metadata.name) || currentUser.email.split('@')[0];
+          nameEl.readOnly = true;
+          nameEl.style.color = 'var(--text3)';
+        } else if (nameEl) {
+          nameEl.readOnly = false;
+          nameEl.style.color = '';
+        }
       }
     }
     return;
@@ -1085,7 +1098,7 @@ function renderCommentHtml(comments) {
       <div class="comment-header">
         <span class="comment-name">${c.name}</span>
         <span class="comment-time">${fmtCommentTime(c.created_at)}</span>
-        ${(function(){ if(!c.user_id || (currentUser && currentUser.id === c.user_id)){ return '<span style="margin-left:auto;display:flex;gap:6px"><button onclick="editComment(\'' + c.id + '\',\'' + c.content.replace(/'/g,"&#39;") + '\')" style="font-size:10px;color:var(--text3);background:none;border:none;cursor:pointer;padding:2px 4px">수정</button><button onclick="deleteComment(\'' + c.id + '\')" style="font-size:10px;color:#FF3B30;background:none;border:none;cursor:pointer;padding:2px 4px">삭제</button></span>'; } return ''; })()}
+        ${(function(){ if(currentUser && c.user_id && currentUser.id === c.user_id){ return '<span style="margin-left:auto;display:flex;gap:6px"><button onclick="editComment(\'' + c.id + '\',\'' + c.content.replace(/'/g,"&#39;") + '\')" style="font-size:10px;color:var(--text3);background:none;border:none;cursor:pointer;padding:2px 4px">수정</button><button onclick="deleteComment(\'' + c.id + '\')" style="font-size:10px;color:#FF3B30;background:none;border:none;cursor:pointer;padding:2px 4px">삭제</button></span>'; } return ''; })()}
       </div>
       <div class="comment-content" id="cmt-content-${c.id}">${c.content}</div>
       <div id="cmt-edit-${c.id}" style="display:none;margin-top:6px">
@@ -1125,11 +1138,23 @@ async function deleteComment(id) {
   try {
     await sbFetch('/rest/v1/comments?id=eq.' + id, { method: 'DELETE' });
     var item = document.querySelector('[data-cmt-id="' + id + '"]');
-    if (item) item.remove();
-    // PC: comment-section에서 aid 찾기, 모바일: sheetArticleId 사용
-    var aid = (item && item.closest('.comment-section') ? item.closest('.comment-section').dataset.aid : null) || sheetArticleId;
+    var aid = null;
+    if (item) {
+      var sec = item.closest('.comment-section');
+      aid = sec ? sec.dataset.aid : null;
+      item.remove();
+    }
+    if (!aid) aid = sheetArticleId;
     if (aid) {
-      loadComments(aid).then(function(c){ updateCmtBadge(aid, c.length); }).catch(function(){});
+      loadComments(aid).then(function(c){
+        updateCmtBadge(aid, c.length);
+        // 시트 목록도 업데이트
+        var sl = document.getElementById('sheet-list');
+        if (sl && sheetArticleId === aid) sl.innerHTML = renderCommentHtml(c) || '<div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">아직 의견이 없어요</div>';
+        // PC 목록도 업데이트
+        var pl = document.getElementById('cb-list-' + aid);
+        if (pl) pl.innerHTML = renderCommentHtml(c);
+      }).catch(function(){});
     }
   } catch(e) { console.error('삭제 오류:', e); }
 }
@@ -1219,9 +1244,15 @@ async function submitComment(e, aid) { cmtSubmit(aid); }
 let sheetArticleId = null;
 
 function openCommentSheet(aid, title) {
+  if (!currentUser) { openAuth('로그인 후 의견을 남길 수 있어요 👆'); return; }
   sheetArticleId = aid;
   document.getElementById('sheet-title').textContent = '💬 ' + (title || '의견');
   document.getElementById('sheet-list').innerHTML = '<div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">불러오는 중...</div>';
+  var sn = document.getElementById('sheet-name');
+  if (sn) {
+    if (currentUser) { sn.value=(currentUser.user_metadata&&currentUser.user_metadata.name)||currentUser.email.split('@')[0]; sn.readOnly=true; sn.style.color='var(--text3)'; }
+    else { sn.readOnly=false; sn.style.color=''; sn.value=''; }
+  }
   document.getElementById('comment-sheet-overlay') || (document.getElementById('sheet-overlay').classList.add('on'));
   document.getElementById('sheet-overlay').classList.add('on');
   document.getElementById('comment-sheet').classList.add('on');
@@ -1298,7 +1329,7 @@ function renderMyCommentBtn(){
   ['my-cmt-btn-pc','my-cmt-btn-mo'].forEach(function(id){
     var el = document.getElementById(id);
     if(!el) return;
-    el.style.display = currentUser ? 'block' : 'none';
+    el.style.display = currentUser ? '' : 'none';
     el.textContent = showMyComments ? '✓ 내 의견 기사' : '내 의견 기사 보기';
     el.style.background = showMyComments ? 'var(--blue)' : '';
     el.style.color = showMyComments ? '#fff' : '';
@@ -1325,7 +1356,12 @@ function renderAuthHeader(){
   if(mo) mo.innerHTML = currentUser ? logoutHtml : loginHtml;
 }
 
-function openAuth(){ document.getElementById('auth-overlay').classList.add('on'); document.getElementById('auth-error').textContent=''; }
+function openAuth(msg){
+  document.getElementById('auth-overlay').classList.add('on');
+  var errEl = document.getElementById('auth-error');
+  if(msg){ errEl.style.color='var(--blue)'; errEl.textContent=msg; }
+  else { errEl.textContent=''; }
+}
 function closeAuth(){
   document.getElementById('auth-overlay').classList.remove('on');
   // 모달 상태 초기화
@@ -1401,6 +1437,7 @@ async function authSubmit(){
         setStoredToken(data.access_token);
         currentUser = data.user;
         renderAuthHeader();
+        loadMyCommentedArticles();
         closeAuth();
         return;
       } else {
