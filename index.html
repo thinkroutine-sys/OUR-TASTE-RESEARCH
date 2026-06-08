@@ -715,6 +715,7 @@ body.signal-mode .news-period-filter { display: none; }
     <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input id="mo-q" type="text" placeholder="검색">
   </div>
+  <div id="mo-auth-header" style="display:flex;align-items:center"></div>
   <button class="mh-ref-btn" id="mo-ref" onclick="loadNews()">
     <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
   </button>
@@ -1278,14 +1279,16 @@ async function initAuth(){
 }
 
 function renderAuthHeader(){
-  var el = document.getElementById('auth-header');
-  if(!el) return;
+  var loginHtml = '<button class="auth-btn" onclick="openAuth()">로그인</button>';
+  var logoutHtml = '';
   if(currentUser){
     var name = (currentUser.user_metadata&&currentUser.user_metadata.name)||currentUser.email.split('@')[0];
-    el.innerHTML = '<span class="user-info">👤 '+name+'</span><button class="auth-btn" onclick="authLogout()">로그아웃</button>';
-  } else {
-    el.innerHTML = '<button class="auth-btn" onclick="openAuth()">로그인</button>';
+    logoutHtml = '<span style="font-size:11px;color:var(--text2);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">👤 '+name+'</span><button class="auth-btn" onclick="authLogout()" style="padding:4px 10px;font-size:11px">로그아웃</button>';
   }
+  var pc = document.getElementById('auth-header');
+  if(pc) pc.innerHTML = currentUser ? logoutHtml : loginHtml;
+  var mo = document.getElementById('mo-auth-header');
+  if(mo) mo.innerHTML = currentUser ? logoutHtml : loginHtml;
 }
 
 function openAuth(){ document.getElementById('auth-overlay').classList.add('on'); document.getElementById('auth-error').textContent=''; }
