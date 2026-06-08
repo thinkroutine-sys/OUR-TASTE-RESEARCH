@@ -524,25 +524,6 @@ body.signal-mode .news-period-filter { display: none; }
   .comment-section .comment-form { display:none; }
   .comment-section .comment-header { cursor:pointer; }
 }
-
-/* ── Auth ── */
-.auth-btn{font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
-.auth-btn:hover{border-color:var(--blue);color:var(--blue)}
-.auth-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center;padding:20px}
-.auth-overlay.on{display:flex}
-.auth-modal{background:var(--surface);border-radius:16px;padding:28px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.auth-modal h3{font-size:17px;font-weight:700;margin-bottom:20px;color:var(--text)}
-.auth-field{margin-bottom:12px}
-.auth-field label{font-size:12px;font-weight:600;color:var(--text2);display:block;margin-bottom:5px}
-.auth-input{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;background:var(--bg);color:var(--text);outline:none}
-.auth-input:focus{border-color:var(--blue)}
-.auth-submit{width:100%;padding:11px;background:var(--blue);color:#fff;border-radius:10px;font-size:14px;font-weight:700;border:none;cursor:pointer;margin-top:4px}
-.auth-submit:hover{opacity:.9}
-.auth-toggle{font-size:12px;color:var(--text3);text-align:center;margin-top:12px;cursor:pointer}
-.auth-toggle span{color:var(--blue);font-weight:600}
-.auth-error{font-size:12px;margin-top:8px;text-align:center;min-height:16px}
-.auth-close{float:right;background:none;border:none;font-size:18px;color:var(--text3);cursor:pointer;margin-top:-4px}
-.user-info{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:8px}
 /* ─── 분류 기준 팝업 ─── */
 .guide-btn{
   width:18px;height:18px;border-radius:50%;
@@ -615,7 +596,6 @@ body.signal-mode .news-period-filter { display: none; }
     <input id="pc-q" type="text" placeholder="기사 검색">
   </div>
   <span class="pc-upd" id="pc-upd"></span>
-  <div id="auth-header" style="display:flex;align-items:center;gap:8px"></div>
   <button class="pc-ref-btn" id="pc-ref" onclick="loadNews()">
     <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
   </button>
@@ -1038,7 +1018,7 @@ async function sbFetch(path, options={}) {
     ...options,
     headers: {
       'apikey': SB_KEY,
-      'Authorization': 'Bearer ' + (getStoredToken() || SB_KEY),
+      'Authorization': 'Bearer ' + SB_KEY,
       'Content-Type': 'application/json',
       'Prefer': (options.method === 'POST' || options.method === 'PATCH') ? 'return=minimal' : '',
       ...(options.headers || {})
@@ -1059,9 +1039,10 @@ async function loadComments(articleId) {
 }
 
 async function postComment(articleId, name, content) {
-  var body = { article_id: articleId, name, content };
-  if (currentUser) { body.user_id = currentUser.id; body.user_email = currentUser.email; }
-  await sbFetch('/rest/v1/comments', { method: 'POST', body: JSON.stringify(body) });
+  await sbFetch('/rest/v1/comments', {
+    method: 'POST',
+    body: JSON.stringify({ article_id: articleId, name, content })
+  });
 }
 
 function fmtCommentTime(iso) {
@@ -1078,7 +1059,10 @@ function renderCommentHtml(comments) {
       <div class="comment-header">
         <span class="comment-name">${c.name}</span>
         <span class="comment-time">${fmtCommentTime(c.created_at)}</span>
-        ${(!c.user_id || (currentUser && currentUser.id === c.user_id)) ? \`<span style="margin-left:auto;display:flex;gap:6px"><button onclick="editComment('\${c.id}','\${c.content.replace(/'/g,\"&#39;\")}')" style="font-size:10px;color:var(--text3);background:none;border:none;cursor:pointer;padding:2px 4px">수정</button><button onclick="deleteComment('\${c.id}')" style="font-size:10px;color:#FF3B30;background:none;border:none;cursor:pointer;padding:2px 4px">삭제</button></span>\` : ''}
+        <span style="margin-left:auto;display:flex;gap:6px">
+          <button onclick="editComment('${c.id}','${c.content.replace(/'/g,"&#39;")}')" style="font-size:10px;color:var(--text3);background:none;border:none;cursor:pointer;padding:2px 4px">수정</button>
+          <button onclick="deleteComment('${c.id}')" style="font-size:10px;color:#FF3B30;background:none;border:none;cursor:pointer;padding:2px 4px">삭제</button>
+        </span>
       </div>
       <div class="comment-content" id="cmt-content-${c.id}">${c.content}</div>
       <div id="cmt-edit-${c.id}" style="display:none;margin-top:6px">
@@ -1256,84 +1240,6 @@ async function sheetSubmit() {
     btn.textContent = '등록'; btn.disabled = false;
     alert('등록 실패: ' + e.message);
   }
-}
-
-
-// ── AUTH ──
-let currentUser = null;
-let authMode = 'login';
-
-function getStoredToken(){ try{return localStorage.getItem('sb_token');}catch(e){return null;} }
-function setStoredToken(t){ try{if(t)localStorage.setItem('sb_token',t);else localStorage.removeItem('sb_token');}catch(e){} }
-
-async function initAuth(){
-  var token = getStoredToken();
-  if(!token){ renderAuthHeader(); return; }
-  try{
-    var res = await fetch(SB_URL+'/auth/v1/user',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+token}});
-    if(res.ok){ currentUser = await res.json(); }
-    else { setStoredToken(null); }
-  }catch(e){}
-  renderAuthHeader();
-}
-
-function renderAuthHeader(){
-  var el = document.getElementById('auth-header');
-  if(!el) return;
-  if(currentUser){
-    var name = (currentUser.user_metadata&&currentUser.user_metadata.name)||currentUser.email.split('@')[0];
-    el.innerHTML = '<span class="user-info">👤 '+name+'</span><button class="auth-btn" onclick="authLogout()">로그아웃</button>';
-  } else {
-    el.innerHTML = '<button class="auth-btn" onclick="openAuth()">로그인</button>';
-  }
-}
-
-function openAuth(){ document.getElementById('auth-overlay').classList.add('on'); document.getElementById('auth-error').textContent=''; }
-function closeAuth(){ document.getElementById('auth-overlay').classList.remove('on'); }
-function toggleAuthMode(){
-  authMode = authMode==='login'?'signup':'login';
-  document.getElementById('auth-title').textContent = authMode==='login'?'로그인':'회원가입';
-  document.getElementById('auth-submit-btn').textContent = authMode==='login'?'로그인':'회원가입';
-  document.getElementById('auth-toggle').innerHTML = authMode==='login'?'계정이 없으신가요? <span>회원가입</span>':'이미 계정이 있으신가요? <span>로그인</span>';
-  document.getElementById('auth-name-field').style.display = authMode==='signup'?'block':'none';
-  document.getElementById('auth-error').textContent='';
-}
-
-async function authSubmit(){
-  var email = document.getElementById('auth-email').value.trim();
-  var pw    = document.getElementById('auth-pw').value;
-  var name  = (document.getElementById('auth-name')||{}).value||'';
-  var errEl = document.getElementById('auth-error');
-  var btn   = document.getElementById('auth-submit-btn');
-  if(!email||!pw){ errEl.textContent='이메일과 비밀번호를 입력해주세요'; return; }
-  btn.textContent='처리 중...'; btn.disabled=true;
-  try{
-    var endpoint = authMode==='login'?'/auth/v1/token?grant_type=password':'/auth/v1/signup';
-    var body = authMode==='login'
-      ? {email,password:pw}
-      : {email,password:pw,data:{name:name||email.split('@')[0]}};
-    var res = await fetch(SB_URL+endpoint,{method:'POST',headers:{'apikey':SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});
-    var data = await res.json();
-    if(!res.ok) throw new Error(data.error_description||data.msg||'오류가 발생했습니다');
-    if(authMode==='signup'){
-      errEl.style.color='var(--blue)';
-      errEl.textContent='가입 완료! 이메일 확인 링크를 클릭해주세요.';
-      btn.textContent='회원가입'; btn.disabled=false; return;
-    }
-    setStoredToken(data.access_token);
-    currentUser = data.user;
-    renderAuthHeader();
-    closeAuth();
-  }catch(e){
-    errEl.style.color='#FF3B30';
-    errEl.textContent=e.message;
-    btn.textContent=authMode==='login'?'로그인':'회원가입'; btn.disabled=false;
-  }
-}
-
-async function authLogout(){
-  try{ await fetch(SB_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+getStoredToken()}}); }catch(e){}
-  setStoredToken(null); currentUser=null; renderAuthHeader();
 }
 
 // ════════════════════════════════════
@@ -1532,7 +1438,6 @@ async function loadNews(){
     applyLayout();
     renderAll();
     if(currentView==='signal') renderSignal();
-    initAuth();
   }catch(e){
     const err=`<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">불러올 수 없어요</div><div style="font-size:13px;margin-top:4px">${e.message}</div></div>`;
     document.getElementById('pc-main').innerHTML=err;
@@ -1570,20 +1475,6 @@ setInterval(loadNews,30*60*1000);
     <div class="comment-sheet-actions">
       <button class="comment-sheet-submit" onclick="sheetSubmit()">등록</button>
     </div>
-  </div>
-</div>
-
-<!-- Auth 모달 -->
-<div class="auth-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuth()">
-  <div class="auth-modal">
-    <button class="auth-close" onclick="closeAuth()">✕</button>
-    <h3 id="auth-title">로그인</h3>
-    <div class="auth-field"><label>이메일</label><input class="auth-input" id="auth-email" type="email" placeholder="이메일 주소"></div>
-    <div class="auth-field"><label>비밀번호</label><input class="auth-input" id="auth-pw" type="password" placeholder="비밀번호"></div>
-    <div class="auth-field" id="auth-name-field" style="display:none"><label>이름</label><input class="auth-input" id="auth-name" type="text" placeholder="팀원 이름"></div>
-    <div class="auth-error" id="auth-error"></div>
-    <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">로그인</button>
-    <div class="auth-toggle" id="auth-toggle" onclick="toggleAuthMode()">계정이 없으신가요? <span>회원가입</span></div>
   </div>
 </div>
 
