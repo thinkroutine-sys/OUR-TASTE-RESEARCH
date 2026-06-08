@@ -1437,6 +1437,7 @@ async function authSubmit(){
         setStoredToken(data.access_token);
         currentUser = data.user;
         renderAuthHeader();
+        renderMyCommentBtn();
         loadMyCommentedArticles();
         closeAuth();
         return;
@@ -1450,6 +1451,8 @@ async function authSubmit(){
     setStoredToken(data.access_token);
     currentUser = data.user;
     renderAuthHeader();
+    renderMyCommentBtn();
+    loadMyCommentedArticles();
     closeAuth();
   }catch(e){
     errEl.style.color='#FF3B30';
