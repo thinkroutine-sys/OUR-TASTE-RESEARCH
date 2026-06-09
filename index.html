@@ -958,7 +958,7 @@ function cardHtml(a,i){
     <div class="tag-section" data-taid="${a.id}">
       <div class="tag-header">
         <span style="font-size:12px;font-weight:600;color:var(--text2)">🏷️ 태그</span>
-        ${currentUser ? `<button type="button" class="tag-add-btn" onclick="toggleTagPanel('${a.id}')">+ 추가</button>` : ''}
+        <button type="button" class="tag-add-btn" onclick="toggleTagPanel('${a.id}')">+ 추가</button>
       </div>
       <div class="tag-chips" id="tag-chips-${a.id}"></div>
       <div class="tag-panel" id="tag-panel-${a.id}" style="display:none">
@@ -1379,7 +1379,8 @@ let currentUser = null;
 let authMode = 'login';
 
 function getStoredToken(){ try{return localStorage.getItem('sb_token');}catch(e){return null;} }
-function setStoredToken(t){ try{if(t)localStorage.setItem('sb_token',t);else localStorage.removeItem('sb_token');}catch(e){} }
+function getRefreshToken(){ try{return localStorage.getItem('sb_refresh');}catch(e){return null;} }
+function setStoredToken(t, r){ try{if(t)localStorage.setItem('sb_token',t);else localStorage.removeItem('sb_token'); if(r!==undefined){if(r)localStorage.setItem('sb_refresh',r);else localStorage.removeItem('sb_refresh');}}catch(e){} }
 
 async function initAuth(){
   var token = getStoredToken();
@@ -1387,10 +1388,30 @@ async function initAuth(){
   try{
     var res = await fetch(SB_URL+'/auth/v1/user',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+token}});
     if(res.ok){ currentUser = await res.json(); }
-    else { setStoredToken(null); }
+    else {
+      var refreshed = await tryRefreshToken();
+      if(!refreshed) setStoredToken(null, null);
+    }
   }catch(e){}
   renderAuthHeader();
-  if(currentUser) loadMyCommentedArticles();
+  if(currentUser) { renderMyCommentBtn(); loadMyCommentedArticles(); }
+}
+
+async function tryRefreshToken(){
+  var refresh = getRefreshToken();
+  if(!refresh) return false;
+  try{
+    var res = await fetch(SB_URL+'/auth/v1/token?grant_type=refresh_token',{
+      method:'POST',
+      headers:{'apikey':SB_KEY,'Content-Type':'application/json'},
+      body:JSON.stringify({refresh_token:refresh})
+    });
+    if(!res.ok) return false;
+    var data = await res.json();
+    setStoredToken(data.access_token, data.refresh_token);
+    currentUser = data.user;
+    return true;
+  }catch(e){ return false; }
 }
 
 async function loadMyCommentedArticles(){
@@ -1438,6 +1459,13 @@ function openAuth(msg){
   var errEl = document.getElementById('auth-error');
   if(msg){ errEl.style.color='var(--blue)'; errEl.textContent=msg; }
   else { errEl.textContent=''; }
+  // 저장된 이메일 자동 입력
+  var savedEmail = localStorage.getItem('sb_saved_email');
+  if(savedEmail){
+    document.getElementById('auth-email').value = savedEmail;
+    var chk = document.getElementById('save-id-check');
+    if(chk) chk.checked = true;
+  }
 }
 function closeAuth(){
   document.getElementById('auth-overlay').classList.remove('on');
@@ -1462,6 +1490,8 @@ function toggleAuthMode(){
   document.getElementById('auth-toggle').innerHTML = authMode==='login'?'계정이 없으신가요? <span>회원가입</span>':'이미 계정이 있으신가요? <span>로그인</span>';
   document.getElementById('auth-name-field').style.display = authMode==='signup'?'block':'none';
   document.getElementById('auth-reset-link').style.display = authMode==='login'?'block':'none';
+  var saveRow = document.getElementById('save-id-row');
+  if(saveRow) saveRow.style.display = authMode==='login'?'flex':'none';
   document.getElementById('auth-error').textContent='';
 }
 
@@ -1511,7 +1541,7 @@ async function authSubmit(){
     if(authMode==='signup'){
       if(data.access_token){
         // 이메일 확인 불필요 - 바로 로그인
-        setStoredToken(data.access_token);
+        setStoredToken(data.access_token, data.refresh_token);
         currentUser = data.user;
         renderAuthHeader();
         renderMyCommentBtn();
@@ -1525,7 +1555,11 @@ async function authSubmit(){
         btn.textContent='회원가입'; btn.disabled=false; return;
       }
     }
-    setStoredToken(data.access_token);
+    // 아이디 저장 처리
+    var saveChk = document.getElementById('save-id-check');
+    if(saveChk && saveChk.checked) localStorage.setItem('sb_saved_email', document.getElementById('auth-email').value.trim());
+    else localStorage.removeItem('sb_saved_email');
+    setStoredToken(data.access_token, data.refresh_token);
     currentUser = data.user;
     renderAuthHeader();
     renderMyCommentBtn();
@@ -1540,7 +1574,7 @@ async function authSubmit(){
 
 async function authLogout(){
   try{ await fetch(SB_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+getStoredToken()}}); }catch(e){}
-  setStoredToken(null); currentUser=null; _myArticleIds=new Set(); showMyComments=false; renderAuthHeader(); renderMyCommentBtn(); renderAll();
+  setStoredToken(null, null); currentUser=null; _myArticleIds=new Set(); showMyComments=false; renderAuthHeader(); renderMyCommentBtn(); renderAll();
 }
 
 
@@ -1956,6 +1990,10 @@ setInterval(loadNews,30*60*1000);
     <div class="auth-field" id="auth-name-field" style="display:none"><label>이름</label><input class="auth-input" id="auth-name" type="text" placeholder="팀원 이름"></div>
     <div class="auth-error" id="auth-error"></div>
     <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">로그인</button>
+    <div style="display:flex;align-items:center;gap:6px;margin-top:8px" id="save-id-row">
+      <input type="checkbox" id="save-id-check" style="width:14px;height:14px;accent-color:var(--blue);cursor:pointer">
+      <label for="save-id-check" style="font-size:12px;color:var(--text3);cursor:pointer">아이디 저장</label>
+    </div>
     <div class="auth-toggle" id="auth-toggle" onclick="toggleAuthMode()">계정이 없으신가요? <span>회원가입</span></div>
     <div id="auth-reset-link" style="font-size:12px;color:var(--text3);text-align:center;margin-top:6px;cursor:pointer" onclick="showResetMode()">비밀번호를 잊으셨나요? <span style="color:var(--blue);font-weight:600">재설정</span></div>
   </div>
