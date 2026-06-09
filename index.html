@@ -737,10 +737,15 @@ body.signal-mode .news-period-filter { display: none; }
         <button class="read-toggle-btn" id="my-cmt-btn-pc" onclick="toggleMyComments()" style="display:none;margin-top:6px">내 의견 기사 보기</button>
       </div>
     </div>
-    <div class="sidebar-section view-news" id="pc-tag-filter" style="display:none">
+    <div class="sidebar-section view-news" id="pc-tag-filter" style="display:block">
       <div class="sidebar-filters">
         <div class="sf-label">태그 필터</div>
-        <div class="sf-pills" style="flex-direction:column;gap:4px"></div>
+        <button class="sf-pill on" onclick="setTagFilter(null)" id="tag-all-btn" style="margin-bottom:6px">전체</button>
+        <div class="sf-label" style="font-size:10px;margin-top:4px;margin-bottom:4px">브랜드</div>
+        <div id="pc-tag-brand-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
+        <div class="sf-label" style="font-size:10px;margin-top:8px;margin-bottom:4px">업무</div>
+        <div id="pc-tag-work-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
+        <div id="pc-tag-custom-pills"></div>
       </div>
     </div>
   </aside>
@@ -1613,6 +1618,7 @@ let activeTagFilter = null; // 현재 선택된 태그 필터
 
 // ── 태그 시스템
 async function loadAllTags() {
+  renderTagFilter(); // 즉시 프리셋 표시
   try {
     var data = await sbFetch('/rest/v1/article_tags?select=id,article_id,tag,tag_type,user_id,user_name&order=created_at.asc');
     if (!data) return;
@@ -1627,30 +1633,51 @@ async function loadAllTags() {
 }
 
 function renderTagFilter() {
-  // 항상 모든 프리셋 태그 표시 (커스텀 태그는 사용된 것만 추가)
   var customTags = {};
   Object.values(_articleTags).forEach(function(tags) {
     tags.forEach(function(t) {
-      if(t.tag_type === 'brand_custom' || t.tag_type === 'work_custom') {
-        customTags[t.tag] = true;
-      }
+      if(t.tag_type==='brand_custom'||t.tag_type==='work_custom') customTags[t.tag]=t.tag_type;
     });
   });
-  var allTags = PRESET_TAGS.brand.concat(PRESET_TAGS.work).concat(Object.keys(customTags));
 
-  var pillsHtml = '<button class="sf-pill' + (!activeTagFilter?' on':'') + '" onclick="setTagFilter(null)">전체</button>' +
-    allTags.map(function(tag) {
-      return '<button class="sf-pill' + (activeTagFilter===tag?' on':'') + '" onclick="setTagFilter(\'' + tag + '\')">' + tag + '</button>';
-    }).join('');
-  var moPillsHtml = '<button class="mf-pill' + (!activeTagFilter?' on-blue':'') + '" onclick="setTagFilter(null)">전체</button>' +
-    allTags.map(function(tag) {
-      return '<button class="mf-pill' + (activeTagFilter===tag?' on':'') + '" onclick="setTagFilter(\'' + tag + '\')">' + tag + '</button>';
-    }).join('');
+  function pill(tag, cls, active) {
+    return '<button class="' + cls + (active?' on':'') + '" onclick="setTagFilter(\'' + tag + '\')">' + tag + '</button>';
+  }
+  function moPill(tag, active) {
+    return '<button class="mf-pill' + (active?' on':'') + '" onclick="setTagFilter(\'' + tag + '\')">' + tag + '</button>';
+  }
 
-  var pcEl = document.getElementById('pc-tag-filter');
-  if(pcEl) { pcEl.style.display = 'block'; pcEl.querySelector('.sf-pills').innerHTML = pillsHtml; }
+  // PC - 그룹 분리
+  var allBtn = document.getElementById('tag-all-btn');
+  if(allBtn) { allBtn.className = 'sf-pill' + (!activeTagFilter?' on':''); }
+
+  var brandEl = document.getElementById('pc-tag-brand-pills');
+  if(brandEl) brandEl.innerHTML = PRESET_TAGS.brand.map(function(t){ return pill(t,'sf-pill',activeTagFilter===t); }).join('');
+
+  var workEl = document.getElementById('pc-tag-work-pills');
+  if(workEl) workEl.innerHTML = PRESET_TAGS.work.map(function(t){ return pill(t,'sf-pill',activeTagFilter===t); }).join('');
+
+  var customEl = document.getElementById('pc-tag-custom-pills');
+  if(customEl) {
+    var cKeys = Object.keys(customTags);
+    customEl.innerHTML = cKeys.length ? '<div class="sf-label" style="font-size:10px;margin-top:8px;margin-bottom:4px">기타</div>' +
+      cKeys.map(function(t){ return pill(t,'sf-pill',activeTagFilter===t); }).join('') : '';
+  }
+
+  // 모바일 - 구분선으로 그룹 표시
   var moEl = document.getElementById('mo-tag-filter');
-  if(moEl) { moEl.style.display = 'block'; moEl.querySelector('.mo-tag-pills').innerHTML = moPillsHtml; }
+  if(moEl) {
+    moEl.style.display = 'block';
+    var cKeys = Object.keys(customTags);
+    var moHtml =
+      '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%">브랜드</div>' +
+      '<button class="mf-pill' + (!activeTagFilter?' on-blue':'') + '" onclick="setTagFilter(null)">전체</button>' +
+      PRESET_TAGS.brand.map(function(t){ return moPill(t, activeTagFilter===t); }).join('') +
+      '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;margin-top:4px">업무</div>' +
+      PRESET_TAGS.work.map(function(t){ return moPill(t, activeTagFilter===t); }).join('') +
+      (cKeys.length ? '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;margin-top:4px">기타</div>' + cKeys.map(function(t){ return moPill(t, activeTagFilter===t); }).join('') : '');
+    moEl.querySelector('.mo-tag-pills').innerHTML = moHtml;
+  }
 }
 
 function setTagFilter(tag) {
