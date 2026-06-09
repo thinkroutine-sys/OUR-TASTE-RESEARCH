@@ -1009,27 +1009,13 @@ function cardHtml(a,i){
           <div class="tag-panel-label">브랜드</div>
           <div class="tag-panel-pills">
             ${PRESET_TAGS.brand.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="brand" onclick="toggleTag('${a.id}','${t}','brand',this)">${t}</button>`).join('')}
-            <button type="button" class="tag-panel-pill" onclick="showCustomTagInput('${a.id}','brand')">기타</button>
-          </div>
-          <div id="custom-input-brand-${a.id}" style="display:none;margin-top:6px">
-            <div style="display:flex;gap:6px">
-              <input id="custom-val-brand-${a.id}" class="comment-name-input" style="flex:1;width:auto" placeholder="태그 직접 입력" maxlength="20">
-              <button type="button" class="comment-submit" style="padding:5px 12px" onclick="submitCustomTag('${a.id}','brand')">추가</button>
-            </div>
-          </div>
+            <button type="button" class="tag-panel-pill" onclick="event.stopPropagation();promptCustomTag('${a.id}','brand')">기타</button>
         </div>
         <div class="tag-panel-group">
           <div class="tag-panel-label">업무</div>
           <div class="tag-panel-pills">
             ${PRESET_TAGS.work.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="work" onclick="toggleTag('${a.id}','${t}','work',this)">${t}</button>`).join('')}
-            <button type="button" class="tag-panel-pill" onclick="showCustomTagInput('${a.id}','work')">기타</button>
-          </div>
-          <div id="custom-input-work-${a.id}" style="display:none">
-            <div style="display:flex;gap:6px;margin-top:6px">
-              <input id="custom-val-work-${a.id}" class="comment-name-input" style="flex:1;width:auto" placeholder="태그 직접 입력" maxlength="20">
-              <button type="button" class="comment-submit" style="padding:5px 12px" onclick="submitCustomTag('${a.id}','work')">추가</button>
-            </div>
-          </div>
+            <button type="button" class="tag-panel-pill" onclick="event.stopPropagation();promptCustomTag('${a.id}','work')">기타</button>
         </div>
         <div style="font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">원하는 카테고리가 없다면 <a href="https://www.notion.so/F-B-379e6fd276d280c682dccf51c56031eb" target="_blank" style="color:var(--blue);font-weight:600">개선 요청</a>을 이용해주세요</div>
       </div>
@@ -1788,6 +1774,14 @@ async function toggleTag(aid, tag, type, btn) {
     await sbFetch('/rest/v1/article_tags', { method: 'POST', body: JSON.stringify(body) });
     await loadTagsForArticle(aid);
   } catch(e) { alert('태그 추가 실패: ' + e.message); }
+}
+
+async function promptCustomTag(aid, group) {
+  var val = prompt('태그를 입력하세요 (최대 20자):');
+  if (!val || !val.trim()) return;
+  val = val.trim().slice(0, 20);
+  var type = group + '_custom';
+  await toggleTag(aid, val, type, null);
 }
 
 function showCustomTagInput(aid, group) {
