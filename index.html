@@ -1,34 +1,1779 @@
-         <div class="tag-panel-label">브랜드</div>
-         <div class="tag-panel-pills">
-           ${PRESET_TAGS.brand.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="brand" onclick="toggleTag('${a.id}','${t}','brand',this)">${t}</button>`).join('')}
-            <button type="button" class="tag-panel-pill" onclick="showCustomTagInput('${a.id}','brand')">기타</button>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#ffffff">
+<title>우리맛 연구</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #F5F5F7;
+  --surface:  #FFFFFF;
+  --border:   #E5E5EA;
+  --text:     #1D1D1F;
+  --text2:    #6E6E73;
+  --text3:    #AEAEB2;
+  --blue:     #0066FF;
+  --blue-bg:  #EBF2FF;
+  --radius:   14px;
+  --shadow:   0 1px 8px rgba(0,0,0,.07);
+  --shadow-md:0 4px 20px rgba(0,0,0,.10);
+
+  --c-new:   #34C759; --cb-new:   #F0FBF2;
+  --c-trend: #AF52DE; --cb-trend: #F8F0FF;
+  --c-cvs:   #FF9500; --cb-cvs:   #FFF8EB;
+  --c-hm:    #007AFF; --cb-hm:    #EBF4FF;
+  --c-ing:   #FF6B35; --cb-ing:   #FFF2EE;
+  --c-ind:   #8E8E93; --cb-ind:   #F2F2F7;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+  background:var(--bg);color:var(--text);font-size:15px;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ════════════════════════════════════
+   PC LAYOUT  (768px+)
+   ════════════════════════════════════ */
+@media(min-width:768px){
+
+  /* PC 헤더 */
+  .pc-header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--border);
+  }
+  .pc-header-inner{
+    max-width:1320px;margin:0 auto;
+    padding:0 32px;height:60px;
+    display:flex;align-items:center;gap:16px;
+  }
+  .pc-logo{font-size:18px;font-weight:700;letter-spacing:-.5px;flex-shrink:0}
+  .pc-logo-sub{font-size:10px;color:var(--blue);font-weight:600;letter-spacing:.8px;margin-top:1px}
+  .pc-logo-wrap{display:flex;flex-direction:column;gap:0;flex-shrink:0}
+  .pc-search{
+    flex:1;max-width:360px;margin-left:auto;
+    display:flex;align-items:center;gap:8px;
+    background:var(--bg);border-radius:10px;
+    padding:0 14px;height:36px;
+  }
+  .pc-search input{background:none;border:none;outline:none;font-family:inherit;font-size:14px;color:var(--text);width:100%}
+  .pc-search input::placeholder{color:var(--text3)}
+  .pc-search svg{color:var(--text3);flex-shrink:0}
+  .pc-upd{font-size:11px;color:var(--text3);white-space:nowrap;flex-shrink:0}
+  .pc-ref-btn{
+    width:34px;height:34px;border-radius:50%;
+    background:var(--bg);display:flex;align-items:center;justify-content:center;
+    color:var(--text2);transition:background .15s;flex-shrink:0
+  }
+  .pc-ref-btn:hover{background:var(--border)}
+  .pc-ref-btn.spin svg{animation:rot .5s linear infinite}
+
+  /* PC 바디 */
+  .pc-body{
+    max-width:1320px;margin:0 auto;
+    padding:28px 32px 60px;
+    display:grid;
+    grid-template-columns:1fr 240px;
+    gap:24px;
+    align-items:start;
+  }
+
+  /* PC 사이드바 */
+  .pc-sidebar{
+    position:sticky;top:88px;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .sidebar-section{
+    background:var(--surface);border-radius:var(--radius);
+    padding:16px;box-shadow:var(--shadow);
+  }
+  .sidebar-title{
+    font-size:11px;font-weight:700;color:var(--text3);
+    letter-spacing:.5px;text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .sidebar-cat{
+    display:flex;flex-direction:column;gap:2px;
+  }
+  .s-cat-btn{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:8px 10px;border-radius:9px;
+    font-size:14px;font-weight:500;color:var(--text2);
+    transition:all .15s;text-align:left;width:100%;
+  }
+  .s-cat-btn:hover{background:var(--bg);color:var(--text)}
+  .s-cat-btn.on{background:var(--blue-bg);color:var(--blue);font-weight:600}
+  .s-cat-btn .s-n{
+    font-size:11px;font-weight:600;
+    background:var(--bg);color:var(--text3);
+    padding:1px 7px;border-radius:20px;
+  }
+  .s-cat-btn.on .s-n{background:var(--blue);color:#fff}
+
+  .sidebar-filters{display:flex;flex-direction:column;gap:6px}
+  .sf-label{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.3px;margin-bottom:2px}
+  .sf-pills{display:flex;flex-wrap:wrap;gap:5px}
+  .sf-pill{
+    font-size:12px;font-weight:500;
+    padding:4px 10px;border-radius:20px;
+    border:1.5px solid var(--border);color:var(--text2);
+    background:var(--surface);transition:all .15s;
+  }
+  .sf-pill:hover{border-color:var(--text3);color:var(--text)}
+  .sf-pill.on{background:var(--text);border-color:var(--text);color:#fff}
+  .sf-pill.on-blue{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
+  .sf-select{
+    font-family:inherit;font-size:12px;color:var(--text2);
+    background:var(--surface);border:1.5px solid var(--border);
+    border-radius:8px;padding:5px 8px;outline:none;cursor:pointer;width:100%;
+  }
+  .sf-select:focus{border-color:var(--blue)}
+  .read-toggle-btn{
+    width:100%;padding:8px;border-radius:9px;
+    font-size:13px;font-weight:500;color:var(--text2);
+    background:var(--bg);transition:all .15s;text-align:center;
+  }
+  .read-toggle-btn:hover{color:var(--text)}
+  .read-toggle-btn.on{background:var(--blue-bg);color:var(--blue)}
+
+  /* PC 오른쪽 태그 패널 */
+  .pc-tag-panel{ min-width:0;display:block; }
+  body.signal-mode .pc-tag-panel{ display:none !important; }
+
+  /* PC 메인 */
+  .pc-main{}
+  .date-group{margin-bottom:28px}
+  .dg-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .dg-title{font-size:12px;font-weight:700;color:var(--text3);letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+  .dg-line{flex:1;height:1px;background:var(--border)}
+  .dg-count{font-size:11px;color:var(--text3)}
+  .cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+
+  /* 숨김 처리 */
+  .mobile-header,.bottom-nav{display:none !important}
+.mobile-filter:not(#mo-signal-filter){display:none !important}
+#mo-signal-filter{display:none}
+}
+
+/* ════════════════════════════════════
+   MOBILE LAYOUT  (~767px)
+   ════════════════════════════════════ */
+@media(max-width:767px){
+
+  /* 모바일 헤더 */
+  .mobile-header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--border);
+    padding-top:env(safe-area-inset-top);
+  }
+  .mh-inner{
+    display:flex;align-items:center;gap:10px;
+    padding:0 16px;height:52px;
+  }
+  .mh-logo{font-size:16px;font-weight:700;letter-spacing:-.5px;flex-shrink:0}
+  .mh-search{
+    flex:1;display:flex;align-items:center;gap:7px;
+    background:var(--bg);border-radius:10px;
+    padding:0 11px;height:34px;
+  }
+  .mh-search input{background:none;border:none;outline:none;font-family:inherit;font-size:14px;color:var(--text);width:100%}
+  .mh-search input::placeholder{color:var(--text3)}
+  .mh-ref-btn{
+    width:32px;height:32px;border-radius:50%;
+    background:var(--bg);display:flex;align-items:center;justify-content:center;
+    color:var(--text2);flex-shrink:0;
+  }
+  .mh-ref-btn.spin svg{animation:rot .5s linear infinite}
+
+  /* 모바일 필터 */
+  .mobile-filter{
+    background:var(--surface);border-bottom:1px solid var(--border);
+    position:sticky;top:60px;z-index:100;
+  }
+  .mf-inner{
+    display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+    padding:10px 14px;
+  }
+  .mf-sep{width:100%;height:0;border-top:1px solid var(--border);margin:2px 0}
+  .mf-pill{
+    font-size:12px;font-weight:500;
+    padding:5px 12px;border-radius:20px;
+    border:1.5px solid var(--border);color:var(--text2);
+    background:var(--surface);transition:all .15s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .mf-pill.on{background:var(--text);border-color:var(--text);color:#fff}
+  .mf-pill.on-blue{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
+  .mf-select{
+    font-family:inherit;font-size:12px;color:var(--text2);
+    background:var(--surface);border:1.5px solid var(--border);
+    border-radius:20px;padding:5px 10px;outline:none;width:100%;margin-top:2px;
+  }
+
+  /* 모바일 메인 */
+  .pc-header,.pc-body{display:none !important}
+  .mobile-main{padding:12px 16px 90px}
+  .date-group{margin-bottom:20px}
+  .dg-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .dg-title{font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+  .dg-line{flex:1;height:1px;background:var(--border)}
+  .dg-count{font-size:11px;color:var(--text3)}
+  .cards-grid{display:flex;flex-direction:column;gap:8px}
+
+  /* 하단 탭바 */
+  .bottom-nav{
+    position:fixed;bottom:0;left:0;right:0;z-index:200;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(20px);
+    border-top:1px solid var(--border);
+    display:flex;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .bn-tab{
+    flex:1;display:flex;flex-direction:column;align-items:center;
+    gap:3px;padding:8px 4px 6px;
+    font-size:10px;font-weight:500;color:var(--text3);
+    transition:color .15s;
+  }
+  .bn-tab.on{color:var(--blue)}
+  .bn-dot{
+    width:4px;height:4px;border-radius:50%;
+    background:transparent;margin-top:-2px;transition:background .15s;
+  }
+  .bn-tab.on .bn-dot{background:var(--blue)}
+}
+
+/* ════════════════════════════════════
+   SHARED CARD STYLES
+   ════════════════════════════════════ */
+.card{
+  background:var(--surface);border-radius:var(--radius);
+  padding:16px;cursor:pointer;
+  box-shadow:var(--shadow);
+  width:100%;text-align:left;display:block;
+  transition:box-shadow .15s;
+}
+.card:hover{box-shadow:var(--shadow-md)}
+/* .card.read opacity removed */
+
+.card-top{display:flex;align-items:center;gap:6px;margin-bottom:9px;flex-wrap:wrap}
+.badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;letter-spacing:.1px}
+.b-신제품      {color:var(--c-new);  background:var(--cb-new)}
+.b-트렌드      {color:var(--c-trend);background:var(--cb-trend)}
+.b-편의점      {color:var(--c-cvs);  background:var(--cb-cvs)}
+.b-간편식      {color:var(--c-hm);   background:var(--cb-hm)}
+.b-식재료·원료 {color:var(--c-ing);  background:var(--cb-ing)}
+.b-업계뉴스    {color:var(--c-ind);  background:var(--cb-ind)}
+
+.lang-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;display:inline-block}
+.dot-ko{background:#34C759}.dot-en{background:#007AFF}.dot-ja{background:#FF3B30}
+.card-src{font-size:12px;color:var(--text3);font-weight:500}
+.card-date{font-size:12px;color:var(--text3);margin-left:auto}
+
+.card-title{
+  font-size:15px;font-weight:600;line-height:1.5;color:var(--text);
+  margin-bottom:6px;word-break:keep-all;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card.read .card-title{color:var(--text2)}
+.card-bullets{list-style:none;padding:0;margin:0 0 8px;display:flex;flex-direction:column;gap:3px}
+.card-bullets li{font-size:12px;color:var(--text2);line-height:1.5;padding-left:12px;position:relative}
+.card-bullets li::before{content:"·";position:absolute;left:0;color:var(--text3);font-weight:700}
+.card-summary{
+  font-size:13px;color:var(--text2);line-height:1.6;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  margin-bottom:10px;
+}
+.card-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:8px;margin-bottom:8px;
+}
+.unread-badge{width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.card.read .unread-badge{background:transparent;border:1.5px solid var(--border)}
+.card-link{color:var(--text3);display:flex;align-items:center;transition:color .15s}
+.card:hover .card-link{color:var(--blue)}
+
+.keywords{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.kw{font-size:11px;background:var(--bg);color:var(--text3);padding:2px 9px;border-radius:20px;border:1px solid var(--border);font-weight:500}
+
+/* empty */
+.empty{text-align:center;padding:64px 20px;color:var(--text3)}
+.empty-icon{font-size:36px;margin-bottom:12px}
+.empty-title{font-size:17px;font-weight:600;color:var(--text2);margin-bottom:6px}
+
+@keyframes rot{to{transform:rotate(360deg)}}
+
+
+/* ════════════════════════════════════
+   SIGNAL TAB
+   ════════════════════════════════════ */
+
+/* PC 뷰 전환 */
+.view-news { display: block; }
+.view-signal { display: none; }
+body.signal-mode .view-news { display: none; }
+body.signal-mode .view-signal { display: block; }
+
+/* PC 사이드바 뷰 버튼 */
+.view-toggle {
+  display: flex; gap: 4px;
+  background: var(--bg); border-radius: 10px;
+  padding: 3px; margin-bottom: 12px;
+}
+.vt-btn {
+  flex: 1; padding: 7px 0;
+  font-size: 12px; font-weight: 600;
+  border-radius: 7px; color: var(--text3);
+  transition: all .15s; text-align: center;
+}
+.vt-btn.on { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+.cat-header { display: flex; align-items: center; justify-content: space-between; }
+body.signal-mode .cat-header { display: none; }
+body.signal-mode .news-period-filter { display: none; }
+
+/* 시그널 헤더 */
+.signal-header { margin-bottom: 20px; }
+.signal-period {
+  display: flex; gap: 6px; margin-bottom: 16px;
+}
+.sp-pill {
+  font-size: 12px; font-weight: 600;
+  padding: 5px 14px; border-radius: 20px;
+  border: 1.5px solid var(--border); color: var(--text3);
+  background: var(--surface); transition: all .15s;
+}
+.sp-pill.on { background: var(--text); border-color: var(--text); color: #fff; }
+
+/* 시그널 단계 필터 */
+.signal-stage-filter {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.ss-btn {
+  font-size: 12px; font-weight: 600;
+  padding: 4px 12px; border-radius: 20px;
+  border: 1.5px solid var(--border); color: var(--text3);
+  background: var(--surface); transition: all .15s;
+  display: flex; align-items: center; gap: 5px;
+}
+.ss-btn.on-trend  { background: #FFF0F0; border-color: #FF3B30; color: #FF3B30; }
+.ss-btn.on-watch  { background: #FFF8EB; border-color: #FF9500; color: #FF6A00; }
+.ss-btn.on-interest{ background: var(--blue-bg); border-color: var(--blue); color: var(--blue); }
+.ss-btn.on-all    { background: var(--text); border-color: var(--text); color: #fff; }
+
+/* 시그널 설명 */
+.signal-legend {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--surface);
+  border-radius: 10px; margin-bottom: 20px;
+  border: 1px solid var(--border);
+}
+.sl-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+.sl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.sl-dot-trend { background: #FF3B30; }
+.sl-dot-watch { background: #FF9500; }
+.sl-dot-interest { background: var(--blue); }
+
+/* 시그널 아이템 */
+.signal-list { display: flex; flex-direction: column; gap: 8px; }
+.signal-item {
+  background: var(--surface); border-radius: var(--radius);
+  padding: 16px 18px; box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 14px;
+  border-left: 4px solid transparent;
+  transition: box-shadow .15s, transform .15s;
+  cursor: default;
+}
+.signal-item:hover { box-shadow: var(--shadow-md); transform: translateX(2px); }
+.signal-item { border-left-color: var(--blue); }
+
+.si-rank {
+  font-size: 13px; font-weight: 700; color: var(--text3);
+  width: 24px; text-align: center; flex-shrink: 0;
+}
+.si-body { flex: 1; min-width: 0; }
+.si-keyword {
+  font-size: 16px; font-weight: 700; color: var(--text);
+  margin-bottom: 4px;
+}
+.si-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.si-badge {
+  font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 20px;
+}
+.si-badge-trend    { background: #FFF0F0; color: #FF3B30; }
+.si-badge-watch    { background: #FFF8EB; color: #FF6A00; }
+.si-badge-interest { background: var(--blue-bg); color: var(--blue); }
+.si-sources { font-size: 11px; color: var(--text3); }
+.si-right { text-align: right; flex-shrink: 0; }
+.si-score {
+  font-size: 20px; font-weight: 700; color: var(--text);
+  line-height: 1;
+}
+.si-score-label { font-size: 10px; color: var(--text3); margin-top: 2px; }
+.si-bar-wrap { width: 80px; height: 4px; background: var(--bg); border-radius: 2px; margin-top: 6px; }
+.si-bar { height: 100%; border-radius: 2px; transition: width .4s; }
+.si-bar { background: var(--blue); }
+
+/* 시그널 출처 태그 */
+.si-src-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.si-src-tag {
+  font-size: 10px; color: var(--text3);
+  background: var(--bg); border: 1px solid var(--border);
+  padding: 1px 7px; border-radius: 10px;
+}
+
+/* 모바일 시그널 */
+@media(max-width:767px){
+  .view-news,.view-signal { display: block !important; }
+  body.signal-mode .view-news { display: none !important; }
+  body.signal-mode .view-signal { display: block !important; }
+  /* 시그널 필터/메인은 JS로 display 제어하되 !important 없이 */
+  #mo-signal-filter { display: none; }
+  #mo-signal { display: none; }
+  .mobile-main.view-signal { padding: 12px 16px 90px; }
+  .signal-item { padding: 12px 14px; gap: 10px; }
+  .si-score { font-size: 17px; }
+  .si-bar-wrap { width: 60px; }
+}
+
+
+/* ─── 댓글 시스템 ─── */
+.comment-section{margin-top:8px;padding-top:10px;border-top:1px solid var(--border)}
+.comment-header{
+  display:flex;align-items:center;gap:6px;width:100%;
+  padding:6px 0;background:none;border:none;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.comment-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);background:var(--bg);border:1px solid var(--border);cursor:pointer;padding:5px 10px;border-radius:20px;font-weight:500;transition:all .15s;position:relative;z-index:2;-webkit-tap-highlight-color:transparent}
+.comment-toggle:hover,.comment-toggle:active{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
+.comment-count-badge{background:var(--blue-bg);color:var(--blue);font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px}
+.comment-box{margin-top:10px;display:none}
+.comment-box.open{display:block}
+.comment-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;max-height:200px;overflow-y:auto}
+.comment-item{background:var(--bg);border-radius:8px;padding:8px 10px}
+.comment-header{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.comment-name{font-size:12px;font-weight:700;color:var(--text)}
+.comment-time{font-size:10px;color:var(--text3)}
+.comment-content{font-size:12px;color:var(--text2);line-height:1.5}
+.comment-form{margin-top:6px}
+.comment-inputs{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.comment-name-input{width:72px;flex-shrink:0;padding:7px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;outline:none;background:var(--surface);color:var(--text)}
+.comment-name-input:focus{border-color:var(--blue)}
+.comment-text-input{flex:1;padding:7px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;outline:none;background:var(--surface);color:var(--text);resize:none}
+.comment-text-input:focus{border-color:var(--blue)}
+.comment-submit{display:block;margin-left:auto;padding:6px 16px;background:var(--blue);color:#fff;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer}
+.comment-submit:hover{opacity:.85}
+.comment-empty{font-size:11px;color:var(--text3);text-align:center;padding:8px 0}
+
+/* ── 모바일 바텀 시트 댓글 ── */
+.comment-sheet-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:500;
+}
+.comment-sheet-overlay.on{display:block}
+.comment-sheet{
+  position:fixed;bottom:0;left:0;right:0;z-index:501;
+  background:var(--surface);border-radius:20px 20px 0 0;
+  padding:0 0 env(safe-area-inset-bottom);
+  max-height:80vh;display:flex;flex-direction:column;
+  transform:translateY(100%);transition:transform .3s ease;
+}
+.comment-sheet.on{transform:translateY(0)}
+.comment-sheet-handle{
+  width:36px;height:4px;background:var(--border);border-radius:2px;
+  margin:12px auto 8px;flex-shrink:0;
+}
+.comment-sheet-title{
+  font-size:14px;font-weight:700;padding:0 16px 10px;
+  border-bottom:1px solid var(--border);flex-shrink:0;color:var(--text);
+}
+.comment-sheet-list{flex:1;overflow-y:auto;padding:12px 16px}
+.comment-sheet-form{
+  padding:10px 16px;border-top:1px solid var(--border);flex-shrink:0;
+}
+.comment-sheet-inputs{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.comment-sheet-name{
+  width:72px;flex-shrink:0;padding:9px 10px;
+  border:1.5px solid var(--border);border-radius:10px;
+  font-size:13px;font-family:inherit;background:var(--bg);color:var(--text);outline:none;
+}
+.comment-sheet-name:focus{border-color:var(--blue)}
+.comment-sheet-text{
+  flex:1;padding:9px 10px;
+  border:1.5px solid var(--border);border-radius:10px;
+  font-size:13px;font-family:inherit;background:var(--bg);color:var(--text);
+  resize:none;outline:none;
+}
+.comment-sheet-text:focus{border-color:var(--blue)}
+.comment-sheet-actions{display:flex;justify-content:flex-end;margin-bottom:6px}
+.comment-sheet-submit{
+  padding:10px 24px;background:var(--blue);color:#fff;
+  border-radius:10px;font-size:14px;font-weight:600;border:none;cursor:pointer;
+}
+
+/* 모바일에서 카드 내 comment-section은 숨기고 버튼만 보이게 */
+@media(max-width:767px){
+  .comment-section .comment-list,
+  .comment-section .comment-form { display:none; }
+  .comment-section .comment-header { cursor:pointer; }
+}
+
+/* ── Auth ── */
+.auth-btn{font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
+.auth-btn:hover{border-color:var(--blue);color:var(--blue)}
+.auth-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:flex-end;justify-content:center;padding:0}
+.auth-overlay.on{display:flex}
+.auth-modal{background:var(--surface);border-radius:20px 20px 0 0;padding:24px 24px calc(24px + env(safe-area-inset-bottom));width:100%;max-width:480px;box-shadow:0 -4px 30px rgba(0,0,0,.15);max-height:90vh;overflow-y:auto}
+@media(min-width:600px){
+  .auth-overlay{align-items:center;padding:20px}
+  .auth-modal{border-radius:16px;padding:28px}
+}
+.auth-modal h3{font-size:17px;font-weight:700;margin-bottom:20px;color:var(--text)}
+.auth-field{margin-bottom:12px}
+.auth-field label{font-size:12px;font-weight:600;color:var(--text2);display:block;margin-bottom:5px}
+.auth-input{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;background:var(--bg);color:var(--text);outline:none}
+.auth-input:focus{border-color:var(--blue)}
+.auth-submit{width:100%;padding:11px;background:var(--blue);color:#fff;border-radius:10px;font-size:14px;font-weight:700;border:none;cursor:pointer;margin-top:4px}
+.auth-submit:hover{opacity:.9}
+.auth-toggle{font-size:12px;color:var(--text3);text-align:center;margin-top:12px;cursor:pointer}
+.auth-toggle span{color:var(--blue);font-weight:600}
+.auth-error{font-size:12px;margin-top:8px;text-align:center;min-height:16px}
+.auth-close{float:right;background:none;border:none;font-size:18px;color:var(--text3);cursor:pointer;margin-top:-4px}
+.user-info{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:8px}
+
+/* ── 태그 시스템 ── */
+.tag-section{margin-top:6px;padding-top:8px;border-top:1px solid var(--border)}
+.tag-header{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.tag-chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.tag-chip{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;cursor:default}
+.tag-chip.brand{background:#FFF3E0;color:#E65100}
+.tag-chip.brand_custom{background:#FFF3E0;color:#E65100;border:1.5px dashed #E65100}
+.tag-chip.work_custom{background:#E8F5E9;color:#2E7D32;border:1.5px dashed #2E7D32}
+.tag-chip.work{background:#E8F5E9;color:#2E7D32}
+.tag-chip-del{background:none;border:none;cursor:pointer;font-size:10px;color:inherit;opacity:.6;padding:0;line-height:1}
+.tag-chip-del:hover{opacity:1}
+.tag-add-btn{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px;border:1.5px dashed var(--border);color:var(--text3);background:none;cursor:pointer;transition:all .15s}
+.tag-add-btn:hover{border-color:var(--blue);color:var(--blue)}
+.tag-panel{margin-top:6px;padding:10px 12px;background:var(--bg);border-radius:10px;border:1px solid var(--border)}
+.tag-panel-group{margin-bottom:8px}
+.tag-panel-label{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:5px;letter-spacing:.05em}
+.tag-panel-pills{display:flex;flex-wrap:wrap;gap:4px}
+.tag-panel-pill{font-size:12px;font-weight:500;padding:4px 11px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s}
+.tag-panel-pill:hover{border-color:var(--blue);color:var(--blue)}
+.tag-panel-pill.active-brand{background:#FFF3E0;border-color:#E65100;color:#E65100}
+.tag-panel-pill.active-work{background:#E8F5E9;border-color:#2E7D32;color:#2E7D32}
+.tag-panel-notice{font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* ── 모바일 필터 토글 ── */
+.mf-toggle-btn{
+  width:100%;padding:8px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--surface);border:none;cursor:pointer;
+  font-size:13px;font-weight:600;color:var(--text2);
+}
+.mf-toggle-btn .mf-toggle-arrow{
+  font-size:11px;color:var(--text3);transition:transform .2s;
+}
+.mf-toggle-btn.open .mf-toggle-arrow{ transform:rotate(180deg); }
+.mf-collapsible{ display:none; }
+.mf-collapsible.open{ display:block; }
+
+/* ── 오른쪽 패널 섹션 구분 ── */
+.rp-section {
+  padding-top:16px;
+  margin-top:12px;
+  border-top:1px solid var(--border);
+}
+.rp-label {
+  font-size:11px;font-weight:700;color:var(--text3);
+  letter-spacing:.5px;text-transform:uppercase;
+  margin-bottom:10px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+/* ─── 분류 기준 팝업 ─── */
+.guide-btn{
+  width:18px;height:18px;border-radius:50%;
+  background:var(--border);color:var(--text3);
+  font-size:11px;font-weight:700;
+  display:inline-flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .15s;flex-shrink:0;
+  border:none;
+}
+.guide-btn:hover{background:var(--blue);color:#fff}
+.guide-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);
+  z-index:999;align-items:center;justify-content:center;padding:20px;
+}
+.guide-overlay.on{display:flex}
+.guide-modal{
+  background:var(--surface);border-radius:16px;
+  padding:24px;max-width:560px;width:100%;
+  max-height:80vh;overflow-y:auto;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+.guide-modal h3{font-size:15px;font-weight:700;margin-bottom:16px;color:var(--text)}
+.guide-table{width:100%;border-collapse:collapse;font-size:12px}
+.guide-table th{text-align:left;padding:6px 8px;background:var(--bg);color:var(--text3);font-weight:600;border-bottom:2px solid var(--border)}
+.guide-table td{padding:7px 8px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.guide-table tr:last-child td{border-bottom:none}
+.guide-table td:first-child{font-weight:600;color:var(--text);white-space:nowrap}
+.guide-close{
+  float:right;background:none;border:none;font-size:18px;
+  color:var(--text3);cursor:pointer;padding:0;margin-top:-4px;
+}
+@media(max-width:767px){.guide-modal{padding:16px;border-radius:12px}}
+
+.si-news-list{margin-top:10px;border-top:1px solid var(--border);padding-top:8px}
+.si-news-scroll{max-height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:4px;scrollbar-width:thin}
+.si-news-scroll::-webkit-scrollbar{width:4px}
+.si-news-scroll::-webkit-scrollbar-track{background:var(--bg)}
+.si-news-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.si-news-item{display:flex;flex-direction:column;gap:2px;padding:7px 8px;border-radius:8px;background:var(--bg);text-decoration:none;transition:background .15s}
+.si-news-item:hover{background:var(--blue-bg)}
+.si-news-title{font-size:12px;color:var(--text);font-weight:500;line-height:1.4}
+.si-news-src{font-size:10px;color:var(--text3)}
+.signal-item{cursor:pointer}
+.signal-item:hover .si-keyword{color:var(--blue)}
+
+/* scroll top (PC only) */
+.scroll-top{
+  position:fixed;bottom:28px;right:28px;z-index:50;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--text);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.15);
+  opacity:0;transition:opacity .2s,transform .2s;transform:translateY(10px);
+}
+.scroll-top.show{opacity:1;transform:translateY(0)}
+@media(max-width:767px){.scroll-top{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ═══ PC 헤더 ═══ -->
+<div class="pc-header">
+<div class="pc-header-inner">
+  <div class="pc-logo-wrap">
+    <div class="pc-logo">우리맛 연구</div>
+    <div class="pc-logo-sub">OUR TASTE RESEARCH</div>
+  </div>
+  <div class="pc-search">
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input id="pc-q" type="text" placeholder="기사 검색">
+  </div>
+  <span class="pc-upd" id="pc-upd"></span>
+  <div style="display:flex;align-items:center;gap:8px"><a href="https://www.notion.so/F-B-379e6fd276d280c682dccf51c56031eb" target="_blank" rel="noopener" style="font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);color:var(--text2);text-decoration:none;white-space:nowrap;transition:all .15s" onmouseover="this.style.borderColor='var(--blue)';this.style.color='var(--blue)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text2)'">💬 개선 요청</a></div>
+  <div id="auth-header" style="display:flex;align-items:center;gap:8px"></div>
+  <button class="pc-ref-btn" id="pc-ref" onclick="loadNews()">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+  </button>
+</div>
+</div>
+
+<!-- ═══ PC 바디 ═══ -->
+<div class="pc-body">
+
+
+  <!-- PC 메인 -->
+  <div class="pc-main">
+    <div class="view-news" id="pc-main">
+      <div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">불러오는 중…</div></div>
+    </div>
+    <div class="view-signal" id="pc-signal">
+      <div class="empty"><div class="empty-icon">📡</div><div class="empty-title">시그널 분석 중…</div></div>
+    </div>
+  </div>
+
+  <!-- PC 오른쪽 패널 (필터 + 태그) -->
+  <aside class="pc-tag-panel" id="pc-right-panel">
+    <div class="sidebar-section" style="position:sticky;top:88px;max-height:calc(100vh - 108px);overflow-y:auto">
+
+      <!-- 뉴스/시그널 탭 -->
+      <div class="view-toggle" style="margin-bottom:16px">
+        <button class="vt-btn on" id="vt-news" onclick="setView('news')">📰 뉴스</button>
+        <button class="vt-btn" id="vt-signal" onclick="setView('signal')">📡 시그널</button>
+      </div>
+
+      <!-- 카테고리 (뉴스) -->
+      <div class="view-news rp-section">
+        <div class="rp-label">
+          카테고리
+          <button onclick="openGuide('news')" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-weight:600">분류 기준 ↗</button>
+        </div>
+        <div class="sidebar-cat" id="pc-cats"></div>
+      </div>
+
+      <!-- 뉴스 필터 -->
+      <div class="view-news sidebar-filters rp-section">
+        <div class="news-period-filter" style="margin-bottom:14px">
+          <div class="sf-label" style="margin-bottom:6px">기간</div>
+          <div class="sf-pills">
+            <button class="sf-pill" data-d="1" onclick="setPeriod(1)">오늘</button>
+            <button class="sf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
+            <button class="sf-pill" data-d="30" onclick="setPeriod(30)">한달</button>
+            <button class="sf-pill" data-d="0" onclick="setPeriod(0)">직접설정</button>
           </div>
-          <div id="custom-input-brand-${a.id}" style="display:none;margin-top:6px">
-            <div style="display:flex;gap:6px">
-              <input id="custom-val-brand-${a.id}" class="comment-name-input" style="flex:1;width:auto" placeholder="태그 직접 입력" maxlength="20">
-              <button type="button" class="comment-submit" style="padding:5px 12px" onclick="submitCustomTag('${a.id}','brand')">추가</button>
-            </div>
+        </div>
+        <div style="margin-bottom:14px">
+          <div class="sf-label" style="margin-bottom:6px">국가</div>
+          <div class="sf-pills">
+            <button class="sf-pill on-blue" data-l="all" onclick="setLang('all')">전체</button>
+            <button class="sf-pill" data-l="ko" onclick="setLang('ko')">국내</button>
+            <button class="sf-pill" data-l="en" onclick="setLang('en')">해외</button>
           </div>
+        </div>
+        <div style="margin-bottom:14px">
+          <div class="sf-label" style="margin-bottom:6px">출처</div>
+          <select class="sf-select" id="pc-src" onchange="setSrc(this.value)"><option value="all">전체</option></select>
+        </div>
+        <button class="read-toggle-btn" id="pc-read-btn" onclick="toggleRead()" style="margin-top:4px">읽은 것 숨기기</button>
+        <button class="read-toggle-btn" id="my-cmt-btn-pc" onclick="toggleMyComments()" style="display:none;margin-top:8px">내 의견 기사 보기</button>
+      </div>
+
+      <!-- 시그널 필터 -->
+      <div class="view-signal sidebar-filters rp-section" id="pc-signal-filters" style="display:none">
+        <div class="sf-label" style="margin-bottom:8px">분석 기간</div>
+        <div class="sf-pills" style="margin-bottom:8px">
+          <button class="sf-pill" data-sp="1" onclick="setSignalPeriod(1)">오늘</button>
+          <button class="sf-pill" data-sp="7" onclick="setSignalPeriod(7)">7일</button>
+          <button class="sf-pill on" data-sp="30" onclick="setSignalPeriod(30)">한달</button>
+          <button class="sf-pill" data-sp="custom" onclick="setSignalPeriod('custom')">직접 설정</button>
+        </div>
+        <div class="sf-label" style="margin-bottom:6px">키워드 유형 <button onclick="openGuide('signal')" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-weight:600">유형 기준 ↗</button></div>
+        <button class="ss-btn on-all" data-kc="all" onclick="setKwCat('all')">전체 유형</button>
+        <button class="ss-btn" data-kc="food_cat" onclick="setKwCat('food_cat')">🍽️ 식품 카테고리</button>
+        <button class="ss-btn" data-kc="ingredient" onclick="setKwCat('ingredient')">🌿 식재료·원료</button>
+        <button class="ss-btn" data-kc="trend" onclick="setKwCat('trend')">📈 소비 트렌드</button>
+        <button class="ss-btn" data-kc="brand" onclick="setKwCat('brand')">🏷️ 브랜드</button>
+      </div>
+
+      <!-- 태그 필터 -->
+      <div class="view-news rp-section" id="pc-tag-filter">
+        <div class="rp-label">태그 필터</div>
+        <button class="sf-pill on" onclick="setTagFilter(null)" id="tag-all-btn" style="margin-bottom:8px;width:100%">전체 초기화</button>
+        <div class="sf-label" style="font-size:10px;margin-top:4px;margin-bottom:4px">브랜드</div>
+        <div id="pc-tag-brand-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
+        <div class="sf-label" style="font-size:10px;margin-top:8px;margin-bottom:4px">업무</div>
+        <div id="pc-tag-work-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
+        <div id="pc-tag-custom-pills"></div>
+      </div>
+
+    </div>
+  </aside>
+
+</div>
+
+<!-- ═══ 모바일 헤더 ═══ -->
+<div class="mobile-header">
+<div class="mh-inner">
+  <div class="mh-logo">우리맛 연구</div>
+  <div class="mh-search">
+    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input id="mo-q" type="text" placeholder="검색">
+  </div>
+  <a href="https://www.notion.so/F-B-379e6fd276d280c682dccf51c56031eb" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);color:var(--text2);text-decoration:none;white-space:nowrap;flex-shrink:0">💬 개선 요청</a>
+  <div id="mo-auth-header" style="display:flex;align-items:center"></div>
+  <button class="mh-ref-btn" id="mo-ref" onclick="loadNews()">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+  </button>
+</div>
+</div>
+
+<!-- 모바일 필터 -->
+<div class="mobile-filter" id="mo-news-filter">
+<button class="mf-toggle-btn" id="mo-filter-toggle" onclick="toggleMoFilter()">
+  <span>🔍 필터</span>
+  <span class="mf-toggle-arrow">▼</span>
+</button>
+<div class="mf-collapsible" id="mo-filter-body">
+<div class="mf-inner">
+  <button class="mf-pill" data-d="1" onclick="setPeriod(1)">오늘</button>
+  <button class="mf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
+  <button class="mf-pill" data-d="30" onclick="setPeriod(30)">한달</button>
+  <button class="mf-pill" data-d="0" onclick="setPeriod(0)">직접설정</button>
+  <div class="mf-sep"></div>
+  <button class="mf-pill on-blue" data-l="all" onclick="setLang('all')">전체</button>
+  <button class="mf-pill" data-l="ko" onclick="setLang('ko')">국내</button>
+  <button class="mf-pill" data-l="en" onclick="setLang('en')">해외</button>
+  <div class="mf-sep"></div>
+  <button class="mf-pill on-blue" data-cat="all" onclick="setMoCat('all')">전체</button>
+  <button class="mf-pill" data-cat="신제품·NPD" onclick="setMoCat('신제품·NPD')">🆕 신제품·NPD</button>
+  <button class="mf-pill" data-cat="소비자·시장" onclick="setMoCat('소비자·시장')">📊 소비자·시장</button>
+  <button class="mf-pill" data-cat="식재료·원료" onclick="setMoCat('식재료·원료')">🌿 식재료·원료</button>
+  <button class="mf-pill" data-cat="채널·유통" onclick="setMoCat('채널·유통')">🏪 채널·유통</button>
+  <button class="mf-pill" data-cat="브랜드·기업" onclick="setMoCat('브랜드·기업')">🏢 브랜드·기업</button>
+  <button class="mf-pill" data-cat="산업·정책" onclick="setMoCat('산업·정책')">📋 산업·정책</button>
+  <div class="mf-sep"></div>
+  <select class="mf-select" id="mo-src" onchange="setSrc(this.value)"><option value="all">전체 출처</option></select>
+  <div class="mf-sep"></div>
+  <button id="my-cmt-btn-mo" class="mf-pill" onclick="toggleMyComments()" style="display:none">내 의견 기사</button>
+  <div id="mo-tag-filter" style="display:none;width:100%">
+    <div class="mf-sep"></div>
+    <div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;padding:2px 0">태그 필터</div>
+    <div class="mo-tag-pills" style="display:flex;flex-wrap:wrap;gap:4px;width:100%"></div>
+  </div>
+  <div class="mf-sep"></div>
+  <button class="mf-pill" style="color:var(--blue);border-color:var(--blue)" onclick="openGuide('news')">분류 기준 ↗</button>
+</div>
+</div>
+</div>
+
+<!-- 모바일 시그널 필터 -->
+<div class="mobile-filter" id="mo-signal-filter" style="display:none">
+<div class="mf-inner">
+  <button class="mf-pill" data-sp="1"  onclick="setSignalPeriod(1)">오늘</button>
+  <button class="mf-pill" data-sp="7"  onclick="setSignalPeriod(7)">7일</button>
+  <button class="mf-pill on" data-sp="30" onclick="setSignalPeriod(30)">한달</button>
+  <button class="mf-pill" data-sp="custom" onclick="setSignalPeriod('custom')">직접 설정</button>
+  <div class="mf-sep"></div>
+  <button class="mf-pill on-all" data-kc="all"        onclick="setKwCat('all')">전체 유형</button>
+  <button class="mf-pill" data-kc="food_cat"  onclick="setKwCat('food_cat')">🍽️ 식품</button>
+  <button class="mf-pill" data-kc="ingredient" onclick="setKwCat('ingredient')">🌿 원료</button>
+  <button class="mf-pill" data-kc="trend"     onclick="setKwCat('trend')">📈 트렌드</button>
+  <button class="mf-pill" data-kc="brand"     onclick="setKwCat('brand')">🏷️ 브랜드</button>
+  <div class="mf-sep"></div>
+  <button class="mf-pill" style="color:var(--blue);border-color:var(--blue)" onclick="openGuide('signal')">유형 기준 ↗</button>
+</div>
+</div>
+
+<!-- 모바일 메인 -->
+<div class="mobile-main view-news" id="mo-main" style="display:none">
+  <div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">불러오는 중…</div></div>
+</div>
+<div class="mobile-main view-signal" id="mo-signal" style="display:none">
+  <div class="empty"><div class="empty-icon">📡</div><div class="empty-title">시그널 분석 중…</div></div>
+</div>
+
+<!-- 모바일 하단 탭바 -->
+<nav class="bottom-nav" id="bottom-nav"></nav>
+
+<!-- 스크롤 상단 (PC) -->
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<script>
+const CATS=['전체','신제품·NPD','소비자·시장','식재료·원료','채널·유통','브랜드·기업','산업·정책'];
+const CAT_ICONS={'전체':'🗂️','신제품·NPD':'🆕','소비자·시장':'📊','식재료·원료':'🌿','채널·유통':'🏪','브랜드·기업':'🏢','산업·정책':'📋'};
+let all=[],tab='전체',period=7,lang='all',src='all',query='',hideRead=false,showCvsOnly=false;
+let _cmtCounts={}; // 의견 수 캐시
+let _myArticleIds=new Set(); // 내 의견 단 기사 ID
+let showMyComments=false;
+
+const isMobile=()=>window.innerWidth<768;
+
+const READ_KEY='urimat_read_v1';
+function getRead(){try{return new Set(JSON.parse(localStorage.getItem(READ_KEY)||'[]'))}catch{return new Set()}}
+function markRead(id){try{const s=getRead();s.add(id);localStorage.setItem(READ_KEY,JSON.stringify([...s]))}catch{}}
+function isRead(id){return getRead().has(id)}
+
+function fmtDate(iso){
+  try{
+    const d=new Date(iso);
+    const M=String(d.getMonth()+1).padStart(2,'0');
+    const D=String(d.getDate()).padStart(2,'0');
+    const h=d.getHours();
+    const mm=String(d.getMinutes()).padStart(2,'0');
+    return `${M}.${D} ${h<12?'오전':'오후'} ${String(h%12||12)}:${mm}`;
+  }catch{return ''}
+}
+function dayKey(iso){
+  try{
+    const d=new Date(iso),now=new Date();
+    const diff=Math.floor((now.setHours(0,0,0,0)-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/86400000);
+    if(diff===0)return '오늘';if(diff===1)return '어제';return diff+'일 전';
+  }catch{return '기타'}
+}
+function fmtUpd(iso){try{return new Date(iso).toLocaleString('ko-KR',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})+' 수집'}catch{return ''}}
+function withinPeriod(iso){return period===0||(Date.now()-new Date(iso))/86400000<period}
+
+function filtered(){
+  let r=all;
+  if(tab!=='전체')r=r.filter(a=>a.category===tab);
+  if(lang!=='all')r=r.filter(a=>a.lang===lang);
+  if(src!=='all')r=r.filter(a=>a.source===src);
+  if(period>0)r=r.filter(a=>withinPeriod(a.date));
+  if(query){const lq=query.toLowerCase();r=r.filter(a=>a.title.toLowerCase().includes(lq)||(a.source||'').toLowerCase().includes(lq));}
+  if(hideRead)r=r.filter(a=>!isRead(a.id));
+  if(showCvsOnly)r=r.filter(a=>a.is_cvs===true);
+  if(showMyComments)r=r.filter(a=>_myArticleIds.has(a.id));
+  if(activeBrandFilter) r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.tag===activeBrandFilter));
+  if(activeWorkFilter)  r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.tag===activeWorkFilter));
+  return r;
+}
+
+function catCounts(){
+  const base=all.filter(a=>{
+    if(lang!=='all'&&a.lang!==lang)return false;
+    if(src!=='all'&&a.source!==src)return false;
+    return withinPeriod(a.date);
+  });
+  const cnt={};
+  for(const a of base){const c=a.category||'브랜드·기업';cnt[c]=(cnt[c]||0)+1;}
+  return{cnt,total:base.length};
+}
+
+// PC 사이드바 카테고리
+function renderPcCats(){
+  const{cnt,total}=catCounts();
+  document.getElementById('pc-cats').innerHTML=CATS.map(c=>{
+    const n=c==='전체'?total:(cnt[c]||0);
+    if(c!=='전체'&&n===0)return '';
+    return `<button class="s-cat-btn ${c===tab?'on':''}" onclick="setTab('${c}')">${c}<span class="s-n">${n}</span></button>`;
+  }).join('');
+}
+
+// 모바일 하단 탭바
+function renderBottomNav(){
+  const isSignal = currentView==='signal';
+  document.getElementById('bottom-nav').innerHTML=
+    `<button class="bn-tab ${!isSignal?'on':''}" onclick="setView('news')">
+      <span style="font-size:18px">📰</span>
+      <span>뉴스</span>
+      <div class="bn-dot"></div>
+    </button>
+    <button class="bn-tab ${isSignal?'on':''}" onclick="setView('signal')">
+      <span style="font-size:18px">📡</span>
+      <span>시그널</span>
+      <div class="bn-dot"></div>
+    </button>`;
+}
+
+function renderSrcSel(){
+  const sources=[...new Set(all.map(a=>a.source))].sort();
+  const opts='<option value="all">전체</option>'+sources.map(s=>`<option value="${s}"${src===s?' selected':''}>${s}</option>`).join('');
+  document.getElementById('pc-src').innerHTML=opts;
+  document.getElementById('mo-src').innerHTML='<option value="all">전체 출처</option>'+sources.map(s=>`<option value="${s}"${src===s?' selected':''}>${s}</option>`).join('');
+}
+
+function groupedHtml(items){
+  if(!items.length)return`<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">기사가 없습니다</div><div>다른 필터를 선택해보세요</div></div>`;
+  const groups={};
+  for(const a of items){const k=dayKey(a.date);if(!groups[k])groups[k]=[];groups[k].push(a);}
+  const ORDER=['오늘','어제','2일 전','3일 전','4일 전','5일 전','6일 전'];
+  const keys=Object.keys(groups).sort((a,b)=>{const ai=ORDER.indexOf(a),bi=ORDER.indexOf(b);if(ai>=0&&bi>=0)return ai-bi;if(ai>=0)return -1;if(bi>=0)return 1;return parseInt(a)-parseInt(b);});
+  return keys.map(k=>`
+    <div class="date-group">
+      <div class="dg-header"><span class="dg-title">${k}</span><div class="dg-line"></div><span class="dg-count">${groups[k].length}건</span></div>
+      <div class="cards-grid">${groups[k].map((a,i)=>cardHtml(a,i)).join('')}</div>
+    </div>`).join('');
+}
+
+function renderMain(){
+  const items=filtered();
+  const html=groupedHtml(items);
+  document.getElementById('pc-main').innerHTML=html;
+  document.getElementById('mo-main').innerHTML=html;
+  applyCachedCounts();
+  loadAllCommentCounts();
+  loadAllTags();
+}
+
+function cardHtml(a,i){
+  const cats=[a.category||'브랜드·기업'];
+  const read=isRead(a.id);
+  const badges=cats.map(c=>`<span class="badge b-${c}">${c}</span>`).join('');
+  let sum = '';
+  if(a.summary){
+    if(Array.isArray(a.summary)){
+      sum = `<ul class="card-bullets">${a.summary.map(s=>`<li>${s}</li>`).join('')}</ul>`;
+    } else {
+      sum = `<div class="card-summary">${a.summary}</div>`;
+    }
+  }
+  const kws=(a.keywords&&a.keywords.length)?`<div class="keywords">${a.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>`:'';
+  const tagHtml = `
+    <div class="tag-section" data-taid="${a.id}">
+      <div class="tag-header">
+        <span style="font-size:12px;font-weight:600;color:var(--text2)">🏷️ 태그</span>
+        <button type="button" class="tag-add-btn" onclick="event.stopPropagation();toggleTagPanel('${a.id}')">+ 추가</button>
+      </div>
+      <div class="tag-chips" id="tag-chips-${a.id}"></div>
+      <div class="tag-panel" id="tag-panel-${a.id}" style="display:none">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:4px">
+          <button type="button" onclick="event.stopPropagation();toggleTagPanel('${a.id}')" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--text3);padding:0">✕ 닫기</button>
+        </div>
+        <div class="tag-panel-group">
+          <div class="tag-panel-label">브랜드</div>
+          <div class="tag-panel-pills">
+            ${PRESET_TAGS.brand.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="brand" onclick="toggleTag('${a.id}','${t}','brand',this)">${t}</button>`).join('')}
             <button type="button" class="tag-panel-pill" onclick="event.stopPropagation();promptCustomTag('${a.id}','brand')">기타</button>
-       </div>
-       <div class="tag-panel-group">
-         <div class="tag-panel-label">업무</div>
-         <div class="tag-panel-pills">
-           ${PRESET_TAGS.work.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="work" onclick="toggleTag('${a.id}','${t}','work',this)">${t}</button>`).join('')}
-            <button type="button" class="tag-panel-pill" onclick="showCustomTagInput('${a.id}','work')">기타</button>
-          </div>
-          <div id="custom-input-work-${a.id}" style="display:none">
-            <div style="display:flex;gap:6px;margin-top:6px">
-              <input id="custom-val-work-${a.id}" class="comment-name-input" style="flex:1;width:auto" placeholder="태그 직접 입력" maxlength="20">
-              <button type="button" class="comment-submit" style="padding:5px 12px" onclick="submitCustomTag('${a.id}','work')">추가</button>
-            </div>
-          </div>
+        </div>
+        <div class="tag-panel-group">
+          <div class="tag-panel-label">업무</div>
+          <div class="tag-panel-pills">
+            ${PRESET_TAGS.work.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="work" onclick="toggleTag('${a.id}','${t}','work',this)">${t}</button>`).join('')}
             <button type="button" class="tag-panel-pill" onclick="event.stopPropagation();promptCustomTag('${a.id}','work')">기타</button>
-       </div>
-       <div style="font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">원하는 카테고리가 없다면 <a href="https://www.notion.so/F-B-379e6fd276d280c682dccf51c56031eb" target="_blank" style="color:var(--blue);font-weight:600">개선 요청</a>을 이용해주세요</div>
-     </div>
-@@ -1790,6 +1776,14 @@
-} catch(e) { alert('태그 추가 실패: ' + e.message); }
+        </div>
+        <div style="font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">원하는 카테고리가 없다면 <a href="https://www.notion.so/F-B-379e6fd276d280c682dccf51c56031eb" target="_blank" style="color:var(--blue);font-weight:600">개선 요청</a>을 이용해주세요</div>
+      </div>
+    </div>`;
+  const aid = a.id;
+  const commentHtml = `
+    <div class="comment-section" data-aid="${aid}">
+      <button type="button" class="comment-header">
+        <span style="font-size:13px">💬</span>
+        <span style="font-size:13px;font-weight:600;color:var(--text2)">의견</span>
+        <span id="cb-badge-${aid}" style="font-size:11px;color:var(--blue);font-weight:600;background:var(--blue-bg);padding:1px 7px;border-radius:10px">0개</span>
+      </button>
+      <div id="cb-list-${aid}" class="comment-list" style="display:none"></div>
+      <div class="comment-form" style="display:none">
+        <div class="comment-inputs">
+          <input id="cn-${aid}" class="comment-name-input" placeholder="이름" maxlength="10">
+          <textarea id="ct-${aid}" class="comment-text-input" placeholder="의견을 남겨주세요" rows="1"></textarea>
+        </div>
+        <button type="button" id="cs-${aid}" class="comment-submit" data-cid="${aid}" onclick="cmtSubmit(this.dataset.cid)">등록</button>
+      </div>
+    </div>`;
+  return `<div class="card${read?' read':''}" data-id="${a.id}" data-url="${(a.url||'')}">
+  <div class="card-top">${badges}<span class="lang-dot dot-${a.lang||'ko'}"></span><span class="card-src">${a.source}</span><span class="card-date">${fmtDate(a.date)}</span></div>
+  <div class="card-title">${a.title}</div>
+  ${sum}
+  ${kws}
+  <div class="card-bottom"><div class="unread-badge" id="rb-${a.id}"></div><svg class="card-link" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+  ${tagHtml}
+  ${commentHtml}
+</div>`;
+}
+
+function openArticle(url, id) {
+  markRead(id);
+  const card = document.querySelector(`[data-id="${id}"]`);
+  if(card) card.classList.add('read');
+  const badge = document.getElementById('rb-'+id);
+  if(badge) badge.style.cssText='background:transparent;border:1.5px solid var(--border)';
+  if(url && url!=='#') window.open(url,'_blank','noopener');
+}
+
+// 카드 클릭 이벤트 (기사 열기 + 댓글 토글)
+document.addEventListener('click', function(e) {
+  // 댓글 헤더 클릭 (모바일: 바텀시트, PC: 인라인)
+  const hdr = e.target.closest('.comment-header');
+  if (hdr) {
+    e.stopPropagation();
+    const sec = hdr.closest('.comment-section');
+    const aid = sec ? sec.dataset.aid : null;
+    if (!aid) return;
+    if (window.innerWidth < 768) {
+      const card = hdr.closest('.card');
+      const title = card ? card.querySelector('.card-title').textContent : '';
+      openCommentSheet(aid, title.substring(0, 20));
+    } else {
+      if (!currentUser) { openAuth('로그인 후 의견을 남길 수 있어요 👆'); return; }
+      const listEl = sec.querySelector('.comment-list');
+      const formEl = sec.querySelector('.comment-form');
+      const isOpen = listEl && listEl.style.display !== 'none';
+      if (listEl) listEl.style.display = isOpen ? 'none' : 'block';
+      if (formEl) formEl.style.display = isOpen ? 'none' : 'block';
+      if (!isOpen && aid) {
+        loadComments(aid).then(function(c) {
+          if (listEl) listEl.innerHTML = renderCommentHtml(c);
+          updateCmtBadge(aid, c.length);
+        }).catch(function(){});
+        var nameEl = document.getElementById('cn-' + aid);
+        if (nameEl && currentUser) {
+          nameEl.value = (currentUser.user_metadata && currentUser.user_metadata.name) || currentUser.email.split('@')[0];
+          nameEl.readOnly = true;
+          nameEl.style.color = 'var(--text3)';
+        } else if (nameEl) {
+          nameEl.readOnly = false;
+          nameEl.style.color = '';
+        }
+      }
+    }
+    return;
+  }
+  const card = e.target.closest('.card');
+  if (card && !e.target.closest('.comment-section') && !e.target.closest('.tag-section')) {
+    openArticle(card.dataset.url, card.dataset.id);
+  }
+});
+
+function renderAll(){
+  renderPcCats();
+  renderBottomNav();
+  renderSrcSel();
+  renderMain();
+}
+
+function setTab(c){tab=c;renderAll();}
+function setMoCat(c){
+  tab=c;
+  document.querySelectorAll('[data-cat]').forEach(b=>{
+    b.classList.remove('on','on-blue');
+    if(b.dataset.cat===c)b.classList.add(c==='all'?'on-blue':'on');
+  });
+  // PC 카테고리도 동기화
+  document.querySelectorAll('.s-cat-btn').forEach(b=>{
+    b.classList.toggle('on', b.textContent.includes(c)||(c==='전체'&&b.textContent.includes('전체')));
+  });
+  renderAll();
+}
+function setPeriod(d){
+  if(d===0){
+    const v=prompt('기간을 입력하세요 (일 수):');
+    if(!v||isNaN(+v))return;
+    d=+v;
+  }
+  period=d;
+  document.querySelectorAll('[data-d]').forEach(p=>p.classList.toggle('on',+p.dataset.d===d||p.dataset.d==='0'));
+  renderAll();
+}
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('[data-l]').forEach(p=>{
+    p.classList.remove('on','on-blue');
+    if(p.dataset.l===l)p.classList.add(l==='all'?'on-blue':'on');
+  });
+  renderAll();
+}
+function setSrc(v){src=v;renderAll();}
+function toggleRead(){
+  hideRead=!hideRead;
+  ['pc-read-btn'].forEach(id=>{
+    const btn=document.getElementById(id);
+    if(btn){btn.classList.toggle('on',hideRead);btn.textContent=hideRead?'읽은 것 보이기':'읽은 것 숨기기';}
+  });
+  renderMain();
+}
+
+
+
+// ════════════════════════════════════
+// 댓글 시스템 (Supabase)
+// ════════════════════════════════════
+
+const SB_URL = 'https://cnfxyqmhtvcuhbjyxjrk.supabase.co';
+const SB_KEY = 'sb_publishable_kxjyYPiZgj1I-a2nUnfCcQ_oeK4r639';
+
+async function sbFetch(path, options={}) {
+  const res = await fetch(SB_URL + path, {
+    ...options,
+    headers: {
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer ' + (getStoredToken() || SB_KEY),
+      'Content-Type': 'application/json',
+      'Prefer': (options.method === 'POST' || options.method === 'PATCH') ? 'return=minimal' : '',
+      ...(options.headers || {})
+    }
+  });
+  if (!res.ok) { const t = await res.text(); throw new Error(t || res.status); }
+  if (res.status === 204) return null;
+  const ct = res.headers.get('content-type') || '';
+  if (!ct.includes('json')) return null;
+  return res.json();
+}
+
+async function loadComments(articleId) {
+  try {
+    const data = await sbFetch(`/rest/v1/comments?article_id=eq.${articleId}&order=created_at.asc`);
+    return data || [];
+  } catch(e) { return []; }
+}
+
+async function postComment(articleId, name, content) {
+  var body = { article_id: articleId, name, content };
+  if (currentUser) { body.user_id = currentUser.id; body.user_email = currentUser.email; }
+  await sbFetch('/rest/v1/comments', { method: 'POST', body: JSON.stringify(body) });
+  if (currentUser) { _myArticleIds.add(articleId); renderMyCommentBtn(); }
+}
+
+function fmtCommentTime(iso) {
+  try {
+    const d = new Date(iso);
+    return d.toLocaleString('ko-KR', {month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+  } catch { return ''; }
+}
+
+function renderCommentHtml(comments) {
+  if (!comments.length) return '<div class="comment-empty">아직 의견이 없어요</div>';
+  return comments.map(c => `
+    <div class="comment-item" data-cmt-id="${c.id}">
+      <div class="comment-header">
+        <span class="comment-name">${c.name}</span>
+        <span class="comment-time">${fmtCommentTime(c.created_at)}</span>
+        ${(function(){ if(currentUser && c.user_id && currentUser.id === c.user_id){ return '<span style="margin-left:auto;display:flex;gap:6px"><button onclick="editComment(\'' + c.id + '\',\'' + c.content.replace(/'/g,"&#39;") + '\')" style="font-size:10px;color:var(--text3);background:none;border:none;cursor:pointer;padding:2px 4px">수정</button><button onclick="deleteComment(\'' + c.id + '\')" style="font-size:10px;color:#FF3B30;background:none;border:none;cursor:pointer;padding:2px 4px">삭제</button></span>'; } return ''; })()}
+      </div>
+      <div class="comment-content" id="cmt-content-${c.id}">${c.content}</div>
+      <div id="cmt-edit-${c.id}" style="display:none;margin-top:6px">
+        <textarea id="cmt-edit-text-${c.id}" rows="2" style="width:100%;padding:6px 8px;border:1.5px solid var(--blue);border-radius:8px;font-size:12px;font-family:inherit;resize:none;outline:none">${c.content}</textarea>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button onclick="saveEditComment('${c.id}')" style="font-size:11px;font-weight:600;color:#fff;background:var(--blue);border:none;border-radius:6px;padding:4px 10px;cursor:pointer">저장</button>
+          <button onclick="cancelEditComment('${c.id}')" style="font-size:11px;color:var(--text3);background:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px;cursor:pointer">취소</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function editComment(id, content) {
+  document.getElementById('cmt-content-' + id).style.display = 'none';
+  document.getElementById('cmt-edit-' + id).style.display = 'block';
+}
+function cancelEditComment(id) {
+  document.getElementById('cmt-content-' + id).style.display = 'block';
+  document.getElementById('cmt-edit-' + id).style.display = 'none';
+}
+async function saveEditComment(id) {
+  var text = document.getElementById('cmt-edit-text-' + id).value.trim();
+  if (!text) return;
+  try {
+    await sbFetch('/rest/v1/comments?id=eq.' + id, {
+      method: 'PATCH',
+      headers: {'Content-Type':'application/json','Prefer':'return=minimal'},
+      body: JSON.stringify({content: text})
+    });
+    document.getElementById('cmt-content-' + id).textContent = text;
+    cancelEditComment(id);
+  } catch(e) { alert('수정 실패: ' + e.message); }
+}
+async function deleteComment(id) {
+  if (!confirm('의견을 삭제할까요?')) return;
+  try {
+    await sbFetch('/rest/v1/comments?id=eq.' + id, { method: 'DELETE' });
+    var item = document.querySelector('[data-cmt-id="' + id + '"]');
+    var aid = null;
+    if (item) {
+      var sec = item.closest('.comment-section');
+      aid = sec ? sec.dataset.aid : null;
+      item.remove();
+    }
+    if (!aid) aid = sheetArticleId;
+    if (aid) {
+      loadComments(aid).then(function(c){
+        updateCmtBadge(aid, c.length);
+        // 시트 목록도 업데이트
+        var sl = document.getElementById('sheet-list');
+        if (sl && sheetArticleId === aid) sl.innerHTML = renderCommentHtml(c) || '<div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">아직 의견이 없어요</div>';
+        // PC 목록도 업데이트
+        var pl = document.getElementById('cb-list-' + aid);
+        if (pl) pl.innerHTML = renderCommentHtml(c);
+      }).catch(function(){});
+    }
+  } catch(e) { console.error('삭제 오류:', e); }
+}
+
+async function loadAllCommentCounts() {
+  try {
+    const data = await sbFetch('/rest/v1/comments?select=article_id&order=article_id');
+    if (!data) return;
+    // article_id별 카운트 집계
+    const counts = {};
+    data.forEach(function(row) {
+      counts[row.article_id] = (counts[row.article_id] || 0) + 1;
+    });
+    // 모든 배지 업데이트
+    Object.entries(counts).forEach(function([aid, count]) {
+      updateCmtBadge(aid, count);
+    });
+  } catch(e) {}
+}
+
+function updateCmtBadge(aid, count) {
+  _cmtCounts[aid] = count;
+  document.querySelectorAll('[id="cb-badge-' + aid + '"]').forEach(function(b){ b.textContent = count + '개'; });
+}
+
+function applyCachedCounts() {
+  Object.keys(_cmtCounts).forEach(function(aid) {
+    document.querySelectorAll('[id="cb-badge-' + aid + '"]').forEach(function(b){ b.textContent = _cmtCounts[aid] + '개'; });
+  });
+}
+
+function cmtToggle(aid) {
+  var box = document.getElementById('cb-' + aid);
+  if (!box) return;
+  if (box.style.display === 'block') { box.style.display = 'none'; return; }
+  box.style.display = 'block';
+  var list = document.getElementById('cb-list-' + aid);
+  if (list) list.innerHTML = '<div style="font-size:12px;color:var(--text3);padding:8px 0">불러오는 중...</div>';
+  loadComments(aid).then(function(c) {
+    if (list) list.innerHTML = renderCommentHtml(c);
+    var badge = document.getElementById('cb-badge-' + aid);
+    if (badge) badge.textContent = c.length + '개';
+  }).catch(function(err) {
+    if (list) list.innerHTML = '<div style="font-size:12px;color:#FF3B30;padding:8px 0">오류: ' + err.message + '</div>';
+  });
+}
+async function toggleComments(e, articleId, btn) { cmtToggle(articleId); }
+
+function updateBadge(articleId, count) {
+  document.querySelectorAll(`[data-cid="${articleId}"] .comment-count-badge`).forEach(b=>{
+    b.textContent = count > 0 ? count + '개' : '0개';
+    b.style.background = count > 0 ? 'var(--blue-bg)' : '';
+    b.style.color = count > 0 ? 'var(--blue)' : 'var(--text3)';
+  });
+}
+
+async function cmtSubmit(aid) {
+  if (!aid) return;
+  var nameEl = document.getElementById('cn-' + aid);
+  var textEl = document.getElementById('ct-' + aid);
+  if (!nameEl || !textEl) return;
+  var name = nameEl.value.trim();
+  var text = textEl.value.trim();
+  var btn  = document.getElementById('cs-' + aid);
+  if (!name) { nameEl.style.borderColor='#FF3B30'; nameEl.focus(); return; }
+  if (!text) { textEl.style.borderColor='#FF3B30'; textEl.focus(); return; }
+  nameEl.style.borderColor='';
+  textEl.style.borderColor='';
+  if (btn) { btn.textContent = '등록 중...'; btn.disabled = true; }
+  try {
+    await postComment(aid, name.trim(), text.trim());
+    document.getElementById('ct-' + aid).value = '';
+    if (btn) { btn.textContent = '✓ 등록됨'; setTimeout(()=>{ btn.textContent='등록'; btn.disabled=false; }, 1500); }
+    var list = document.getElementById('cb-list-' + aid);
+    var comments = await loadComments(aid);
+    if (list) { list.innerHTML = renderCommentHtml(comments); list.scrollTop = list.scrollHeight; }
+    updateCmtBadge(aid, comments.length);
+  } catch(err) {
+    if (btn) { btn.textContent = '등록'; btn.disabled = false; }
+    alert('등록 실패: ' + err.message);
+  }
+}
+async function submitComment(e, aid) { cmtSubmit(aid); }
+
+
+// ── 모바일 댓글 바텀 시트 ──
+let sheetArticleId = null;
+
+function openCommentSheet(aid, title) {
+  if (!currentUser) { openAuth('로그인 후 의견을 남길 수 있어요 👆'); return; }
+  sheetArticleId = aid;
+  document.getElementById('sheet-title').textContent = '💬 ' + (title || '의견');
+  document.getElementById('sheet-list').innerHTML = '<div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">불러오는 중...</div>';
+  var sn = document.getElementById('sheet-name');
+  if (sn) {
+    if (currentUser) { sn.value=(currentUser.user_metadata&&currentUser.user_metadata.name)||currentUser.email.split('@')[0]; sn.readOnly=true; sn.style.color='var(--text3)'; }
+    else { sn.readOnly=false; sn.style.color=''; sn.value=''; }
+  }
+  document.getElementById('comment-sheet-overlay') || (document.getElementById('sheet-overlay').classList.add('on'));
+  document.getElementById('sheet-overlay').classList.add('on');
+  document.getElementById('comment-sheet').classList.add('on');
+  document.body.style.overflow = 'hidden';
+  loadComments(aid).then(function(c) {
+    document.getElementById('sheet-list').innerHTML = renderCommentHtml(c) || '<div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">아직 의견이 없어요</div>';
+    // 배지 업데이트
+    var badge = document.getElementById('cb-badge-' + aid);
+    if (badge) badge.textContent = c.length + '개';
+  }).catch(function(){});
+}
+
+function closeCommentSheet() {
+  document.getElementById('sheet-overlay').classList.remove('on');
+  document.getElementById('comment-sheet').classList.remove('on');
+  document.body.style.overflow = '';
+  sheetArticleId = null;
+}
+
+async function sheetSubmit() {
+  if (!sheetArticleId) return;
+  var nameEl = document.getElementById('sheet-name');
+  var textEl = document.getElementById('sheet-text');
+  var name = nameEl ? nameEl.value.trim() : '';
+  var text = textEl ? textEl.value.trim() : '';
+  var btn  = document.querySelector('.comment-sheet-submit');
+  if (!name) { if(nameEl) nameEl.focus(); return; }
+  if (!text)  { if(textEl) textEl.focus(); return; }
+  btn.textContent = '등록 중...'; btn.disabled = true;
+  try {
+    await postComment(sheetArticleId, name, text);
+    document.getElementById('sheet-text').value = '';
+    btn.textContent = '✓ 등록됨';
+    setTimeout(function(){ btn.textContent='등록'; btn.disabled=false; }, 1500);
+    var c = await loadComments(sheetArticleId);
+    document.getElementById('sheet-list').innerHTML = renderCommentHtml(c) || '<div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">아직 의견이 없어요</div>';
+    updateCmtBadge(sheetArticleId, c.length);
+  } catch(e) {
+    btn.textContent = '등록'; btn.disabled = false;
+    alert('등록 실패: ' + e.message);
+  }
+}
+
+
+// ── AUTH ──
+let currentUser = null;
+let authMode = 'login';
+
+function getStoredToken(){ try{return localStorage.getItem('sb_token');}catch(e){return null;} }
+function getRefreshToken(){ try{return localStorage.getItem('sb_refresh');}catch(e){return null;} }
+function setStoredToken(t, r){ try{if(t)localStorage.setItem('sb_token',t);else localStorage.removeItem('sb_token'); if(r!==undefined){if(r)localStorage.setItem('sb_refresh',r);else localStorage.removeItem('sb_refresh');}}catch(e){} }
+
+async function initAuth(){
+  var token = getStoredToken();
+  if(!token){ renderAuthHeader(); return; }
+  try{
+    var res = await fetch(SB_URL+'/auth/v1/user',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+token}});
+    if(res.ok){ currentUser = await res.json(); }
+    else {
+      var refreshed = await tryRefreshToken();
+      if(!refreshed) setStoredToken(null, null);
+    }
+  }catch(e){}
+  renderAuthHeader();
+  if(currentUser) { renderMyCommentBtn(); loadMyCommentedArticles(); }
+}
+
+async function tryRefreshToken(){
+  var refresh = getRefreshToken();
+  if(!refresh) return false;
+  try{
+    var res = await fetch(SB_URL+'/auth/v1/token?grant_type=refresh_token',{
+      method:'POST',
+      headers:{'apikey':SB_KEY,'Content-Type':'application/json'},
+      body:JSON.stringify({refresh_token:refresh})
+    });
+    if(!res.ok) return false;
+    var data = await res.json();
+    setStoredToken(data.access_token, data.refresh_token);
+    currentUser = data.user;
+    return true;
+  }catch(e){ return false; }
+}
+
+async function loadMyCommentedArticles(){
+  if(!currentUser) return;
+  try{
+    var data = await sbFetch('/rest/v1/comments?select=article_id&user_id=eq.'+currentUser.id);
+    if(data) _myArticleIds = new Set(data.map(function(r){return r.article_id;}));
+    renderMyCommentBtn();
+  }catch(e){}
+}
+
+function renderMyCommentBtn(){
+  ['my-cmt-btn-pc','my-cmt-btn-mo'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.style.display = currentUser ? '' : 'none';
+    el.textContent = showMyComments ? '✓ 내 의견 기사' : '내 의견 기사 보기';
+    el.style.background = showMyComments ? 'var(--blue)' : '';
+    el.style.color = showMyComments ? '#fff' : '';
+    el.style.borderColor = showMyComments ? 'var(--blue)' : '';
+  });
+}
+
+function toggleMyComments(){
+  showMyComments = !showMyComments;
+  renderMyCommentBtn();
+  renderAll();
+}
+
+function renderAuthHeader(){
+  var loginHtml = '<button class="auth-btn" onclick="openAuth()">로그인</button>';
+  var logoutHtml = '';
+  if(currentUser){
+    var name = (currentUser.user_metadata&&currentUser.user_metadata.name)||currentUser.email.split('@')[0];
+    logoutHtml = '<span style="font-size:11px;color:var(--text2);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">👤 '+name+'</span><button class="auth-btn" onclick="authLogout()" style="padding:4px 10px;font-size:11px">로그아웃</button>';
+  }
+  var pc = document.getElementById('auth-header');
+  if(pc) pc.innerHTML = currentUser ? logoutHtml : loginHtml;
+  var mo = document.getElementById('mo-auth-header');
+  if(mo) mo.innerHTML = currentUser ? logoutHtml : loginHtml;
+}
+
+function openAuth(msg){
+  document.getElementById('auth-overlay').classList.add('on');
+  var errEl = document.getElementById('auth-error');
+  if(msg){ errEl.style.color='var(--blue)'; errEl.textContent=msg; }
+  else { errEl.textContent=''; }
+  // 저장된 이메일 자동 입력
+  var savedEmail = localStorage.getItem('sb_saved_email');
+  if(savedEmail){
+    document.getElementById('auth-email').value = savedEmail;
+    var chk = document.getElementById('save-id-check');
+    if(chk) chk.checked = true;
+  }
+}
+function closeAuth(){
+  document.getElementById('auth-overlay').classList.remove('on');
+  // 모달 상태 초기화
+  if(authMode !== 'login'){
+    authMode='login';
+    document.getElementById('auth-title').textContent='로그인';
+    document.getElementById('auth-submit-btn').textContent='로그인';
+    document.getElementById('auth-toggle').style.display='block';
+    document.getElementById('auth-toggle').innerHTML='계정이 없으신가요? <span>회원가입</span>';
+    document.getElementById('auth-reset-link').style.display='block';
+    document.getElementById('auth-name-field').style.display='none';
+    var pwField = document.getElementById('auth-pw');
+    if(pwField) pwField.closest('.auth-field').style.display='block';
+    document.getElementById('auth-error').textContent='';
+  }
+}
+function toggleAuthMode(){
+  authMode = authMode==='login'?'signup':'login';
+  document.getElementById('auth-title').textContent = authMode==='login'?'로그인':'회원가입';
+  document.getElementById('auth-submit-btn').textContent = authMode==='login'?'로그인':'회원가입';
+  document.getElementById('auth-toggle').innerHTML = authMode==='login'?'계정이 없으신가요? <span>회원가입</span>':'이미 계정이 있으신가요? <span>로그인</span>';
+  document.getElementById('auth-name-field').style.display = authMode==='signup'?'block':'none';
+  document.getElementById('auth-reset-link').style.display = authMode==='login'?'block':'none';
+  var saveRow = document.getElementById('save-id-row');
+  if(saveRow) saveRow.style.display = authMode==='login'?'flex':'none';
+  document.getElementById('auth-error').textContent='';
+}
+
+function showResetMode(){
+  authMode = 'reset';
+  document.getElementById('auth-title').textContent = '비밀번호 재설정';
+  document.getElementById('auth-submit-btn').textContent = '재설정 이메일 보내기';
+  document.getElementById('auth-toggle').style.display = 'none';
+  document.getElementById('auth-reset-link').style.display = 'none';
+  document.getElementById('auth-name-field').style.display = 'none';
+  document.getElementById('auth-pw').closest('.auth-field').style.display = 'none';
+  document.getElementById('auth-error').style.color = 'var(--text3)';
+  document.getElementById('auth-error').textContent = '가입한 이메일로 재설정 링크를 보내드려요.';
+}
+
+async function authSubmit(){
+  var email = document.getElementById('auth-email').value.trim();
+  var pw    = document.getElementById('auth-pw').value;
+  var name  = (document.getElementById('auth-name')||{}).value||'';
+  var errEl = document.getElementById('auth-error');
+  var btn   = document.getElementById('auth-submit-btn');
+  // 비밀번호 재설정 모드
+  if(authMode==='reset'){
+    if(!email){ errEl.style.color='#FF3B30'; errEl.textContent='이메일을 입력해주세요'; return; }
+    btn.textContent='전송 중...'; btn.disabled=true;
+    try{
+      var res = await fetch(SB_URL+'/auth/v1/recover',{method:'POST',headers:{'apikey':SB_KEY,'Content-Type':'application/json'},body:JSON.stringify({email})});
+      errEl.style.color='var(--blue)';
+      errEl.textContent='재설정 링크를 이메일로 보냈어요. 확인해주세요.';
+      btn.textContent='전송 완료'; btn.disabled=false;
+    }catch(e){
+      errEl.style.color='#FF3B30'; errEl.textContent='전송 실패: '+e.message;
+      btn.textContent='재설정 이메일 보내기'; btn.disabled=false;
+    }
+    return;
+  }
+  if(!email||!pw){ errEl.textContent='이메일과 비밀번호를 입력해주세요'; return; }
+  btn.textContent='처리 중...'; btn.disabled=true;
+  try{
+    var endpoint = authMode==='login'?'/auth/v1/token?grant_type=password':'/auth/v1/signup';
+    var body = authMode==='login'
+      ? {email,password:pw}
+      : {email,password:pw,data:{name:name||email.split('@')[0]}};
+    var res = await fetch(SB_URL+endpoint,{method:'POST',headers:{'apikey':SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});
+    var data = await res.json();
+    if(!res.ok) throw new Error(data.error_description||data.msg||'오류가 발생했습니다');
+    if(authMode==='signup'){
+      if(data.access_token){
+        // 이메일 확인 불필요 - 바로 로그인
+        setStoredToken(data.access_token, data.refresh_token);
+        currentUser = data.user;
+        renderAuthHeader();
+        renderMyCommentBtn();
+        loadMyCommentedArticles();
+        closeAuth();
+        return;
+      } else {
+        // 이메일 확인 필요
+        errEl.style.color='var(--blue)';
+        errEl.textContent='가입 완료! 이메일 확인 링크를 클릭해주세요.';
+        btn.textContent='회원가입'; btn.disabled=false; return;
+      }
+    }
+    // 아이디 저장 처리
+    var saveChk = document.getElementById('save-id-check');
+    if(saveChk && saveChk.checked) localStorage.setItem('sb_saved_email', document.getElementById('auth-email').value.trim());
+    else localStorage.removeItem('sb_saved_email');
+    setStoredToken(data.access_token, data.refresh_token);
+    currentUser = data.user;
+    renderAuthHeader();
+    renderMyCommentBtn();
+    loadMyCommentedArticles();
+    closeAuth();
+  }catch(e){
+    errEl.style.color='#FF3B30';
+    errEl.textContent=e.message;
+    btn.textContent=authMode==='login'?'로그인':'회원가입'; btn.disabled=false;
+  }
+}
+
+async function authLogout(){
+  try{ await fetch(SB_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+getStoredToken()}}); }catch(e){}
+  setStoredToken(null, null); currentUser=null; _myArticleIds=new Set(); showMyComments=false; activeBrandFilter=null; activeWorkFilter=null; renderAuthHeader(); renderMyCommentBtn(); renderAll();
+}
+
+
+// ── 태그 상수
+const PRESET_TAGS = {
+  brand: ['새미네부엌','연두','폰타나','티아시아','차오차이','백년동안','질러','순작','샘표 장류','샘표 국수','간편식','샘표 기본양념','샘표 간편·양념','샘표 간장'],
+  work:  ['맛방향물','메뉴개발','콘텐츠']
+};
+const TAG_TYPE_LABEL = { brand:'브랜드', work:'업무', brand_custom:'브랜드(기타)', work_custom:'업무(기타)' };
+let _articleTags = {}; // { article_id: [{id, tag, tag_type, user_id, user_name}] }
+let activeTagFilter = null; // 현재 선택된 태그 필터
+let activeBrandFilter = null;
+let activeWorkFilter = null;
+
+
+// ── 태그 시스템
+async function loadAllTags() {
+  renderTagFilter(); // 즉시 프리셋 표시
+  try {
+    var data = await sbFetch('/rest/v1/article_tags?select=id,article_id,tag,tag_type,user_id,user_name&order=created_at.asc');
+    if (!data) return;
+    _articleTags = {};
+    data.forEach(function(row) {
+      if (!_articleTags[row.article_id]) _articleTags[row.article_id] = [];
+      _articleTags[row.article_id].push(row);
+    });
+    renderAllTagChips();
+    renderTagFilter();
+  } catch(e) {}
+}
+
+function renderTagFilter() {
+  var customTags = {};
+  Object.values(_articleTags).forEach(function(tags) {
+    tags.forEach(function(t) {
+      if(t.tag_type==='brand_custom'||t.tag_type==='work_custom') customTags[t.tag]=t.tag_type;
+    });
+  });
+
+  function pill(tag, cls, active, group) {
+    return '<button class="' + cls + (active?' on':'') + '" onclick="setTagFilter(' + (tag?'\''+tag+'\'':'null') + ',\'' + group + '\')">' + (tag||'전체') + '</button>';
+  }
+  function moPill(tag, active, group) {
+    return '<button class="mf-pill' + (active?' on':'') + '" onclick="setTagFilter(' + (tag?'\''+tag+'\'':'null') + ',\'' + group + '\')">' + (tag||'전체') + '</button>';
+  }
+
+  // PC 전체 버튼 (브랜드+업무 모두 초기화)
+  var allBtn = document.getElementById('tag-all-btn');
+  if(allBtn) allBtn.className = 'sf-pill' + (!activeBrandFilter&&!activeWorkFilter?' on':'');
+
+  // PC 브랜드
+  var brandEl = document.getElementById('pc-tag-brand-pills');
+  if(brandEl) brandEl.innerHTML =
+    pill(null,'sf-pill',!activeBrandFilter,'brand') +
+    PRESET_TAGS.brand.map(function(t){ return pill(t,'sf-pill',activeBrandFilter===t,'brand'); }).join('');
+
+  // PC 업무
+  var workEl = document.getElementById('pc-tag-work-pills');
+  if(workEl) workEl.innerHTML =
+    pill(null,'sf-pill',!activeWorkFilter,'work') +
+    PRESET_TAGS.work.map(function(t){ return pill(t,'sf-pill',activeWorkFilter===t,'work'); }).join('');
+
+  // PC 기타
+  var customEl = document.getElementById('pc-tag-custom-pills');
+  if(customEl) {
+    var cKeys = Object.keys(customTags);
+    customEl.innerHTML = cKeys.length ? '<div class="sf-label" style="font-size:10px;margin-top:8px;margin-bottom:4px">기타</div>' +
+      cKeys.map(function(t){ return pill(t,'sf-pill',activeBrandFilter===t||activeWorkFilter===t,'brand'); }).join('') : '';
+  }
+
+  // 모바일
+  var moEl = document.getElementById('mo-tag-filter');
+  if(moEl) {
+    moEl.style.display = 'block';
+    var cKeys = Object.keys(customTags);
+    var moHtml =
+      '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%">브랜드</div>' +
+      moPill(null,!activeBrandFilter,'brand') +
+      PRESET_TAGS.brand.map(function(t){ return moPill(t,activeBrandFilter===t,'brand'); }).join('') +
+      '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;margin-top:4px">업무</div>' +
+      moPill(null,!activeWorkFilter,'work') +
+      PRESET_TAGS.work.map(function(t){ return moPill(t,activeWorkFilter===t,'work'); }).join('') +
+      (cKeys.length ? '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;margin-top:4px">기타</div>' + cKeys.map(function(t){ return moPill(t,activeBrandFilter===t||activeWorkFilter===t,'brand'); }).join('') : '');
+    moEl.querySelector('.mo-tag-pills').innerHTML = moHtml;
+  }
+}
+
+function setTagFilter(tag, group) {
+  if(group==='brand') activeBrandFilter = tag;
+  else if(group==='work') activeWorkFilter = tag;
+  else { activeBrandFilter=null; activeWorkFilter=null; }
+  activeTagFilter = tag; // legacy
+  renderTagFilter();
+  renderAll();
+}
+
+function renderAllTagChips() {
+  Object.keys(_articleTags).forEach(function(aid) {
+    renderTagChips(aid);
+  });
+}
+
+function renderTagChips(aid) {
+  var tags = _articleTags[aid] || [];
+  var container = document.querySelectorAll('[id="tag-chips-' + aid + '"]');
+  container.forEach(function(el) {
+    if (!tags.length) { el.innerHTML = ''; return; }
+    el.innerHTML = tags.map(function(t) {
+      var canDel = currentUser && t.user_id === currentUser.id;
+      return '<span class="tag-chip ' + t.tag_type + '">' + t.tag +
+        (canDel ? '<button class="tag-chip-del" onclick="deleteTag(\'' + t.id + '\',\'' + aid + '\')">✕</button>' : '') +
+        '</span>';
+    }).join('');
+  });
+  // 포커스된 입력창이 해당 tag-section 안에 있으면 panel 업데이트 건너뜀
+  var focused = document.activeElement;
+  var focusedInSection = focused && focused.closest('[data-taid="' + aid + '"]');
+  if (!focusedInSection) updateTagPanel(aid);
+}
+
+function updateTagPanel(aid) {
+  var tags = _articleTags[aid] || [];
+  var tagNames = tags.map(function(t){ return t.tag; });
+  var panels = document.querySelectorAll('[id="tag-panel-' + aid + '"]');
+  panels.forEach(function(panel) {
+    panel.querySelectorAll('.tag-panel-pill').forEach(function(pill) {
+      var tag = pill.dataset.tag;
+      var type = pill.dataset.type;
+      pill.className = 'tag-panel-pill' + (tagNames.includes(tag) ? ' active-' + type : '');
+    });
+  });
+}
+
+function toggleTagPanel(aid) {
+  if (!currentUser) { openAuth('로그인 후 태그를 추가할 수 있어요 👆'); return; }
+  var panels = document.querySelectorAll('[id="tag-panel-' + aid + '"]');
+  panels.forEach(function(panel) {
+    var isOpen = panel.style.display === 'block';
+    panel.style.display = isOpen ? 'none' : 'block';
+    if (!isOpen) {
+      loadTagsForArticle(aid);
+    }
+  });
+}
+
+async function loadTagsForArticle(aid) {
+  try {
+    var data = await sbFetch('/rest/v1/article_tags?select=id,article_id,tag,tag_type,user_id,user_name&article_id=eq.' + aid);
+    _articleTags[aid] = data || [];
+    renderTagChips(aid);
+  } catch(e) {}
+}
+
+async function toggleTag(aid, tag, type, btn) {
+  if (!currentUser) return;
+  var tags = _articleTags[aid] || [];
+  var existing = tags.find(function(t){ return t.tag === tag; });
+  if (existing) {
+    // 내가 단 태그면 삭제, 아니면 무시
+    if (existing.user_id === currentUser.id) {
+      await deleteTag(existing.id, aid);
+    }
+    return;
+  }
+  // 추가
+  try {
+    var body = { article_id: aid, tag: tag, tag_type: type, user_id: currentUser.id, user_name: (currentUser.user_metadata && currentUser.user_metadata.name) || currentUser.email.split('@')[0] };
+    await sbFetch('/rest/v1/article_tags', { method: 'POST', body: JSON.stringify(body) });
+    await loadTagsForArticle(aid);
+  } catch(e) { alert('태그 추가 실패: ' + e.message); }
 }
 
 async function promptCustomTag(aid, group) {
@@ -40,5 +1785,346 @@ async function promptCustomTag(aid, group) {
 }
 
 function showCustomTagInput(aid, group) {
-var els = document.querySelectorAll('[id="custom-input-' + group + '-' + aid + '"]');
-if (!els.length) return;
+  var els = document.querySelectorAll('[id="custom-input-' + group + '-' + aid + '"]');
+  if (!els.length) return;
+  var isOpen = els[0].style.display === 'block';
+  els.forEach(function(el){ el.style.display = isOpen ? 'none' : 'block'; });
+  if (!isOpen) {
+    // 보이는 카드의 input에 포커스
+    els.forEach(function(el){
+      if(el.offsetParent !== null) {
+        var input = el.querySelector('input');
+        if(input){ input.value=''; input.focus(); }
+      }
+    });
+  }
+}
+
+async function submitCustomTag(aid, group) {
+  var inputs = document.querySelectorAll('[id="custom-val-' + group + '-' + aid + '"]');
+  var val = '';
+  inputs.forEach(function(i){ if(i.offsetParent !== null && i.value.trim()) val = i.value.trim(); });
+  if(!val) { inputs.forEach(function(i){ if(i.offsetParent!==null) i.focus(); }); return; }
+  var type = group + '_custom';
+  await toggleTag(aid, val, type, null);
+  inputs.forEach(function(i){ i.value=''; });
+  document.querySelectorAll('[id="custom-input-' + group + '-' + aid + '"]').forEach(function(el){ el.style.display='none'; });
+}
+
+async function deleteTag(tagId, aid) {
+  try {
+    await sbFetch('/rest/v1/article_tags?id=eq.' + tagId, { method: 'DELETE' });
+    _articleTags[aid] = (_articleTags[aid] || []).filter(function(t){ return t.id !== tagId; });
+    renderTagChips(aid);
+  } catch(e) { console.error('태그 삭제 오류:', e); }
+}
+
+function toggleMoFilter(){
+  var btn = document.getElementById('mo-filter-toggle');
+  var body = document.getElementById('mo-filter-body');
+  if(!btn || !body) return;
+  var isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+}
+
+// ════════════════════════════════════
+// SIGNAL ENGINE
+// ════════════════════════════════════
+
+let currentView = 'news';   // 'news' | 'signal'
+let signalPeriod = 30;      // days
+let signalStage = 'all';    // 'all'|'trend'|'watch'|'interest'
+let signalKwCat = 'all';   // 'all'|'food_cat'|'ingredient'|'trend'|'brand'
+
+// 점수 = 빈도 × 출처다양성
+// 트렌드:  출처 6개+ AND 빈도 10+  (score 60+)
+// 주목:    출처 3개+ AND 빈도 5+   (score 15+)
+// 관심사:  출처 2개+ AND 빈도 3+   (score 6+)
+
+// ── 시그널 불용어 (의미 없는 일반 단어) ──────────────────
+// 카테고리 레이블
+const KW_CAT_LABELS = {
+  food_cat:   { ko: '식품 카테고리', icon: '🍽️', color: '#34C759', bg: '#F0FBF2' },
+  ingredient: { ko: '식재료·원료',   icon: '🌿', color: '#FF6B35', bg: '#FFF2EE' },
+  trend:      { ko: '소비 트렌드',   icon: '📈', color: '#AF52DE', bg: '#F8F0FF' },
+  brand:      { ko: '브랜드',        icon: '🏷️', color: '#007AFF', bg: '#EBF4FF' },
+};
+
+function calcSignals(days) {
+  const cutoff = Date.now() - days * 86400000;
+  // kwMap: keyword → { freq, sources, kwCat }
+  const kwMap = {};
+
+  for (const a of all) {
+    if (new Date(a.date).getTime() < cutoff) continue;
+    const kws     = Array.isArray(a.keywords) ? a.keywords : [];
+    const kwCats  = a.kw_cats || {};  // {word: cat} 매핑
+
+    for (const k of kws) {
+      if (!k || k.length < 2) continue;
+      const cat = kwCats[k] || '';
+      // kw_cats가 있는 기사는 카테고리 검증, 없는 기사(구버전)는 일단 포함
+      if (Object.keys(kwCats).length > 0 && !KW_CAT_LABELS[cat]) continue;
+      if (!kwMap[k]) kwMap[k] = { freq: 0, sources: new Set(), kwCat: cat };
+      kwMap[k].freq++;
+      kwMap[k].sources.add(a.source);
+      if (!kwMap[k].kwCat && cat) kwMap[k].kwCat = cat;
+    }
+  }
+
+  const results = [];
+  for (const [kw, data] of Object.entries(kwMap)) {
+    const srcCount = data.sources.size;
+    const freq     = data.freq;
+    const score    = freq * srcCount;
+    let stage = null;
+    if (srcCount >= 6 && freq >= 10) stage = 'trend';
+    else if (srcCount >= 3 && freq >= 5) stage = 'watch';
+    else if (srcCount >= 2 && freq >= 3) stage = 'interest';
+    if (!stage) continue;
+    results.push({
+      kw, freq, srcCount, score, stage,
+      kwCat: data.kwCat,
+      sources: [...data.sources].slice(0, 5)
+    });
+  }
+  results.sort((a, b) => b.score - a.score);
+  return results;
+}
+
+function stageLabel(s) {
+  if (s === 'trend')    return ['🔥 트렌드', 'si-badge-trend'];
+  if (s === 'watch')    return ['👀 주목',   'si-badge-watch'];
+  return                       ['💡 관심사', 'si-badge-interest'];
+}
+
+function renderSignal() {
+  const signals = calcSignals(signalPeriod);
+  let filtered = signalStage === 'all' ? signals : signals.filter(s => s.stage === signalStage);
+  if (signalKwCat !== 'all') filtered = filtered.filter(s => s.kwCat === signalKwCat);
+  const maxScore = filtered[0]?.score || 1;
+
+  const html = !filtered.length
+    ? `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">해당 시그널이 없습니다</div><div>기간을 늘리거나 더 많은 기사를 수집해보세요</div></div>`
+    : `<div style="font-size:11px;color:var(--text3);margin-bottom:12px;padding:10px 12px;background:var(--bg);border-radius:10px;border:1px solid var(--border)">
+        📊 시그널 점수 = 빈도(기간 내 등장 횟수) × 매체수(출처 다양성). 점수가 높을수록 더 많은 곳에서 반복 등장한 키워드예요.
+      </div>
+      <div class="signal-list">${filtered.slice(0, 50).map((s, i) => {
+        const barPct = Math.round(s.score / maxScore * 100);
+        const srcTags = s.sources.map(src => `<span class="si-src-tag">${src}</span>`).join('');
+        const cutoffMs = Date.now() - signalPeriod * 86400000;
+        const relNews = all.filter(a=>(a.keywords||[]).includes(s.kw) && new Date(a.date).getTime() >= cutoffMs);
+        const relHtml = relNews.length ? `<div class="si-news-scroll">${relNews.map(a=>`
+          <a class="si-news-item" href="${a.url}" target="_blank" rel="noopener">
+            <span class="si-news-title">${a.title}</span>
+            <span class="si-news-src">${a.source} · ${fmtDate(a.date)}</span>
+          </a>`).join('')}</div>` : '<div style="font-size:11px;color:var(--text3);padding:8px 0">관련 기사 없음</div>';
+        const catBadge = s.kwCat && KW_CAT_LABELS[s.kwCat] ? `<span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;background:${KW_CAT_LABELS[s.kwCat].bg};color:${KW_CAT_LABELS[s.kwCat].color}">${KW_CAT_LABELS[s.kwCat].icon} ${KW_CAT_LABELS[s.kwCat].ko}</span>` : '';
+        return `<div class="signal-item" onclick="toggleSignalNews(this)">
+          <div class="si-rank">${i + 1}</div>
+          <div class="si-body">
+            <div class="si-keyword">${s.kw}</div>
+            <div class="si-meta">
+              ${catBadge}
+              <span class="si-sources">${s.freq}회 언급 (${s.srcCount}개 매체)</span>
+            </div>
+            <div class="si-src-tags">${srcTags}</div>
+            <div class="si-news-list" style="display:none">${relHtml}</div>
+          </div>
+          <div class="si-right">
+            <div class="si-score">${s.score}</div>
+            <div class="si-score-label">빈도 × 매체수</div>
+            <div class="si-bar-wrap"><div class="si-bar" style="width:${barPct}%"></div></div>
+          </div>
+        </div>`;
+      }).join('')}</div>`;
+
+  document.getElementById('pc-signal').innerHTML = html;
+  if (document.getElementById('mo-signal')) document.getElementById('mo-signal').innerHTML = html;
+}
+
+function setView(v) {
+  currentView = v;
+  document.body.classList.toggle('signal-mode', v === 'signal');
+  document.getElementById('vt-news').classList.toggle('on', v === 'news');
+  document.getElementById('vt-signal').classList.toggle('on', v === 'signal');
+  applyLayout();
+  renderBottomNav();
+  if (v === 'signal') renderSignal();
+}
+
+function setSignalPeriod(d) {
+  if (d === 'custom') {
+    const v = prompt('분석 기간을 입력하세요 (일 수):');
+    if (!v || isNaN(+v)) return;
+    d = +v;
+  }
+  signalPeriod = d;
+  document.querySelectorAll('[data-sp]').forEach(p => p.classList.toggle('on', +p.dataset.sp === d || p.dataset.sp === 'custom' && typeof d !== 'number'));
+  renderSignal();
+}
+
+function applyCustomPeriod() {
+  const val = parseInt(document.getElementById('custom-period-input').value);
+  if (!val || val < 1) return;
+  signalPeriod = Math.min(val, 365);
+  renderSignal();
+}
+
+function toggleSignalNews(el) {
+  const list = el.querySelector('.si-news-list');
+  if (!list) return;
+  const isOpen = list.style.display !== 'none';
+  list.style.display = isOpen ? 'none' : 'block';
+  el.style.cursor = 'pointer';
+}
+
+function setSignalStage(s) {
+  signalStage = s;
+  document.querySelectorAll('[data-ss]').forEach(b => {
+    b.classList.remove('on-all','on-trend','on-watch','on-interest');
+    if (b.dataset.ss === s) b.classList.add(`on-${s}`);
+  });
+  renderSignal();
+}
+
+function setKwCat(c) {
+  signalKwCat = c;
+  document.querySelectorAll('[data-kc]').forEach(b => {
+    b.classList.remove('on-all','on-trend','on-watch','on-interest');
+    if (b.dataset.kc === c) b.classList.add(c === 'all' ? 'on-all' : 'on-watch');
+  });
+  renderSignal();
+}
+
+// 모바일/PC 메인 표시 전환
+function applyLayout(){
+  const mo=isMobile();
+  const isSignal = currentView==='signal';
+  document.getElementById('mo-main').style.display=(!isSignal&&mo)?'block':'none';
+  const moSig=document.getElementById('mo-signal');
+  if(moSig) moSig.style.display=(isSignal&&mo)?'block':'none';
+  const moSigFilter=document.getElementById('mo-signal-filter');
+  if(moSigFilter) moSigFilter.style.display=(isSignal&&mo)?'block':'none';
+  // 모바일 뉴스 필터바 숨기기/보이기
+  const moNewsFilter=document.getElementById('mo-news-filter');
+  if(moNewsFilter) moNewsFilter.style.display=(!isSignal&&mo)?'block':'none';
+}
+
+async function loadNews(){
+  ['pc-ref','mo-ref'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.add('spin');});
+  try{
+    const r=await fetch('data/news.json?t='+Date.now());
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const d=await r.json();
+    all=d.articles||[];
+    const upd=d.updated?fmtUpd(d.updated):'';
+    const pe=document.getElementById('pc-upd');if(pe)pe.textContent=upd;
+    applyLayout();
+    renderAll();
+    if(currentView==='signal') renderSignal();
+    initAuth();
+  }catch(e){
+    const err=`<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">불러올 수 없어요</div><div style="font-size:13px;margin-top:4px">${e.message}</div></div>`;
+    document.getElementById('pc-main').innerHTML=err;
+    document.getElementById('mo-main').innerHTML=err;
+  }finally{
+    ['pc-ref','mo-ref'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.remove('spin');});
+  }
+}
+
+// 검색 — PC / 모바일 각각
+document.getElementById('pc-q').addEventListener('input',e=>{query=e.target.value.trim();renderMain();});
+document.getElementById('mo-q').addEventListener('input',e=>{query=e.target.value.trim();renderMain();});
+
+window.addEventListener('scroll',()=>document.getElementById('scroll-top').classList.toggle('show',scrollY>300));
+window.addEventListener('resize',()=>{applyLayout();renderAll();});
+
+applyLayout();
+loadNews();
+setInterval(loadNews,30*60*1000);
+</script>
+
+<!-- 모바일 댓글 바텀 시트 -->
+<div class="comment-sheet-overlay" id="sheet-overlay" onclick="closeCommentSheet()"></div>
+<div class="comment-sheet" id="comment-sheet">
+  <div class="comment-sheet-handle"></div>
+  <div class="comment-sheet-title" id="sheet-title">💬 의견</div>
+  <div class="comment-sheet-list" id="sheet-list">
+    <div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">불러오는 중...</div>
+  </div>
+  <div class="comment-sheet-form">
+    <div class="comment-sheet-inputs">
+      <input class="comment-sheet-name" id="sheet-name" placeholder="이름" maxlength="10">
+      <textarea class="comment-sheet-text" id="sheet-text" placeholder="의견을 남겨주세요" rows="1"></textarea>
+    </div>
+    <div class="comment-sheet-actions">
+      <button class="comment-sheet-submit" onclick="sheetSubmit()">등록</button>
+    </div>
+  </div>
+</div>
+
+<!-- Auth 모달 -->
+<div class="auth-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuth()">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuth()">✕</button>
+    <h3 id="auth-title">로그인</h3>
+    <div class="auth-field"><label>이메일</label><input class="auth-input" id="auth-email" type="email" placeholder="이메일 주소"></div>
+    <div class="auth-field"><label>비밀번호</label><input class="auth-input" id="auth-pw" type="password" placeholder="비밀번호"></div>
+    <div class="auth-field" id="auth-name-field" style="display:none"><label>이름</label><input class="auth-input" id="auth-name" type="text" placeholder="팀원 이름"></div>
+    <div class="auth-error" id="auth-error"></div>
+    <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">로그인</button>
+    <div style="display:flex;align-items:center;gap:6px;margin-top:8px" id="save-id-row">
+      <input type="checkbox" id="save-id-check" style="width:14px;height:14px;accent-color:var(--blue);cursor:pointer">
+      <label for="save-id-check" style="font-size:12px;color:var(--text3);cursor:pointer">아이디 저장</label>
+    </div>
+    <div class="auth-toggle" id="auth-toggle" onclick="toggleAuthMode()">계정이 없으신가요? <span>회원가입</span></div>
+    <div id="auth-reset-link" style="font-size:12px;color:var(--text3);text-align:center;margin-top:6px;cursor:pointer" onclick="showResetMode()">비밀번호를 잊으셨나요? <span style="color:var(--blue);font-weight:600">재설정</span></div>
+  </div>
+</div>
+
+<!-- 뉴스 카테고리 분류 기준 팝업 -->
+<div class="guide-overlay" id="guide-news" onclick="if(event.target===this)closeGuide('news')">
+  <div class="guide-modal">
+    <button class="guide-close" onclick="closeGuide('news')">✕</button>
+    <h3>📰 기사 분류 기준</h3>
+    <p style="font-size:11px;color:var(--text3);margin-bottom:14px">기사의 핵심 성격에 따라 1개의 카테고리를 부여합니다. 같은 기사도 출시가 핵심이면 신제품·NPD, 시장 변화가 핵심이면 소비자·시장으로 분류됩니다.</p>
+    <table class="guide-table">
+      <tr><th>카테고리</th><th>이런 기사</th><th>예시</th></tr>
+      <tr><td>🆕 신제품·NPD</td><td>제품 출시·론칭·리뉴얼·신메뉴가 핵심</td><td>CU, 고단백 그릭요거트 출시</td></tr>
+      <tr><td>📊 소비자·시장</td><td>소비자 니즈 변화·시장 성장·리포트·조사가 핵심</td><td>저당 간식 수요 증가, 발효식품 관심 확대</td></tr>
+      <tr><td>🌿 식재료·원료</td><td>특정 원료·성분·발효기술·기능성 소재가 기사 중심</td><td>피스타치오 활용 확산, 발효 기술 기반 소스 개발</td></tr>
+      <tr><td>🏪 채널·유통</td><td>편의점·마트·외식·배달 채널 전략이 핵심</td><td>편의점 디저트 강화, 배달 채널 아침식 수요</td></tr>
+      <tr><td>🏢 브랜드·기업</td><td>기업 전략·투자·M&A·브랜드 운영이 핵심</td><td>CJ, 건강식 포트폴리오 확대</td></tr>
+      <tr><td>📋 산업·정책</td><td>규제·수급·식품안전·원가·수출입이 핵심</td><td>카카오 가격 상승, 식품 표시 규정 개정</td></tr>
+    </table>
+
+  </div>
+</div>
+
+<!-- 시그널 키워드 유형 기준 팝업 -->
+<div class="guide-overlay" id="guide-signal" onclick="if(event.target===this)closeGuide('signal')">
+  <div class="guide-modal">
+    <button class="guide-close" onclick="closeGuide('signal')">✕</button>
+    <h3>📡 시그널 키워드 유형 기준</h3>
+    <p style="font-size:11px;color:var(--text3);margin-bottom:14px">메뉴 개발 관점에서 의미 있는 키워드만 추출하고 4가지 유형으로 분류합니다. 시그널 점수 = 빈도 × 출처 다양성.</p>
+    <table class="guide-table">
+      <tr><th>유형</th><th>정의</th><th>예시</th><th>제외</th></tr>
+      <tr><td>🍽️ 식품 카테고리</td><td>매대/메뉴판에서 바로 고를 수 있는 완성형 식품</td><td>그릭요거트, HMR, 밀키트, 오마카세</td><td>귀리, 비건, CJ</td></tr>
+      <tr><td>🌿 식재료·원료</td><td>제품 안에 들어가는 원재료·성분·기능성 소재</td><td>귀리, 피스타치오, 콜라겐, 누룩</td><td>그릭요거트, 저당, HMR</td></tr>
+      <tr><td>📈 소비 트렌드</td><td>여러 카테고리에 걸친 소비자 니즈·가치관·섭취 맥락</td><td>저속노화, 고단백, 저당, 홈술, 비건</td><td>CJ, 귀리, 그릭요거트</td></tr>
+      <tr><td>🏷️ 브랜드</td><td>기업·브랜드·유통사·외식 체인 이름</td><td>CJ제일제당, 파리바게뜨, CU, 배민</td><td>HMR, 고단백, 피스타치오</td></tr>
+    </table>
+    <p style="font-size:11px;color:var(--text3);margin-top:12px">💡 인기·출시·건강·프리미엄 등 일반어는 단독 저장하지 않습니다. 애매한 키워드는 제외됩니다.</p>
+  </div>
+</div>
+
+<script>
+function openGuide(type){ document.getElementById('guide-'+type).classList.add('on'); }
+function closeGuide(type){ document.getElementById('guide-'+type).classList.remove('on'); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeGuide('news');closeGuide('signal');} });
+
+</script>
+</body>
+</html>
