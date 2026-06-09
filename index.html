@@ -1147,22 +1147,22 @@ function setMoCat(c){
 }
 function toggleDatePanel(){
   var today=new Date().toISOString().split('T')[0];
-  // 직접설정 버튼 active
-  document.querySelectorAll('[data-d="0"]').forEach(function(b){b.classList.add('on');});
-  // PC 패널
-  var pc=document.getElementById('date-range-panel');
-  if(pc&&pc.offsetParent!==null){
-    var isOpen=pc.style.display==='block';
-    pc.style.display=isOpen?'none':'block';
-    if(!isOpen){var f=document.getElementById('date-from'),t=document.getElementById('date-to');if(f&&!f.value)f.value=today;if(t&&!t.value)t.value=today;}
-    return;
-  }
-  // 모바일 패널
-  var mo=document.getElementById('date-range-panel-mo');
-  if(mo){
-    var isOpen=mo.style.display==='block';
-    mo.style.display=isOpen?'none':'block';
-    if(!isOpen){var f=document.getElementById('date-from-mo'),t=document.getElementById('date-to-mo');if(f&&!f.value)f.value=today;if(t&&!t.value)t.value=today;}
+  // 기간 버튼 상태 - 직접설정만 활성화
+  document.querySelectorAll('[data-d]').forEach(function(b){
+    b.classList.remove('on','on-blue');
+    if(b.dataset.d==='0') b.classList.add('on');
+  });
+  // PC/모바일 구분
+  var isMo = window.innerWidth < 768;
+  var panel = isMo ? document.getElementById('date-range-panel-mo') : document.getElementById('date-range-panel');
+  if(!panel) return;
+  var isOpen = panel.style.display === 'block';
+  panel.style.display = isOpen ? 'none' : 'block';
+  if(!isOpen){
+    var suffix = isMo ? '-mo' : '';
+    var f=document.getElementById('date-from'+suffix), t=document.getElementById('date-to'+suffix);
+    if(f&&!f.value) f.value=today;
+    if(t&&!t.value) t.value=today;
   }
 }
 
