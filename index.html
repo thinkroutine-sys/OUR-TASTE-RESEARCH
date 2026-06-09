@@ -570,6 +570,20 @@ body.signal-mode .news-period-filter { display: none; }
 .tag-panel-pill.active-brand{background:#FFF3E0;border-color:#E65100;color:#E65100}
 .tag-panel-pill.active-work{background:#E8F5E9;border-color:#2E7D32;color:#2E7D32}
 .tag-panel-notice{font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* ── 모바일 필터 토글 ── */
+.mf-toggle-btn{
+  width:100%;padding:8px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--surface);border:none;cursor:pointer;
+  font-size:13px;font-weight:600;color:var(--text2);
+}
+.mf-toggle-btn .mf-toggle-arrow{
+  font-size:11px;color:var(--text3);transition:transform .2s;
+}
+.mf-toggle-btn.open .mf-toggle-arrow{ transform:rotate(180deg); }
+.mf-collapsible{ display:none; }
+.mf-collapsible.open{ display:block; }
 /* ─── 분류 기준 팝업 ─── */
 .guide-btn{
   width:18px;height:18px;border-radius:50%;
@@ -760,6 +774,11 @@ body.signal-mode .news-period-filter { display: none; }
 
 <!-- 모바일 필터 -->
 <div class="mobile-filter" id="mo-news-filter">
+<button class="mf-toggle-btn" id="mo-filter-toggle" onclick="toggleMoFilter()">
+  <span>🔍 필터</span>
+  <span class="mf-toggle-arrow">▼</span>
+</button>
+<div class="mf-collapsible" id="mo-filter-body">
 <div class="mf-inner">
   <button class="mf-pill" data-d="1" onclick="setPeriod(1)">오늘</button>
   <button class="mf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
@@ -788,6 +807,7 @@ body.signal-mode .news-period-filter { display: none; }
   </div>
   <div class="mf-sep"></div>
   <button class="mf-pill" style="color:var(--blue);border-color:var(--blue)" onclick="openGuide('news')">분류 기준 ↗</button>
+</div>
 </div>
 </div>
 
@@ -1607,27 +1627,23 @@ async function loadAllTags() {
 }
 
 function renderTagFilter() {
-  // 사용 중인 태그 집계
-  var tagCount = {};
+  // 항상 모든 프리셋 태그 표시 (커스텀 태그는 사용된 것만 추가)
+  var customTags = {};
   Object.values(_articleTags).forEach(function(tags) {
     tags.forEach(function(t) {
-      tagCount[t.tag] = (tagCount[t.tag] || 0) + 1;
+      if(t.tag_type === 'brand_custom' || t.tag_type === 'work_custom') {
+        customTags[t.tag] = true;
+      }
     });
   });
-  var tagList = Object.keys(tagCount).sort();
-  if (!tagList.length) {
-    ['pc-tag-filter','mo-tag-filter'].forEach(function(id){
-      var el = document.getElementById(id);
-      if(el) el.style.display = 'none';
-    });
-    return;
-  }
+  var allTags = PRESET_TAGS.brand.concat(PRESET_TAGS.work).concat(Object.keys(customTags));
+
   var pillsHtml = '<button class="sf-pill' + (!activeTagFilter?' on':'') + '" onclick="setTagFilter(null)">전체</button>' +
-    tagList.map(function(tag) {
+    allTags.map(function(tag) {
       return '<button class="sf-pill' + (activeTagFilter===tag?' on':'') + '" onclick="setTagFilter(\'' + tag + '\')">' + tag + '</button>';
     }).join('');
   var moPillsHtml = '<button class="mf-pill' + (!activeTagFilter?' on-blue':'') + '" onclick="setTagFilter(null)">전체</button>' +
-    tagList.map(function(tag) {
+    allTags.map(function(tag) {
       return '<button class="mf-pill' + (activeTagFilter===tag?' on':'') + '" onclick="setTagFilter(\'' + tag + '\')">' + tag + '</button>';
     }).join('');
 
@@ -1744,6 +1760,15 @@ async function deleteTag(tagId, aid) {
     _articleTags[aid] = (_articleTags[aid] || []).filter(function(t){ return t.id !== tagId; });
     renderTagChips(aid);
   } catch(e) { console.error('태그 삭제 오류:', e); }
+}
+
+function toggleMoFilter(){
+  var btn = document.getElementById('mo-filter-toggle');
+  var body = document.getElementById('mo-filter-body');
+  if(!btn || !body) return;
+  var isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
 }
 
 // ════════════════════════════════════
