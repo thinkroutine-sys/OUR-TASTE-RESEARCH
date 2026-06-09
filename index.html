@@ -1895,10 +1895,13 @@ async function deleteTag(tagId, aid) {
 function toggleMoFilter(){
   var btn = document.getElementById('mo-filter-toggle');
   var body = document.getElementById('mo-filter-body');
+  var wrap = document.getElementById('mo-news-filter');
   if(!btn || !body) return;
   var isOpen = body.classList.contains('open');
   body.classList.toggle('open', !isOpen);
   btn.classList.toggle('open', !isOpen);
+  // 열리면 sticky 해제 → 페이지 흐름에 포함
+  if(wrap) wrap.style.position = isOpen ? 'sticky' : 'static';
 }
 
 // ════════════════════════════════════
