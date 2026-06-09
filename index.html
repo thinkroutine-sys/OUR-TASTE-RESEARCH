@@ -958,7 +958,7 @@ function cardHtml(a,i){
     <div class="tag-section" data-taid="${a.id}">
       <div class="tag-header">
         <span style="font-size:12px;font-weight:600;color:var(--text2)">🏷️ 태그</span>
-        <button type="button" class="tag-add-btn" onclick="toggleTagPanel('${a.id}')">+ 추가</button>
+        <button type="button" class="tag-add-btn" onclick="event.stopPropagation();toggleTagPanel('${a.id}')">+ 추가</button>
       </div>
       <div class="tag-chips" id="tag-chips-${a.id}"></div>
       <div class="tag-panel" id="tag-panel-${a.id}" style="display:none">
@@ -1067,7 +1067,7 @@ document.addEventListener('click', function(e) {
     return;
   }
   const card = e.target.closest('.card');
-  if (card && !e.target.closest('.comment-section')) {
+  if (card && !e.target.closest('.comment-section') && !e.target.closest('.tag-section')) {
     openArticle(card.dataset.url, card.dataset.id);
   }
 });
