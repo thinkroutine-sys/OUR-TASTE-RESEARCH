@@ -592,8 +592,8 @@ body.signal-mode .news-period-filter { display: none; }
 
 /* ── 오른쪽 패널 섹션 구분 ── */
 .rp-section {
-  padding-top:14px;
-  margin-top:4px;
+  padding-top:16px;
+  margin-top:12px;
   border-top:1px solid var(--border);
 }
 .rp-label {
@@ -717,8 +717,8 @@ body.signal-mode .news-period-filter { display: none; }
 
       <!-- 뉴스 필터 -->
       <div class="view-news sidebar-filters rp-section">
-        <div class="news-period-filter">
-          <div class="sf-label">기간</div>
+        <div class="news-period-filter" style="margin-bottom:14px">
+          <div class="sf-label" style="margin-bottom:6px">기간</div>
           <div class="sf-pills">
             <button class="sf-pill" data-d="1" onclick="setPeriod(1)">오늘</button>
             <button class="sf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
@@ -726,20 +726,20 @@ body.signal-mode .news-period-filter { display: none; }
             <button class="sf-pill" data-d="0" onclick="setPeriod(0)">직접설정</button>
           </div>
         </div>
-        <div>
-          <div class="sf-label">국가</div>
+        <div style="margin-bottom:14px">
+          <div class="sf-label" style="margin-bottom:6px">국가</div>
           <div class="sf-pills">
             <button class="sf-pill on-blue" data-l="all" onclick="setLang('all')">전체</button>
             <button class="sf-pill" data-l="ko" onclick="setLang('ko')">국내</button>
             <button class="sf-pill" data-l="en" onclick="setLang('en')">해외</button>
           </div>
         </div>
-        <div>
-          <div class="sf-label">출처</div>
+        <div style="margin-bottom:14px">
+          <div class="sf-label" style="margin-bottom:6px">출처</div>
           <select class="sf-select" id="pc-src" onchange="setSrc(this.value)"><option value="all">전체</option></select>
         </div>
-        <button class="read-toggle-btn" id="pc-read-btn" onclick="toggleRead()">읽은 것 숨기기</button>
-        <button class="read-toggle-btn" id="my-cmt-btn-pc" onclick="toggleMyComments()" style="display:none;margin-top:4px">내 의견 기사 보기</button>
+        <button class="read-toggle-btn" id="pc-read-btn" onclick="toggleRead()" style="margin-top:4px">읽은 것 숨기기</button>
+        <button class="read-toggle-btn" id="my-cmt-btn-pc" onclick="toggleMyComments()" style="display:none;margin-top:8px">내 의견 기사 보기</button>
       </div>
 
       <!-- 시그널 필터 -->
