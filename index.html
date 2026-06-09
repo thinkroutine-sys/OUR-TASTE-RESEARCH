@@ -723,7 +723,14 @@ body.signal-mode .news-period-filter { display: none; }
             <button class="sf-pill" data-d="1" onclick="setPeriod(1)">오늘</button>
             <button class="sf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
             <button class="sf-pill" data-d="30" onclick="setPeriod(30)">한달</button>
-            <button class="sf-pill" data-d="0" onclick="setPeriod(0)">직접설정</button>
+            <button class="sf-pill" data-d="0" onclick="toggleDatePanel()">직접설정</button>
+          </div>
+        </div>
+        <div id="date-range-panel" style="display:none;margin-top:4px;padding:10px;background:var(--bg);border-radius:10px;border:1px solid var(--border)">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div><div class="sf-label" style="margin-bottom:4px">시작일</div><input type="date" id="date-from" style="width:100%;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;background:var(--surface);color:var(--text);outline:none"></div>
+            <div><div class="sf-label" style="margin-bottom:4px">종료일</div><input type="date" id="date-to" style="width:100%;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;background:var(--surface);color:var(--text);outline:none"></div>
+            <button onclick="applyDateRange()" style="width:100%;padding:7px;background:var(--blue);color:#fff;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer">적용</button>
           </div>
         </div>
         <div style="margin-bottom:14px">
@@ -802,7 +809,7 @@ body.signal-mode .news-period-filter { display: none; }
   <button class="mf-pill" data-d="1" onclick="setPeriod(1)">오늘</button>
   <button class="mf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
   <button class="mf-pill" data-d="30" onclick="setPeriod(30)">한달</button>
-  <button class="mf-pill" data-d="0" onclick="setPeriod(0)">직접설정</button>
+  <button class="mf-pill" data-d="0" onclick="toggleDatePanel()">직접설정</button>
   <div class="mf-sep"></div>
   <button class="mf-pill on-blue" data-l="all" onclick="setLang('all')">전체</button>
   <button class="mf-pill" data-l="ko" onclick="setLang('ko')">국내</button>
@@ -868,7 +875,8 @@ body.signal-mode .news-period-filter { display: none; }
 const CATS=['전체','신제품·NPD','소비자·시장','식재료·원료','채널·유통','브랜드·기업','산업·정책'];
 const CAT_ICONS={'전체':'🗂️','신제품·NPD':'🆕','소비자·시장':'📊','식재료·원료':'🌿','채널·유통':'🏪','브랜드·기업':'🏢','산업·정책':'📋'};
 let all=[],tab='전체',period=7,lang='all',src='all',query='',hideRead=false,showCvsOnly=false;
-let _cmtCounts={}; // 의견 수 캐시
+let _cmtCounts={};
+let customFrom=null, customTo=null; // 의견 수 캐시
 let _myArticleIds=new Set(); // 내 의견 단 기사 ID
 let showMyComments=false;
 
@@ -897,7 +905,10 @@ function dayKey(iso){
   }catch{return '기타'}
 }
 function fmtUpd(iso){try{return new Date(iso).toLocaleString('ko-KR',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})+' 수집'}catch{return ''}}
-function withinPeriod(iso){return period===0||(Date.now()-new Date(iso))/86400000<period}
+function withinPeriod(iso){
+  if(customFrom&&customTo){var t=new Date(iso).getTime();return t>=new Date(customFrom).getTime()&&t<=new Date(customTo).getTime()+86399999;}
+  return period===0||(Date.now()-new Date(iso))/86400000<period;
+}
 
 function filtered(){
   let r=all;
@@ -1123,12 +1134,72 @@ function setMoCat(c){
   });
   renderAll();
 }
-function setPeriod(d){
-  if(d===0){
-    const v=prompt('기간을 입력하세요 (일 수):');
-    if(!v||isNaN(+v))return;
-    d=+v;
+function toggleDatePanel(){
+
+  var panel=document.getElementById('date-range-panel');
+
+  if(!panel)return;
+
+  var isOpen=panel.style.display==='block';
+
+  panel.style.display=isOpen?'none':'block';
+
+  if(!isOpen){
+
+    var today=new Date().toISOString().split('T')[0];
+
+    var f=document.getElementById('date-from'),t=document.getElementById('date-to');
+
+    if(f&&!f.value)f.value=today;
+
+    if(t&&!t.value)t.value=today;
+
   }
+
+}
+
+
+function applyDateRange(){
+
+  var f=document.getElementById('date-from'),t=document.getElementById('date-to');
+
+  if(!f||!t||!f.value||!t.value)return;
+
+  customFrom=f.value; customTo=t.value;
+
+  period=0;
+
+  document.querySelectorAll('[data-d]').forEach(function(p){
+
+    p.classList.remove('on','on-blue');
+
+    if(p.dataset.d==='0')p.classList.add('on');
+
+  });
+
+  document.getElementById('date-range-panel').style.display='none';
+
+  renderAll();
+
+}
+
+
+function setPeriod(d){
+
+  customFrom=null; customTo=null;
+
+  var panel=document.getElementById('date-range-panel');
+
+  if(panel)panel.style.display='none';
+
+  period=d;
+
+  document.querySelectorAll('[data-d]').forEach(function(p){p.classList.toggle('on',+p.dataset.d===d);});
+
+  renderAll();
+
+}
+
   period=d;
   document.querySelectorAll('[data-d]').forEach(p=>p.classList.toggle('on',+p.dataset.d===d||p.dataset.d==='0'));
   renderAll();
