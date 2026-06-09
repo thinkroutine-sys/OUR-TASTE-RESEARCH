@@ -1010,12 +1010,14 @@ function cardHtml(a,i){
           <div class="tag-panel-pills">
             ${PRESET_TAGS.brand.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="brand" onclick="toggleTag('${a.id}','${t}','brand',this)">${t}</button>`).join('')}
             <button type="button" class="tag-panel-pill" onclick="event.stopPropagation();promptCustomTag('${a.id}','brand')">기타</button>
+          </div>
         </div>
         <div class="tag-panel-group">
           <div class="tag-panel-label">업무</div>
           <div class="tag-panel-pills">
             ${PRESET_TAGS.work.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="work" onclick="toggleTag('${a.id}','${t}','work',this)">${t}</button>`).join('')}
             <button type="button" class="tag-panel-pill" onclick="event.stopPropagation();promptCustomTag('${a.id}','work')">기타</button>
+          </div>
         </div>
         <div style="font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">원하는 카테고리가 없다면 <a href="https://www.notion.so/F-B-379e6fd276d280c682dccf51c56031eb" target="_blank" style="color:var(--blue);font-weight:600">개선 요청</a>을 이용해주세요</div>
       </div>
