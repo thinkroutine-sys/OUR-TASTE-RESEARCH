@@ -84,7 +84,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     max-width:1320px;margin:0 auto;
     padding:28px 32px 60px;
     display:grid;
-    grid-template-columns:220px 1fr 180px;
+    grid-template-columns:1fr 240px;
     gap:24px;
     align-items:start;
   }
@@ -672,20 +672,6 @@ body.signal-mode .news-period-filter { display: none; }
 <!-- ═══ PC 바디 ═══ -->
 <div class="pc-body">
 
-  <!-- PC 사이드바 -->
-  <aside class="pc-sidebar">
-    <div class="sidebar-section">
-      <div class="view-toggle">
-        <button class="vt-btn on" id="vt-news" onclick="setView('news')">📰 뉴스</button>
-        <button class="vt-btn" id="vt-signal" onclick="setView('signal')">📡 시그널</button>
-      </div>
-      <div class="sidebar-title view-news cat-header">
-        카테고리
-        <button onclick="openGuide('news')" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-weight:600">분류 기준 ↗</button>
-      </div>
-      <div class="sidebar-cat view-news" id="pc-cats"></div>
-
-  </aside>
 
   <!-- PC 메인 -->
   <div class="pc-main">
@@ -700,6 +686,21 @@ body.signal-mode .news-period-filter { display: none; }
   <!-- PC 오른쪽 패널 (필터 + 태그) -->
   <aside class="pc-tag-panel" id="pc-right-panel">
     <div class="sidebar-section" style="position:sticky;top:88px;max-height:calc(100vh - 108px);overflow-y:auto;display:flex;flex-direction:column;gap:10px">
+
+      <!-- 뉴스/시그널 탭 -->
+      <div class="view-toggle" style="margin-bottom:4px">
+        <button class="vt-btn on" id="vt-news" onclick="setView('news')">📰 뉴스</button>
+        <button class="vt-btn" id="vt-signal" onclick="setView('signal')">📡 시그널</button>
+      </div>
+
+      <!-- 카테고리 (뉴스) -->
+      <div class="view-news">
+        <div class="cat-header sidebar-title">
+          카테고리
+          <button onclick="openGuide('news')" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-weight:600">분류 기준 ↗</button>
+        </div>
+        <div class="sidebar-cat" id="pc-cats"></div>
+      </div>
 
       <!-- 뉴스 필터 -->
       <div class="view-news sidebar-filters">
