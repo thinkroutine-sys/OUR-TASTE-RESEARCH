@@ -810,6 +810,13 @@ body.signal-mode .news-period-filter { display: none; }
   <button class="mf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
   <button class="mf-pill" data-d="30" onclick="setPeriod(30)">한달</button>
   <button class="mf-pill" data-d="0" onclick="toggleDatePanel()">직접설정</button>
+  <div id="date-range-panel-mo" style="display:none;width:100%;padding:10px;background:var(--bg);border-radius:10px;border:1px solid var(--border);margin-top:4px">
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <div style="flex:1"><div style="font-size:10px;font-weight:700;color:var(--text3);margin-bottom:4px">시작일</div><input type="date" id="date-from-mo" style="width:100%;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;background:var(--surface);color:var(--text);outline:none"></div>
+      <div style="flex:1"><div style="font-size:10px;font-weight:700;color:var(--text3);margin-bottom:4px">종료일</div><input type="date" id="date-to-mo" style="width:100%;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;background:var(--surface);color:var(--text);outline:none"></div>
+    </div>
+    <button onclick="applyDateRange()" style="width:100%;padding:7px;background:var(--blue);color:#fff;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer">적용</button>
+  </div>
   <div class="mf-sep"></div>
   <button class="mf-pill on-blue" data-l="all" onclick="setLang('all')">전체</button>
   <button class="mf-pill" data-l="ko" onclick="setLang('ko')">국내</button>
@@ -1135,52 +1142,38 @@ function setMoCat(c){
   renderAll();
 }
 function toggleDatePanel(){
-
-  var panel=document.getElementById('date-range-panel');
-
-  if(!panel)return;
-
-  var isOpen=panel.style.display==='block';
-
-  panel.style.display=isOpen?'none':'block';
-
-  if(!isOpen){
-
-    var today=new Date().toISOString().split('T')[0];
-
-    var f=document.getElementById('date-from'),t=document.getElementById('date-to');
-
-    if(f&&!f.value)f.value=today;
-
-    if(t&&!t.value)t.value=today;
-
+  var today=new Date().toISOString().split('T')[0];
+  // PC 패널
+  var pc=document.getElementById('date-range-panel');
+  if(pc&&pc.offsetParent!==null){
+    var isOpen=pc.style.display==='block';
+    pc.style.display=isOpen?'none':'block';
+    if(!isOpen){var f=document.getElementById('date-from'),t=document.getElementById('date-to');if(f&&!f.value)f.value=today;if(t&&!t.value)t.value=today;}
+    return;
   }
-
+  // 모바일 패널
+  var mo=document.getElementById('date-range-panel-mo');
+  if(mo){
+    var isOpen=mo.style.display==='block';
+    mo.style.display=isOpen?'none':'block';
+    if(!isOpen){var f=document.getElementById('date-from-mo'),t=document.getElementById('date-to-mo');if(f&&!f.value)f.value=today;if(t&&!t.value)t.value=today;}
+  }
 }
 
 
 function applyDateRange(){
-
-  var f=document.getElementById('date-from'),t=document.getElementById('date-to');
-
+  var f=document.getElementById('date-from')||document.getElementById('date-from-mo');
+  var t=document.getElementById('date-to')||document.getElementById('date-to-mo');
+  // 보이는 것 우선
+  var fMo=document.getElementById('date-from-mo'), tMo=document.getElementById('date-to-mo');
+  if(fMo&&fMo.value) { f=fMo; t=tMo; }
   if(!f||!t||!f.value||!t.value)return;
-
   customFrom=f.value; customTo=t.value;
-
   period=0;
-
-  document.querySelectorAll('[data-d]').forEach(function(p){
-
-    p.classList.remove('on','on-blue');
-
-    if(p.dataset.d==='0')p.classList.add('on');
-
-  });
-
-  document.getElementById('date-range-panel').style.display='none';
-
+  document.querySelectorAll('[data-d]').forEach(function(p){p.classList.remove('on','on-blue');if(p.dataset.d==='0')p.classList.add('on');});
+  var pc=document.getElementById('date-range-panel');if(pc)pc.style.display='none';
+  var mo=document.getElementById('date-range-panel-mo');if(mo)mo.style.display='none';
   renderAll();
-
 }
 
 
@@ -1188,9 +1181,8 @@ function setPeriod(d){
 
   customFrom=null; customTo=null;
 
-  var panel=document.getElementById('date-range-panel');
-
-  if(panel)panel.style.display='none';
+  var panel=document.getElementById('date-range-panel');if(panel)panel.style.display='none';
+  var panelMo=document.getElementById('date-range-panel-mo');if(panelMo)panelMo.style.display='none';
 
   period=d;
 
