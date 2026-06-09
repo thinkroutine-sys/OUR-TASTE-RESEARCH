@@ -1231,17 +1231,23 @@ function toggleRead(){
 const SB_URL = 'https://cnfxyqmhtvcuhbjyxjrk.supabase.co';
 const SB_KEY = 'sb_publishable_kxjyYPiZgj1I-a2nUnfCcQ_oeK4r639';
 
-async function sbFetch(path, options={}) {
+async function sbFetch(path, options={}, _retry=false) {
+  const token = getStoredToken() || SB_KEY;
   const res = await fetch(SB_URL + path, {
     ...options,
     headers: {
       'apikey': SB_KEY,
-      'Authorization': 'Bearer ' + (getStoredToken() || SB_KEY),
+      'Authorization': 'Bearer ' + token,
       'Content-Type': 'application/json',
       'Prefer': (options.method === 'POST' || options.method === 'PATCH') ? 'return=minimal' : '',
       ...(options.headers || {})
     }
   });
+  // JWT 만료 시 토큰 갱신 후 1회 재시도
+  if (res.status === 401 && !_retry) {
+    const refreshed = await tryRefreshToken();
+    if (refreshed) return sbFetch(path, options, true);
+  }
   if (!res.ok) { const t = await res.text(); throw new Error(t || res.status); }
   if (res.status === 204) return null;
   const ct = res.headers.get('content-type') || '';
@@ -1850,11 +1856,51 @@ async function toggleTag(aid, tag, type, btn) {
 }
 
 async function promptCustomTag(aid, group) {
-  var val = prompt('태그를 입력하세요 (최대 20자):');
-  if (!val || !val.trim()) return;
-  val = val.trim().slice(0, 20);
-  var type = group + '_custom';
-  await toggleTag(aid, val, type, null);
+  if(window.innerWidth >= 768) {
+    // PC: 인라인 폼
+    var inputId = 'custom-inline-' + group + '-' + aid;
+    var existing = document.querySelectorAll('[id="' + inputId + '"]');
+    if(existing.length && existing[0].style.display === 'flex') {
+      existing.forEach(function(el){ el.style.display='none'; });
+      return;
+    }
+    existing.forEach(function(el){ el.style.display='none'; });
+    // 버튼 다음에 인라인 폼 삽입
+    var btns = document.querySelectorAll('[onclick*="promptCustomTag('' + aid + '','' + group + '')"]');
+    btns.forEach(function(btn){
+      var form = btn.parentNode.querySelector('[id="' + inputId + '"]');
+      if(!form){
+        form = document.createElement('div');
+        form.id = inputId;
+        form.style.cssText = 'display:flex;gap:6px;margin-top:6px;width:100%';
+        form.innerHTML = '<input class="comment-name-input" style="flex:1;width:auto" placeholder="태그 직접 입력" maxlength="20">' +
+          '<button type="button" class="comment-submit" style="padding:5px 12px;flex-shrink:0">추가</button>';
+        form.querySelector('.comment-submit').onclick = function(e){
+          e.stopPropagation();
+          var val = form.querySelector('input').value.trim();
+          if(!val) return;
+          toggleTag(aid, val, group+'_custom', null).then(function(){
+            form.style.display='none';
+          });
+        };
+        form.querySelector('input').onkeydown = function(e){
+          if(e.key==='Enter'){ form.querySelector('.comment-submit').click(); }
+        };
+        btn.parentNode.appendChild(form);
+      } else {
+        form.style.display = 'flex';
+      }
+      if(form.style.display==='flex'){
+        setTimeout(function(){ form.querySelector('input').focus(); }, 50);
+      }
+    });
+  } else {
+    // 모바일: prompt
+    var val = prompt('태그를 입력하세요 (최대 20자):');
+    if (!val || !val.trim()) return;
+    val = val.trim().slice(0, 20);
+    await toggleTag(aid, val, group+'_custom', null);
+  }
 }
 
 function showCustomTagInput(aid, group) {
