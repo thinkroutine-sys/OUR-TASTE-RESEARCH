@@ -1732,7 +1732,10 @@ function renderTagChips(aid) {
         '</span>';
     }).join('');
   });
-  updateTagPanel(aid);
+  // 포커스된 입력창이 해당 tag-section 안에 있으면 panel 업데이트 건너뜀
+  var focused = document.activeElement;
+  var focusedInSection = focused && focused.closest('[data-taid="' + aid + '"]');
+  if (!focusedInSection) updateTagPanel(aid);
 }
 
 function updateTagPanel(aid) {
