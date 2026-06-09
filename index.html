@@ -84,7 +84,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     max-width:1320px;margin:0 auto;
     padding:28px 32px 60px;
     display:grid;
-    grid-template-columns:220px 1fr;
+    grid-template-columns:220px 1fr 180px;
     gap:24px;
     align-items:start;
   }
@@ -146,6 +146,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   }
   .read-toggle-btn:hover{color:var(--text)}
   .read-toggle-btn.on{background:var(--blue-bg);color:var(--blue)}
+
+  /* PC 오른쪽 태그 패널 */
+  .pc-tag-panel{ min-width:0; }
+  body.signal-mode .pc-tag-panel{ display:none; }
 
   /* PC 메인 */
   .pc-main{}
@@ -737,17 +741,6 @@ body.signal-mode .news-period-filter { display: none; }
         <button class="read-toggle-btn" id="my-cmt-btn-pc" onclick="toggleMyComments()" style="display:none;margin-top:6px">내 의견 기사 보기</button>
       </div>
     </div>
-    <div class="sidebar-section view-news" id="pc-tag-filter" style="display:block">
-      <div class="sidebar-filters">
-        <div class="sf-label">태그 필터</div>
-        <button class="sf-pill on" onclick="setTagFilter(null)" id="tag-all-btn" style="margin-bottom:6px">전체</button>
-        <div class="sf-label" style="font-size:10px;margin-top:4px;margin-bottom:4px">브랜드</div>
-        <div id="pc-tag-brand-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
-        <div class="sf-label" style="font-size:10px;margin-top:8px;margin-bottom:4px">업무</div>
-        <div id="pc-tag-work-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
-        <div id="pc-tag-custom-pills"></div>
-      </div>
-    </div>
   </aside>
 
   <!-- PC 메인 -->
@@ -759,6 +752,20 @@ body.signal-mode .news-period-filter { display: none; }
       <div class="empty"><div class="empty-icon">📡</div><div class="empty-title">시그널 분석 중…</div></div>
     </div>
   </div>
+
+  <!-- PC 오른쪽 태그 패널 -->
+  <aside class="pc-tag-panel view-news" id="pc-tag-filter">
+    <div class="sidebar-section" style="position:sticky;top:88px;max-height:calc(100vh - 108px);overflow-y:auto">
+      <div class="sf-label" style="margin-bottom:8px">태그 필터</div>
+      <button class="sf-pill on" onclick="setTagFilter(null)" id="tag-all-btn" style="margin-bottom:8px;width:100%">전체</button>
+      <div class="sf-label" style="font-size:10px;margin-top:4px;margin-bottom:4px">브랜드</div>
+      <div id="pc-tag-brand-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
+      <div class="sf-label" style="font-size:10px;margin-top:8px;margin-bottom:4px">업무</div>
+      <div id="pc-tag-work-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
+      <div id="pc-tag-custom-pills"></div>
+    </div>
+  </aside>
+
 </div>
 
 <!-- ═══ 모바일 헤더 ═══ -->
@@ -895,7 +902,8 @@ function filtered(){
   if(hideRead)r=r.filter(a=>!isRead(a.id));
   if(showCvsOnly)r=r.filter(a=>a.is_cvs===true);
   if(showMyComments)r=r.filter(a=>_myArticleIds.has(a.id));
-  if(activeTagFilter)r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.tag===activeTagFilter));
+  if(activeBrandFilter) r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.tag===activeBrandFilter));
+  if(activeWorkFilter)  r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.tag===activeWorkFilter));
   return r;
 }
 
@@ -1602,7 +1610,7 @@ async function authSubmit(){
 
 async function authLogout(){
   try{ await fetch(SB_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+getStoredToken()}}); }catch(e){}
-  setStoredToken(null, null); currentUser=null; _myArticleIds=new Set(); showMyComments=false; renderAuthHeader(); renderMyCommentBtn(); renderAll();
+  setStoredToken(null, null); currentUser=null; _myArticleIds=new Set(); showMyComments=false; activeBrandFilter=null; activeWorkFilter=null; renderAuthHeader(); renderMyCommentBtn(); renderAll();
 }
 
 
@@ -1614,6 +1622,8 @@ const PRESET_TAGS = {
 const TAG_TYPE_LABEL = { brand:'브랜드', work:'업무', brand_custom:'브랜드(기타)', work_custom:'업무(기타)' };
 let _articleTags = {}; // { article_id: [{id, tag, tag_type, user_id, user_name}] }
 let activeTagFilter = null; // 현재 선택된 태그 필터
+let activeBrandFilter = null;
+let activeWorkFilter = null;
 
 
 // ── 태그 시스템
@@ -1640,48 +1650,59 @@ function renderTagFilter() {
     });
   });
 
-  function pill(tag, cls, active) {
-    return '<button class="' + cls + (active?' on':'') + '" onclick="setTagFilter(\'' + tag + '\')">' + tag + '</button>';
+  function pill(tag, cls, active, group) {
+    return '<button class="' + cls + (active?' on':'') + '" onclick="setTagFilter(' + (tag?'\''+tag+'\'':'null') + ',\'' + group + '\')">' + (tag||'전체') + '</button>';
   }
-  function moPill(tag, active) {
-    return '<button class="mf-pill' + (active?' on':'') + '" onclick="setTagFilter(\'' + tag + '\')">' + tag + '</button>';
+  function moPill(tag, active, group) {
+    return '<button class="mf-pill' + (active?' on':'') + '" onclick="setTagFilter(' + (tag?'\''+tag+'\'':'null') + ',\'' + group + '\')">' + (tag||'전체') + '</button>';
   }
 
-  // PC - 그룹 분리
+  // PC 전체 버튼 (브랜드+업무 모두 초기화)
   var allBtn = document.getElementById('tag-all-btn');
-  if(allBtn) { allBtn.className = 'sf-pill' + (!activeTagFilter?' on':''); }
+  if(allBtn) allBtn.className = 'sf-pill' + (!activeBrandFilter&&!activeWorkFilter?' on':'');
 
+  // PC 브랜드
   var brandEl = document.getElementById('pc-tag-brand-pills');
-  if(brandEl) brandEl.innerHTML = PRESET_TAGS.brand.map(function(t){ return pill(t,'sf-pill',activeTagFilter===t); }).join('');
+  if(brandEl) brandEl.innerHTML =
+    pill(null,'sf-pill',!activeBrandFilter,'brand') +
+    PRESET_TAGS.brand.map(function(t){ return pill(t,'sf-pill',activeBrandFilter===t,'brand'); }).join('');
 
+  // PC 업무
   var workEl = document.getElementById('pc-tag-work-pills');
-  if(workEl) workEl.innerHTML = PRESET_TAGS.work.map(function(t){ return pill(t,'sf-pill',activeTagFilter===t); }).join('');
+  if(workEl) workEl.innerHTML =
+    pill(null,'sf-pill',!activeWorkFilter,'work') +
+    PRESET_TAGS.work.map(function(t){ return pill(t,'sf-pill',activeWorkFilter===t,'work'); }).join('');
 
+  // PC 기타
   var customEl = document.getElementById('pc-tag-custom-pills');
   if(customEl) {
     var cKeys = Object.keys(customTags);
     customEl.innerHTML = cKeys.length ? '<div class="sf-label" style="font-size:10px;margin-top:8px;margin-bottom:4px">기타</div>' +
-      cKeys.map(function(t){ return pill(t,'sf-pill',activeTagFilter===t); }).join('') : '';
+      cKeys.map(function(t){ return pill(t,'sf-pill',activeBrandFilter===t||activeWorkFilter===t,'brand'); }).join('') : '';
   }
 
-  // 모바일 - 구분선으로 그룹 표시
+  // 모바일
   var moEl = document.getElementById('mo-tag-filter');
   if(moEl) {
     moEl.style.display = 'block';
     var cKeys = Object.keys(customTags);
     var moHtml =
       '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%">브랜드</div>' +
-      '<button class="mf-pill' + (!activeTagFilter?' on-blue':'') + '" onclick="setTagFilter(null)">전체</button>' +
-      PRESET_TAGS.brand.map(function(t){ return moPill(t, activeTagFilter===t); }).join('') +
+      moPill(null,!activeBrandFilter,'brand') +
+      PRESET_TAGS.brand.map(function(t){ return moPill(t,activeBrandFilter===t,'brand'); }).join('') +
       '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;margin-top:4px">업무</div>' +
-      PRESET_TAGS.work.map(function(t){ return moPill(t, activeTagFilter===t); }).join('') +
-      (cKeys.length ? '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;margin-top:4px">기타</div>' + cKeys.map(function(t){ return moPill(t, activeTagFilter===t); }).join('') : '');
+      moPill(null,!activeWorkFilter,'work') +
+      PRESET_TAGS.work.map(function(t){ return moPill(t,activeWorkFilter===t,'work'); }).join('') +
+      (cKeys.length ? '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;margin-top:4px">기타</div>' + cKeys.map(function(t){ return moPill(t,activeBrandFilter===t||activeWorkFilter===t,'brand'); }).join('') : '');
     moEl.querySelector('.mo-tag-pills').innerHTML = moHtml;
   }
 }
 
-function setTagFilter(tag) {
-  activeTagFilter = tag;
+function setTagFilter(tag, group) {
+  if(group==='brand') activeBrandFilter = tag;
+  else if(group==='work') activeWorkFilter = tag;
+  else { activeBrandFilter=null; activeWorkFilter=null; }
+  activeTagFilter = tag; // legacy
   renderTagFilter();
   renderAll();
 }
