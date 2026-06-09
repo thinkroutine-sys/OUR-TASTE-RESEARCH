@@ -1788,25 +1788,30 @@ async function toggleTag(aid, tag, type, btn) {
 }
 
 function showCustomTagInput(aid, group) {
-  var el = document.getElementById('custom-input-' + group + '-' + aid);
-  if (!el) return;
-  var isOpen = el.style.display === 'block';
-  el.style.display = isOpen ? 'none' : 'block';
+  var els = document.querySelectorAll('[id="custom-input-' + group + '-' + aid + '"]');
+  if (!els.length) return;
+  var isOpen = els[0].style.display === 'block';
+  els.forEach(function(el){ el.style.display = isOpen ? 'none' : 'block'; });
   if (!isOpen) {
-    var input = document.getElementById('custom-val-' + group + '-' + aid);
-    if (input) { input.value = ''; input.focus(); }
+    // 보이는 카드의 input에 포커스
+    els.forEach(function(el){
+      if(el.offsetParent !== null) {
+        var input = el.querySelector('input');
+        if(input){ input.value=''; input.focus(); }
+      }
+    });
   }
 }
 
 async function submitCustomTag(aid, group) {
-  var input = document.getElementById('custom-val-' + group + '-' + aid);
-  if (!input) return;
-  var val = input.value.trim();
-  if (!val) { input.focus(); return; }
+  var inputs = document.querySelectorAll('[id="custom-val-' + group + '-' + aid + '"]');
+  var val = '';
+  inputs.forEach(function(i){ if(i.offsetParent !== null && i.value.trim()) val = i.value.trim(); });
+  if(!val) { inputs.forEach(function(i){ if(i.offsetParent!==null) i.focus(); }); return; }
   var type = group + '_custom';
   await toggleTag(aid, val, type, null);
-  input.value = '';
-  document.getElementById('custom-input-' + group + '-' + aid).style.display = 'none';
+  inputs.forEach(function(i){ i.value=''; });
+  document.querySelectorAll('[id="custom-input-' + group + '-' + aid + '"]').forEach(function(el){ el.style.display='none'; });
 }
 
 async function deleteTag(tagId, aid) {
