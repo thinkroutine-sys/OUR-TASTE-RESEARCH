@@ -1900,8 +1900,9 @@ function toggleMoFilter(){
   var isOpen = body.classList.contains('open');
   body.classList.toggle('open', !isOpen);
   btn.classList.toggle('open', !isOpen);
-  // 열리면 sticky 해제 → 페이지 흐름에 포함
+  // 열리면 sticky 해제 → 페이지 흐름에 포함, 맨 위로 스크롤
   if(wrap) wrap.style.position = isOpen ? 'sticky' : 'static';
+  if(!isOpen) window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 // ════════════════════════════════════
