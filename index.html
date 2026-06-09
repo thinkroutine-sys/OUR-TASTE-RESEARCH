@@ -589,6 +589,19 @@ body.signal-mode .news-period-filter { display: none; }
 .mf-toggle-btn.open .mf-toggle-arrow{ transform:rotate(180deg); }
 .mf-collapsible{ display:none; }
 .mf-collapsible.open{ display:block; }
+
+/* ── 오른쪽 패널 섹션 구분 ── */
+.rp-section {
+  padding-top:14px;
+  margin-top:4px;
+  border-top:1px solid var(--border);
+}
+.rp-label {
+  font-size:11px;font-weight:700;color:var(--text3);
+  letter-spacing:.5px;text-transform:uppercase;
+  margin-bottom:10px;
+  display:flex;align-items:center;justify-content:space-between;
+}
 /* ─── 분류 기준 팝업 ─── */
 .guide-btn{
   width:18px;height:18px;border-radius:50%;
@@ -685,17 +698,17 @@ body.signal-mode .news-period-filter { display: none; }
 
   <!-- PC 오른쪽 패널 (필터 + 태그) -->
   <aside class="pc-tag-panel" id="pc-right-panel">
-    <div class="sidebar-section" style="position:sticky;top:88px;max-height:calc(100vh - 108px);overflow-y:auto;display:flex;flex-direction:column;gap:10px">
+    <div class="sidebar-section" style="position:sticky;top:88px;max-height:calc(100vh - 108px);overflow-y:auto">
 
       <!-- 뉴스/시그널 탭 -->
-      <div class="view-toggle" style="margin-bottom:4px">
+      <div class="view-toggle" style="margin-bottom:16px">
         <button class="vt-btn on" id="vt-news" onclick="setView('news')">📰 뉴스</button>
         <button class="vt-btn" id="vt-signal" onclick="setView('signal')">📡 시그널</button>
       </div>
 
       <!-- 카테고리 (뉴스) -->
-      <div class="view-news">
-        <div class="cat-header sidebar-title">
+      <div class="view-news rp-section">
+        <div class="rp-label">
           카테고리
           <button onclick="openGuide('news')" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-weight:600">분류 기준 ↗</button>
         </div>
@@ -703,7 +716,7 @@ body.signal-mode .news-period-filter { display: none; }
       </div>
 
       <!-- 뉴스 필터 -->
-      <div class="view-news sidebar-filters">
+      <div class="view-news sidebar-filters rp-section">
         <div class="news-period-filter">
           <div class="sf-label">기간</div>
           <div class="sf-pills">
@@ -730,7 +743,7 @@ body.signal-mode .news-period-filter { display: none; }
       </div>
 
       <!-- 시그널 필터 -->
-      <div class="view-signal sidebar-filters" id="pc-signal-filters" style="display:none">
+      <div class="view-signal sidebar-filters rp-section" id="pc-signal-filters" style="display:none">
         <div class="sf-label" style="margin-bottom:8px">분석 기간</div>
         <div class="sf-pills" style="margin-bottom:8px">
           <button class="sf-pill" data-sp="1" onclick="setSignalPeriod(1)">오늘</button>
@@ -747,8 +760,8 @@ body.signal-mode .news-period-filter { display: none; }
       </div>
 
       <!-- 태그 필터 -->
-      <div class="view-news" id="pc-tag-filter" style="border-top:1px solid var(--border);padding-top:10px">
-        <div class="sf-label" style="margin-bottom:6px">태그 필터</div>
+      <div class="view-news rp-section" id="pc-tag-filter">
+        <div class="rp-label">태그 필터</div>
         <button class="sf-pill on" onclick="setTagFilter(null)" id="tag-all-btn" style="margin-bottom:8px;width:100%">전체 초기화</button>
         <div class="sf-label" style="font-size:10px;margin-top:4px;margin-bottom:4px">브랜드</div>
         <div id="pc-tag-brand-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
