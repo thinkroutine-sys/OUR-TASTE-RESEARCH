@@ -683,64 +683,7 @@ body.signal-mode .news-period-filter { display: none; }
         <button onclick="openGuide('news')" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-weight:600">분류 기준 ↗</button>
       </div>
       <div class="sidebar-cat view-news" id="pc-cats"></div>
-      <div class="view-signal" id="pc-signal-filters">
-        <div class="sf-label" style="margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">
-          시그널 기준
-          <button onclick="openGuide('signal')" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-weight:600">유형 기준 ↗</button>
-        </div>
-        <div class="sf-label" style="margin-bottom:8px">분석 기간</div>
-        <div class="sf-pills" style="margin-bottom:12px">
-          <button class="sf-pill" data-sp="1"   onclick="setSignalPeriod(1)">오늘</button>
-          <button class="sf-pill" data-sp="7"   onclick="setSignalPeriod(7)">7일</button>
-          <button class="sf-pill on" data-sp="30" onclick="setSignalPeriod(30)">한달</button>
-          <button class="sf-pill" data-sp="custom" onclick="setSignalPeriod('custom')">직접 설정</button>
-          <div id="custom-period-wrap" style="display:none;margin-top:8px;display:none">
-            <div style="display:flex;align-items:center;gap:6px">
-              <input id="custom-period-input" type="number" min="1" max="365" placeholder="일 수"
-                style="width:70px;padding:5px 8px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:13px;outline:none;color:var(--text);background:var(--surface)">
-              <span style="font-size:12px;color:var(--text3)">일</span>
-              <button onclick="applyCustomPeriod()"
-                style="padding:5px 10px;background:var(--text);color:#fff;border-radius:8px;font-size:12px;font-weight:600">적용</button>
-            </div>
-          </div>
-        </div>
-        <div class="sf-label" style="margin-bottom:8px">키워드 유형</div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <button class="ss-btn on-all" data-kc="all"        onclick="setKwCat('all')">전체</button>
-          <button class="ss-btn" data-kc="food_cat"  onclick="setKwCat('food_cat')">🍽️ 식품 카테고리</button>
-          <button class="ss-btn" data-kc="ingredient" onclick="setKwCat('ingredient')">🌿 식재료·원료</button>
-          <button class="ss-btn" data-kc="trend"     onclick="setKwCat('trend')">📈 소비 트렌드</button>
-          <button class="ss-btn" data-kc="brand"     onclick="setKwCat('brand')">🏷️ 브랜드</button>
-        </div>
-      </div>
-    </div>
-    <div class="sidebar-section">
-      <div class="sidebar-filters">
-        <div class="news-period-filter">
-          <div class="sf-label">기간</div>
-          <div class="sf-pills">
-            <button class="sf-pill" data-d="1" onclick="setPeriod(1)">오늘</button>
-            <button class="sf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
-            <button class="sf-pill" data-d="30" onclick="setPeriod(30)">한달</button>
-            <button class="sf-pill" data-d="0" onclick="setPeriod(0)">직접설정</button>
-          </div>
-        </div>
-        <div style="margin-top:4px">
-          <div class="sf-label">국가</div>
-          <div class="sf-pills">
-            <button class="sf-pill on-blue" data-l="all" onclick="setLang('all')">전체</button>
-            <button class="sf-pill" data-l="ko" onclick="setLang('ko')">국내</button>
-            <button class="sf-pill" data-l="en" onclick="setLang('en')">해외</button>
-          </div>
-        </div>
-        <div style="margin-top:4px">
-          <div class="sf-label">출처</div>
-          <select class="sf-select" id="pc-src" onchange="setSrc(this.value)"><option value="all">전체</option></select>
-        </div>
-        <button class="read-toggle-btn" id="pc-read-btn" onclick="toggleRead()">읽은 것 숨기기</button>
-        <button class="read-toggle-btn" id="my-cmt-btn-pc" onclick="toggleMyComments()" style="display:none;margin-top:6px">내 의견 기사 보기</button>
-      </div>
-    </div>
+
   </aside>
 
   <!-- PC 메인 -->
@@ -753,16 +696,65 @@ body.signal-mode .news-period-filter { display: none; }
     </div>
   </div>
 
-  <!-- PC 오른쪽 태그 패널 -->
-  <aside class="pc-tag-panel view-news" id="pc-tag-filter">
-    <div class="sidebar-section" style="position:sticky;top:88px;max-height:calc(100vh - 108px);overflow-y:auto">
-      <div class="sf-label" style="margin-bottom:8px">태그 필터</div>
-      <button class="sf-pill on" onclick="setTagFilter(null)" id="tag-all-btn" style="margin-bottom:8px;width:100%">전체</button>
-      <div class="sf-label" style="font-size:10px;margin-top:4px;margin-bottom:4px">브랜드</div>
-      <div id="pc-tag-brand-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
-      <div class="sf-label" style="font-size:10px;margin-top:8px;margin-bottom:4px">업무</div>
-      <div id="pc-tag-work-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
-      <div id="pc-tag-custom-pills"></div>
+  <!-- PC 오른쪽 패널 (필터 + 태그) -->
+  <aside class="pc-tag-panel" id="pc-right-panel">
+    <div class="sidebar-section" style="position:sticky;top:88px;max-height:calc(100vh - 108px);overflow-y:auto;display:flex;flex-direction:column;gap:10px">
+
+      <!-- 뉴스 필터 -->
+      <div class="view-news sidebar-filters">
+        <div class="news-period-filter">
+          <div class="sf-label">기간</div>
+          <div class="sf-pills">
+            <button class="sf-pill" data-d="1" onclick="setPeriod(1)">오늘</button>
+            <button class="sf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
+            <button class="sf-pill" data-d="30" onclick="setPeriod(30)">한달</button>
+            <button class="sf-pill" data-d="0" onclick="setPeriod(0)">직접설정</button>
+          </div>
+        </div>
+        <div>
+          <div class="sf-label">국가</div>
+          <div class="sf-pills">
+            <button class="sf-pill on-blue" data-l="all" onclick="setLang('all')">전체</button>
+            <button class="sf-pill" data-l="ko" onclick="setLang('ko')">국내</button>
+            <button class="sf-pill" data-l="en" onclick="setLang('en')">해외</button>
+          </div>
+        </div>
+        <div>
+          <div class="sf-label">출처</div>
+          <select class="sf-select" id="pc-src" onchange="setSrc(this.value)"><option value="all">전체</option></select>
+        </div>
+        <button class="read-toggle-btn" id="pc-read-btn" onclick="toggleRead()">읽은 것 숨기기</button>
+        <button class="read-toggle-btn" id="my-cmt-btn-pc" onclick="toggleMyComments()" style="display:none;margin-top:4px">내 의견 기사 보기</button>
+      </div>
+
+      <!-- 시그널 필터 -->
+      <div class="view-signal sidebar-filters" id="pc-signal-filters" style="display:none">
+        <div class="sf-label" style="margin-bottom:8px">분석 기간</div>
+        <div class="sf-pills" style="margin-bottom:8px">
+          <button class="sf-pill" data-sp="1" onclick="setSignalPeriod(1)">오늘</button>
+          <button class="sf-pill" data-sp="7" onclick="setSignalPeriod(7)">7일</button>
+          <button class="sf-pill on" data-sp="30" onclick="setSignalPeriod(30)">한달</button>
+          <button class="sf-pill" data-sp="custom" onclick="setSignalPeriod('custom')">직접 설정</button>
+        </div>
+        <div class="sf-label" style="margin-bottom:6px">키워드 유형 <button onclick="openGuide('signal')" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-weight:600">유형 기준 ↗</button></div>
+        <button class="ss-btn on-all" data-kc="all" onclick="setKwCat('all')">전체 유형</button>
+        <button class="ss-btn" data-kc="food_cat" onclick="setKwCat('food_cat')">🍽️ 식품 카테고리</button>
+        <button class="ss-btn" data-kc="ingredient" onclick="setKwCat('ingredient')">🌿 식재료·원료</button>
+        <button class="ss-btn" data-kc="trend" onclick="setKwCat('trend')">📈 소비 트렌드</button>
+        <button class="ss-btn" data-kc="brand" onclick="setKwCat('brand')">🏷️ 브랜드</button>
+      </div>
+
+      <!-- 태그 필터 -->
+      <div class="view-news" id="pc-tag-filter" style="border-top:1px solid var(--border);padding-top:10px">
+        <div class="sf-label" style="margin-bottom:6px">태그 필터</div>
+        <button class="sf-pill on" onclick="setTagFilter(null)" id="tag-all-btn" style="margin-bottom:8px;width:100%">전체 초기화</button>
+        <div class="sf-label" style="font-size:10px;margin-top:4px;margin-bottom:4px">브랜드</div>
+        <div id="pc-tag-brand-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
+        <div class="sf-label" style="font-size:10px;margin-top:8px;margin-bottom:4px">업무</div>
+        <div id="pc-tag-work-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
+        <div id="pc-tag-custom-pills"></div>
+      </div>
+
     </div>
   </aside>
 
