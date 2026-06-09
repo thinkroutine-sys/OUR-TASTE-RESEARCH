@@ -547,6 +547,29 @@ body.signal-mode .news-period-filter { display: none; }
 .auth-error{font-size:12px;margin-top:8px;text-align:center;min-height:16px}
 .auth-close{float:right;background:none;border:none;font-size:18px;color:var(--text3);cursor:pointer;margin-top:-4px}
 .user-info{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:8px}
+
+/* ── 태그 시스템 ── */
+.tag-section{margin-top:6px;padding-top:8px;border-top:1px solid var(--border)}
+.tag-header{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.tag-chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.tag-chip{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;cursor:default}
+.tag-chip.brand{background:#FFF3E0;color:#E65100}
+.tag-chip.brand_custom{background:#FFF3E0;color:#E65100;border:1.5px dashed #E65100}
+.tag-chip.work_custom{background:#E8F5E9;color:#2E7D32;border:1.5px dashed #2E7D32}
+.tag-chip.work{background:#E8F5E9;color:#2E7D32}
+.tag-chip-del{background:none;border:none;cursor:pointer;font-size:10px;color:inherit;opacity:.6;padding:0;line-height:1}
+.tag-chip-del:hover{opacity:1}
+.tag-add-btn{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px;border:1.5px dashed var(--border);color:var(--text3);background:none;cursor:pointer;transition:all .15s}
+.tag-add-btn:hover{border-color:var(--blue);color:var(--blue)}
+.tag-panel{margin-top:6px;padding:10px 12px;background:var(--bg);border-radius:10px;border:1px solid var(--border)}
+.tag-panel-group{margin-bottom:8px}
+.tag-panel-label{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:5px;letter-spacing:.05em}
+.tag-panel-pills{display:flex;flex-wrap:wrap;gap:4px}
+.tag-panel-pill{font-size:12px;font-weight:500;padding:4px 11px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s}
+.tag-panel-pill:hover{border-color:var(--blue);color:var(--blue)}
+.tag-panel-pill.active-brand{background:#FFF3E0;border-color:#E65100;color:#E65100}
+.tag-panel-pill.active-work{background:#E8F5E9;border-color:#2E7D32;color:#2E7D32}
+.tag-panel-notice{font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
 /* ─── 분류 기준 팝업 ─── */
 .guide-btn{
   width:18px;height:18px;border-radius:50%;
@@ -700,6 +723,15 @@ body.signal-mode .news-period-filter { display: none; }
         <button class="read-toggle-btn" id="my-cmt-btn-pc" onclick="toggleMyComments()" style="display:none;margin-top:6px">내 의견 기사 보기</button>
       </div>
     </div>
+    <div class="sidebar-section view-news" id="pc-tag-filter" style="display:none">
+      <div class="sidebar-filters">
+        <div class="sf-label">태그 필터</div>
+        <div class="sf-pills" style="flex-direction:column;gap:4px"></div>
+      </div>
+    </div>
+    <div style="display:none"><!-- placeholder
+      </div>
+    </div>
   </aside>
 
   <!-- PC 메인 -->
@@ -752,6 +784,12 @@ body.signal-mode .news-period-filter { display: none; }
   <select class="mf-select" id="mo-src" onchange="setSrc(this.value)"><option value="all">전체 출처</option></select>
   <div class="mf-sep"></div>
   <button id="my-cmt-btn-mo" class="mf-pill" onclick="toggleMyComments()" style="display:none">내 의견 기사</button>
+  <div id="mo-tag-filter" style="display:none;width:100%">
+    <div class="mf-sep"></div>
+    <div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;padding:2px 0">태그 필터</div>
+    <div class="mo-tag-pills" style="display:flex;flex-wrap:wrap;gap:4px;width:100%"></div>
+  </div>
+  <div class="mf-sep"></div>
   <button class="mf-pill" style="color:var(--blue);border-color:var(--blue)" onclick="openGuide('news')">분류 기준 ↗</button>
 </div>
 </div>
@@ -835,6 +873,7 @@ function filtered(){
   if(hideRead)r=r.filter(a=>!isRead(a.id));
   if(showCvsOnly)r=r.filter(a=>a.is_cvs===true);
   if(showMyComments)r=r.filter(a=>_myArticleIds.has(a.id));
+  if(activeTagFilter)r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.tag===activeTagFilter));
   return r;
 }
 
@@ -900,8 +939,9 @@ function renderMain(){
   const html=groupedHtml(items);
   document.getElementById('pc-main').innerHTML=html;
   document.getElementById('mo-main').innerHTML=html;
-  applyCachedCounts();   // 캐시된 값 즉시 적용
-  loadAllCommentCounts(); // 최신 값 새로고침
+  applyCachedCounts();
+  loadAllCommentCounts();
+  loadAllTags();
 }
 
 function cardHtml(a,i){
@@ -917,6 +957,43 @@ function cardHtml(a,i){
     }
   }
   const kws=(a.keywords&&a.keywords.length)?`<div class="keywords">${a.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>`:'';
+  const tagHtml = `
+    <div class="tag-section" data-taid="${a.id}">
+      <div class="tag-header">
+        <span style="font-size:12px;font-weight:600;color:var(--text2)">🏷️ 태그</span>
+        ${currentUser ? `<button type="button" class="tag-add-btn" onclick="toggleTagPanel('${a.id}')">+ 추가</button>` : ''}
+      </div>
+      <div class="tag-chips" id="tag-chips-${a.id}"></div>
+      <div class="tag-panel" id="tag-panel-${a.id}" style="display:none">
+        <div class="tag-panel-group">
+          <div class="tag-panel-label">브랜드</div>
+          <div class="tag-panel-pills">
+            ${PRESET_TAGS.brand.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="brand" onclick="toggleTag('${a.id}','${t}','brand',this)">${t}</button>`).join('')}
+            <button type="button" class="tag-panel-pill" onclick="showCustomTagInput('${a.id}','brand')">기타</button>
+          </div>
+          <div id="custom-input-brand-${a.id}" style="display:none;margin-top:6px;display:none">
+            <div style="display:flex;gap:6px">
+              <input id="custom-val-brand-${a.id}" class="comment-name-input" style="flex:1;width:auto" placeholder="태그 직접 입력" maxlength="20">
+              <button type="button" class="comment-submit" style="padding:5px 12px" onclick="submitCustomTag('${a.id}','brand')">추가</button>
+            </div>
+          </div>
+        </div>
+        <div class="tag-panel-group">
+          <div class="tag-panel-label">업무</div>
+          <div class="tag-panel-pills">
+            ${PRESET_TAGS.work.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="work" onclick="toggleTag('${a.id}','${t}','work',this)">${t}</button>`).join('')}
+            <button type="button" class="tag-panel-pill" onclick="showCustomTagInput('${a.id}','work')">기타</button>
+          </div>
+          <div id="custom-input-work-${a.id}" style="display:none">
+            <div style="display:flex;gap:6px;margin-top:6px">
+              <input id="custom-val-work-${a.id}" class="comment-name-input" style="flex:1;width:auto" placeholder="태그 직접 입력" maxlength="20">
+              <button type="button" class="comment-submit" style="padding:5px 12px" onclick="submitCustomTag('${a.id}','work')">추가</button>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">원하는 카테고리가 없다면 <a href="https://www.notion.so/F-B-379e6fd276d280c682dccf51c56031eb" target="_blank" style="color:var(--blue);font-weight:600">개선 요청</a>을 이용해주세요</div>
+      </div>
+    </div>`;
   const aid = a.id;
   const commentHtml = `
     <div class="comment-section" data-aid="${aid}">
@@ -940,6 +1017,7 @@ function cardHtml(a,i){
   ${sum}
   ${kws}
   <div class="card-bottom"><div class="unread-badge" id="rb-${a.id}"></div><svg class="card-link" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+  ${tagHtml}
   ${commentHtml}
 </div>`;
 }
@@ -1466,6 +1544,172 @@ async function authSubmit(){
 async function authLogout(){
   try{ await fetch(SB_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+getStoredToken()}}); }catch(e){}
   setStoredToken(null); currentUser=null; _myArticleIds=new Set(); showMyComments=false; renderAuthHeader(); renderMyCommentBtn(); renderAll();
+}
+
+
+// ── 태그 상수
+const PRESET_TAGS = {
+  brand: ['새미네부엌','연두','폰타나','티아시아','차오차이','백년동안','질러','순작','샘표 장류','샘표 국수','간편식','샘표 기본양념','샘표 간편·양념','샘표 간장'],
+  work:  ['맛방향물','메뉴개발','콘텐츠']
+};
+const TAG_TYPE_LABEL = { brand:'브랜드', work:'업무', brand_custom:'브랜드(기타)', work_custom:'업무(기타)' };
+let _articleTags = {}; // { article_id: [{id, tag, tag_type, user_id, user_name}] }
+let activeTagFilter = null; // 현재 선택된 태그 필터
+
+
+// ── 태그 시스템
+async function loadAllTags() {
+  try {
+    var data = await sbFetch('/rest/v1/article_tags?select=id,article_id,tag,tag_type,user_id,user_name&order=created_at.asc');
+    if (!data) return;
+    _articleTags = {};
+    data.forEach(function(row) {
+      if (!_articleTags[row.article_id]) _articleTags[row.article_id] = [];
+      _articleTags[row.article_id].push(row);
+    });
+    renderAllTagChips();
+    renderTagFilter();
+  } catch(e) {}
+}
+
+function renderTagFilter() {
+  // 사용 중인 태그 집계
+  var tagCount = {};
+  Object.values(_articleTags).forEach(function(tags) {
+    tags.forEach(function(t) {
+      tagCount[t.tag] = (tagCount[t.tag] || 0) + 1;
+    });
+  });
+  var tagList = Object.keys(tagCount).sort();
+  if (!tagList.length) {
+    ['pc-tag-filter','mo-tag-filter'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.style.display = 'none';
+    });
+    return;
+  }
+  var pillsHtml = '<button class="sf-pill' + (!activeTagFilter?' on':'') + '" onclick="setTagFilter(null)">전체</button>' +
+    tagList.map(function(tag) {
+      return '<button class="sf-pill' + (activeTagFilter===tag?' on':'') + '" onclick="setTagFilter(\'' + tag + '\')">' + tag + '</button>';
+    }).join('');
+  var moPillsHtml = '<button class="mf-pill' + (!activeTagFilter?' on-blue':'') + '" onclick="setTagFilter(null)">전체</button>' +
+    tagList.map(function(tag) {
+      return '<button class="mf-pill' + (activeTagFilter===tag?' on':'') + '" onclick="setTagFilter(\'' + tag + '\')">' + tag + '</button>';
+    }).join('');
+
+  var pcEl = document.getElementById('pc-tag-filter');
+  if(pcEl) { pcEl.style.display = 'block'; pcEl.querySelector('.sf-pills').innerHTML = pillsHtml; }
+  var moEl = document.getElementById('mo-tag-filter');
+  if(moEl) { moEl.style.display = 'block'; moEl.querySelector('.mo-tag-pills').innerHTML = moPillsHtml; }
+}
+
+function setTagFilter(tag) {
+  activeTagFilter = tag;
+  renderTagFilter();
+  renderAll();
+}
+
+function renderAllTagChips() {
+  Object.keys(_articleTags).forEach(function(aid) {
+    renderTagChips(aid);
+  });
+}
+
+function renderTagChips(aid) {
+  var tags = _articleTags[aid] || [];
+  var container = document.querySelectorAll('[id="tag-chips-' + aid + '"]');
+  container.forEach(function(el) {
+    if (!tags.length) { el.innerHTML = ''; return; }
+    el.innerHTML = tags.map(function(t) {
+      var canDel = currentUser && t.user_id === currentUser.id;
+      return '<span class="tag-chip ' + t.tag_type + '">' + t.tag +
+        (canDel ? '<button class="tag-chip-del" onclick="deleteTag(\'' + t.id + '\',\'' + aid + '\')">✕</button>' : '') +
+        '</span>';
+    }).join('');
+  });
+  updateTagPanel(aid);
+}
+
+function updateTagPanel(aid) {
+  var tags = _articleTags[aid] || [];
+  var tagNames = tags.map(function(t){ return t.tag; });
+  var panels = document.querySelectorAll('[id="tag-panel-' + aid + '"]');
+  panels.forEach(function(panel) {
+    panel.querySelectorAll('.tag-panel-pill').forEach(function(pill) {
+      var tag = pill.dataset.tag;
+      var type = pill.dataset.type;
+      pill.className = 'tag-panel-pill' + (tagNames.includes(tag) ? ' active-' + type : '');
+    });
+  });
+}
+
+function toggleTagPanel(aid) {
+  if (!currentUser) { openAuth('로그인 후 태그를 추가할 수 있어요 👆'); return; }
+  var panels = document.querySelectorAll('[id="tag-panel-' + aid + '"]');
+  panels.forEach(function(panel) {
+    var isOpen = panel.style.display === 'block';
+    panel.style.display = isOpen ? 'none' : 'block';
+    if (!isOpen) {
+      loadTagsForArticle(aid);
+    }
+  });
+}
+
+async function loadTagsForArticle(aid) {
+  try {
+    var data = await sbFetch('/rest/v1/article_tags?select=id,article_id,tag,tag_type,user_id,user_name&article_id=eq.' + aid);
+    _articleTags[aid] = data || [];
+    renderTagChips(aid);
+  } catch(e) {}
+}
+
+async function toggleTag(aid, tag, type, btn) {
+  if (!currentUser) return;
+  var tags = _articleTags[aid] || [];
+  var existing = tags.find(function(t){ return t.tag === tag; });
+  if (existing) {
+    // 내가 단 태그면 삭제, 아니면 무시
+    if (existing.user_id === currentUser.id) {
+      await deleteTag(existing.id, aid);
+    }
+    return;
+  }
+  // 추가
+  try {
+    var body = { article_id: aid, tag: tag, tag_type: type, user_id: currentUser.id, user_name: (currentUser.user_metadata && currentUser.user_metadata.name) || currentUser.email.split('@')[0] };
+    await sbFetch('/rest/v1/article_tags', { method: 'POST', body: JSON.stringify(body) });
+    await loadTagsForArticle(aid);
+  } catch(e) { alert('태그 추가 실패: ' + e.message); }
+}
+
+function showCustomTagInput(aid, group) {
+  var el = document.getElementById('custom-input-' + group + '-' + aid);
+  if (!el) return;
+  var isOpen = el.style.display === 'block';
+  el.style.display = isOpen ? 'none' : 'block';
+  if (!isOpen) {
+    var input = document.getElementById('custom-val-' + group + '-' + aid);
+    if (input) { input.value = ''; input.focus(); }
+  }
+}
+
+async function submitCustomTag(aid, group) {
+  var input = document.getElementById('custom-val-' + group + '-' + aid);
+  if (!input) return;
+  var val = input.value.trim();
+  if (!val) { input.focus(); return; }
+  var type = group + '_custom';
+  await toggleTag(aid, val, type, null);
+  input.value = '';
+  document.getElementById('custom-input-' + group + '-' + aid).style.display = 'none';
+}
+
+async function deleteTag(tagId, aid) {
+  try {
+    await sbFetch('/rest/v1/article_tags?id=eq.' + tagId, { method: 'DELETE' });
+    _articleTags[aid] = (_articleTags[aid] || []).filter(function(t){ return t.id !== tagId; });
+    renderTagChips(aid);
+  } catch(e) { console.error('태그 삭제 오류:', e); }
 }
 
 // ════════════════════════════════════
