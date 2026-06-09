@@ -962,6 +962,9 @@ function cardHtml(a,i){
       </div>
       <div class="tag-chips" id="tag-chips-${a.id}"></div>
       <div class="tag-panel" id="tag-panel-${a.id}" style="display:none">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:4px">
+          <button type="button" onclick="event.stopPropagation();toggleTagPanel('${a.id}')" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--text3);padding:0">✕ 닫기</button>
+        </div>
         <div class="tag-panel-group">
           <div class="tag-panel-label">브랜드</div>
           <div class="tag-panel-pills">
