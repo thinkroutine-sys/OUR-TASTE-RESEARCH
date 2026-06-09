@@ -1866,7 +1866,7 @@ async function promptCustomTag(aid, group) {
     }
     existing.forEach(function(el){ el.style.display='none'; });
     // 버튼 다음에 인라인 폼 삽입
-    var btns = document.querySelectorAll('[onclick*="promptCustomTag('' + aid + '','' + group + '')"]');
+    var btns = document.querySelectorAll('.tag-panel-pill[onclick*="' + group + '"]');
     btns.forEach(function(btn){
       var form = btn.parentNode.querySelector('[id="' + inputId + '"]');
       if(!form){
