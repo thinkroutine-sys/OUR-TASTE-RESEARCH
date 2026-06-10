@@ -752,15 +752,15 @@ body.signal-mode .news-period-filter { display: none; }
       </div>
 
       <!-- 시그널 필터 -->
-      <div class="view-signal sidebar-filters rp-section" id="pc-signal-filters" style="display:none">
+      <div class="view-signal sidebar-filters rp-section" id="pc-signal-filters">
         <div class="sf-label" style="margin-bottom:8px">분석 기간</div>
-        <div class="sf-pills" style="margin-bottom:8px">
+        <div class="sf-pills" style="margin-bottom:16px">
           <button class="sf-pill" data-sp="1" onclick="setSignalPeriod(1)">오늘</button>
           <button class="sf-pill" data-sp="7" onclick="setSignalPeriod(7)">7일</button>
           <button class="sf-pill on" data-sp="30" onclick="setSignalPeriod(30)">한달</button>
           <button class="sf-pill" data-sp="custom" onclick="setSignalPeriod('custom')">직접 설정</button>
         </div>
-        <div class="sf-label" style="margin-bottom:6px">키워드 유형 <button onclick="openGuide('signal')" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-weight:600">유형 기준 ↗</button></div>
+        <div class="sf-label" style="margin-top:16px;margin-bottom:8px">키워드 유형 <button onclick="openGuide('signal')" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-weight:600">유형 기준 ↗</button></div>
         <button class="ss-btn on-all" data-kc="all" onclick="setKwCat('all')">전체 유형</button>
         <button class="ss-btn" data-kc="food_cat" onclick="setKwCat('food_cat')">🍽️ 식품 카테고리</button>
         <button class="ss-btn" data-kc="ingredient" onclick="setKwCat('ingredient')">🌿 식재료·원료</button>
