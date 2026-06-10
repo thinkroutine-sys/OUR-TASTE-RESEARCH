@@ -758,7 +758,14 @@ body.signal-mode .news-period-filter { display: none; }
           <button class="sf-pill" data-sp="1" onclick="setSignalPeriod(1)">오늘</button>
           <button class="sf-pill" data-sp="7" onclick="setSignalPeriod(7)">7일</button>
           <button class="sf-pill on" data-sp="30" onclick="setSignalPeriod(30)">한달</button>
-          <button class="sf-pill" data-sp="custom" onclick="setSignalPeriod('custom')">직접 설정</button>
+          <button class="sf-pill" data-sp="custom" onclick="toggleSignalDatePanel()">직접 설정</button>
+        </div>
+        <div id="signal-date-panel" style="display:none;margin-top:8px;margin-bottom:8px;padding:10px;background:var(--bg);border-radius:10px;border:1px solid var(--border)">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div><div class="sf-label" style="margin-bottom:4px">시작일</div><input type="date" id="signal-date-from" style="width:100%;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;background:var(--surface);color:var(--text);outline:none"></div>
+            <div><div class="sf-label" style="margin-bottom:4px">종료일</div><input type="date" id="signal-date-to" style="width:100%;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;background:var(--surface);color:var(--text);outline:none"></div>
+            <button onclick="applySignalDateRange()" style="width:100%;padding:7px;background:var(--blue);color:#fff;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer">적용</button>
+          </div>
         </div>
         <div class="sf-label" style="margin-top:16px;margin-bottom:8px">키워드 유형 <button onclick="openGuide('signal')" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-weight:600">유형 기준 ↗</button></div>
         <button class="ss-btn on-all" data-kc="all" onclick="setKwCat('all')">전체 유형</button>
@@ -2076,14 +2083,44 @@ function setView(v) {
   if (v === 'signal') renderSignal();
 }
 
-function setSignalPeriod(d) {
-  if (d === 'custom') {
-    const v = prompt('분석 기간을 입력하세요 (일 수):');
-    if (!v || isNaN(+v)) return;
-    d = +v;
+function toggleSignalDatePanel(){
+  var today = new Date().toISOString().split('T')[0];
+  var panel = document.getElementById('signal-date-panel');
+  if(!panel) return;
+  document.querySelectorAll('[data-sp]').forEach(function(b){
+    b.classList.remove('on','on-blue');
+    if(b.dataset.sp==='custom') b.classList.add('on');
+  });
+  var isOpen = panel.style.display === 'block';
+  panel.style.display = isOpen ? 'none' : 'block';
+  if(!isOpen){
+    var f=document.getElementById('signal-date-from'), t=document.getElementById('signal-date-to');
+    if(f&&!f.value) f.value=today;
+    if(t&&!t.value) t.value=today;
   }
+}
+
+function applySignalDateRange(){
+  var f=document.getElementById('signal-date-from'), t=document.getElementById('signal-date-to');
+  if(!f||!t||!f.value||!t.value) return;
+  // 날짜 범위를 일수로 변환해서 signalPeriod에 적용
+  var from = new Date(f.value), to = new Date(t.value);
+  var days = Math.ceil((to-from)/86400000)+1;
+  signalPeriod = days;
+  // 직접설정 버튼 활성화 + 라벨 표시
+  document.querySelectorAll('[data-sp]').forEach(function(b){
+    b.classList.remove('on','on-blue');
+    if(b.dataset.sp==='custom') b.classList.add('on');
+  });
+  document.getElementById('signal-date-panel').style.display='none';
+  renderSignal();
+}
+
+function setSignalPeriod(d) {
+  if (d === 'custom') { toggleSignalDatePanel(); return; }
+  var panel=document.getElementById('signal-date-panel');if(panel)panel.style.display='none';
   signalPeriod = d;
-  document.querySelectorAll('[data-sp]').forEach(p => p.classList.toggle('on', +p.dataset.sp === d || p.dataset.sp === 'custom' && typeof d !== 'number'));
+  document.querySelectorAll('[data-sp]').forEach(p => p.classList.toggle('on', +p.dataset.sp === d));
   renderSignal();
 }
 
