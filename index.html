@@ -681,7 +681,7 @@ body.signal-mode .news-period-filter { display: none; }
 <div class="pc-header">
 <div class="pc-header-inner">
   <div class="pc-logo-wrap">
-    <div class="pc-logo">우리맛 연구</div>
+    <div class="pc-logo" onclick="resetAll()" style="cursor:pointer">우리맛 연구</div>
     <div class="pc-logo-sub">WOORIMAT RESEARCH</div>
   </div>
   <div class="pc-search">
@@ -816,7 +816,7 @@ body.signal-mode .news-period-filter { display: none; }
 <!-- ═══ 모바일 헤더 ═══ -->
 <div class="mobile-header">
 <div class="mh-inner">
-  <div class="mh-logo">우리맛 연구</div>
+  <div class="mh-logo" onclick="resetAll()" style="cursor:pointer">우리맛 연구</div>
   <div class="mh-search">
     <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input id="mo-q" type="text" placeholder="검색">
@@ -2017,6 +2017,34 @@ function chipTouch(el) {
 }
 function chipTouchEnd(el) {
   setTimeout(function(){ el.classList.remove('tooltip-show'); }, 1500);
+}
+
+function resetAll(){
+  tab='전체'; period=7; lang='all'; src='all'; query='';
+  hideRead=false; showMyComments=false;
+  activeBrandFilter=null; activeWorkFilter=null;
+  activePersonFilter=null; activeTagFilter=null;
+  customFrom=null; customTo=null;
+  // 기간 버튼 초기화
+  document.querySelectorAll('[data-d]').forEach(function(b){
+    b.classList.remove('on','on-blue');
+    if(b.dataset.d==='7') b.classList.add('on');
+  });
+  // 언어 버튼 초기화
+  document.querySelectorAll('[data-l]').forEach(function(b){
+    b.classList.remove('on','on-blue');
+    if(b.dataset.l==='all') b.classList.add('on-blue');
+  });
+  // 검색창 초기화
+  var pcq=document.getElementById('pc-q'), moq=document.getElementById('mo-q');
+  if(pcq) pcq.value=''; if(moq) moq.value='';
+  // 패널 닫기
+  var dp=document.getElementById('date-range-panel'); if(dp) dp.style.display='none';
+  var dpm=document.getElementById('date-range-panel-mo'); if(dpm) dpm.style.display='none';
+  // 뷰 초기화
+  setView('news');
+  renderAll();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 // ════════════════════════════════════
