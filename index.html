@@ -601,6 +601,22 @@ body.signal-mode .news-period-filter { display: none; }
   margin-bottom:10px;
   display:flex;align-items:center;justify-content:space-between;
 }
+
+/* ── 태그 툴팁 ── */
+.tag-chip { position:relative; }
+.tag-chip .tag-tooltip {
+  display:none;position:absolute;bottom:calc(100% + 6px);left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,.75);color:#fff;
+  font-size:11px;font-weight:500;padding:4px 8px;border-radius:6px;
+  white-space:nowrap;pointer-events:none;z-index:10;
+}
+.tag-chip .tag-tooltip::after {
+  content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:4px solid transparent;border-top-color:rgba(0,0,0,.75);
+}
+.tag-chip:hover .tag-tooltip { display:block; }
+.tag-chip.tooltip-show .tag-tooltip { display:block; }
 /* ─── 분류 기준 팝업 ─── */
 .guide-btn{
   width:18px;height:18px;border-radius:50%;
@@ -1798,8 +1814,11 @@ function renderTagChips(aid) {
     if (!tags.length) { el.innerHTML = ''; return; }
     el.innerHTML = tags.map(function(t) {
       var canDel = currentUser && t.user_id === currentUser.id;
-      return '<span class="tag-chip ' + t.tag_type + '">' + t.tag +
+      var name = t.user_name || '팀원';
+      return '<span class="tag-chip ' + t.tag_type + '" ontouchstart="chipTouch(this)" ontouchend="chipTouchEnd(this)">' +
+        t.tag +
         (canDel ? '<button class="tag-chip-del" onclick="deleteTag(\'' + t.id + '\',\'' + aid + '\')">✕</button>' : '') +
+        '<span class="tag-tooltip">' + name + '이(가) 달았어요</span>' +
         '</span>';
     }).join('');
   });
@@ -1955,6 +1974,13 @@ function toggleMoFilter(){
   // 열리면 sticky 해제 → 페이지 흐름에 포함, 맨 위로 스크롤
   if(wrap) wrap.style.position = isOpen ? 'sticky' : 'static';
   if(!isOpen) window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function chipTouch(el) {
+  el.classList.add('tooltip-show');
+}
+function chipTouchEnd(el) {
+  setTimeout(function(){ el.classList.remove('tooltip-show'); }, 1500);
 }
 
 // ════════════════════════════════════
