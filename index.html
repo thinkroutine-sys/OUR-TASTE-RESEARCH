@@ -791,6 +791,12 @@ body.signal-mode .news-period-filter { display: none; }
         <button class="ss-btn" data-kc="brand" onclick="setKwCat('brand')">🏷️ 브랜드</button>
       </div>
 
+      <!-- 사람 필터 -->
+      <div class="view-news rp-section" id="pc-person-filter" style="display:none">
+        <div class="rp-label">태그 단 사람</div>
+        <div class="person-pills sf-pills" style="flex-direction:column;gap:3px"></div>
+      </div>
+
       <!-- 태그 필터 -->
       <div class="view-news rp-section" id="pc-tag-filter">
         <div class="rp-label">태그 필터</div>
@@ -859,6 +865,11 @@ body.signal-mode .news-period-filter { display: none; }
   <select class="mf-select" id="mo-src" onchange="setSrc(this.value)"><option value="all">전체 출처</option></select>
   <div class="mf-sep"></div>
   <button id="my-cmt-btn-mo" class="mf-pill" onclick="toggleMyComments()" style="display:none">내 의견 기사</button>
+  <div id="mo-person-filter" style="display:none;width:100%">
+    <div class="mf-sep"></div>
+    <div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;padding:2px 0">태그 단 사람</div>
+    <div class="person-pills" style="display:flex;flex-wrap:wrap;gap:4px;width:100%"></div>
+  </div>
   <div id="mo-tag-filter" style="display:none;width:100%">
     <div class="mf-sep"></div>
     <div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;padding:2px 0">태그 필터</div>
@@ -953,6 +964,7 @@ function filtered(){
   if(hideRead)r=r.filter(a=>!isRead(a.id));
   if(showCvsOnly)r=r.filter(a=>a.is_cvs===true);
   if(showMyComments)r=r.filter(a=>_myArticleIds.has(a.id));
+  if(activePersonFilter) r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.user_name===activePersonFilter));
   if(activeBrandFilter) r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.tag===activeBrandFilter));
   if(activeWorkFilter)  r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.tag===activeWorkFilter));
   return r;
@@ -1710,12 +1722,13 @@ async function authLogout(){
 
 // ── 태그 상수
 const PRESET_TAGS = {
-  brand: ['새미네부엌','연두','폰타나','티아시아','차오차이','백년동안','질러','순작','샘표 장류','샘표 국수','간편식','샘표 기본양념','샘표 간편·양념','샘표 간장'],
+  brand: ['새미네부엌','연두','폰타나','티아시아','차오차이','백년동안','질러','순작','샘표 장류','샘표 국수','간편식','샘표 기본양념','샘표 간편·양념','샘표 간장','해외'],
   work:  ['맛방향물','메뉴개발','콘텐츠']
 };
 const TAG_TYPE_LABEL = { brand:'브랜드', work:'업무', brand_custom:'브랜드(기타)', work_custom:'업무(기타)' };
 let _articleTags = {}; // { article_id: [{id, tag, tag_type, user_id, user_name}] }
 let activeTagFilter = null; // 현재 선택된 태그 필터
+let activePersonFilter = null;
 let activeBrandFilter = null;
 let activeWorkFilter = null;
 
@@ -1733,9 +1746,32 @@ async function loadAllTags() {
     });
     renderAllTagChips();
     renderTagFilter();
+    renderPersonFilter();
   } catch(e) {}
 }
 
+function renderPersonFilter() {
+  var people = {};
+  Object.values(_articleTags).forEach(function(tags) {
+    tags.forEach(function(t) { if(t.user_name) people[t.user_name] = true; });
+  });
+  var names = Object.keys(people).sort();
+  ['pc-person-filter','mo-person-filter'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.style.display = names.length ? '' : 'none';
+    el.querySelector('.person-pills').innerHTML =
+      '<button class="sf-pill' + (!activePersonFilter?' on':'') + '" onclick="setPersonFilter(null)">전체</button>' +
+      names.map(function(n){
+        return '<button class="sf-pill' + (activePersonFilter===n?' on':'') + '" onclick="setPersonFilter(\'' + n + '\')">' + n + '</button>';
+      }).join('');
+  });
+}
+function setPersonFilter(name) {
+  activePersonFilter = name;
+  renderPersonFilter();
+  renderAll();
+}
 function renderTagFilter() {
   var customTags = {};
   Object.values(_articleTags).forEach(function(tags) {
