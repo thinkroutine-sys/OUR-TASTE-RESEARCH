@@ -1760,10 +1760,12 @@ function renderPersonFilter() {
     var el = document.getElementById(id);
     if(!el) return;
     el.style.display = names.length ? '' : 'none';
+    var isMo = id === 'mo-person-filter';
+    var cls = isMo ? 'mf-pill' : 'sf-pill';
     el.querySelector('.person-pills').innerHTML =
-      '<button class="sf-pill' + (!activePersonFilter?' on':'') + '" onclick="setPersonFilter(null)">전체</button>' +
+      '<button class="' + cls + (!activePersonFilter?' on':'') + '" onclick="setPersonFilter(null)">전체</button>' +
       names.map(function(n){
-        return '<button class="sf-pill' + (activePersonFilter===n?' on':'') + '" onclick="setPersonFilter(\'' + n + '\')">' + n + '</button>';
+        return '<button class="' + cls + (activePersonFilter===n?' on':'') + '" onclick="setPersonFilter(\'' + n + '\')">' + n + '</button>';
       }).join('');
   });
 }
