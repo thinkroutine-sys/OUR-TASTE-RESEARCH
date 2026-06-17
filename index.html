@@ -1096,7 +1096,7 @@ function cardHtml(a,i){
       </div>
     </div>`;
   return `<div class="card${read?' read':''}" data-id="${a.id}" data-url="${(a.url||'')}">
-  <div class="card-top">${badges}<span class="lang-dot dot-${a.lang||'ko'}"></span><span class="card-src">${a.source}</span><span class="card-date">${fmtDate(a.date)}</span></div>
+  <div class="card-top">${badges}<span class="lang-dot dot-${a.lang||'ko'}"></span><span class="card-src">${a.source}${['편의점 신제품','CU 소식','GS25 소식','세븐일레븐 소식'].includes(a.source)?'<span style="font-size:10px;color:var(--text3);font-weight:400"> (키워드 추출)</span>':''}</span><span class="card-date">${fmtDate(a.date)}</span></div>
   <div class="card-title">${a.title}</div>
   ${sum}
   ${kws}
