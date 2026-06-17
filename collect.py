@@ -44,25 +44,17 @@ SOURCES = [
     # ── 국내 미디어 ─────────────────────────────────────
     {"name": "식품외식경제",   "lang": "ko", "cat_hint": None,
      "url": "http://www.foodbank.co.kr/rss/allArticle.xml"},
-    {"name": "K푸드타임즈",    "lang": "ko", "cat_hint": None,
+    {"name": "한국외식신문",    "lang": "ko", "cat_hint": None,
      "url": "http://www.kfoodtimes.com/rss/allArticle.xml"},
     {"name": "식품음료신문",   "lang": "ko", "cat_hint": None,
      "url": "https://www.thinkfood.co.kr/rss/allArticle.xml"},
-    {"name": "식품뉴스",       "lang": "ko", "cat_hint": None,
+    {"name": "식품저널",       "lang": "ko", "cat_hint": None,
      "url": "http://www.foodnews.co.kr/rss/allArticle.xml"},
-    {"name": "푸드투데이",     "lang": "ko", "cat_hint": None,
-     "url": "https://foodtoday.or.kr/rss/allArticle.xml"},
     {"name": "푸드아이콘",     "lang": "ko", "cat_hint": None,
      "url": "https://www.foodicon.co.kr/rss/allArticle.xml"},
     {"name": "리얼푸드",       "lang": "ko", "cat_hint": None,
      "url": "https://www.realfoods.co.kr/rss/allArticle.xml"},
-    {"name": "쿡앤셰프뉴스",   "lang": "ko", "cat_hint": None,
-     "url": "https://www.cooknchefnews.com/rss/allArticle.xml"},
-    {"name": "한국경제 F&B",   "lang": "ko", "cat_hint": None,
-     "url": "https://www.hankyung.com/rss/distribution.xml"},
-    {"name": "비건뉴스",       "lang": "ko", "cat_hint": "식재료·원료",
-     "url": "https://www.vegannews.co.kr/rss/allArticle.xml"},
-    {"name": "비거로그",       "lang": "ko", "cat_hint": "식재료·원료",
+    {"name": "베지로그",       "lang": "ko", "cat_hint": "식재료·원료",
      "url": "https://vegilog.com/feed"},
     # ── 편의점 (Google News RSS) ────────────────────────
     {"name": "편의점 신제품",  "lang": "ko", "cat_hint": "편의점",
@@ -74,19 +66,13 @@ SOURCES = [
     {"name": "세븐일레븐 소식", "lang": "ko", "cat_hint": "편의점",
      "url": "https://news.google.com/rss/search?q=%EC%84%B8%EB%B8%90%EC%9D%BC%EB%A0%88%EB%B8%90+%EC%8B%A0%EC%A0%9C%ED%92%88&hl=ko&gl=KR&ceid=KR:ko"},
     # ── 해외 ────────────────────────────────────────────
-    {"name": "Food Navigator",           "lang": "en", "cat_hint": None,
-     "url": "https://www.foodnavigator.com/rss/news"},
     {"name": "Food Dive",                "lang": "en", "cat_hint": None,
      "url": "https://www.fooddive.com/feeds/news/"},
-    {"name": "Food Ingredients First",   "lang": "en", "cat_hint": None,
-     "url": "https://www.foodingredientsfirst.com/rss/news"},
     {"name": "Nation's Restaurant News", "lang": "en", "cat_hint": None,
      "url": "https://www.nrn.com/rss.xml"},
     {"name": "Eater",                    "lang": "en", "cat_hint": None,
      "url": "https://www.eater.com/rss/index.xml"},
     # ── 일본 ────────────────────────────────────────────
-    {"name": "NISSYOKU", "lang": "ja", "cat_hint": None,
-     "url": "https://news.nissyoku.co.jp/rss"},
 ]
 
 # ─────────────────────────────────────────
