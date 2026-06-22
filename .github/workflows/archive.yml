@@ -1,0 +1,55 @@
+name: 월별 아카이브
+
+on:
+  schedule:
+    # 매월 마지막 날 23:50 KST = 14:50 UTC
+    # GitHub Actions는 "마지막 날" 지정이 안 되므로 28/29/30/31일 모두 실행 후 스크립트에서 판단
+    - cron: '50 14 28-31 * *'
+  workflow_dispatch:  # 수동 실행 가능
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: 마지막 날 여부 확인 및 아카이브
+        run: |
+          # 오늘이 해당 월의 마지막 날인지 확인
+          TODAY=$(date -u +"%Y-%m-%d")
+          TOMORROW=$(date -u -d "tomorrow" +"%Y-%m-%d")
+          THIS_MONTH=$(date -u +"%Y-%m")
+          NEXT_MONTH=$(date -u -d "tomorrow" +"%Y-%m")
+
+          if [ "$THIS_MONTH" = "$NEXT_MONTH" ]; then
+            echo "마지막 날이 아닙니다. 종료합니다."
+            exit 0
+          fi
+
+          YEAR=$(date -u +"%Y")
+          MONTH=$(date -u +"%m")
+          ARCHIVE_DIR="data/archive/${YEAR}"
+          ARCHIVE_FILE="${ARCHIVE_DIR}/news_${YEAR}_${MONTH}.json"
+
+          echo "아카이브 생성: $ARCHIVE_FILE"
+
+          mkdir -p "$ARCHIVE_DIR"
+          cp data/news.json "$ARCHIVE_FILE"
+
+          echo "완료: $(cat $ARCHIVE_FILE | python3 -c 'import json,sys; d=json.load(sys.stdin); print(f"총 {d[\"total\"]}건")')"
+
+      - name: 커밋 & 푸시
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          YEAR=$(date -u +"%Y")
+          MONTH=$(date -u +"%m")
+
+          git add data/archive/
+          git diff --staged --quiet && echo "변경사항 없음" && exit 0
+
+          git commit -m "월별 아카이브 ${YEAR}-${MONTH}"
+          git push
