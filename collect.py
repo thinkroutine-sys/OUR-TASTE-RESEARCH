@@ -72,13 +72,17 @@ SOURCES = [
     # ── 한국경제 (RSS 없음 → 정적 페이지 스크래핑) ───────
     {"name": "한국경제 F&B",  "lang": "ko", "cat_hint": None,
      "type": "scrape", "scraper": "hankyung_fnb"},
-    # ── 편의점 (Google News RSS) ────────────────────────
+    {"name": "농식품정보누리", "lang": "ko", "cat_hint": None,
+     "type": "scrape", "scraper": "foodnuri"},
+    {"name": "KATI 수출정보", "lang": "ko", "cat_hint": None,
+     "type": "scrape", "scraper": "kati"},
+    # ── 편의점 (스크래핑: CU·GS25 / Google News RSS: 신제품·세븐일레븐) ─
+    {"name": "CU 보도자료",    "lang": "ko", "cat_hint": "편의점",
+     "type": "scrape", "scraper": "cu"},
+    {"name": "GS25 보도자료",  "lang": "ko", "cat_hint": "편의점",
+     "type": "scrape", "scraper": "gs25"},
     {"name": "편의점 신제품",  "lang": "ko", "cat_hint": "편의점",
      "url": "https://news.google.com/rss/search?q=%ED%8E%B8%EC%9D%98%EC%A0%90+%EC%8B%A0%EC%A0%9C%ED%92%88+%EC%B6%9C%EC%8B%9C&hl=ko&gl=KR&ceid=KR:ko"},
-    {"name": "CU 소식",        "lang": "ko", "cat_hint": "편의점",
-     "url": "https://news.google.com/rss/search?q=CU+%EC%8B%A0%EC%A0%9C%ED%92%88+%EC%B6%9C%EC%8B%9C&hl=ko&gl=KR&ceid=KR:ko"},
-    {"name": "GS25 소식",      "lang": "ko", "cat_hint": "편의점",
-     "url": "https://news.google.com/rss/search?q=GS25+%EC%8B%A0%EC%A0%9C%ED%92%88+%EC%B6%9C%EC%8B%9C&hl=ko&gl=KR&ceid=KR:ko"},
     {"name": "세븐일레븐 소식", "lang": "ko", "cat_hint": "편의점",
      "url": "https://news.google.com/rss/search?q=%EC%84%B8%EB%B8%90%EC%9D%BC%EB%A0%88%EB%B8%90+%EC%8B%A0%EC%A0%9C%ED%92%88&hl=ko&gl=KR&ceid=KR:ko"},
     # ── 해외 ────────────────────────────────────────────
@@ -361,6 +365,10 @@ def scrape_hankyung_fnb(pages: int = 1) -> list:
 
     base = "https://www.hankyung.com/distribution/fnb"
     headers = {"User-Agent": feedparser.USER_AGENT}
+    # F&B 목록은 <ul class="news-list">...</ul> 안에만 있음.
+    # 컨테이너 밖(페이지 하단 "관련뉴스/인기뉴스" 위젯)에도 /article/ 링크가 있어서
+    # 범위를 안 좁히면 F&B와 무관한 기사(연예/증시 등)까지 같이 잡힘.
+    container_rx = re.compile(r'<ul[^>]*class="news-list"[^>]*>(.*?)</ul>', re.S | re.I)
     item_rx = re.compile(
         r'<a[^>]+href="(?P<href>(?:https?://www\.hankyung\.com)?/article/\d{4,}[^"]*)"[^>]*>(?P<inner>.*?)</a>',
         re.S | re.I,
@@ -377,6 +385,11 @@ def scrape_hankyung_fnb(pages: int = 1) -> list:
             html = resp.text
         except Exception:
             break
+
+        cm = container_rx.search(html)
+        if not cm:
+            continue
+        html = cm.group(1)  # F&B 목록 컨테이너 내부로 검색 범위 제한
 
         for m in item_rx.finditer(html):
             href = m.group("href")
@@ -413,6 +426,262 @@ def scrape_hankyung_fnb(pages: int = 1) -> list:
 
     return results
 
+def scrape_foodnuri(pages: int = 1) -> list:
+    """
+    농식품정보누리 - 농식품 뉴스 게시판(B0000277) 스크래핑.
+    https://www.foodnuri.go.kr/portal/bbs/B0000277/list.do?menuNo=300049&pageIndex=N
+    구조: <li class="col"><dl><dt><a href=".../view.do?nttId={id}...">제목</a></dt>
+                              <dd><a ...><span class="txt">요약문</span></a>
+                                  <div class="data_info_box">...<span class="date">...날짜...</span>
+    """
+    if not REQUESTS_AVAILABLE:
+        return []
+
+    base = "https://www.foodnuri.go.kr/portal/bbs/B0000277/list.do?menuNo=300049"
+    headers = {"User-Agent": feedparser.USER_AGENT}
+    item_rx = re.compile(
+        r'<li class="col">.*?<dt>\s*<a href="(?P<href>[^"]*nttId=\d+[^"]*)">\s*(?P<title>.*?)\s*</a>\s*</dt>'
+        r'(?P<rest>.*?)(?=<li class="col">|$)',
+        re.S | re.I,
+    )
+    date_rx = re.compile(r'<span class="date">[^<]*<span[^>]*>[^<]*</span>\s*(\d{4}-\d{2}-\d{2})', re.S)
+    summary_rx = re.compile(r'<span class="txt">\s*(.*?)\s*</span>', re.S)
+
+    results, seen = [], set()
+    for page in range(1, pages + 1):
+        url = f"{base}&pageIndex={page}"
+        try:
+            resp = requests.get(url, headers=headers, timeout=20)
+            if resp.status_code != 200:
+                break
+            html = resp.text
+        except Exception:
+            break
+
+        for m in item_rx.finditer(html):
+            href = m.group("href")
+            if href.startswith("/"):
+                href = "https://www.foodnuri.go.kr" + href
+            if href in seen:
+                continue
+            seen.add(href)
+
+            title = re.sub(r"\s+", " ", m.group("title")).strip()
+            if not title:
+                continue
+
+            block = m.group("rest")
+            dm = date_rx.search(block)
+            raw_date = dm.group(1) if dm else ""
+            tstruct = None
+            if raw_date:
+                try:
+                    tstruct = time.strptime(raw_date, "%Y-%m-%d")
+                except Exception:
+                    tstruct = None
+
+            sm = summary_rx.search(block)
+            summary = re.sub(r"\s+", " ", sm.group(1)).strip() if sm else ""
+
+            results.append(ScrapedEntry({
+                "title": title,
+                "link": href,
+                "summary": summary,
+                "published": raw_date,
+                "published_parsed": tstruct,
+            }))
+
+    return results
+
+def scrape_kati(pages: int = 1) -> list:
+    """
+    KATI 농식품수출정보 - 해외시장동향 게시판 스크래핑.
+    https://www.kati.net/board/exportNewsList.do?menu_dept2=35&menu_dept3=71&page=N
+    구조: <li><a href="./exportNewsView.do?board_seq={id}...">
+              <span class="fs-15 ff-ngb">제목</span>
+              <span class="option-area"><span><em>등록일</em>날짜</span>...
+              </a>
+              <span class="board-cont fs-13">요약문</span>
+    """
+    if not REQUESTS_AVAILABLE:
+        return []
+
+    base = "https://www.kati.net/board/exportNewsList.do?menu_dept2=35&menu_dept3=71"
+    headers = {"User-Agent": feedparser.USER_AGENT}
+    item_rx = re.compile(
+        r'<a href="(?P<href>\./exportNewsView\.do\?board_seq=\d+[^"]*)">'
+        r'(?P<inner>.*?)</a>\s*(?:<span class="board-cont[^"]*">(?P<summary>.*?)</span>)?',
+        re.S | re.I,
+    )
+    title_rx = re.compile(r'<span class="fs-15 ff-ngb">\s*(.*?)\s*</span>', re.S)
+    date_rx = re.compile(r'<em>등록일</em>\s*(\d{4}-\d{2}-\d{2})')
+
+    results, seen = [], set()
+    for page in range(1, pages + 1):
+        url = f"{base}&page={page}"
+        try:
+            resp = requests.get(url, headers=headers, timeout=20)
+            if resp.status_code != 200:
+                break
+            html = resp.text
+        except Exception:
+            break
+
+        for m in item_rx.finditer(html):
+            href_path = m.group("href").lstrip(".")
+            href = "https://www.kati.net/board" + href_path
+            if href in seen:
+                continue
+            seen.add(href)
+
+            inner = m.group("inner")
+            tm = title_rx.search(inner)
+            title = re.sub(r"\s+", " ", tm.group(1)).strip() if tm else ""
+            if not title:
+                continue
+
+            dm = date_rx.search(inner)
+            raw_date = dm.group(1) if dm else ""
+            tstruct = None
+            if raw_date:
+                try:
+                    tstruct = time.strptime(raw_date, "%Y-%m-%d")
+                except Exception:
+                    tstruct = None
+
+            summary = ""
+            if m.group("summary"):
+                summary = re.sub(r"\s+", " ", strip_html(m.group("summary"))).strip()
+
+            results.append(ScrapedEntry({
+                "title": title,
+                "link": href,
+                "summary": summary,
+                "published": raw_date,
+                "published_parsed": tstruct,
+            }))
+
+    return results
+
+def scrape_gs25(page_size: int = 10) -> list:
+    """
+    GS25(GS리테일) 보도자료 - JSON API.
+    POST http://www.gsretail.com/board/boardList (modelName=corpNews)
+    응답이 이중 인코딩(JSON 문자열)으로 오는 경우가 있어 필요 시 한 번 더 디코딩.
+    상세 링크: .../news-report-view?pageNum=1&articleCode={articleCode}&newsCategory=ALL
+    robots.txt에 Crawl-delay: 10초 명시 — 하루 1회 수집이라 자동으로 준수됨.
+    """
+    if not REQUESTS_AVAILABLE:
+        return []
+
+    url = "http://www.gsretail.com/board/boardList"
+    headers = {"User-Agent": feedparser.USER_AGENT, "X-Requested-With": "XMLHttpRequest"}
+    form = {"pageNum": "1", "pageSize": str(page_size), "modelName": "corpNews",
+            "searchType": "", "searchWord": ""}
+
+    try:
+        resp = requests.post(url, data=form, headers=headers, timeout=20)
+        if resp.status_code != 200:
+            return []
+        data = resp.json()
+        if isinstance(data, str):
+            data = json.loads(data)
+    except Exception:
+        return []
+
+    items = data.get("results", []) if isinstance(data, dict) else []
+    results = []
+    for it in items:
+        title = (it.get("subject") or "").strip()
+        article_code = it.get("articleCode") or ""
+        if not title or not article_code:
+            continue
+        link = ("http://www.gsretail.com/gsretail/ko/media/news-report-view"
+                f"?pageNum=1&articleCode={article_code}&newsCategory=ALL")
+
+        raw_date = (it.get("regiday") or "").strip()
+        tstruct = None
+        if raw_date:
+            try:
+                tstruct = time.strptime(raw_date, "%b %d, %Y %I:%M:%S %p")
+            except Exception:
+                tstruct = None
+
+        results.append(ScrapedEntry({
+            "title": title,
+            "link": link,
+            "summary": (it.get("summMemo") or "").strip(),
+            "published": raw_date,
+            "published_parsed": tstruct,
+        }))
+
+    return results
+
+def scrape_cu(page_more: int = 10) -> list:
+    """
+    CU(BGF리테일) 보도자료.
+    목록: POST /api/bgf-retail/press-release/ (id, title — 날짜는 없음)
+    상세: GET /press/view/?id={id} (정적 HTML, 날짜 포함) — 항목당 추가 요청 1회 발생.
+    """
+    if not REQUESTS_AVAILABLE:
+        return []
+
+    headers = {"User-Agent": feedparser.USER_AGENT}
+    list_url = "https://www.bgfretail.com/api/bgf-retail/press-release/"
+    form = {"pageOffset": "0", "pageMore": str(page_more), "searchWord": "", "searchType": "0"}
+
+    try:
+        resp = requests.post(list_url, data=form, headers=headers, timeout=20)
+        if resp.status_code != 200:
+            return []
+        data = resp.json()
+    except Exception:
+        return []
+
+    items = data.get("list", []) if isinstance(data, dict) else []
+    date_rx = re.compile(r'(20\d{2}\.\d{1,2}\.\d{1,2})')
+
+    results = []
+    for it in items:
+        cid = it.get("id")
+        title = (it.get("title") or "").strip()
+        if not cid or not title:
+            continue
+        link = f"https://www.bgfretail.com/press/view/?id={cid}"
+
+        raw_date, tstruct = "", None
+        try:
+            dresp = requests.get(link, headers=headers, timeout=20)
+            if dresp.status_code == 200:
+                dm = date_rx.search(dresp.text)
+                if dm:
+                    raw_date = dm.group(1)
+                    try:
+                        tstruct = time.strptime(raw_date, "%Y.%m.%d")
+                    except Exception:
+                        tstruct = None
+        except Exception:
+            pass
+
+        results.append(ScrapedEntry({
+            "title": title,
+            "link": link,
+            "summary": "",
+            "published": raw_date,
+            "published_parsed": tstruct,
+        }))
+
+    return results
+
+# 소스 src["scraper"] 값 → 실제 함수 매핑 (인자 없이 호출, 페이지수 등은 함수 내부 기본값 사용)
+SCRAPERS = {
+    "hankyung_fnb": lambda: scrape_hankyung_fnb(pages=HANKYUNG_FNB_PAGES),
+    "foodnuri":     lambda: scrape_foodnuri(pages=1),
+    "kati":         lambda: scrape_kati(pages=1),
+    "cu":           lambda: scrape_cu(page_more=10),
+    "gs25":         lambda: scrape_gs25(page_size=10),
+}
+
 # ─────────────────────────────────────────
 # 수집
 # ─────────────────────────────────────────
@@ -441,14 +710,12 @@ def collect():
             print(f"  [{name}] ...", end="", flush=True)
 
             if src.get("type") == "scrape":
-                if src.get("scraper") == "hankyung_fnb":
-                    if not REQUESTS_AVAILABLE:
-                        errors.append(f"{name}: requests 미설치")
-                        print(" requests 미설치 (pip install requests)")
-                        continue
-                    entries = scrape_hankyung_fnb(pages=HANKYUNG_FNB_PAGES)
-                else:
-                    entries = []
+                if not REQUESTS_AVAILABLE:
+                    errors.append(f"{name}: requests 미설치")
+                    print(" requests 미설치 (pip install requests)")
+                    continue
+                scraper_fn = SCRAPERS.get(src.get("scraper"))
+                entries = scraper_fn() if scraper_fn else []
                 if not entries:
                     errors.append(f"{name}: 스크래핑 결과 없음")
                     print(" 결과 없음")
