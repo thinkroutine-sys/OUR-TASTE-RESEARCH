@@ -10,6 +10,12 @@ import hashlib
 import time
 from datetime import datetime, timedelta, timezone
 
+try:
+    import requests
+    REQUESTS_AVAILABLE = True
+except ImportError:
+    REQUESTS_AVAILABLE = False
+
 # ─────────────────────────────────────────
 # ★ Gemini API 키 설정
 # aistudio.google.com → Get API Key → Create API key
@@ -29,6 +35,7 @@ OUT_FILE     = os.path.join(DATA_DIR, "news.json")
 KEEP_DAYS    = 30
 MAX_PER_FEED = 30
 AI_DELAY     = 5.0   # API 호출 간격(초) — 15 RPM 한도 대응
+HANKYUNG_FNB_PAGES = 2  # 페이지당 50건. 첫 실행 후 백필 끝나면 1로 낮춰도 됨
 
 feedparser.USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -56,6 +63,15 @@ SOURCES = [
      "url": "https://www.realfoods.co.kr/rss/allArticle.xml"},
     {"name": "베지로그",       "lang": "ko", "cat_hint": "식재료·원료",
      "url": "https://vegilog.com/feed"},
+    {"name": "푸드투데이",     "lang": "ko", "cat_hint": None,
+     "url": "https://foodtoday.or.kr/data/rss/news.xml"},
+    {"name": "쿡앤셰프",       "lang": "ko", "cat_hint": None,
+     "url": "https://www.cooknchefnews.com/news/rss.php"},
+    {"name": "비건뉴스",       "lang": "ko", "cat_hint": None,
+     "url": "https://www.vegannews.co.kr/data/rss/news.xml"},
+    # ── 한국경제 (RSS 없음 → 정적 페이지 스크래핑) ───────
+    {"name": "한국경제 F&B",  "lang": "ko", "cat_hint": None,
+     "type": "scrape", "scraper": "hankyung_fnb"},
     # ── 편의점 (Google News RSS) ────────────────────────
     {"name": "편의점 신제품",  "lang": "ko", "cat_hint": "편의점",
      "url": "https://news.google.com/rss/search?q=%ED%8E%B8%EC%9D%98%EC%A0%90+%EC%8B%A0%EC%A0%9C%ED%92%88+%EC%B6%9C%EC%8B%9C&hl=ko&gl=KR&ceid=KR:ko"},
@@ -72,6 +88,8 @@ SOURCES = [
      "url": "https://www.nrn.com/rss.xml"},
     {"name": "Eater",                    "lang": "en", "cat_hint": None,
      "url": "https://www.eater.com/rss/index.xml"},
+    {"name": "Food Ingredients First",   "lang": "en", "cat_hint": None,
+     "url": "https://resource.innovadatabase.com/rss/fifnews.xml"},
     # ── 일본 ────────────────────────────────────────────
 ]
 
@@ -321,6 +339,81 @@ def is_cvs(title: str, summary: str) -> bool:
     return any(k.lower() in text for k in CVS_KEYWORDS)
 
 # ─────────────────────────────────────────
+# 한국경제 F&B (RSS 없음 → 정적 페이지 스크래핑)
+# ─────────────────────────────────────────
+
+class ScrapedEntry(dict):
+    """feedparser 엔트리와 동일하게 .get()과 속성 접근(entry.title)을 모두 지원."""
+    def __getattr__(self, name):
+        try:
+            return self[name]
+        except KeyError:
+            raise AttributeError(name)
+
+def scrape_hankyung_fnb(pages: int = 1) -> list:
+    """
+    https://www.hankyung.com/distribution/fnb 정적 HTML 스크래핑.
+    robots.txt 확인 결과 일반 봇(User-agent: *)에는 차단 없음 (SEO 봇만 차단).
+    구조: <a href="/article/{id}"><h2/h3 class="news-tit">제목</h2/h3></a> ... <p class="txt-date">날짜</p>
+    """
+    if not REQUESTS_AVAILABLE:
+        return []
+
+    base = "https://www.hankyung.com/distribution/fnb"
+    headers = {"User-Agent": feedparser.USER_AGENT}
+    item_rx = re.compile(
+        r'<a[^>]+href="(?P<href>(?:https?://www\.hankyung\.com)?/article/\d{4,}[^"]*)"[^>]*>(?P<inner>.*?)</a>',
+        re.S | re.I,
+    )
+    date_rx = re.compile(r'(20\d{2}\.\d{1,2}\.\d{1,2}(?:\s+\d{1,2}:\d{2})?)')
+
+    results, seen = [], set()
+    for page in range(1, pages + 1):
+        url = base if page == 1 else f"{base}?page={page}"
+        try:
+            resp = requests.get(url, headers=headers, timeout=20)
+            if resp.status_code != 200:
+                break
+            html = resp.text
+        except Exception:
+            break
+
+        for m in item_rx.finditer(html):
+            href = m.group("href")
+            if href.startswith("/"):
+                href = "https://www.hankyung.com" + href
+            if href in seen:
+                continue
+
+            title = re.sub(r"<[^>]+>", " ", m.group("inner"))
+            title = re.sub(r"\s+", " ", title).strip()
+            if not title:
+                continue
+            seen.add(href)
+
+            # 같은 블록 근처에서 날짜 텍스트 탐색
+            tail = html[m.end():m.end() + 300]
+            dm = date_rx.search(tail)
+            raw_date = dm.group(1) if dm else ""
+            tstruct = None
+            if raw_date:
+                try:
+                    fmt = "%Y.%m.%d %H:%M" if ":" in raw_date else "%Y.%m.%d"
+                    tstruct = time.strptime(raw_date, fmt)
+                except Exception:
+                    tstruct = None
+
+            results.append(ScrapedEntry({
+                "title": title,
+                "link": href,
+                "summary": "",
+                "published": raw_date,
+                "published_parsed": tstruct,
+            }))
+
+    return results
+
+# ─────────────────────────────────────────
 # 수집
 # ─────────────────────────────────────────
 
@@ -346,19 +439,35 @@ def collect():
         name = src["name"]
         try:
             print(f"  [{name}] ...", end="", flush=True)
-            feed = feedparser.parse(src["url"])
-            status = getattr(feed, "status", 200)
-            if status in (403, 404, 410):
-                errors.append(f"{name}: HTTP {status}")
-                print(f" HTTP {status}")
-                continue
-            if not feed.entries:
-                errors.append(f"{name}: 빈 피드")
-                print(" 빈 피드")
-                continue
+
+            if src.get("type") == "scrape":
+                if src.get("scraper") == "hankyung_fnb":
+                    if not REQUESTS_AVAILABLE:
+                        errors.append(f"{name}: requests 미설치")
+                        print(" requests 미설치 (pip install requests)")
+                        continue
+                    entries = scrape_hankyung_fnb(pages=HANKYUNG_FNB_PAGES)
+                else:
+                    entries = []
+                if not entries:
+                    errors.append(f"{name}: 스크래핑 결과 없음")
+                    print(" 결과 없음")
+                    continue
+            else:
+                feed = feedparser.parse(src["url"])
+                status = getattr(feed, "status", 200)
+                if status in (403, 404, 410):
+                    errors.append(f"{name}: HTTP {status}")
+                    print(f" HTTP {status}")
+                    continue
+                if not feed.entries:
+                    errors.append(f"{name}: 빈 피드")
+                    print(" 빈 피드")
+                    continue
+                entries = feed.entries
 
             added = 0
-            for entry in feed.entries[:MAX_PER_FEED]:
+            for entry in entries[:MAX_PER_FEED]:
                 url = entry.get("link", "").strip()
                 if not url:
                     continue
