@@ -1,7 +1,153 @@
 {
-  "updated": "2026-07-07T07:09:37.894126+00:00",
-  "total": 2150,
+  "updated": "2026-07-07T07:33:50.173664+00:00",
+  "total": 2170,
   "articles": [
+    {
+      "id": "5b83531a5654",
+      "title": "동서식품, 홈카페족 겨냥한 '카누 바리스타 캡슐'…원두 1.7배 늘려 풍미 가득",
+      "url": "https://www.hankyung.com/article/2026070796311",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": "",
+      "keywords": [
+        "동서식품",
+        "홈카페족",
+        "겨냥한",
+        "카누",
+        "바리스타"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-07T07:26:44.352341+00:00"
+    },
+    {
+      "id": "9d70df857081",
+      "title": "hy, 발효유도 제로 경쟁…야쿠르트XO, 자기관리에 민감한 MZ세대 입맛 잡아",
+      "url": "https://www.hankyung.com/article/2026070796421",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": "",
+      "keywords": [
+        "발효유도",
+        "제로",
+        "경쟁",
+        "야쿠르트",
+        "자기관리에"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-07T07:22:00+00:00"
+    },
+    {
+      "id": "0ad368c7d182",
+      "title": "오뚜기, 중량 20% 늘린 '진비빔면'…한 그릇만 먹어도 여름 한 끼로 거뜬",
+      "url": "https://www.hankyung.com/article/2026070796391",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": "",
+      "keywords": [
+        "오뚜기",
+        "중량",
+        "늘린",
+        "진비빔면",
+        "그릇만"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-07T07:19:00+00:00"
+    },
+    {
+      "id": "77a5bfaadef2",
+      "title": "농식품부, 농가 경영부담 완화 총력…가격안정제 도입·수입안정보험 지원 대상 확대",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119284",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농산물 가격 하락 및 농자재 비용 상승에 따른 농가 경영 부담 완화 대책 마련",
+        "가격 하락 품목 비축 및 수입안정보험 지원 확대 등 경영안정망 구축"
+      ],
+      "keywords": [
+        "양배추",
+        "애호박",
+        "오이",
+        "배추"
+      ],
+      "kw_cats": {
+        "양배추": "ingredient",
+        "애호박": "ingredient",
+        "오이": "ingredient",
+        "배추": "ingredient"
+      },
+      "date": "2026-07-07T07:15:32+00:00"
+    },
+    {
+      "id": "8a4e38ba1a6c",
+      "title": "㈜에이비티제주, 에가톳 큐레이션몰 정식 오픈",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=383858",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "웰니스 브랜드 에가톳, 성분과 제조 배경 중심의 큐레이션몰 정식 오픈",
+        "판매량 위주가 아닌 브랜드 가치와 제품 정보 전달에 집중하는 유통 전략 채택"
+      ],
+      "keywords": [
+        "에가톳",
+        "웰니스",
+        "큐레이션몰"
+      ],
+      "kw_cats": {
+        "에가톳": "brand",
+        "웰니스": "trend",
+        "큐레이션몰": "trend"
+      },
+      "date": "2026-07-07T07:14:57+00:00"
+    },
+    {
+      "id": "8544b8f06559",
+      "title": "하이트진로, 칼로리 25% 낮춘 '라이트 소주'…여름 시장 공략",
+      "url": "https://www.hankyung.com/article/2026070796301",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": "",
+      "keywords": [
+        "하이트진로",
+        "칼로리",
+        "낮춘",
+        "라이트",
+        "소주"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-07T07:14:00+00:00"
+    },
+    {
+      "id": "35e611282da2",
+      "title": "계열사 간 상표권 사용료 거래 촉각세운다...공정위 한화에 이어 CJ그룹 현장조사",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206200",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "공정거래위원회가 CJ그룹의 계열사 간 브랜드 사용료 거래에 대한 현장 조사 착수",
+        "부당 내부거래 여부 및 상표권 사용료 산정의 적정성 확인 목적"
+      ],
+      "keywords": [
+        "CJ"
+      ],
+      "kw_cats": {
+        "CJ": "brand"
+      },
+      "date": "2026-07-07T07:06:41+00:00"
+    },
     {
       "id": "d7227fe404a5",
       "title": "해외로 나가는 'K저가커피'… 빽다방, 새 로고 앞세워 일본 진출",
@@ -79,6 +225,28 @@
       "date": "2026-07-07T07:02:56.100179+00:00"
     },
     {
+      "id": "031b51cd62fa",
+      "title": "CPI에 구독료·클라우드·스마트워치 반영…소비자물가 기준 바뀐다",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206194",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "정부의 소비자물가지수(CPI) 산정 기준 개편으로 디지털 경제 관련 품목 반영",
+        "소프트웨어 구독료, 클라우드 이용료 등 디지털 소비 비중 확대에 따른 물가 지표 현실화"
+      ],
+      "keywords": [
+        "디지털 소비",
+        "구독 경제"
+      ],
+      "kw_cats": {
+        "디지털 소비": "trend",
+        "구독 경제": "trend"
+      },
+      "date": "2026-07-07T06:59:30+00:00"
+    },
+    {
       "id": "6add26f6e763",
       "title": "",
       "url": "https://www.foodnavigator.com/Article/2026/07/07/big-food-booming-in-emerging-markets/",
@@ -90,6 +258,28 @@
       "keywords": [],
       "kw_cats": {},
       "date": "2026-07-07T06:59:25.907000+00:00"
+    },
+    {
+      "id": "762284bc04aa",
+      "title": "농협, 지역 가공식품 히트상품 키운다…판로 확대 본격화",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206199",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "농협경제지주, 지역농협 가공식품 히트상품 육성 및 시장 경쟁력 강화 추진",
+        "선정 제품 대상 패키지 개선 및 판로 확대 등 마케팅 지원 연계"
+      ],
+      "keywords": [
+        "농협",
+        "가공식품"
+      ],
+      "kw_cats": {
+        "농협": "brand",
+        "가공식품": "food_cat"
+      },
+      "date": "2026-07-07T06:57:00+00:00"
     },
     {
       "id": "cb68249933ae",
@@ -254,6 +444,28 @@
       "date": "2026-07-07T05:34:16+00:00"
     },
     {
+      "id": "fb06ad511bee",
+      "title": "서울의 18개 레스토랑서 유럽산 식재료의 특별한 요리 맛본다",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68219",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "유럽연합 레스토랑 위크가 10일부터 23일까지 서울 18개 레스토랑에서 개최",
+        "유럽산 식재료를 활용한 특별 메뉴를 선보이는 '진짜 유럽의 컬러를 맛보다!' 캠페인 진행"
+      ],
+      "keywords": [
+        "유럽산 식재료",
+        "레스토랑 위크"
+      ],
+      "kw_cats": {
+        "유럽산 식재료": "ingredient",
+        "레스토랑 위크": "trend"
+      },
+      "date": "2026-07-07T05:18:56+00:00"
+    },
+    {
       "id": "69844052be8b",
       "title": "전분당 가격 담합 4사 과징금 7476억…역대 최대 규모",
       "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119281",
@@ -306,6 +518,26 @@
         "홈술": "trend"
       },
       "date": "2026-07-07T05:10:29+00:00"
+    },
+    {
+      "id": "1eb735bcbb81",
+      "title": "메뉴 전략, 강점 강화하고 약점 보완해야",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68220",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "외식업계의 빅블러 현상으로 기존 업종의 경계가 허물어지고 있음",
+        "메뉴 전략 수립 시 강점 강화와 약점 보완을 통한 타깃 니즈 충족 및 매출 다각화가 필수적임"
+      ],
+      "keywords": [
+        "빅블러"
+      ],
+      "kw_cats": {
+        "빅블러": "trend"
+      },
+      "date": "2026-07-07T05:09:18+00:00"
     },
     {
       "id": "1daaf59fcf3f",
@@ -712,6 +944,30 @@
         "축산업": "trend"
       },
       "date": "2026-07-07T02:30:21+00:00"
+    },
+    {
+      "id": "31525c308f80",
+      "title": "“한그릇 고기 요리도 집에서 간단하게”… 요리 소스 인기",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68215",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "고물가로 인한 외식비 부담 증가로 집밥을 선호하는 소비자가 늘고 있음",
+        "요리 소스를 활용해 복잡한 과정 없이 고기 요리를 간편하게 완성하는 '원팬 요리' 트렌드 확산"
+      ],
+      "keywords": [
+        "요리 소스",
+        "집밥",
+        "고기 요리"
+      ],
+      "kw_cats": {
+        "요리 소스": "food_cat",
+        "집밥": "trend",
+        "고기 요리": "food_cat"
+      },
+      "date": "2026-07-07T02:27:00+00:00"
     },
     {
       "id": "9100f3ed1f69",
@@ -2382,6 +2638,82 @@
       "date": "2026-07-06T15:00:00+00:00"
     },
     {
+      "id": "254e173a8ab7",
+      "title": "매일유업, 설탕 넣지 않은 '매일두유 99.9 서리태'…웰니스 붐에 3초마다 1팩씩 팔렸다",
+      "url": "https://www.hankyung.com/article/2026070796401",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": "",
+      "keywords": [
+        "매일유업",
+        "설탕",
+        "넣지",
+        "않은",
+        "매일두유"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-06T15:00:00+00:00"
+    },
+    {
+      "id": "623dde740c26",
+      "title": "롯데칠성음료, 마시는 순간 속이 뻥…상큼한 청량감 더한 '칠성사이다 제로 유자' 열풍",
+      "url": "https://www.hankyung.com/article/2026070796341",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": "",
+      "keywords": [
+        "롯데칠성음료",
+        "마시는",
+        "순간",
+        "속이",
+        "상큼한"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-06T15:00:00+00:00"
+    },
+    {
+      "id": "9c6cad09543d",
+      "title": "파리바게뜨, 건강빵도 맛있다…저당 베이커리 '파란라벨' 주목",
+      "url": "https://www.hankyung.com/article/2026070796271",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": "",
+      "keywords": [
+        "파리바게뜨",
+        "건강빵도",
+        "맛있다",
+        "저당",
+        "베이커리"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-06T15:00:00+00:00"
+    },
+    {
+      "id": "85c3288d9b3c",
+      "title": "[일본] 일본의 절임류 시장 동향....원가 부담에도 김치는 선전",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=105647&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": "",
+      "keywords": [
+        "일본",
+        "일본의",
+        "절임류",
+        "시장",
+        "동향"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-06T15:00:00+00:00"
+    },
+    {
       "id": "07324afc7afa",
       "title": "[심층] 동물복지 계란 인증, 사후관리가 신뢰 가른다",
       "url": "https://www.vegannews.co.kr/news/article.html?no=383840",
@@ -2636,6 +2968,26 @@
       "date": "2026-07-06T09:21:09+00:00"
     },
     {
+      "id": "46443705073d",
+      "title": "공정위, ‘명륜당 부당 지원' 심의 절차 개시",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68213",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "공정거래위원회가 명륜당과 계열 대부업체 간 부당 지원행위 혐의에 대한 심의 절차를 개시함",
+        "심사보고서 송부를 시작으로 향후 위원회 심의를 통해 최종 위법성 여부 및 제재 수위가 결정될 예정"
+      ],
+      "keywords": [
+        "명륜당"
+      ],
+      "kw_cats": {
+        "명륜당": "brand"
+      },
+      "date": "2026-07-06T09:19:00+00:00"
+    },
+    {
       "id": "3315c686a138",
       "title": "백종헌 의원, 정신건강 상담 바우처 정보시스템 법안 발의",
       "url": "https://www.foodtoday.or.kr/news/article.html?no=206172",
@@ -2828,6 +3180,34 @@
       "date": "2026-07-06T08:36:36+00:00"
     },
     {
+      "id": "db917165912a",
+      "title": "식량원 우수 특허기술 한자리에… ‘농식품 테마기술 파트너링’ 개최",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68208",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "한국농업기술진흥원과 국립식량과학원이 식량 분야 우수 기술 이전 및 사업화를 위한 파트너링 행사 개최",
+        "양조, 발효, 건강기능식품 분야의 유망 기술을 기업에 소개하여 농식품 산업 경쟁력 강화 도모"
+      ],
+      "keywords": [
+        "양조",
+        "발효",
+        "건강기능식품",
+        "한국농업기술진흥원",
+        "국립식량과학원"
+      ],
+      "kw_cats": {
+        "양조": "ingredient",
+        "발효": "ingredient",
+        "건강기능식품": "food_cat",
+        "한국농업기술진흥원": "brand",
+        "국립식량과학원": "brand"
+      },
+      "date": "2026-07-06T08:34:03+00:00"
+    },
+    {
       "id": "49095d79f865",
       "title": "배스킨라빈스, 배달의민족과 디지털 커머스 경쟁력 강화 ‘맞손’",
       "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200723",
@@ -2954,6 +3334,32 @@
       "date": "2026-07-06T08:19:00+00:00"
     },
     {
+      "id": "f2bb84692027",
+      "title": "식품산업협회, 기술보증기금-농협은행와 ‘푸드테크 기업 금융지원 업무협약’",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68207",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "한국식품산업협회, 기술보증기금, 농협은행이 푸드테크 기업 금융지원 업무협약 체결",
+        "K-푸드 글로벌 확산을 위해 푸드테크 기업의 금융비용 부담 완화 및 자금조달 지원"
+      ],
+      "keywords": [
+        "푸드테크",
+        "한국식품산업협회",
+        "기술보증기금",
+        "농협은행"
+      ],
+      "kw_cats": {
+        "푸드테크": "trend",
+        "한국식품산업협회": "brand",
+        "기술보증기금": "brand",
+        "농협은행": "brand"
+      },
+      "date": "2026-07-06T08:00:00+00:00"
+    },
+    {
       "id": "821da0a31de8",
       "title": "울산, 수출 20% 늘었는데…생산·투자 동반 '빨간불'",
       "url": "http://www.kfoodtimes.com/news/articleView.html?idxno=30325",
@@ -2976,6 +3382,32 @@
         "화학제품": "ingredient"
       },
       "date": "2026-07-06T07:55:14+00:00"
+    },
+    {
+      "id": "84e0309c6ee4",
+      "title": "63뷔페 파빌리온 더 프리미엄, 7월 그랜드 오픈",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68206",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "63뷔페 파빌리온, 리뉴얼을 통해 '63뷔페 파빌리온 더 프리미엄'으로 재개장",
+        "유료 고객 전원에게 랍스터 테일 등 웰컴 메인 디시를 제공하는 파인 다이닝 서비스 도입"
+      ],
+      "keywords": [
+        "63뷔페 파빌리온",
+        "뷔페",
+        "파인 다이닝",
+        "랍스터 테일"
+      ],
+      "kw_cats": {
+        "63뷔페 파빌리온": "brand",
+        "뷔페": "food_cat",
+        "파인 다이닝": "trend",
+        "랍스터 테일": "ingredient"
+      },
+      "date": "2026-07-06T07:47:38+00:00"
     },
     {
       "id": "86f557600bd3",
@@ -3215,6 +3647,30 @@
       "date": "2026-07-06T07:35:04+00:00"
     },
     {
+      "id": "38b8faf14ac7",
+      "title": "한솥도시락, 국내산 햇감자로 만든 ‘회오리 감자’ 출시",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68205",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "한솥도시락, 국내산 햇감자를 활용한 ‘회오리 감자’ 신메뉴 출시",
+        "자체 개발 허니버터 시즈닝을 더해 달콤 짭조름한 맛과 겉바속촉 식감 구현"
+      ],
+      "keywords": [
+        "회오리 감자",
+        "햇감자",
+        "한솥도시락"
+      ],
+      "kw_cats": {
+        "회오리 감자": "food_cat",
+        "햇감자": "ingredient",
+        "한솥도시락": "brand"
+      },
+      "date": "2026-07-06T07:30:07+00:00"
+    },
+    {
       "id": "c4ae2a93d0a3",
       "title": "디에이치엠에프엔비 준스이, 부천국제판타스틱영화제 팝업 참가",
       "url": "https://www.vegannews.co.kr/news/article.html?no=383829",
@@ -3445,6 +3901,50 @@
         "대패삼겹살": "food_cat"
       },
       "date": "2026-07-06T06:49:50+00:00"
+    },
+    {
+      "id": "c18e5926e796",
+      "title": "“K-푸드에 첨단기술 접목해 K-브랜드 완성”",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68203",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농식품부, ‘제1차 푸드테크산업 육성 기본계획’ 발표",
+        "푸드테크 산업 육성 법률에 따른 첫 번째 법정 기본계획 수립"
+      ],
+      "keywords": [
+        "푸드테크",
+        "두산로보틱스"
+      ],
+      "kw_cats": {
+        "푸드테크": "trend",
+        "두산로보틱스": "brand"
+      },
+      "date": "2026-07-06T06:26:00+00:00"
+    },
+    {
+      "id": "11fda9ebb176",
+      "title": "테라로사, 전국 매장으로 커피 여행… 매장 공간 경험 ‘테라로사 저니’ 캠페인",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68202",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "테라로사가 전국 매장의 공간 경험을 연결하는 '테라로사 저니' 캠페인 및 스탬프 투어 진행",
+        "방문 자체가 여행의 목적이 되는 '목적지형 매장' 전략을 통해 브랜드 경험 강화"
+      ],
+      "keywords": [
+        "테라로사",
+        "목적지형 매장"
+      ],
+      "kw_cats": {
+        "테라로사": "brand",
+        "목적지형 매장": "trend"
+      },
+      "date": "2026-07-06T05:56:45+00:00"
     },
     {
       "id": "44dcde2f80e7",
@@ -3721,6 +4221,30 @@
         "동원F&B": "brand"
       },
       "date": "2026-07-06T04:52:35+00:00"
+    },
+    {
+      "id": "f47872a8d383",
+      "title": "Dole 아사이볼, 망고볼 출시",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68201",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "Dole(돌)에서 아사이볼과 망고볼 신제품 출시",
+        "고가였던 전문점 메뉴를 합리적인 가격의 냉동 과일 제품으로 대중화"
+      ],
+      "keywords": [
+        "아사이볼",
+        "망고볼",
+        "Dole"
+      ],
+      "kw_cats": {
+        "아사이볼": "food_cat",
+        "망고볼": "food_cat",
+        "Dole": "brand"
+      },
+      "date": "2026-07-06T04:41:51+00:00"
     },
     {
       "id": "cdbaee20a3e4",
@@ -49552,106 +50076,6 @@
         "고기 없는 식단": "trend"
       },
       "date": "2026-06-07T14:31:51+00:00"
-    },
-    {
-      "id": "5d4456b244d2",
-      "title": "[리얼푸드] 프리미엄 외식시장 확대…UAE ‘Dubai Restaurant Week 2026’",
-      "url": "https://www.realfoods.co.kr/article/10765441",
-      "source": "리얼푸드",
-      "lang": "ko",
-      "category": "채널·유통",
-      "is_cvs": false,
-      "summary": [
-        "UAE 두바이에서 125개 이상의 레스토랑이 참여하는 '두바이 레스토랑 위크' 개최",
-        "외식 소비 촉진 및 미식 관광 경쟁력 강화를 통한 프리미엄 외식 시장 확대"
-      ],
-      "keywords": [
-        "두바이 레스토랑 위크",
-        "프리미엄 외식"
-      ],
-      "kw_cats": {
-        "두바이 레스토랑 위크": "brand",
-        "프리미엄 외식": "trend"
-      },
-      "date": "2026-06-07T07:19:15+00:00"
-    },
-    {
-      "id": "e7897c5558e8",
-      "title": "[리얼푸드] 캐나다 SIAL, 한국 콤부차 브랜드 혁신상",
-      "url": "https://www.realfoods.co.kr/article/10765440",
-      "source": "리얼푸드",
-      "lang": "ko",
-      "category": "소비자·시장",
-      "is_cvs": false,
-      "summary": [
-        "북미 식품 시장의 핵심 트렌드로 건강, 지속가능성, 편의성 부상",
-        "장 건강, 고단백, 저당, 식이섬유 강화 제품에 대한 소비자 니즈 확대"
-      ],
-      "keywords": [
-        "콤부차",
-        "장 건강",
-        "고단백",
-        "저당",
-        "식이섬유"
-      ],
-      "kw_cats": {
-        "콤부차": "food_cat",
-        "장 건강": "trend",
-        "고단백": "trend",
-        "저당": "trend",
-        "식이섬유": "ingredient"
-      },
-      "date": "2026-06-07T07:19:08+00:00"
-    },
-    {
-      "id": "7000b5d9b1e1",
-      "title": "[리얼푸드] 외식도 양과 가성비 중요…프랑스, 뷔페 식당이 뜬다",
-      "url": "https://www.realfoods.co.kr/article/10765439",
-      "source": "리얼푸드",
-      "lang": "ko",
-      "category": "소비자·시장",
-      "is_cvs": false,
-      "summary": [
-        "프랑스 내 물가 상승으로 인해 외식 선택 시 '가성비'와 '충분한 양'이 핵심 고려 요소로 부상",
-        "가격 대비 가치를 중시하는 소비 트렌드 확산으로 프랑스 내 뷔페 식당의 인기 상승"
-      ],
-      "keywords": [
-        "가성비",
-        "뷔페"
-      ],
-      "kw_cats": {
-        "가성비": "trend",
-        "뷔페": "food_cat"
-      },
-      "date": "2026-06-07T07:19:00+00:00"
-    },
-    {
-      "id": "b6d915761614",
-      "title": "[리얼푸드] 이탈리아, 고단백과 고섬유 ‘투트랙 성장’",
-      "url": "https://www.realfoods.co.kr/article/10765438",
-      "source": "리얼푸드",
-      "lang": "ko",
-      "category": "소비자·시장",
-      "is_cvs": false,
-      "summary": [
-        "이탈리아 식품 시장에서 기존 고단백 트렌드와 함께 식이섬유가 새로운 성장 축으로 부상",
-        "장 건강 및 마이크로바이옴 관리에 대한 관심 증가로 시리얼, 스낵, 유제품 등 다양한 카테고리로 고섬유 제품 확산"
-      ],
-      "keywords": [
-        "고단백",
-        "식이섬유",
-        "장 건강",
-        "마이크로바이옴",
-        "프리바이오틱스"
-      ],
-      "kw_cats": {
-        "고단백": "trend",
-        "식이섬유": "ingredient",
-        "장 건강": "trend",
-        "마이크로바이옴": "trend",
-        "프리바이오틱스": "ingredient"
-      },
-      "date": "2026-06-07T07:18:50+00:00"
     }
   ]
 }
