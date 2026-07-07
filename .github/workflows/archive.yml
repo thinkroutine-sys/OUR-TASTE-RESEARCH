@@ -10,6 +10,8 @@ on:
 jobs:
   archive:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: 저장소 체크아웃
