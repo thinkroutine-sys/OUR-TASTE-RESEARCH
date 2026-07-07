@@ -25,9 +25,14 @@ jobs:
           THIS_MONTH=$(date -u +"%Y-%m")
           NEXT_MONTH=$(date -u -d "tomorrow" +"%Y-%m")
 
-          if [ "$THIS_MONTH" = "$NEXT_MONTH" ]; then
-            echo "마지막 날이 아닙니다. 종료합니다."
-            exit 0
+          # 수동 실행(workflow_dispatch)이면 마지막 날 체크 건너뜀
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "수동 실행 — 마지막 날 체크 건너뜁니다."
+          else
+            if [ "$THIS_MONTH" = "$NEXT_MONTH" ]; then
+              echo "마지막 날이 아닙니다. 종료합니다."
+              exit 0
+            fi
           fi
 
           YEAR=$(date -u +"%Y")
