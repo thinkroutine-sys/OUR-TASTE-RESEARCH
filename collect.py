@@ -94,6 +94,8 @@ SOURCES = [
      "url": "https://www.eater.com/rss/index.xml"},
     {"name": "Food Ingredients First",   "lang": "en", "cat_hint": None,
      "url": "https://resource.innovadatabase.com/rss/fifnews.xml"},
+    {"name": "Food Navigator",           "lang": "en", "cat_hint": None,
+     "type": "scrape", "scraper": "foodnavigator"},
     # ── 일본 ────────────────────────────────────────────
 ]
 
@@ -563,6 +565,59 @@ def scrape_kati(pages: int = 1) -> list:
 
     return results
 
+def scrape_foodnavigator() -> list:
+    """
+    Food Navigator - 뉴스 사이트맵 XML 파싱.
+    https://www.foodnavigator.com/arc/outboundfeeds/news-sitemap/
+    RSS 미제공, 사이트맵(XML)에 제목·날짜·URL 포함.
+    feedparser는 클라우드 IP 403 차단 → requests로 직접 파싱.
+    """
+    if not REQUESTS_AVAILABLE:
+        return []
+
+    url = "https://www.foodnavigator.com/arc/outboundfeeds/news-sitemap/"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+               "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+    try:
+        resp = requests.get(url, headers=headers, timeout=20)
+        if resp.status_code != 200:
+            return []
+        xml = resp.text
+    except Exception:
+        return []
+
+    loc_rx    = re.compile(r'<loc>(.*?)</loc>', re.S)
+    title_rx  = re.compile(r'<news:title>(.*?)</news:title>', re.S)
+    date_rx   = re.compile(r'<news:publication_date>(.*?)</news:publication_date>', re.S)
+
+    locs   = loc_rx.findall(xml)
+    titles = title_rx.findall(xml)
+    dates  = date_rx.findall(xml)
+
+    results = []
+    for i, link in enumerate(locs):
+        title = titles[i].strip() if i < len(titles) else ""
+        if not title:
+            continue
+        raw_date = dates[i].strip() if i < len(dates) else ""
+        tstruct = None
+        if raw_date:
+            for fmt in ("%Y-%m-%dT%H:%M:%S.%fZ", "%Y-%m-%dT%H:%M:%SZ", "%Y-%m-%d"):
+                try:
+                    tstruct = time.strptime(raw_date[:19], fmt[:len(fmt)])
+                    break
+                except Exception:
+                    continue
+        results.append(ScrapedEntry({
+            "title": title,
+            "link": link.strip(),
+            "summary": "",
+            "published": raw_date,
+            "published_parsed": tstruct,
+        }))
+
+    return results
+
 def scrape_gs25(page_size: int = 10) -> list:
     """
     GS25(GS리테일) 보도자료 - JSON API.
@@ -675,11 +730,12 @@ def scrape_cu(page_more: int = 10) -> list:
 
 # 소스 src["scraper"] 값 → 실제 함수 매핑 (인자 없이 호출, 페이지수 등은 함수 내부 기본값 사용)
 SCRAPERS = {
-    "hankyung_fnb": lambda: scrape_hankyung_fnb(pages=HANKYUNG_FNB_PAGES),
-    "foodnuri":     lambda: scrape_foodnuri(pages=1),
-    "kati":         lambda: scrape_kati(pages=1),
-    "cu":           lambda: scrape_cu(page_more=10),
-    "gs25":         lambda: scrape_gs25(page_size=10),
+    "hankyung_fnb":  lambda: scrape_hankyung_fnb(pages=HANKYUNG_FNB_PAGES),
+    "foodnuri":      lambda: scrape_foodnuri(pages=1),
+    "kati":          lambda: scrape_kati(pages=1),
+    "cu":            lambda: scrape_cu(page_more=10),
+    "gs25":          lambda: scrape_gs25(page_size=10),
+    "foodnavigator": lambda: scrape_foodnavigator(),
 }
 
 # ─────────────────────────────────────────
