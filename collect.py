@@ -894,6 +894,16 @@ def collect():
     else:
         print("  [일반 모드] GEMINI_API_KEY 미설정 — RSS 원문 사용\n")
 
+    # Supabase 봇 로그인 테스트
+    if SUPABASE_ANON_KEY:
+        token = supa_login()
+        if token:
+            print("  [Supabase] 봇 로그인 성공 ✓\n")
+        else:
+            print("  [Supabase] 봇 로그인 실패 — 자동 태깅 비활성\n")
+    else:
+        print("  [Supabase] SUPABASE_ANON_KEY 미설정 — 자동 태깅 비활성\n")
+
     new_total, errors = 0, []
 
     for src in SOURCES:
@@ -1005,7 +1015,13 @@ def collect():
                 # 자동 태깅: 기사 내용 기반으로 Gemini가 판단한 태그를 봇으로 저장
                 auto_tags = pick_auto_tags(ai_result)
                 if auto_tags:
-                    supa_auto_tag(aid, auto_tags)
+                    saved = supa_auto_tag(aid, auto_tags)
+                    print(f"\n    >> 자동태그 저장: {auto_tags} → {saved}건")
+                elif USE_AI and ai_result:
+                    # Gemini 응답은 있는데 태그가 없는 경우 (디버그용)
+                    raw_tags = ai_result.get("tags", "없음")
+                    if raw_tags:
+                        print(f"\n    >> 태그 필터 후 0건 (원본: {raw_tags})")
 
                 added += 1
 
