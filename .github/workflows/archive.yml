@@ -1,62 +1,32 @@
-name: 월별 아카이브
+name: 월별 아카이브 검증 (수동 전용)
+
+# ⚠️ 2026-07 변경: 매달 말일 news.json을 통째로 복사하던 기존 방식은 폐지.
+# 이제 collect.py가 매일 수집 시점에 살아있는 기사를 발행월 기준
+# data/archive/{YYYY}/news_{YYYY}_{MM}.json 에 바로 누적 저장함 (30일 컷 적용 전).
+# → 말일에 news.json(이미 30일 컷 적용된 상태)을 복사하면 오히려
+#   그동안 잘 쌓인 아카이브를 잘린 데이터로 덮어써버리는 역효과가 나서 자동 실행은 제거함.
+# 아래는 수동으로 돌려서 이번 달 아카이브가 정상 누적됐는지 건수만 확인하는 용도.
 
 on:
-  schedule:
-    # 매월 마지막 날 23:50 KST = 14:50 UTC
-    # GitHub Actions는 "마지막 날" 지정이 안 되므로 28/29/30/31일 모두 실행 후 스크립트에서 판단
-    - cron: '50 14 28-31 * *'
-  workflow_dispatch:  # 수동 실행 가능
+  workflow_dispatch:  # 수동 실행만
 
 jobs:
-  archive:
+  verify:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
       - name: 저장소 체크아웃
         uses: actions/checkout@v4
 
-      - name: 마지막 날 여부 확인 및 아카이브
+      - name: 이번 달 아카이브 건수 확인
         run: |
-          # 오늘이 해당 월의 마지막 날인지 확인
-          TODAY=$(date -u +"%Y-%m-%d")
-          TOMORROW=$(date -u -d "tomorrow" +"%Y-%m-%d")
-          THIS_MONTH=$(date -u +"%Y-%m")
-          NEXT_MONTH=$(date -u -d "tomorrow" +"%Y-%m")
+          YEAR=$(date -u +"%Y")
+          MONTH=$(date -u +"%m")
+          ARCHIVE_FILE="data/archive/${YEAR}/news_${YEAR}_${MONTH}.json"
 
-          # 수동 실행(workflow_dispatch)이면 마지막 날 체크 건너뜀
-          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
-            echo "수동 실행 — 마지막 날 체크 건너뜁니다."
+          if [ -f "$ARCHIVE_FILE" ]; then
+            echo "아카이브 파일: $ARCHIVE_FILE"
+            python3 -c "import json; d=json.load(open('$ARCHIVE_FILE')); print(f'총 {d[\"total\"]}건 (최종 갱신: {d[\"updated\"]})')"
           else
-            if [ "$THIS_MONTH" = "$NEXT_MONTH" ]; then
-              echo "마지막 날이 아닙니다. 종료합니다."
-              exit 0
-            fi
+            echo "!! 아직 이번 달 아카이브 파일이 없습니다: $ARCHIVE_FILE"
+            echo "!! collect.py가 최소 1회는 실행돼야 생성됩니다."
           fi
-
-          YEAR=$(date -u +"%Y")
-          MONTH=$(date -u +"%m")
-          ARCHIVE_DIR="data/archive/${YEAR}"
-          ARCHIVE_FILE="${ARCHIVE_DIR}/news_${YEAR}_${MONTH}.json"
-
-          echo "아카이브 생성: $ARCHIVE_FILE"
-
-          mkdir -p "$ARCHIVE_DIR"
-          cp data/news.json "$ARCHIVE_FILE"
-
-          echo "완료: $(cat $ARCHIVE_FILE | python3 -c 'import json,sys; d=json.load(sys.stdin); print(f"총 {d[\"total\"]}건")')"
-
-      - name: 커밋 & 푸시
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          YEAR=$(date -u +"%Y")
-          MONTH=$(date -u +"%m")
-
-          git add data/archive/
-          git diff --staged --quiet && echo "변경사항 없음" && exit 0
-
-          git commit -m "월별 아카이브 ${YEAR}-${MONTH}"
-          git push
