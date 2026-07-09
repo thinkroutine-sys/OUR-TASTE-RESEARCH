@@ -278,6 +278,84 @@ def pick_auto_tags(ai_result: dict) -> list:
     raw = ai_result.get("tags", [])
     return [t for t in raw if isinstance(t, str) and t in TAG_DEFINITIONS]
 
+# ─────────────────────────────────────────
+# 시그널 키워드 일별 집계 (keyword_daily 테이블)
+# ─────────────────────────────────────────
+
+KEYWORD_AGG_DAYS_BACK = 3  # 늦게 들어오는 기사 대비, 최근 N일치를 매번 다시 집계해서 upsert
+
+def aggregate_keyword_daily(articles: list, days_back: int = KEYWORD_AGG_DAYS_BACK) -> dict:
+    """
+    최근 days_back일치 기사에서 키워드를 (날짜, 키워드) 단위로 집계.
+    score = frequency(빈도) × source_count(매체수) — 시그널 탭과 동일 공식.
+    반환: {(date_str, keyword): {"cat":.., "count":.., "sources": set()}}
+    """
+    cutoff_date = (datetime.now(timezone.utc) - timedelta(days=days_back)).date()
+    by_day_kw: dict = {}
+    for a in articles:
+        d = a.get("date", "")
+        if len(d) < 10:
+            continue
+        try:
+            art_date = datetime.fromisoformat(d.replace("Z", "+00:00")).date()
+        except Exception:
+            continue
+        if art_date < cutoff_date:
+            continue
+        date_str = art_date.isoformat()
+        kw_cats = a.get("kw_cats", {}) or {}
+        for kw in a.get("keywords", []) or []:
+            key = (date_str, kw)
+            entry = by_day_kw.setdefault(key, {"cat": kw_cats.get(kw, ""), "count": 0, "sources": set()})
+            entry["count"] += 1
+            entry["sources"].add(a.get("source", ""))
+    return by_day_kw
+
+def supa_upsert_keyword_daily(agg: dict) -> int:
+    """keyword_daily 테이블에 배치 upsert (date+keyword 충돌 시 덮어쓰기)."""
+    if not agg or not REQUESTS_AVAILABLE or not SUPABASE_ANON_KEY:
+        return 0
+    token = supa_login()
+    if not token:
+        return 0
+
+    headers = {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+        "Prefer": "resolution=merge-duplicates,return=minimal",
+    }
+    rows = []
+    for (date_str, kw), v in agg.items():
+        freq = v["count"]
+        src_cnt = len(v["sources"])
+        rows.append({
+            "date": date_str,
+            "keyword": kw,
+            "cat": v["cat"],
+            "frequency": freq,
+            "source_count": src_cnt,
+            "score": freq * src_cnt,
+        })
+
+    saved = 0
+    for i in range(0, len(rows), 200):
+        batch = rows[i:i + 200]
+        try:
+            resp = requests.post(
+                f"{SUPABASE_URL}/rest/v1/keyword_daily?on_conflict=date,keyword",
+                headers=headers,
+                json=batch,
+                timeout=15,
+            )
+            if resp.status_code in (200, 201, 204):
+                saved += len(batch)
+            else:
+                print(f"\n    !! keyword_daily 저장 실패: {resp.status_code} {resp.text[:200]}")
+        except Exception as e:
+            print(f"\n    !! keyword_daily 저장 오류: {e}")
+    return saved
+
 
 def gemini_analyze(title: str, raw_text: str, lang: str) -> dict:
     """Gemini Flash: 요약 + 키워드 + 해외 번역 + 자동 태그"""
@@ -525,6 +603,48 @@ def is_cvs(title: str, summary: str) -> bool:
     """편의점 관련 기사 여부."""
     text = (title + " " + summary).lower()
     return any(k.lower() in text for k in CVS_KEYWORDS)
+
+# ─────────────────────────────────────────
+# 월별 아카이브 (news.json 30일 컷과 무관하게 매일 누적 저장)
+# ─────────────────────────────────────────
+
+def update_monthly_archives(articles: list) -> None:
+    """
+    기사를 발행월(date 필드 기준) 아카이브 파일에 매일 누적 병합.
+    news.json이 30일 지난 기사를 걸러내기 '전에' 호출해야
+    말일 스냅샷 방식(archive.yml 구버전)의 소실 문제가 생기지 않음.
+    파일: data/archive/{YYYY}/news_{YYYY}_{MM}.json
+    """
+    by_month: dict = {}
+    for a in articles:
+        d = a.get("date", "")
+        if len(d) < 7:
+            continue
+        month_key = d[:7]  # "YYYY-MM"
+        by_month.setdefault(month_key, {})[a["id"]] = a
+
+    for month_key, arts in by_month.items():
+        year, month = month_key.split("-")
+        arch_dir = os.path.join(DATA_DIR, "archive", year)
+        os.makedirs(arch_dir, exist_ok=True)
+        arch_file = os.path.join(arch_dir, f"news_{year}_{month}.json")
+
+        existing_arch: dict = {}
+        if os.path.exists(arch_file):
+            try:
+                with open(arch_file, encoding="utf-8") as f:
+                    for a in json.load(f).get("articles", []):
+                        existing_arch[a["id"]] = a
+            except Exception as e:
+                print(f"\n  !! 아카이브 로드 실패 ({arch_file}): {e}")
+
+        existing_arch.update(arts)  # 신규/갱신분 병합 (기존 자료 유실 없음)
+
+        merged = sorted(existing_arch.values(), key=lambda x: x.get("date", ""), reverse=True)
+        with open(arch_file, "w", encoding="utf-8") as f:
+            json.dump({"updated": datetime.now(timezone.utc).isoformat(),
+                       "total": len(merged), "articles": merged},
+                      f, ensure_ascii=False, indent=2)
 
 # ─────────────────────────────────────────
 # 한국경제 F&B (RSS 없음 → 정적 페이지 스크래핑)
@@ -1082,6 +1202,16 @@ def collect():
         except Exception as e:
             errors.append(f"{name}: {e}")
             print(f" 오류 ({e})")
+
+    # news.json 30일 컷 적용 '전에' 현재 살아있는 전체 기사를 월별 아카이브에 먼저 반영
+    # (이렇게 해야 30일 창에서 빠지기 전에 아카이브에 이미 담겨있어 소실되지 않음)
+    update_monthly_archives(list(existing.values()))
+
+    # 시그널 키워드 일별 집계 → Supabase keyword_daily 테이블에 upsert (키워드 추이용)
+    kw_agg = aggregate_keyword_daily(list(existing.values()))
+    kw_saved = supa_upsert_keyword_daily(kw_agg)
+    if kw_agg:
+        print(f"\n  [Supabase] keyword_daily 갱신: {len(kw_agg)}건 (저장 {kw_saved}건)")
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)
     kept = []
