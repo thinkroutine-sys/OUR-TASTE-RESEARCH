@@ -44,7 +44,7 @@ DATA_DIR     = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 OUT_FILE     = os.path.join(DATA_DIR, "news.json")
 KEEP_DAYS    = 30
 MAX_PER_FEED = 30
-AI_DELAY     = 5.0   # API 호출 간격(초) — 15 RPM 한도 대응
+AI_DELAY     = 8.0   # API 호출 간격(초) — 무료 티어 분당 15회 한도 대응
 HANKYUNG_FNB_PAGES = 2  # 페이지당 50건. 첫 실행 후 백필 끝나면 1로 낮춰도 됨
 
 feedparser.USER_AGENT = (
