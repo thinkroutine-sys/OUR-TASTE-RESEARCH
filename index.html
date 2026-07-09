@@ -661,6 +661,8 @@ body.signal-mode .news-period-filter { display: none; }
 .si-news-src{font-size:10px;color:var(--text3)}
 .signal-item{cursor:pointer}
 .signal-item:hover .si-keyword{color:var(--blue)}
+.kcb-pin{margin-left:8px;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;border:1px solid var(--border);background:none;color:var(--text3);cursor:pointer;vertical-align:middle}
+.kcb-pin.on{background:var(--blue);border-color:var(--blue);color:#fff}
 
 /* scroll top (PC only) */
 .scroll-top{
@@ -2106,6 +2108,8 @@ let currentView = 'news';   // 'news' | 'signal'
 let signalPeriod = 30;      // days
 let signalStage = 'all';    // 'all'|'trend'|'watch'|'interest'
 let signalKwCat = 'all';   // 'all'|'food_cat'|'ingredient'|'trend'|'brand'
+let compareKeywords = [];  // 추이 비교용으로 선택된 키워드 목록 (최대 5개)
+let _kwCompareChart = null;
 
 // 점수 = 빈도 × 출처다양성
 // 트렌드:  출처 6개+ AND 빈도 10+  (score 60+)
@@ -2180,6 +2184,13 @@ function renderSignal() {
     : `<div style="font-size:11px;color:var(--text3);margin-bottom:12px;padding:10px 12px;background:var(--bg);border-radius:10px;border:1px solid var(--border)">
         📊 시그널 점수 = 빈도(기간 내 등장 횟수) × 매체수(출처 다양성). 점수가 높을수록 더 많은 곳에서 반복 등장한 키워드예요.
       </div>
+      <div id="kw-compare-bar" style="display:${compareKeywords.length?'flex':'none'};align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;padding:8px 12px;background:var(--bg);border:1px solid var(--border);border-radius:10px;font-size:12px">
+        <span class="kcb-count">${compareKeywords.length}개 선택</span>
+        <div style="display:flex;gap:6px">
+          <button onclick="compareKeywords=[];renderSignal()" style="font-size:11px;padding:4px 8px;background:none;border:1px solid var(--border);border-radius:6px;cursor:pointer;color:var(--text2)">초기화</button>
+          <button onclick="openCompareModal()" style="font-size:11px;padding:4px 10px;background:var(--blue);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600">비교 그래프 보기</button>
+        </div>
+      </div>
       <div class="signal-list">${filtered.slice(0, 50).map((s, i) => {
         const barPct = Math.round(s.score / maxScore * 100);
         const srcTags = s.sources.map(src => `<span class="si-src-tag">${src}</span>`).join('');
@@ -2192,10 +2203,13 @@ function renderSignal() {
           </a>`).join('')}</div>` : '<div style="font-size:11px;color:var(--text3);padding:8px 0">관련 기사 없음</div>';
         const catBadge = s.kwCat && KW_CAT_LABELS[s.kwCat] ? `<span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;background:${KW_CAT_LABELS[s.kwCat].bg};color:${KW_CAT_LABELS[s.kwCat].color}">${KW_CAT_LABELS[s.kwCat].icon} ${KW_CAT_LABELS[s.kwCat].ko}</span>` : '';
         const kwAttr = String(s.kw).replace(/"/g,'&quot;');
+        const isComparing = compareKeywords.includes(s.kw);
         return `<div class="signal-item" data-kw="${kwAttr}" data-kwidx="${i}" onclick="toggleSignalNews(this)">
           <div class="si-rank">${i + 1}</div>
           <div class="si-body">
-            <div class="si-keyword">${s.kw}</div>
+            <div class="si-keyword">${s.kw}
+              <button class="kcb-pin${isComparing?' on':''}" onclick="toggleCompareKw(event, this.closest('.signal-item').dataset.kw)" title="비교 그래프에 추가">${isComparing?'✓ 비교중':'+ 비교'}</button>
+            </div>
             <div class="si-meta">
               ${catBadge}
               <span class="si-sources">${s.freq}회 언급 (${s.srcCount}개 매체)</span>
@@ -2322,6 +2336,86 @@ async function loadKeywordTrend(kw, canvasId) {
   });
 }
 
+function toggleCompareKw(e, kw) {
+  e.stopPropagation();
+  const btn = e.currentTarget;
+  const i = compareKeywords.indexOf(kw);
+  if (i >= 0) {
+    compareKeywords.splice(i, 1);
+    btn.classList.remove('on');
+    btn.textContent = '+ 비교';
+  } else {
+    if (compareKeywords.length >= 5) return; // 최대 5개
+    compareKeywords.push(kw);
+    btn.classList.add('on');
+    btn.textContent = '✓ 비교중';
+  }
+  const bar = document.getElementById('kw-compare-bar');
+  if (bar) {
+    bar.style.display = compareKeywords.length ? 'flex' : 'none';
+    const countEl = bar.querySelector('.kcb-count');
+    if (countEl) countEl.textContent = compareKeywords.length + '개 선택';
+  }
+}
+
+const COMPARE_COLORS = ['#2a78d6','#1baf7a','#eda100','#4a3aa7','#e34948'];
+
+async function openCompareModal() {
+  if (!compareKeywords.length) return;
+  document.getElementById('guide-kwcompare').classList.add('on');
+  const legend = document.getElementById('kwcompare-legend');
+  legend.innerHTML = compareKeywords.map((kw, i) =>
+    `<span style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text2)">
+      <span style="width:10px;height:10px;border-radius:2px;background:${COMPARE_COLORS[i % COMPARE_COLORS.length]}"></span>${kw}
+    </span>`).join('');
+
+  const perKw = [];
+  for (const kw of compareKeywords) {
+    let rows = [];
+    try { rows = await sbFetch(`/rest/v1/keyword_daily?keyword=eq.${encodeURIComponent(kw)}&order=date.asc&limit=90`) || []; }
+    catch (e) { rows = []; }
+    perKw.push({ kw, rows });
+  }
+
+  const dateSet = new Set();
+  perKw.forEach(d => d.rows.forEach(r => dateSet.add(r.date)));
+  const dates = [...dateSet].sort();
+  const labels = dates.map(d => { const dt = new Date(d); return (dt.getMonth() + 1) + '/' + dt.getDate(); });
+
+  const datasets = perKw.map((d, i) => {
+    const map = new Map(d.rows.map(r => [r.date, r.score]));
+    return {
+      label: d.kw,
+      data: dates.map(dt => map.has(dt) ? map.get(dt) : null),
+      borderColor: COMPARE_COLORS[i % COMPARE_COLORS.length],
+      backgroundColor: 'transparent',
+      borderWidth: 2, pointRadius: 2, tension: 0.3, spanGaps: true,
+    };
+  });
+
+  if (_kwCompareChart) { _kwCompareChart.destroy(); _kwCompareChart = null; }
+  if (!dates.length) {
+    document.getElementById('kwcompare-empty').style.display = 'block';
+    return;
+  }
+  document.getElementById('kwcompare-empty').style.display = 'none';
+  const canvas = document.getElementById('kwcompare-canvas');
+  _kwCompareChart = new Chart(canvas, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, ticks: { font: { size: 11 } } },
+        x: { ticks: { font: { size: 11 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 } }
+      }
+    }
+  });
+}
+
+function closeCompareModal() { document.getElementById('guide-kwcompare').classList.remove('on'); }
+
 function setSignalStage(s) {
   signalStage = s;
   document.querySelectorAll('[data-ss]').forEach(b => {
@@ -2426,6 +2520,19 @@ setInterval(loadNews,30*60*1000);
   </div>
 </div>
 
+<!-- 시그널 키워드 비교 그래프 모달 -->
+<div class="guide-overlay" id="guide-kwcompare" onclick="if(event.target===this)closeCompareModal()">
+  <div class="guide-modal">
+    <button class="guide-close" onclick="closeCompareModal()">✕</button>
+    <h3>📈 키워드 추이 비교</h3>
+    <div id="kwcompare-legend" style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px"></div>
+    <div id="kwcompare-empty" style="display:none;font-size:12px;color:var(--text3);padding:12px 0">비교할 데이터가 아직 없어요 (최근 며칠간 수집분부터 쌓여요)</div>
+    <div style="position:relative;height:260px">
+      <canvas id="kwcompare-canvas" role="img" aria-label="선택한 키워드들의 최근 시그널 점수 추이 비교"></canvas>
+    </div>
+  </div>
+</div>
+
 <!-- 뉴스 카테고리 분류 기준 팝업 -->
 <div class="guide-overlay" id="guide-news" onclick="if(event.target===this)closeGuide('news')">
   <div class="guide-modal">
@@ -2465,7 +2572,7 @@ setInterval(loadNews,30*60*1000);
 <script>
 function openGuide(type){ document.getElementById('guide-'+type).classList.add('on'); }
 function closeGuide(type){ document.getElementById('guide-'+type).classList.remove('on'); }
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeGuide('news');closeGuide('signal');} });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeGuide('news');closeGuide('signal');closeCompareModal();} });
 
 </script>
 </body>
