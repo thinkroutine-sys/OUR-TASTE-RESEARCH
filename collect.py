@@ -163,6 +163,12 @@ TAG_DEFINITIONS = {
     "콘텐츠":    "소비자 인사이트·식문화 트렌드·SNS 식문화 관련",
 }
 
+# tag_type 매핑 (Supabase article_tags 컬럼값)
+BRAND_TAGS = {"새미네부엌", "연두", "폰타나", "티아시아", "차오차이", "백년동안",
+              "질러", "순작", "샘표 장류", "샘표 국수", "간편식", "샘표 기본양념",
+              "샘표 간편·양념", "샘표 간장", "해외"}
+WORK_TAGS  = {"맛방향물", "메뉴개발", "콘텐츠"}
+
 _supa_token = None  # 봇 로그인 토큰 캐시
 
 def supa_login() -> str | None:
@@ -223,7 +229,13 @@ def supa_auto_tag(article_id: str, tags: list[str]) -> int:
         return 0
 
     rows = [
-        {"article_id": article_id, "tag": t, "user_id": BOT_USER_ID, "user_name": BOT_USER_NAME}
+        {
+            "article_id": article_id,
+            "tag":        t,
+            "tag_type":   "brand" if t in BRAND_TAGS else "work",
+            "user_id":    BOT_USER_ID,
+            "user_name":  BOT_USER_NAME,
+        }
         for t in new_tags
     ]
     try:
