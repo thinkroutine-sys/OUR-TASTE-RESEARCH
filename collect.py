@@ -77,7 +77,7 @@ SOURCES = [
      "url": "https://foodtoday.or.kr/data/rss/news.xml"},
     {"name": "쿡앤셰프",       "lang": "ko", "cat_hint": None,
      "url": "https://www.cooknchefnews.com/news/rss.php"},
-    {"name": "비건뉴스",       "lang": "ko", "cat_hint": None,
+    {"name": "비건뉴스",       "lang": "ko", "cat_hint": None, "food_filter": True,
      "url": "https://www.vegannews.co.kr/data/rss/news.xml"},
     # ── 한국경제 (RSS 없음 → 정적 페이지 스크래핑) ───────
     {"name": "한국경제 F&B",  "lang": "ko", "cat_hint": None,
@@ -129,6 +129,26 @@ VALID_CATEGORIES = [
     "채널·유통", "브랜드·기업", "산업·정책"
 ]
 CVS_KEYWORDS = ["편의점", "CU", "GS25", "세븐일레븐", "이마트24", "미니스톱", "convenience store"]
+
+# ─────────────────────────────────────────
+# food_filter: True인 소스는 아래 키워드가 제목+본문에 하나도 없으면
+# 저장하지 않음 (전체 뉴스를 RSS로 뿌리는 사이트에서 비F&B 기사 제외용)
+# ─────────────────────────────────────────
+FOOD_FILTER_KEYWORDS = [
+    "식품", "푸드", "food", "음식", "메뉴", "레시피", "요리", "맛집",
+    "비건", "채식", "대체육", "대체식품", "플렉시테리언",
+    "식재료", "농산물", "수산물", "축산", "농식품", "급식", "외식",
+    "카페", "레스토랑", "프랜차이즈", "디저트", "베이커리", "제과",
+    "커피", "음료", "주류", "소스", "양념", "장류", "발효",
+    "hmr", "밀키트", "간편식", "영양", "다이어트", "식단", "미식",
+]
+
+def passes_food_filter(src: dict, title: str, raw_text: str) -> bool:
+    """food_filter 소스에서 F&B 무관 기사 걸러내기."""
+    if not src.get("food_filter"):
+        return True
+    text = (title + " " + (raw_text or "")).lower()
+    return any(k.lower() in text for k in FOOD_FILTER_KEYWORDS)
 
 # ─────────────────────────────────────────
 # AI 요약 (Claude Haiku)
@@ -379,15 +399,29 @@ KO_STOPWORDS = {
     '위해','새로운','이번','지난','올해','최근','현재','국내','해외','글로벌',
 }
 
+# fallback 키워드 추출 시 단어 끝에 붙은 조사 제거용 (형태소 분석기 없이 근사치 처리)
+_TRAILING_JOSA = (
+    '이다', '이며', '에서', '으로', '까지', '부터', '한테', '에게',
+    '이', '가', '은', '는', '을', '를', '의', '에', '로', '과', '와',
+    '도', '만', '서', '나', '야', '랑', '께',
+)
+
+def _strip_josa(word: str) -> str:
+    """단어 끝의 조사를 제거. 2글자 미만이 되면 원래 단어 유지."""
+    for suf in _TRAILING_JOSA:
+        if word.endswith(suf) and len(word) - len(suf) >= 2:
+            return word[: -len(suf)]
+    return word
+
 def extract_keywords(title: str, summary: str) -> list[str]:
     text = title + " " + (summary or "")
-    ko = re.findall(r'[가-힣]{2,6}', text)
+    ko = [_strip_josa(w) for w in re.findall(r'[가-힣]{2,6}', text)]
     en = re.findall(r'[A-Z][A-Za-z]{2,}|[A-Z]{2,}', text)
     freq: dict[str, int] = {}
     for w in ko + en:
         if w not in KO_STOPWORDS and len(w) > 1:
             freq[w] = freq.get(w, 0) + 1
-    for w in re.findall(r'[가-힣]{2,6}|[A-Z][A-Za-z]{2,}', title):
+    for w in [_strip_josa(w) for w in re.findall(r'[가-힣]{2,6}', title)] + re.findall(r'[A-Z][A-Za-z]{2,}', title):
         if w in freq:
             freq[w] += 2
     seen: set[str] = set()
@@ -959,10 +993,16 @@ def collect():
                 title    = strip_html(entry.get("title", "")).strip()
                 raw_text = shorten(entry.get("summary", entry.get("description", "")))
 
+                # food_filter 소스: F&B 무관 기사는 저장하지 않고 스킵
+                if not passes_food_filter(src, title, raw_text):
+                    continue
+
                 # AI 분석 (요약 + 키워드 + 해외 번역)
+                # 스크래핑 소스는 본문(raw_text)이 없으므로 제목이라도 넘겨서 분석
+                ai_text = raw_text or title
                 ai_result = {}
-                if USE_AI and raw_text:
-                    ai_result = gemini_analyze(title, raw_text, src["lang"])
+                if USE_AI and ai_text:
+                    ai_result = gemini_analyze(title, ai_text, src["lang"])
 
                 # summary: AI는 리스트, 없으면 RSS 원문 축약
                 raw_summary = ai_result.get("summary")
