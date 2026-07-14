@@ -37,6 +37,12 @@ BOT_USER_ID       = "5279089a-ffbd-4b26-8041-902217ba5b9a"
 BOT_USER_NAME     = "AI 자동태그"
 
 # ─────────────────────────────────────────
+# Teams 알림 설정 (Incoming Webhook, Adaptive Card)
+# ─────────────────────────────────────────
+TEAMS_WEBHOOK_URL = os.environ.get("TEAMS_WEBHOOK_URL", "")
+DASHBOARD_URL     = "https://our-taste-research.vercel.app"
+
+# ─────────────────────────────────────────
 # 설정
 # ─────────────────────────────────────────
 
@@ -277,6 +283,125 @@ def pick_auto_tags(ai_result: dict) -> list:
     """
     raw = ai_result.get("tags", [])
     return [t for t in raw if isinstance(t, str) and t in TAG_DEFINITIONS]
+
+# ─────────────────────────────────────────
+# Teams 알림 (Adaptive Card)
+# ─────────────────────────────────────────
+
+# 액센트 바 색상(#E8000D) 1px 레드 픽셀 - 카드 상단에 stretch로 늘려서 표시
+_RED_BAR_IMG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+
+def _fmt_time(date_str: str) -> str:
+    try:
+        return datetime.fromisoformat(date_str.replace("Z", "+00:00")).strftime("%H:%M")
+    except Exception:
+        return ""
+
+def build_teams_card(tagged_articles: list) -> dict:
+    """
+    tagged_articles: [{..기사 필드.., "tags": ["연두","콘텐츠",...]}]
+    확정 목업(레드 액센트 바 + 태그 배지 + 요약 + 하단 링크) 그대로 Adaptive Card로 구성.
+    """
+    n = len(tagged_articles)
+    body = [
+        {"type": "Image", "url": _RED_BAR_IMG, "height": "6px", "width": "stretch"},
+        {
+            "type": "TextBlock",
+            "text": f"⚡ 오늘 자동 태깅된 기사 ({n}건)",
+            "weight": "Bolder",
+            "size": "Medium",
+            "spacing": "Medium",
+        },
+    ]
+
+    for i, a in enumerate(tagged_articles):
+        summary = a.get("summary", "")
+        if isinstance(summary, list):
+            summary = " ".join(summary)
+        summary = (summary or "").strip()
+        if len(summary) > 80:
+            summary = summary[:80] + "..."
+
+        tag_text = "   ".join(f"🔴 {t}" for t in a.get("tags", []))
+
+        body.append({
+            "type": "Container",
+            "spacing": "Medium",
+            "separator": i > 0,
+            "items": [
+                {"type": "TextBlock", "text": f"[{a.get('title','')}]({a.get('url','')})",
+                 "weight": "Bolder", "size": "Small", "wrap": True},
+                {"type": "TextBlock", "text": summary, "size": "Small",
+                 "isSubtle": True, "wrap": True},
+                {"type": "TextBlock", "text": tag_text, "size": "Small",
+                 "color": "Attention", "wrap": True},
+                {"type": "TextBlock", "text": f"{a.get('source','')} · {_fmt_time(a.get('date',''))}",
+                 "size": "Small", "isSubtle": True, "wrap": True, "spacing": "Small"},
+            ],
+        })
+
+    body.append({
+        "type": "TextBlock",
+        "text": f"[대시보드에서 전체 보기 →]({DASHBOARD_URL})",
+        "horizontalAlignment": "Right",
+        "color": "Attention",
+        "weight": "Bolder",
+        "spacing": "Medium",
+    })
+
+    return {
+        "type": "message",
+        "attachments": [{
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "content": {
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "type": "AdaptiveCard",
+                "version": "1.4",
+                "body": body,
+            },
+        }],
+    }
+
+def send_teams_notification(articles: list, tagged_ids: dict) -> bool:
+    """
+    articles   : collect() 실행 중 누적된 전체 기사 dict 리스트 (existing.values())
+    tagged_ids : {article_id: [태그명, ...]} - 이번 실행에서 새로 자동 태깅된 기사만
+    태그가 하나라도 붙은 기사는 개수 제한 없이 전부 카드 하나에 담아 전송.
+    """
+    if not TEAMS_WEBHOOK_URL:
+        print("\n  [Teams] TEAMS_WEBHOOK_URL 미설정 — 알림 스킵")
+        return False
+    if not REQUESTS_AVAILABLE:
+        print("\n  [Teams] requests 미설치 — 알림 스킵")
+        return False
+    if not tagged_ids:
+        print("\n  [Teams] 오늘 자동 태깅된 기사 없음 — 알림 스킵")
+        return False
+
+    by_id = {a["id"]: a for a in articles}
+    tagged_articles = []
+    for aid, tags in tagged_ids.items():
+        a = by_id.get(aid)
+        if not a:
+            continue
+        tagged_articles.append({**a, "tags": tags})
+    tagged_articles.sort(key=lambda x: x.get("date", ""), reverse=True)
+
+    if not tagged_articles:
+        print("\n  [Teams] 알림 대상 기사 매칭 실패 — 알림 스킵")
+        return False
+
+    card = build_teams_card(tagged_articles)
+    try:
+        resp = requests.post(TEAMS_WEBHOOK_URL, json=card, timeout=15)
+        if resp.status_code in (200, 202):
+            print(f"\n  [Teams] 알림 전송 완료 ({len(tagged_articles)}건)")
+            return True
+        print(f"\n  [Teams] 전송 실패: {resp.status_code} {resp.text[:200]}")
+        return False
+    except Exception as e:
+        print(f"\n  [Teams] 전송 오류: {e}")
+        return False
 
 # ─────────────────────────────────────────
 # 시그널 키워드 일별 집계 (keyword_daily 테이블)
@@ -1071,6 +1196,7 @@ def collect():
         print("  [Supabase] SUPABASE_ANON_KEY 미설정 — 자동 태깅 비활성\n")
 
     new_total, errors = 0, []
+    tagged_this_run: dict[str, list] = {}  # {article_id: [태그명,...]} - 이번 실행에서 새로 태깅된 기사
 
     for src in SOURCES:
         name = src["name"]
@@ -1188,6 +1314,7 @@ def collect():
                 auto_tags = pick_auto_tags(ai_result)
                 if auto_tags:
                     saved = supa_auto_tag(aid, auto_tags)
+                    tagged_this_run[aid] = auto_tags
                     print(f"\n    >> 자동태그 저장: {auto_tags} → {saved}건")
                 elif USE_AI and ai_result:
                     # Gemini 응답은 있는데 태그가 없는 경우 (디버그용)
@@ -1212,6 +1339,9 @@ def collect():
     kw_saved = supa_upsert_keyword_daily(kw_agg)
     if kw_agg:
         print(f"\n  [Supabase] keyword_daily 갱신: {len(kw_agg)}건 (저장 {kw_saved}건)")
+
+    # 오늘 자동 태깅된 기사 전체를 Teams로 전송 (건수 제한 없음, 수집 직후 1회)
+    send_teams_notification(list(existing.values()), tagged_this_run)
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)
     kept = []
