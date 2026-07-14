@@ -297,17 +297,25 @@ def _fmt_time(date_str: str) -> str:
     except Exception:
         return ""
 
-def build_teams_card(tagged_articles: list) -> dict:
+MAX_CARD_BYTES = 24 * 1024  # Teams "채널에 카드 게시" 실전 한도(약 28KB) 대비 여유
+
+def build_teams_card(tagged_articles: list, total: int | None = None,
+                      part_no: int = 1, part_total: int = 1) -> dict:
     """
     tagged_articles: [{..기사 필드.., "tags": ["연두","콘텐츠",...]}]
     확정 목업(레드 액센트 바 + 태그 배지 + 요약 + 하단 링크) 그대로 Adaptive Card로 구성.
+    total/part_no/part_total: 카드가 여러 장으로 쪼개졌을 때 헤더에 표시할 정보.
     """
-    n = len(tagged_articles)
+    n = total if total is not None else len(tagged_articles)
+    header = f"⚡ 오늘 자동 태깅된 기사 ({n}건)"
+    if part_total > 1:
+        header += f" - {part_no}/{part_total}"
+
     body = [
         {"type": "Image", "url": _RED_BAR_IMG, "height": "6px", "width": "stretch"},
         {
             "type": "TextBlock",
-            "text": f"⚡ 오늘 자동 태깅된 기사 ({n}건)",
+            "text": header,
             "weight": "Bolder",
             "size": "Medium",
             "spacing": "Medium",
@@ -363,11 +371,44 @@ def build_teams_card(tagged_articles: list) -> dict:
         }],
     }
 
+def _card_size(articles_chunk: list, total: int) -> int:
+    """해당 기사 묶음으로 카드를 만들었을 때 UTF-8 바이트 크기."""
+    card = build_teams_card(articles_chunk, total=total, part_no=1, part_total=1)
+    return len(json.dumps(card, ensure_ascii=False).encode("utf-8"))
+
+def build_teams_cards(tagged_articles: list) -> list:
+    """
+    기사 수 제한은 없음 - 대신 카드 하나가 Teams 게시 한도(MAX_CARD_BYTES)를
+    넘지 않도록 여러 장으로 자동 분할. 반환: [card_payload, ...]
+    """
+    total = len(tagged_articles)
+    if total == 0:
+        return []
+
+    chunks: list[list] = []
+    cur: list = []
+    for a in tagged_articles:
+        trial = cur + [a]
+        if _card_size(trial, total) > MAX_CARD_BYTES and cur:
+            chunks.append(cur)
+            cur = [a]
+        else:
+            cur = trial
+    if cur:
+        chunks.append(cur)
+
+    part_total = len(chunks)
+    return [
+        build_teams_card(chunk, total=total, part_no=i, part_total=part_total)
+        for i, chunk in enumerate(chunks, start=1)
+    ]
+
 def send_teams_notification(articles: list, tagged_ids: dict) -> bool:
     """
     articles   : collect() 실행 중 누적된 전체 기사 dict 리스트 (existing.values())
     tagged_ids : {article_id: [태그명, ...]} - 이번 실행에서 새로 자동 태깅된 기사만
-    태그가 하나라도 붙은 기사는 개수 제한 없이 전부 카드 하나에 담아 전송.
+    태그가 하나라도 붙은 기사는 개수 제한 없이 전부 전송하되, Teams 게시 한도를
+    넘기지 않도록 여러 장의 카드로 나눠서 순차 전송.
     """
     if not TEAMS_WEBHOOK_URL:
         print("\n  [Teams] TEAMS_WEBHOOK_URL 미설정 — 알림 스킵")
@@ -392,17 +433,21 @@ def send_teams_notification(articles: list, tagged_ids: dict) -> bool:
         print("\n  [Teams] 알림 대상 기사 매칭 실패 — 알림 스킵")
         return False
 
-    card = build_teams_card(tagged_articles)
-    try:
-        resp = requests.post(TEAMS_WEBHOOK_URL, json=card, timeout=15)
-        if resp.status_code in (200, 202):
-            print(f"\n  [Teams] 알림 전송 완료 ({len(tagged_articles)}건)")
-            return True
-        print(f"\n  [Teams] 전송 실패: {resp.status_code} {resp.text[:200]}")
-        return False
-    except Exception as e:
-        print(f"\n  [Teams] 전송 오류: {e}")
-        return False
+    cards = build_teams_cards(tagged_articles)
+    ok_count = 0
+    for i, card in enumerate(cards, start=1):
+        try:
+            resp = requests.post(TEAMS_WEBHOOK_URL, json=card, timeout=15)
+            if resp.status_code in (200, 202):
+                ok_count += 1
+                print(f"\n  [Teams] 카드 {i}/{len(cards)} 전송 완료")
+            else:
+                print(f"\n  [Teams] 카드 {i}/{len(cards)} 전송 실패: {resp.status_code} {resp.text[:200]}")
+        except Exception as e:
+            print(f"\n  [Teams] 카드 {i}/{len(cards)} 전송 오류: {e}")
+
+    print(f"\n  [Teams] 총 {len(tagged_articles)}건, 카드 {ok_count}/{len(cards)}장 전송 완료")
+    return ok_count == len(cards)
 
 # ─────────────────────────────────────────
 # 시그널 키워드 일별 집계 (keyword_daily 테이블)
@@ -1315,7 +1360,8 @@ def collect():
                 auto_tags = pick_auto_tags(ai_result)
                 if auto_tags:
                     saved = supa_auto_tag(aid, auto_tags)
-                    tagged_this_run[aid] = auto_tags
+                    if saved > 0:
+                        tagged_this_run[aid] = auto_tags
                     print(f"\n    >> 자동태그 저장: {auto_tags} → {saved}건")
                 elif USE_AI and ai_result:
                     # Gemini 응답은 있는데 태그가 없는 경우 (디버그용)
