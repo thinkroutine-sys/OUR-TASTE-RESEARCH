@@ -353,6 +353,7 @@ def build_teams_card(tagged_articles: list) -> dict:
         "type": "message",
         "attachments": [{
             "contentType": "application/vnd.microsoft.card.adaptive",
+            "contentUrl": None,
             "content": {
                 "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
                 "type": "AdaptiveCard",
