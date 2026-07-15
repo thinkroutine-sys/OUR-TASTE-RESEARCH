@@ -6,6 +6,7 @@ import feedparser
 import json
 import os
 import re
+import html
 import hashlib
 import time
 from datetime import datetime, timedelta, timezone
@@ -50,6 +51,13 @@ DATA_DIR     = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 OUT_FILE     = os.path.join(DATA_DIR, "news.json")
 KEEP_DAYS    = 30
 MAX_PER_FEED = 30
+
+# ─────────────────────────────────────────
+# 테스트 모드 (빠른 확인용 - Supabase 저장/Teams 알림/news.json 저장 생략)
+# ─────────────────────────────────────────
+TEST_MODE          = os.environ.get("TEST_MODE", "") == "1"
+TEST_SOURCE_LIMIT   = int(os.environ.get("TEST_SOURCE_LIMIT", "3"))
+TEST_MAX_PER_FEED   = int(os.environ.get("TEST_MAX_PER_FEED", "3"))
 AI_DELAY     = 8.0   # API 호출 간격(초) — 무료 티어 분당 15회 한도 대응
 HANKYUNG_FNB_PAGES = 2  # 페이지당 50건. 첫 실행 후 백필 끝나면 1로 낮춰도 됨
 
@@ -1080,20 +1088,33 @@ def scrape_foodnavigator() -> list:
     except Exception:
         return []
 
-    loc_rx    = re.compile(r'<loc>(.*?)</loc>', re.S)
-    title_rx  = re.compile(r'<news:title>(.*?)</news:title>', re.S)
-    date_rx   = re.compile(r'<news:publication_date>(.*?)</news:publication_date>', re.S)
+    url_block_rx = re.compile(r'<url>(.*?)</url>', re.S)
+    loc_rx       = re.compile(r'<loc>(.*?)</loc>', re.S)
+    title_rx     = re.compile(r'<news:title>(.*?)</news:title>', re.S)
+    date_rx      = re.compile(r'<news:publication_date>(.*?)</news:publication_date>', re.S)
+    cdata_rx     = re.compile(r'^<!\[CDATA\[(.*)\]\]>$', re.S)
 
-    locs   = loc_rx.findall(xml)
-    titles = title_rx.findall(xml)
-    dates  = date_rx.findall(xml)
+    def _clean_title(raw: str) -> str:
+        raw = raw.strip()
+        m = cdata_rx.match(raw)
+        if m:
+            raw = m.group(1).strip()
+        return html.unescape(raw).strip()
 
     results = []
-    for i, link in enumerate(locs):
-        title = titles[i].strip() if i < len(titles) else ""
+    for block in url_block_rx.findall(xml):
+        loc_m = loc_rx.search(block)
+        if not loc_m:
+            continue
+        link = loc_m.group(1).strip()
+
+        title_m = title_rx.search(block)
+        title = _clean_title(title_m.group(1)) if title_m else ""
         if not title:
             continue
-        raw_date = dates[i].strip() if i < len(dates) else ""
+
+        date_m = date_rx.search(block)
+        raw_date = date_m.group(1).strip() if date_m else ""
         tstruct = None
         if raw_date:
             for fmt in ("%Y-%m-%dT%H:%M:%S.%fZ", "%Y-%m-%dT%H:%M:%SZ", "%Y-%m-%d"):
@@ -1102,9 +1123,10 @@ def scrape_foodnavigator() -> list:
                     break
                 except Exception:
                     continue
+
         results.append(ScrapedEntry({
             "title": title,
-            "link": link.strip(),
+            "link": link,
             "summary": "",
             "published": raw_date,
             "published_parsed": tstruct,
@@ -1265,7 +1287,13 @@ def collect():
     new_total, errors = 0, []
     tagged_this_run: dict[str, list] = {}  # {article_id: [태그명,...]} - 이번 실행에서 새로 태깅된 기사
 
-    for src in SOURCES:
+    sources_to_run = SOURCES[:TEST_SOURCE_LIMIT] if TEST_MODE else SOURCES
+    per_feed_limit = TEST_MAX_PER_FEED if TEST_MODE else MAX_PER_FEED
+    if TEST_MODE:
+        print(f"  [TEST MODE] 소스 {len(sources_to_run)}개 · 소스당 최대 {per_feed_limit}건만 처리")
+        print(f"  [TEST MODE] Supabase 저장 / Teams 알림 / news.json 저장 생략\n")
+
+    for src in sources_to_run:
         name = src["name"]
         try:
             print(f"  [{name}] ...", end="", flush=True)
@@ -1295,7 +1323,7 @@ def collect():
                 entries = feed.entries
 
             added = 0
-            for entry in entries[:MAX_PER_FEED]:
+            for entry in entries[:per_feed_limit]:
                 url = entry.get("link", "").strip()
                 if not url:
                     continue
@@ -1380,10 +1408,13 @@ def collect():
                 # 자동 태깅: 기사 내용 기반으로 Gemini가 판단한 태그를 봇으로 저장
                 auto_tags = pick_auto_tags(ai_result)
                 if auto_tags:
-                    saved = supa_auto_tag(aid, auto_tags)
-                    if saved > 0:
-                        tagged_this_run[aid] = auto_tags
-                    print(f"\n    >> 자동태그 저장: {auto_tags} → {saved}건")
+                    if TEST_MODE:
+                        print(f"\n    >> [TEST] 자동태그 판정: {auto_tags} (저장 생략)")
+                    else:
+                        saved = supa_auto_tag(aid, auto_tags)
+                        if saved > 0:
+                            tagged_this_run[aid] = auto_tags
+                        print(f"\n    >> 자동태그 저장: {auto_tags} → {saved}건")
                 elif USE_AI and ai_result:
                     # Gemini 응답은 있는데 태그가 없는 경우 (디버그용)
                     raw_tags = ai_result.get("tags", "없음")
@@ -1401,6 +1432,14 @@ def collect():
     # news.json 30일 컷 적용 '전에' 현재 살아있는 전체 기사를 월별 아카이브에 먼저 반영
     # (이렇게 해야 30일 창에서 빠지기 전에 아카이브에 이미 담겨있어 소실되지 않음)
     update_monthly_archives(list(existing.values()))
+
+    if TEST_MODE:
+        print(f"\n>> [TEST MODE] 완료 - 신규 발견 {new_total}건 (실제 저장/알림 없음)")
+        if errors:
+            print(f"-- 오류 {len(errors)}건:")
+            for e in errors:
+                print(f"   {e}")
+        return
 
     # 시그널 키워드 일별 집계 → Supabase keyword_daily 테이블에 upsert (키워드 추이용)
     kw_agg = aggregate_keyword_daily(list(existing.values()))
