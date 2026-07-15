@@ -445,7 +445,24 @@ body.signal-mode .news-period-filter { display: none; }
 .kcp-title-row { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .kcp-title { font-size: 14px; font-weight: 700; color: var(--text); }
 .kcp-sub { font-size: 11px; font-weight: 500; color: var(--text3); }
-.kcp-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.kcp-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.kcp-search-wrap { position: relative; margin-top: 8px; max-width: 280px; }
+.kcp-search-input {
+  width: 100%; font-size: 12px; padding: 7px 10px;
+  border: 1.5px solid var(--border); border-radius: 8px;
+  background: var(--surface); color: var(--text);
+  outline: none; font-family: inherit;
+}
+.kcp-search-input:focus { border-color: var(--blue); }
+.kcp-search-suggest {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; box-shadow: var(--shadow-md);
+  z-index: 20; max-height: 220px; overflow-y: auto;
+}
+.kcp-suggest-item { padding: 7px 12px; font-size: 12px; color: var(--text); cursor: pointer; }
+.kcp-suggest-item:hover { background: var(--bg); }
+.kcp-suggest-empty { padding: 8px 12px; font-size: 11px; color: var(--text3); }
 .kcp-chip {
   display: inline-flex; align-items: center; gap: 5px;
   font-size: 12px; font-weight: 600; color: var(--text);
@@ -974,6 +991,12 @@ function fmtDate(iso){
     const h=d.getHours();
     const mm=String(d.getMinutes()).padStart(2,'0');
     return `${M}.${D} ${h<12?'오전':'오후'} ${String(h%12||12)}:${mm}`;
+  }catch{return ''}
+}
+function fmtDateShort(ms){
+  try{
+    const d=new Date(ms);
+    return `${d.getMonth()+1}/${d.getDate()}`;
   }catch{return ''}
 }
 function dayKey(iso){
@@ -2136,7 +2159,9 @@ function resetAll(){
 // ════════════════════════════════════
 
 let currentView = 'news';   // 'news' | 'signal'
-let signalPeriod = 30;      // days
+let signalPeriod = 30;      // days (표시용)
+let signalRangeFrom = Date.now() - 30 * 86400000;  // 실제 필터링 기준 - 시작 시각(ms)
+let signalRangeTo   = Date.now();                    // 실제 필터링 기준 - 종료 시각(ms)
 let signalStage = 'all';    // 'all'|'trend'|'watch'|'interest'
 let signalKwCat = 'all';   // 'all'|'food_cat'|'ingredient'|'trend'|'brand'
 let compareKeywords = [];  // 추이 비교용으로 선택된 키워드 목록 (최대 5개)
@@ -2155,13 +2180,14 @@ const KW_CAT_LABELS = {
   brand:      { ko: '브랜드',        icon: '🏷️', color: '#007AFF', bg: '#EBF4FF' },
 };
 
-function calcSignals(days) {
-  const cutoff = Date.now() - days * 86400000;
+function calcSignals() {
+  const fromMs = signalRangeFrom, toMs = signalRangeTo;
   // kwMap: keyword → { freq, sources, kwCat }
   const kwMap = {};
 
   for (const a of allArticles()) {
-    if (new Date(a.date).getTime() < cutoff) continue;
+    const t = new Date(a.date).getTime();
+    if (t < fromMs || t > toMs) continue;
     const kws     = Array.isArray(a.keywords) ? a.keywords : [];
     const kwCats  = a.kw_cats || {};  // {word: cat} 매핑
 
@@ -2204,7 +2230,7 @@ function stageLabel(s) {
 }
 
 function renderSignal() {
-  const signals = calcSignals(signalPeriod);
+  const signals = calcSignals();
   let filtered = signalStage === 'all' ? signals : signals.filter(s => s.stage === signalStage);
   if (signalKwCat !== 'all') filtered = filtered.filter(s => s.kwCat === signalKwCat);
   const maxScore = filtered[0]?.score || 1;
@@ -2218,20 +2244,23 @@ function renderSignal() {
         <div class="kcp-head">
           <div class="kcp-title-row">
             <span class="kcp-title">📈 키워드 추이 비교</span>
-            <span class="kcp-sub">최근 ${signalPeriod}일 · 최대 5개</span>
+            <span class="kcp-sub">${fmtDateShort(signalRangeFrom)} ~ ${fmtDateShort(signalRangeTo)} · 최대 5개</span>
           </div>
-          <div class="kcp-chips" id="kcp-chips"></div>
+          <div class="kcp-search-wrap">
+            <input type="text" class="kcp-search-input" placeholder="키워드 검색해서 추가 (예: 저당)" oninput="onKcpSearchInput(event)" onblur="onKcpSearchBlur(event)" autocomplete="off">
+            <div class="kcp-search-suggest" style="display:none"></div>
+          </div>
         </div>
+        <div class="kcp-chips" id="kcp-chips"></div>
         <div class="kcp-chart-wrap">
           <canvas id="kcp-canvas" role="img" aria-label="선택한 키워드들의 시그널 점수 추이 비교" style="display:none"></canvas>
-          <div class="kcp-empty" id="kcp-empty">아래 키워드 카드에서 <b>+ 비교</b>를 눌러 추이를 확인하세요 (최대 5개)</div>
+          <div class="kcp-empty" id="kcp-empty">아래 키워드 카드에서 <b>+ 비교</b>를 누르거나, 위 검색창으로 직접 찾아서 추가하세요 (최대 5개)</div>
         </div>
       </div>
       <div class="signal-list">${filtered.slice(0, 50).map((s, i) => {
         const barPct = Math.round(s.score / maxScore * 100);
         const srcTags = s.sources.map(src => `<span class="si-src-tag">${src}</span>`).join('');
-        const cutoffMs = Date.now() - signalPeriod * 86400000;
-        const relNews = allArticles().filter(a=>(a.keywords||[]).includes(s.kw) && new Date(a.date).getTime() >= cutoffMs);
+        const relNews = allArticles().filter(a=>(a.keywords||[]).includes(s.kw) && new Date(a.date).getTime() >= signalRangeFrom && new Date(a.date).getTime() <= signalRangeTo);
         const relHtml = relNews.length ? `<div class="si-news-scroll">${relNews.map(a=>`
           <a class="si-news-item" href="${a.url}" target="_blank" rel="noopener">
             <span class="si-news-title">${a.title}</span>
@@ -2299,10 +2328,12 @@ function toggleSignalDatePanel(){
 function applySignalDateRange(){
   var f=document.getElementById('signal-date-from'), t=document.getElementById('signal-date-to');
   if(!f||!t||!f.value||!t.value) return;
-  // 날짜 범위를 일수로 변환해서 signalPeriod에 적용
-  var from = new Date(f.value), to = new Date(t.value);
-  var days = Math.ceil((to-from)/86400000)+1;
-  signalPeriod = days;
+  // 선택한 시작~종료 날짜를 그대로 절대 범위로 사용 (오늘 기준으로 재계산하지 않음)
+  var from = new Date(f.value + 'T00:00:00');
+  var to   = new Date(t.value + 'T23:59:59.999');
+  signalRangeFrom = from.getTime();
+  signalRangeTo   = to.getTime();
+  signalPeriod = Math.ceil((signalRangeTo - signalRangeFrom) / 86400000); // 표시용 일수
   // 직접설정 버튼 활성화 + 라벨 표시
   document.querySelectorAll('[data-sp]').forEach(function(b){
     b.classList.remove('on','on-blue');
@@ -2316,6 +2347,8 @@ function setSignalPeriod(d) {
   if (d === 'custom') { toggleSignalDatePanel(); return; }
   var panel=document.getElementById('signal-date-panel');if(panel)panel.style.display='none';
   signalPeriod = d;
+  signalRangeTo = Date.now();
+  signalRangeFrom = signalRangeTo - d * 86400000;
   document.querySelectorAll('[data-sp]').forEach(p => p.classList.toggle('on', +p.dataset.sp === d));
   renderSignal();
 }
@@ -2324,6 +2357,8 @@ function applyCustomPeriod() {
   const val = parseInt(document.getElementById('custom-period-input').value);
   if (!val || val < 1) return;
   signalPeriod = Math.min(val, 365);
+  signalRangeTo = Date.now();
+  signalRangeFrom = signalRangeTo - signalPeriod * 86400000;
   renderSignal();
 }
 
@@ -2335,44 +2370,97 @@ function toggleSignalNews(el) {
   el.style.cursor = 'pointer';
 }
 
+function syncPinButtons() {
+  document.querySelectorAll('.signal-item').forEach(el => {
+    const kw = el.dataset.kw;
+    const btn = el.querySelector('.kcb-pin');
+    if (!btn) return;
+    const isOn = compareKeywords.includes(kw);
+    btn.classList.toggle('on', isOn);
+    btn.textContent = isOn ? '✓ 비교중' : '+ 비교';
+    const disable = !isOn && compareKeywords.length >= 5;
+    btn.disabled = disable;
+    btn.title = disable ? '최대 5개까지 선택 가능' : '비교 그래프에 추가';
+  });
+}
+
 function toggleCompareKw(e, kw) {
   e.stopPropagation();
-  const btn = e.currentTarget;
   const i = compareKeywords.indexOf(kw);
   if (i >= 0) {
     compareKeywords.splice(i, 1);
-    btn.classList.remove('on');
-    btn.textContent = '+ 비교';
   } else {
     if (compareKeywords.length >= 5) return; // 최대 5개
     compareKeywords.push(kw);
-    btn.classList.add('on');
-    btn.textContent = '✓ 비교중';
   }
-  // 5개 다 찼으면 나머지 '+ 비교' 버튼 비활성화, 아니면 다시 활성화
-  document.querySelectorAll('.kcb-pin').forEach(b => {
-    if (b.classList.contains('on')) return;
-    const disable = compareKeywords.length >= 5;
-    b.disabled = disable;
-    b.title = disable ? '최대 5개까지 선택 가능' : '비교 그래프에 추가';
-  });
+  syncPinButtons();
   updateCompareChart();
 }
 
 function removeCompareKw(kw) {
   const i = compareKeywords.indexOf(kw);
   if (i >= 0) compareKeywords.splice(i, 1);
-  document.querySelectorAll('.signal-item').forEach(el => {
-    if (el.dataset.kw !== kw) return;
-    const btn = el.querySelector('.kcb-pin');
-    if (btn) { btn.classList.remove('on'); btn.textContent = '+ 비교'; }
-  });
-  document.querySelectorAll('.kcb-pin').forEach(b => {
-    if (b.classList.contains('on')) return;
-    const disable = compareKeywords.length >= 5;
-    b.disabled = disable;
-    b.title = disable ? '최대 5개까지 선택 가능' : '비교 그래프에 추가';
-  });
+  syncPinButtons();
+  updateCompareChart();
+}
+
+// ── 키워드 검색으로 직접 추가 (news.json에 안 걸려도 keyword_daily에서 바로 검색) ──
+let _kcpSearchTimer = null;
+
+function onKcpSearchInput(e) {
+  clearTimeout(_kcpSearchTimer);
+  const input = e.target;
+  const box = input.nextElementSibling;
+  const q = input.value.trim();
+  if (!box) return;
+  if (!q) { box.style.display = 'none'; box.innerHTML = ''; return; }
+  _kcpSearchTimer = setTimeout(() => runKcpSearch(q, box), 300);
+}
+
+function onKcpSearchBlur(e) {
+  const box = e.target.nextElementSibling;
+  setTimeout(() => { if (box) box.style.display = 'none'; }, 150);
+}
+
+async function runKcpSearch(q, box) {
+  if (compareKeywords.length >= 5) {
+    box.innerHTML = '<div class="kcp-suggest-empty">이미 5개를 선택했어요. 하나를 빼고 다시 검색해보세요.</div>';
+    box.style.display = 'block';
+    return;
+  }
+  let rows = [];
+  try {
+    rows = await sbFetch(`/rest/v1/keyword_daily?select=keyword&keyword=ilike.*${encodeURIComponent(q)}*&limit=200`) || [];
+  } catch (e) { rows = []; }
+  const unique = [...new Set(rows.map(r => r.keyword))]
+    .filter(k => !compareKeywords.includes(k))
+    .sort((a, b) => a.localeCompare(b, 'ko'))
+    .slice(0, 8);
+
+  if (!unique.length) {
+    box.innerHTML = '<div class="kcp-suggest-empty">일치하는 키워드가 없어요</div>';
+    box.style.display = 'block';
+    return;
+  }
+  box.innerHTML = unique.map(k => {
+    const kSafe = k.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    return `<div class="kcp-suggest-item" onmousedown="event.preventDefault();addCompareKw('${kSafe}', this)">${k}</div>`;
+  }).join('');
+  box.style.display = 'block';
+}
+
+function addCompareKw(kw, el) {
+  if (compareKeywords.includes(kw)) return;
+  if (compareKeywords.length >= 5) return;
+  compareKeywords.push(kw);
+  if (el) {
+    const wrap = el.closest('.kcp-search-wrap');
+    const input = wrap ? wrap.querySelector('.kcp-search-input') : null;
+    const box = wrap ? wrap.querySelector('.kcp-search-suggest') : null;
+    if (input) input.value = '';
+    if (box) { box.style.display = 'none'; box.innerHTML = ''; }
+  }
+  syncPinButtons();
   updateCompareChart();
 }
 
@@ -2400,14 +2488,15 @@ async function updateCompareChart() {
     return;
   }
 
-  // 우측 '분석 기간' 필터(signalPeriod)를 그대로 따라감
-  const fromDate = new Date(Date.now() - signalPeriod * 86400000).toISOString().slice(0, 10);
+  // 우측 '분석 기간' 필터(signalRangeFrom~signalRangeTo)를 그대로 따라감
+  const fromDate = new Date(signalRangeFrom).toISOString().slice(0, 10);
+  const toDate   = new Date(signalRangeTo).toISOString().slice(0, 10);
 
   const perKw = [];
   for (const kw of compareKeywords) {
     let rows = [];
     try {
-      rows = await sbFetch(`/rest/v1/keyword_daily?keyword=eq.${encodeURIComponent(kw)}&date=gte.${fromDate}&order=date.asc`) || [];
+      rows = await sbFetch(`/rest/v1/keyword_daily?keyword=eq.${encodeURIComponent(kw)}&date=gte.${fromDate}&date=lte.${toDate}&order=date.asc`) || [];
     } catch (e) { rows = []; }
     perKw.push({ kw, rows });
   }
