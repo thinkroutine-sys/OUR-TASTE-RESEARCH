@@ -1,0 +1,37 @@
+name: 우리맛연구 빠른 테스트
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_limit:
+        description: '테스트할 소스 개수'
+        required: false
+        default: '3'
+      max_per_feed:
+        description: '소스당 처리할 기사 수'
+        required: false
+        default: '3'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 패키지 설치
+        run: pip install -r requirements.txt
+
+      - name: 빠른 테스트 실행 (저장/알림 없음)
+        env:
+          TEST_MODE: '1'
+          TEST_SOURCE_LIMIT: ${{ github.event.inputs.source_limit }}
+          TEST_MAX_PER_FEED: ${{ github.event.inputs.max_per_feed }}
+        run: python collect.py
