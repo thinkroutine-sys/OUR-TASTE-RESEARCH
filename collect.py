@@ -330,8 +330,6 @@ def build_teams_card(tagged_articles: list, total: int | None = None,
         if len(summary) > 80:
             summary = summary[:80] + "..."
 
-        tag_text = "   ".join(f"🔴 {t}" for t in a.get("tags", []))
-
         body.append({
             "type": "Container",
             "spacing": "Medium",
@@ -341,10 +339,6 @@ def build_teams_card(tagged_articles: list, total: int | None = None,
                  "weight": "Bolder", "size": "Small", "wrap": True},
                 {"type": "TextBlock", "text": summary, "size": "Small",
                  "isSubtle": True, "wrap": True},
-                {"type": "TextBlock", "text": tag_text, "size": "Small",
-                 "color": "Attention", "wrap": True},
-                {"type": "TextBlock", "text": f"{a.get('source','')} · {_fmt_time(a.get('date',''))}",
-                 "size": "Small", "isSubtle": True, "wrap": True, "spacing": "Small"},
             ],
         })
 
@@ -403,7 +397,17 @@ def build_teams_cards(tagged_articles: list) -> list:
         for i, chunk in enumerate(chunks, start=1)
     ]
 
-def send_teams_notification(articles: list, tagged_ids: dict) -> bool:
+def _article_signal_score(article: dict, keyword_scores: dict) -> int:
+    """
+    기사에 달린 키워드들의 최근 시그널 점수(빈도×매체수) 중 최댓값.
+    날짜 매칭 없이 키워드 자체의 점수로 비교 (날짜 필드가 부정확한 기사 섞여도 안전).
+    """
+    kws = article.get("keywords", []) or []
+    if not kws:
+        return 0
+    return max((keyword_scores.get(kw, 0) for kw in kws), default=0)
+
+def send_teams_notification(articles: list, tagged_ids: dict, kw_agg: dict | None = None) -> bool:
     """
     articles   : collect() 실행 중 누적된 전체 기사 dict 리스트 (existing.values())
     tagged_ids : {article_id: [태그명, ...]} - 이번 실행에서 새로 자동 태깅된 기사만
@@ -427,7 +431,24 @@ def send_teams_notification(articles: list, tagged_ids: dict) -> bool:
         if not a:
             continue
         tagged_articles.append({**a, "tags": tags})
-    tagged_articles.sort(key=lambda x: x.get("date", ""), reverse=True)
+    # 누적(3일치 합산)이 아니라 '오늘' 하루치 시그널 점수만 사용
+    # → 매일 꾸준히 나오는 키워드가 누적치로 계속 1등을 차지하는 걸 방지
+    today_str = datetime.now(timezone.utc).date().isoformat()
+    keyword_scores = {
+        kw: v["count"] * len(v["sources"])
+        for (date_str, kw), v in (kw_agg or {}).items()
+        if date_str == today_str
+    }
+
+    tagged_articles.sort(
+        key=lambda a: (_article_signal_score(a, keyword_scores), a.get("date", "")),
+        reverse=True,
+    )
+
+    MAX_ARTICLES_PER_RUN = 10
+    if len(tagged_articles) > MAX_ARTICLES_PER_RUN:
+        print(f"\n  [Teams] 태깅 {len(tagged_articles)}건 중 시그널 점수 상위 {MAX_ARTICLES_PER_RUN}건만 전송")
+        tagged_articles = tagged_articles[:MAX_ARTICLES_PER_RUN]
 
     if not tagged_articles:
         print("\n  [Teams] 알림 대상 기사 매칭 실패 — 알림 스킵")
@@ -1387,8 +1408,8 @@ def collect():
     if kw_agg:
         print(f"\n  [Supabase] keyword_daily 갱신: {len(kw_agg)}건 (저장 {kw_saved}건)")
 
-    # 오늘 자동 태깅된 기사 전체를 Teams로 전송 (건수 제한 없음, 수집 직후 1회)
-    send_teams_notification(list(existing.values()), tagged_this_run)
+    # 오늘 자동 태깅된 기사 전체를 Teams로 전송 (시그널 점수 상위 10건, 수집 직후 1회)
+    send_teams_notification(list(existing.values()), tagged_this_run, kw_agg)
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)
     kept = []
