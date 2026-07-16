@@ -1147,6 +1147,29 @@ function renderMain(){
   }
 }
 
+// 태그 패널 안쪽 내용(브랜드/업무 프리셋 버튼들) - 카드 생성 시 미리 안 만들고, 처음 열 때만 생성 (기사 수가 많을 때 초기 렌더링 부담 줄이기)
+function tagPanelInnerHtml(aid) {
+  return `
+        <div style="display:flex;justify-content:flex-end;margin-bottom:4px">
+          <button type="button" onclick="event.stopPropagation();toggleTagPanel('${aid}')" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--text3);padding:0">✕ 닫기</button>
+        </div>
+        <div class="tag-panel-group">
+          <div class="tag-panel-label">브랜드</div>
+          <div class="tag-panel-pills">
+            ${PRESET_TAGS.brand.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="brand" onclick="toggleTag('${aid}','${t}','brand',this)">${t}</button>`).join('')}
+            <button type="button" class="tag-panel-pill" onclick="event.stopPropagation();promptCustomTag('${aid}','brand')">기타</button>
+          </div>
+        </div>
+        <div class="tag-panel-group">
+          <div class="tag-panel-label">업무</div>
+          <div class="tag-panel-pills">
+            ${PRESET_TAGS.work.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="work" onclick="toggleTag('${aid}','${t}','work',this)">${t}</button>`).join('')}
+            <button type="button" class="tag-panel-pill" onclick="event.stopPropagation();promptCustomTag('${aid}','work')">기타</button>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">원하는 카테고리가 없다면 <a href="https://www.notion.so/F-B-379e6fd276d280c682dccf51c56031eb" target="_blank" style="color:var(--blue);font-weight:600">개선 요청</a>을 이용해주세요</div>`;
+}
+
 function cardHtml(a,i){
   const cats=[a.category||'브랜드·기업'];
   const read=isRead(a.id);
@@ -1167,26 +1190,7 @@ function cardHtml(a,i){
         <button type="button" class="tag-add-btn" onclick="event.stopPropagation();toggleTagPanel('${a.id}')">+ 추가</button>
       </div>
       <div class="tag-chips" id="tag-chips-${a.id}"></div>
-      <div class="tag-panel" id="tag-panel-${a.id}" style="display:none">
-        <div style="display:flex;justify-content:flex-end;margin-bottom:4px">
-          <button type="button" onclick="event.stopPropagation();toggleTagPanel('${a.id}')" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--text3);padding:0">✕ 닫기</button>
-        </div>
-        <div class="tag-panel-group">
-          <div class="tag-panel-label">브랜드</div>
-          <div class="tag-panel-pills">
-            ${PRESET_TAGS.brand.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="brand" onclick="toggleTag('${a.id}','${t}','brand',this)">${t}</button>`).join('')}
-            <button type="button" class="tag-panel-pill" onclick="event.stopPropagation();promptCustomTag('${a.id}','brand')">기타</button>
-          </div>
-        </div>
-        <div class="tag-panel-group">
-          <div class="tag-panel-label">업무</div>
-          <div class="tag-panel-pills">
-            ${PRESET_TAGS.work.map(t=>`<button type="button" class="tag-panel-pill" data-tag="${t}" data-type="work" onclick="toggleTag('${a.id}','${t}','work',this)">${t}</button>`).join('')}
-            <button type="button" class="tag-panel-pill" onclick="event.stopPropagation();promptCustomTag('${a.id}','work')">기타</button>
-          </div>
-        </div>
-        <div style="font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">원하는 카테고리가 없다면 <a href="https://www.notion.so/F-B-379e6fd276d280c682dccf51c56031eb" target="_blank" style="color:var(--blue);font-weight:600">개선 요청</a>을 이용해주세요</div>
-      </div>
+      <div class="tag-panel" id="tag-panel-${a.id}" style="display:none"></div>
     </div>`;
   const aid = a.id;
   const commentHtml = `
@@ -2015,6 +2019,11 @@ function toggleTagPanel(aid) {
   if (!currentUser) { openAuth('로그인 후 태그를 추가할 수 있어요 👆'); return; }
   var panels = document.querySelectorAll('[id="tag-panel-' + aid + '"]');
   panels.forEach(function(panel) {
+    // 처음 여는 순간에만 실제 버튼들을 채워 넣음 (기사 카드가 많을 때 초기 렌더링 부담을 줄이기 위함)
+    if (!panel.dataset.built) {
+      panel.innerHTML = tagPanelInnerHtml(aid);
+      panel.dataset.built = '1';
+    }
     var isOpen = panel.style.display === 'block';
     panel.style.display = isOpen ? 'none' : 'block';
     if (!isOpen) {
