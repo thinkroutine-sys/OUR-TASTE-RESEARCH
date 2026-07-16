@@ -536,6 +536,7 @@ def supa_upsert_keyword_daily(agg: dict) -> int:
             "frequency": freq,
             "source_count": src_cnt,
             "score": freq * src_cnt,
+            "sources": sorted(v["sources"]),  # 매체 이름 목록 (기간별 재집계용)
         })
 
     saved = 0
