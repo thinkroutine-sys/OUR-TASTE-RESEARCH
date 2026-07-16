@@ -851,7 +851,6 @@ body.signal-mode .news-period-filter { display: none; }
       <!-- 태그 필터 -->
       <div class="view-news rp-section" id="pc-tag-filter">
         <div class="rp-label">태그 필터</div>
-        <button class="sf-pill on" onclick="setTagFilter(null)" id="tag-all-btn" style="margin-bottom:8px;width:100%">전체 초기화</button>
         <div class="sf-label" style="font-size:10px;margin-top:4px;margin-bottom:4px">브랜드</div>
         <div id="pc-tag-brand-pills" class="sf-pills" style="flex-direction:column;gap:3px"></div>
         <div class="sf-label" style="font-size:10px;margin-top:8px;margin-bottom:4px">업무</div>
@@ -1062,8 +1061,8 @@ function filtered(){
   if(showCvsOnly)r=r.filter(a=>a.is_cvs===true);
   if(showMyComments)r=r.filter(a=>_myArticleIds.has(a.id));
   if(activePersonFilter) r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.user_name===activePersonFilter));
-  if(activeBrandFilter) r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.tag===activeBrandFilter));
-  if(activeWorkFilter)  r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>t.tag===activeWorkFilter));
+  if(activeBrandFilter.length) r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>activeBrandFilter.includes(t.tag)));
+  if(activeWorkFilter.length)  r=r.filter(a=>(_articleTags[a.id]||[]).some(t=>activeWorkFilter.includes(t.tag)));
   return r;
 }
 
@@ -1263,8 +1262,12 @@ function renderAll(){
   renderMain();
 }
 
-function setTab(c){tab=c;renderAll();}
+function setTab(c){
+  if (tab === c && c !== '전체') c = '전체';
+  tab=c;renderAll();
+}
 function setMoCat(c){
+  if (tab === c && c !== 'all') c = 'all';
   tab=c;
   document.querySelectorAll('[data-cat]').forEach(b=>{
     b.classList.remove('on','on-blue');
@@ -1330,6 +1333,9 @@ async function applyDateRange(){
 
 function setPeriod(d){
 
+  // 이미 선택된 기간을 다시 누르면 기본값(7일)으로 복귀
+  if (period === d && customFrom === null) d = 7;
+
   customFrom=null; customTo=null;
 
   var panel=document.getElementById('date-range-panel');if(panel)panel.style.display='none';
@@ -1344,6 +1350,7 @@ function setPeriod(d){
 
 }
 function setLang(l){
+  if (lang === l && l !== 'all') l = 'all';
   lang=l;
   document.querySelectorAll('[data-l]').forEach(p=>{
     p.classList.remove('on','on-blue');
@@ -1821,7 +1828,7 @@ async function authSubmit(){
 
 async function authLogout(){
   try{ await fetch(SB_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+getStoredToken()}}); }catch(e){}
-  setStoredToken(null, null); currentUser=null; _myArticleIds=new Set(); showMyComments=false; activeBrandFilter=null; activeWorkFilter=null; renderAuthHeader(); renderMyCommentBtn(); renderAll();
+  setStoredToken(null, null); currentUser=null; _myArticleIds=new Set(); showMyComments=false; activeBrandFilter=[]; activeWorkFilter=[]; renderAuthHeader(); renderMyCommentBtn(); renderAll();
 }
 
 
@@ -1832,10 +1839,9 @@ const PRESET_TAGS = {
 };
 const TAG_TYPE_LABEL = { brand:'브랜드', work:'업무', brand_custom:'브랜드(기타)', work_custom:'업무(기타)' };
 let _articleTags = {}; // { article_id: [{id, tag, tag_type, user_id, user_name}] }
-let activeTagFilter = null; // 현재 선택된 태그 필터
 let activePersonFilter = null;
-let activeBrandFilter = null;
-let activeWorkFilter = null;
+let activeBrandFilter = [];  // 복수 선택 가능
+let activeWorkFilter = [];   // 복수 선택 가능
 
 
 // ── 태그 시스템
@@ -1875,7 +1881,7 @@ function renderPersonFilter() {
   });
 }
 function setPersonFilter(name) {
-  activePersonFilter = name;
+  activePersonFilter = (activePersonFilter === name) ? null : name;
   renderPersonFilter();
   renderAll();
 }
@@ -1894,28 +1900,24 @@ function renderTagFilter() {
     return '<button class="mf-pill' + (active?' on':'') + '" onclick="setTagFilter(' + (tag?'\''+tag+'\'':'null') + ',\'' + group + '\')">' + (tag||'전체') + '</button>';
   }
 
-  // PC 전체 버튼 (브랜드+업무 모두 초기화)
-  var allBtn = document.getElementById('tag-all-btn');
-  if(allBtn) allBtn.className = 'sf-pill' + (!activeBrandFilter&&!activeWorkFilter?' on':'');
-
-  // PC 브랜드
+  // PC 브랜드 (복수 선택 가능)
   var brandEl = document.getElementById('pc-tag-brand-pills');
   if(brandEl) brandEl.innerHTML =
-    pill(null,'sf-pill',!activeBrandFilter,'brand') +
-    PRESET_TAGS.brand.map(function(t){ return pill(t,'sf-pill',activeBrandFilter===t,'brand'); }).join('');
+    pill(null,'sf-pill',!activeBrandFilter.length,'brand') +
+    PRESET_TAGS.brand.map(function(t){ return pill(t,'sf-pill',activeBrandFilter.includes(t),'brand'); }).join('');
 
-  // PC 업무
+  // PC 업무 (복수 선택 가능)
   var workEl = document.getElementById('pc-tag-work-pills');
   if(workEl) workEl.innerHTML =
-    pill(null,'sf-pill',!activeWorkFilter,'work') +
-    PRESET_TAGS.work.map(function(t){ return pill(t,'sf-pill',activeWorkFilter===t,'work'); }).join('');
+    pill(null,'sf-pill',!activeWorkFilter.length,'work') +
+    PRESET_TAGS.work.map(function(t){ return pill(t,'sf-pill',activeWorkFilter.includes(t),'work'); }).join('');
 
   // PC 기타
   var customEl = document.getElementById('pc-tag-custom-pills');
   if(customEl) {
     var cKeys = Object.keys(customTags);
     customEl.innerHTML = cKeys.length ? '<div class="sf-label" style="font-size:10px;margin-top:8px;margin-bottom:4px">기타</div>' +
-      cKeys.map(function(t){ return pill(t,'sf-pill',activeBrandFilter===t||activeWorkFilter===t,'brand'); }).join('') : '';
+      cKeys.map(function(t){ return pill(t,'sf-pill',activeBrandFilter.includes(t)||activeWorkFilter.includes(t),'brand'); }).join('') : '';
   }
 
   // 모바일
@@ -1925,21 +1927,32 @@ function renderTagFilter() {
     var cKeys = Object.keys(customTags);
     var moHtml =
       '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%">브랜드</div>' +
-      moPill(null,!activeBrandFilter,'brand') +
-      PRESET_TAGS.brand.map(function(t){ return moPill(t,activeBrandFilter===t,'brand'); }).join('') +
+      moPill(null,!activeBrandFilter.length,'brand') +
+      PRESET_TAGS.brand.map(function(t){ return moPill(t,activeBrandFilter.includes(t),'brand'); }).join('') +
       '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;margin-top:4px">업무</div>' +
-      moPill(null,!activeWorkFilter,'work') +
-      PRESET_TAGS.work.map(function(t){ return moPill(t,activeWorkFilter===t,'work'); }).join('') +
-      (cKeys.length ? '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;margin-top:4px">기타</div>' + cKeys.map(function(t){ return moPill(t,activeBrandFilter===t||activeWorkFilter===t,'brand'); }).join('') : '');
+      moPill(null,!activeWorkFilter.length,'work') +
+      PRESET_TAGS.work.map(function(t){ return moPill(t,activeWorkFilter.includes(t),'work'); }).join('') +
+      (cKeys.length ? '<div style="font-size:10px;font-weight:700;color:var(--text3);width:100%;margin-top:4px">기타</div>' + cKeys.map(function(t){ return moPill(t,activeBrandFilter.includes(t)||activeWorkFilter.includes(t),'brand'); }).join('') : '');
     moEl.querySelector('.mo-tag-pills').innerHTML = moHtml;
   }
 }
 
 function setTagFilter(tag, group) {
-  if(group==='brand') activeBrandFilter = tag;
-  else if(group==='work') activeWorkFilter = tag;
-  else { activeBrandFilter=null; activeWorkFilter=null; }
-  activeTagFilter = tag; // legacy
+  if (group === 'brand') {
+    if (tag === null) { activeBrandFilter = []; }
+    else {
+      var i = activeBrandFilter.indexOf(tag);
+      if (i >= 0) activeBrandFilter.splice(i, 1); else activeBrandFilter.push(tag);
+    }
+  } else if (group === 'work') {
+    if (tag === null) { activeWorkFilter = []; }
+    else {
+      var i = activeWorkFilter.indexOf(tag);
+      if (i >= 0) activeWorkFilter.splice(i, 1); else activeWorkFilter.push(tag);
+    }
+  } else {
+    activeBrandFilter = []; activeWorkFilter = [];
+  }
   renderTagFilter();
   renderAll();
 }
@@ -2129,8 +2142,8 @@ function chipTouchEnd(el) {
 function resetAll(){
   tab='전체'; period=7; lang='all'; src='all'; query='';
   hideRead=false; showMyComments=false;
-  activeBrandFilter=null; activeWorkFilter=null;
-  activePersonFilter=null; activeTagFilter=null;
+  activeBrandFilter=[]; activeWorkFilter=[];
+  activePersonFilter=null;
   customFrom=null; customTo=null;
   // 기간 버튼 초기화
   document.querySelectorAll('[data-d]').forEach(function(b){
@@ -2353,6 +2366,8 @@ function applySignalDateRange(){
 
 function setSignalPeriod(d) {
   if (d === 'custom') { toggleSignalDatePanel(); return; }
+  if (signalPeriod === d) d = 30; // 이미 선택된 걸 다시 누르면 기본값(한달)으로
+
   var panel=document.getElementById('signal-date-panel');if(panel)panel.style.display='none';
   signalPeriod = d;
   signalRangeTo = Date.now();
@@ -2563,6 +2578,7 @@ function setSignalStage(s) {
 }
 
 function setKwCat(c) {
+  if (signalKwCat === c && c !== 'all') c = 'all';
   signalKwCat = c;
   document.querySelectorAll('[data-kc]').forEach(b => {
     b.classList.remove('on-all','on-trend','on-watch','on-interest');
