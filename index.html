@@ -2314,7 +2314,7 @@ async function renderSignal() {
         <div class="kcp-chips" id="kcp-chips"></div>
         <div class="kcp-chart-wrap">
           <canvas id="kcp-canvas" role="img" aria-label="선택한 키워드들의 시그널 점수 추이 비교" style="display:none"></canvas>
-          <div class="kcp-empty" id="kcp-empty">아래 키워드 카드에서 <b>+ 비교</b>를 누르거나, 위 검색창으로 직접 찾아서 추가하세요 (최대 5개)</div>
+          <div class="kcp-empty" id="kcp-empty"><span>아래 키워드 카드에서 <b>+ 비교</b>를 누르거나, 위 검색창으로 직접 찾아서 추가하세요 (최대 5개)</span></div>
         </div>
       </div>
       <div class="signal-list">${filtered.slice(0, 50).map((s, i) => {
@@ -2546,7 +2546,7 @@ async function updateCompareChart() {
     _kwCompareCharts.forEach(c => c.destroy());
     _kwCompareCharts = [];
     canvasEls.forEach(c => c.style.display = 'none');
-    emptyEls.forEach(e => { e.style.display = 'flex'; e.innerHTML = '아래 키워드 카드에서 <b>+ 비교</b>를 누르거나, 위 검색창으로 직접 찾아서 추가하세요 (최대 5개)'; });
+    emptyEls.forEach(e => { e.style.display = 'flex'; e.innerHTML = '<span>아래 키워드 카드에서 <b>+ 비교</b>를 누르거나, 위 검색창으로 직접 찾아서 추가하세요 (최대 5개)</span>'; });
     return;
   }
 
@@ -2571,7 +2571,7 @@ async function updateCompareChart() {
     _kwCompareCharts.forEach(c => c.destroy());
     _kwCompareCharts = [];
     canvasEls.forEach(c => c.style.display = 'none');
-    emptyEls.forEach(e => { e.style.display = 'flex'; e.innerHTML = '아직 추이 데이터가 없어요 (최근 며칠간 수집분부터 쌓여요)'; });
+    emptyEls.forEach(e => { e.style.display = 'flex'; e.innerHTML = '<span>아직 추이 데이터가 없어요 (최근 며칠간 수집분부터 쌓여요)</span>'; });
     return;
   }
   emptyEls.forEach(e => e.style.display = 'none');
