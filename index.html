@@ -1123,14 +1123,28 @@ function groupedHtml(items){
     </div>`).join('');
 }
 
+let _bulkDataLoaded = false; // 댓글/태그 전체 목록은 최초 1회만 불러오면 충분 (개별 변경은 그 자리에서 바로 반영됨)
+
 function renderMain(){
   const items=filtered();
   const html=groupedHtml(items);
-  document.getElementById('pc-main').innerHTML=html;
-  document.getElementById('mo-main').innerHTML=html;
+  // 실제 화면에 보이는 쪽만 그림 (안 보이는 쪽까지 매번 같이 그리던 걸 제거)
+  if (isMobile()) {
+    document.getElementById('mo-main').innerHTML=html;
+  } else {
+    document.getElementById('pc-main').innerHTML=html;
+  }
   applyCachedCounts();
-  loadAllCommentCounts();
-  loadAllTags();
+  if (!_bulkDataLoaded) {
+    _bulkDataLoaded = true;
+    loadAllCommentCounts();
+    loadAllTags();
+  } else {
+    // 이미 불러온 캐시로만 다시 그림 (필터 바뀔 때마다 전체 재조회 안 함)
+    renderAllTagChips();
+    renderTagFilter();
+    renderPersonFilter();
+  }
 }
 
 function cardHtml(a,i){
