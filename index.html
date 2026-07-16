@@ -2180,27 +2180,29 @@ const KW_CAT_LABELS = {
   brand:      { ko: '브랜드',        icon: '🏷️', color: '#007AFF', bg: '#EBF4FF' },
 };
 
-function calcSignals() {
-  const fromMs = signalRangeFrom, toMs = signalRangeTo;
+async function calcSignals() {
+  // news.json(최근 30일만 보관)이 아니라 keyword_daily(영구 보관, 매체 이름 포함)에서
+  // 선택한 기간(signalRangeFrom~signalRangeTo)을 직접 재집계 → 오래된 기간도 순위 목록이 정확히 나옴
+  const fromDate = new Date(signalRangeFrom).toISOString().slice(0, 10);
+  const toDate   = new Date(signalRangeTo).toISOString().slice(0, 10);
+
+  let rows = [];
+  try {
+    rows = await sbFetch(`/rest/v1/keyword_daily?date=gte.${fromDate}&date=lte.${toDate}&select=keyword,cat,frequency,sources`) || [];
+  } catch (e) { rows = []; }
+
   // kwMap: keyword → { freq, sources, kwCat }
   const kwMap = {};
-
-  for (const a of allArticles()) {
-    const t = new Date(a.date).getTime();
-    if (t < fromMs || t > toMs) continue;
-    const kws     = Array.isArray(a.keywords) ? a.keywords : [];
-    const kwCats  = a.kw_cats || {};  // {word: cat} 매핑
-
-    for (const k of kws) {
-      if (!k || k.length < 2) continue;
-      const cat = kwCats[k] || '';
-      // kw_cats가 있는 기사는 카테고리 검증, 없는 기사(구버전)는 일단 포함
-      if (Object.keys(kwCats).length > 0 && !KW_CAT_LABELS[cat]) continue;
-      if (!kwMap[k]) kwMap[k] = { freq: 0, sources: new Set(), kwCat: cat };
-      kwMap[k].freq++;
-      kwMap[k].sources.add(a.source);
-      if (!kwMap[k].kwCat && cat) kwMap[k].kwCat = cat;
-    }
+  for (const r of rows) {
+    const k = r.keyword;
+    if (!k || k.length < 2) continue;
+    const cat = r.cat || '';
+    // cat이 있는데 유효한 카테고리가 아니면 노이즈로 보고 제외 (cat이 아예 없는 구버전 데이터는 허용)
+    if (cat && !KW_CAT_LABELS[cat]) continue;
+    if (!kwMap[k]) kwMap[k] = { freq: 0, sources: new Set(), kwCat: cat };
+    kwMap[k].freq += (r.frequency || 0);
+    (r.sources || []).forEach(s => { if (s) kwMap[k].sources.add(s); });
+    if (!kwMap[k].kwCat && cat) kwMap[k].kwCat = cat;
   }
 
   const results = [];
@@ -2229,8 +2231,14 @@ function stageLabel(s) {
   return                       ['💡 관심사', 'si-badge-interest'];
 }
 
-function renderSignal() {
-  const signals = calcSignals();
+async function renderSignal() {
+  const pcEl = document.getElementById('pc-signal');
+  const moEl = document.getElementById('mo-signal');
+  const loadingHtml = `<div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">불러오는 중...</div></div>`;
+  if (pcEl) pcEl.innerHTML = loadingHtml;
+  if (moEl) moEl.innerHTML = loadingHtml;
+
+  const signals = await calcSignals();
   let filtered = signalStage === 'all' ? signals : signals.filter(s => s.stage === signalStage);
   if (signalKwCat !== 'all') filtered = filtered.filter(s => s.kwCat === signalKwCat);
   const maxScore = filtered[0]?.score || 1;
