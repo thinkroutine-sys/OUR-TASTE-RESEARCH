@@ -178,17 +178,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     border-bottom:1px solid var(--border);
     padding-top:env(safe-area-inset-top);
   }
-  .mh-inner{
+  .mh-top-row{
     display:flex;align-items:center;gap:10px;
-    padding:0 16px;height:52px;
+    padding:8px 16px 6px;height:36px;
   }
-  .mh-logo{font-size:16px;font-weight:700;letter-spacing:-.5px;flex-shrink:0}
+  .mh-search-row{
+    padding:0 16px 10px;
+  }
+  .mh-logo{font-size:16px;font-weight:700;letter-spacing:-.5px;flex-shrink:0;margin-right:auto}
   .mh-search{
-    flex:1;display:flex;align-items:center;gap:7px;
-    background:var(--bg);border:1.5px solid var(--border);border-radius:10px;
-    padding:0 11px;height:36px;min-width:0;
+    display:flex;align-items:center;gap:8px;
+    background:var(--bg);border:1.5px solid var(--border);border-radius:11px;
+    padding:0 13px;height:42px;width:100%;
   }
-  .mh-search input{background:none;border:none;outline:none;font-family:inherit;font-size:14px;color:var(--text);width:100%}
+  .mh-search input{background:none;border:none;outline:none;font-family:inherit;font-size:15px;color:var(--text);width:100%}
   .mh-search input::placeholder{color:var(--text3)}
   .mh-ref-btn{
     width:32px;height:32px;border-radius:50%;
@@ -481,9 +484,10 @@ body.signal-mode .mh-search { display: none; }
 .kcp-empty {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   text-align: center; font-size: 12px; color: var(--text3); padding: 0 24px; line-height: 1.5;
+  overflow-y: auto;
 }
 .kcb-pin[disabled] { opacity: .35; cursor: not-allowed; }
-@media(max-width:767px){ .kcp-chart-wrap{ height: 170px; } }
+@media(max-width:767px){ .kcp-chart-wrap{ height: 190px; } .kcp-empty{ font-size: 12.5px; padding: 12px 16px; } }
 
 /* 모바일 시그널 */
 @media(max-width:767px){
@@ -866,17 +870,19 @@ body.signal-mode .mh-search { display: none; }
 
 <!-- ═══ 모바일 헤더 ═══ -->
 <div class="mobile-header">
-<div class="mh-inner">
+<div class="mh-top-row">
   <div class="mh-logo" onclick="resetAll()" style="cursor:pointer">우리맛 연구</div>
-  <div class="mh-search">
-    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input id="mo-q" type="text" placeholder="기사 검색">
-  </div>
   <a href="https://www.notion.so/F-B-379e6fd276d280c682dccf51c56031eb" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);color:var(--text2);text-decoration:none;white-space:nowrap;flex-shrink:0">💬 개선 요청</a>
   <div id="mo-auth-header" style="display:flex;align-items:center"></div>
   <button class="mh-ref-btn" id="mo-ref" onclick="loadNews()">
     <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
   </button>
+</div>
+<div class="mh-search-row">
+  <div class="mh-search">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input id="mo-q" type="text" placeholder="기사 검색">
+  </div>
 </div>
 </div>
 
