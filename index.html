@@ -185,8 +185,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .mh-logo{font-size:16px;font-weight:700;letter-spacing:-.5px;flex-shrink:0}
   .mh-search{
     flex:1;display:flex;align-items:center;gap:7px;
-    background:var(--bg);border-radius:10px;
-    padding:0 11px;height:34px;
+    background:var(--bg);border:1.5px solid var(--border);border-radius:10px;
+    padding:0 11px;height:36px;min-width:0;
   }
   .mh-search input{background:none;border:none;outline:none;font-family:inherit;font-size:14px;color:var(--text);width:100%}
   .mh-search input::placeholder{color:var(--text3)}
@@ -342,6 +342,9 @@ body.signal-mode .view-signal { display: block; }
 .cat-header { display: flex; align-items: center; justify-content: space-between; }
 body.signal-mode .cat-header { display: none; }
 body.signal-mode .news-period-filter { display: none; }
+/* 시그널 탭에선 뉴스 제목/출처 검색창 불필요 - 숨김 (키워드 검색은 비교 패널에 별도로 있음) */
+body.signal-mode .pc-search { display: none; }
+body.signal-mode .mh-search { display: none; }
 
 /* 시그널 헤더 */
 .signal-header { margin-bottom: 20px; }
@@ -484,12 +487,10 @@ body.signal-mode .news-period-filter { display: none; }
 
 /* 모바일 시그널 */
 @media(max-width:767px){
-  .view-news,.view-signal { display: block !important; }
+  .view-news { display: block !important; }
+  .view-signal { display: none !important; }
   body.signal-mode .view-news { display: none !important; }
   body.signal-mode .view-signal { display: block !important; }
-  /* 시그널 필터/메인은 JS로 display 제어하되 !important 없이 */
-  #mo-signal-filter { display: none; }
-  #mo-signal { display: none; }
   .mobile-main.view-signal { padding: 12px 16px 90px; }
   .signal-item { padding: 12px 14px; gap: 10px; }
   .si-score { font-size: 17px; }
@@ -869,7 +870,7 @@ body.signal-mode .news-period-filter { display: none; }
   <div class="mh-logo" onclick="resetAll()" style="cursor:pointer">우리맛 연구</div>
   <div class="mh-search">
     <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input id="mo-q" type="text" placeholder="검색">
+    <input id="mo-q" type="text" placeholder="기사 검색">
   </div>
   <a href="https://www.notion.so/F-B-379e6fd276d280c682dccf51c56031eb" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);color:var(--text2);text-decoration:none;white-space:nowrap;flex-shrink:0">💬 개선 요청</a>
   <div id="mo-auth-header" style="display:flex;align-items:center"></div>
@@ -1133,6 +1134,12 @@ function renderMain(){
     document.getElementById('mo-main').innerHTML=html;
   } else {
     document.getElementById('pc-main').innerHTML=html;
+  }
+  // 뉴스 화면을 그릴 땐(=시그널 탭이 아닐 땐) 시그널 컨테이너를 항상 확실히 숨김
+  // (검색/스크롤 시 시그널 내용이 아래에 비쳐 보이는 문제 방지용 방어 코드)
+  if (currentView !== 'signal') {
+    const moSig = document.getElementById('mo-signal');
+    if (moSig) moSig.style.setProperty('display', 'none', 'important');
   }
   applyCachedCounts();
   if (!_bulkDataLoaded) {
@@ -2270,6 +2277,9 @@ function stageLabel(s) {
 async function renderSignal() {
   const pcEl = document.getElementById('pc-signal');
   const moEl = document.getElementById('mo-signal');
+  // 시그널 화면을 그릴 땐 뉴스 컨테이너를 항상 확실히 숨김 (반대 상황 방지용 방어 코드)
+  const moMain = document.getElementById('mo-main');
+  if (moMain) moMain.style.setProperty('display', 'none', 'important');
   const loadingHtml = `<div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">불러오는 중...</div></div>`;
   if (pcEl) pcEl.innerHTML = loadingHtml;
   if (moEl) moEl.innerHTML = loadingHtml;
@@ -2530,7 +2540,7 @@ async function updateCompareChart() {
     _kwCompareCharts.forEach(c => c.destroy());
     _kwCompareCharts = [];
     canvasEls.forEach(c => c.style.display = 'none');
-    emptyEls.forEach(e => { e.style.display = 'flex'; e.innerHTML = '아래 키워드 카드에서 <b>+ 비교</b>를 눌러 추이를 확인하세요 (최대 5개)'; });
+    emptyEls.forEach(e => { e.style.display = 'flex'; e.innerHTML = '아래 키워드 카드에서 <b>+ 비교</b>를 누르거나, 위 검색창으로 직접 찾아서 추가하세요 (최대 5개)'; });
     return;
   }
 
@@ -2614,9 +2624,9 @@ function setKwCat(c) {
 function applyLayout(){
   const mo=isMobile();
   const isSignal = currentView==='signal';
-  document.getElementById('mo-main').style.display=(!isSignal&&mo)?'block':'none';
+  document.getElementById('mo-main').style.setProperty('display', (!isSignal&&mo)?'block':'none', 'important');
   const moSig=document.getElementById('mo-signal');
-  if(moSig) moSig.style.display=(isSignal&&mo)?'block':'none';
+  if(moSig) moSig.style.setProperty('display', (isSignal&&mo)?'block':'none', 'important');
   const moSigFilter=document.getElementById('mo-signal-filter');
   if(moSigFilter) moSigFilter.style.display=(isSignal&&mo)?'block':'none';
   // 모바일 뉴스 필터바 숨기기/보이기
