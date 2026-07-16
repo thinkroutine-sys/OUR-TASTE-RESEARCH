@@ -11,7 +11,7 @@ import json
 import collect
 
 with open("data/news.json", "r", encoding="utf-8") as f:
-    articles = json.load(f)
+    articles = json.load(f).get("articles", [])
 
 print(f"news.json 로드: {len(articles)}건")
 
