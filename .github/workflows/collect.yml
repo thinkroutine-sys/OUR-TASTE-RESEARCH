@@ -39,18 +39,26 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # news.json 백업
+          # news.json + archive 폴더 백업
+          # (archive는 collect.py가 매일 새로 쓰는데, 백업 없이 리셋하면
+          #  아래 checkout 단계에서 오늘 쓴 내용이 그대로 날아가고
+          #  기존 커밋 상태로 되돌아가버림 → 이게 7/7 이후 아카이브가
+          #  전혀 갱신 안 됐던 원인)
           cp data/news.json /tmp/news.json
+          mkdir -p /tmp/archive_backup
+          cp -r data/archive/. /tmp/archive_backup/ 2>/dev/null || true
           
           # 최신 remote 상태로 완전히 리셋
           git fetch origin main
           git checkout origin/main -- .
           
-          # 수집된 news.json 복원
+          # 수집된 news.json + archive 복원
           cp /tmp/news.json data/news.json
+          mkdir -p data/archive
+          cp -r /tmp/archive_backup/. data/archive/ 2>/dev/null || true
           
           # 변경 없으면 종료
-          git add data/news.json
+          git add data/news.json data/archive
           git diff --staged --quiet && echo "변경 없음" && exit 0
           
           git commit -m "뉴스 업데이트 $(date +'%Y-%m-%d')"
