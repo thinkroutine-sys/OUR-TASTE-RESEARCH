@@ -2385,7 +2385,7 @@ function toggleSignalDatePanel(){
   }
 }
 
-function applySignalDateRange(){
+async function applySignalDateRange(){
   var f=document.getElementById('signal-date-from'), t=document.getElementById('signal-date-to');
   if(!f||!t||!f.value||!t.value) return;
   // 선택한 시작~종료 날짜를 그대로 절대 범위로 사용 (오늘 기준으로 재계산하지 않음)
@@ -2399,6 +2399,15 @@ function applySignalDateRange(){
     b.classList.remove('on','on-blue');
     if(b.dataset.sp==='custom') b.classList.add('on');
   });
+  // 30일보다 이전 날짜가 포함되면, 순위는 keyword_daily로 이미 정확히 나오지만
+  // '관련 기사'는 news.json(30일치)만 봐서 비어 보임 → 뉴스 탭과 동일하게 해당 월 아카이브를 미리 불러와 병합
+  var applyBtn = document.querySelector('button[onclick="applySignalDateRange()"]');
+  var cutoff = new Date(Date.now() - 30 * 86400000);
+  if (from < cutoff) {
+    if (applyBtn) { applyBtn.textContent = '불러오는 중...'; applyBtn.disabled = true; }
+    await ensureArchiveLoaded(f.value, t.value);
+    if (applyBtn) { applyBtn.textContent = '적용'; applyBtn.disabled = false; }
+  }
   document.getElementById('signal-date-panel').style.display='none';
   renderSignal();
 }
