@@ -825,7 +825,10 @@ body.signal-mode .mh-search { display: none; }
 
       <!-- 시그널 필터 -->
       <div class="view-signal sidebar-filters rp-section" id="pc-signal-filters">
-        <div class="sf-label" style="margin-bottom:8px">분석 기간</div>
+        <div class="sf-label" style="margin-bottom:6px;display:flex;align-items:center;justify-content:space-between">
+          분석 기간
+          <span id="signal-range-label" style="font-size:10px;font-weight:600;color:var(--blue)"></span>
+        </div>
         <div class="sf-pills" style="margin-bottom:16px">
           <button class="sf-pill" data-sp="1" onclick="setSignalPeriod(1)">오늘</button>
           <button class="sf-pill" data-sp="7" onclick="setSignalPeriod(7)">7일</button>
@@ -897,7 +900,7 @@ body.signal-mode .mh-search { display: none; }
   <button class="mf-pill" data-d="1" onclick="setPeriod(1)">오늘</button>
   <button class="mf-pill on" data-d="7" onclick="setPeriod(7)">7일</button>
   <button class="mf-pill" data-d="30" onclick="setPeriod(30)">한달</button>
-  <span id="custom-range-label-mo" style="display:none;font-size:11px;font-weight:600;color:var(--blue);background:var(--blue-bg);padding:3px 10px;border-radius:20px"></span>
+  <span id="custom-range-label-mo" style="display:none;font-size:11px;font-weight:600;color:var(--blue);background:var(--blue-bg);padding:3px 10px;border-radius:20px;white-space:nowrap"></span>
   <button class="mf-pill" data-d="0" onclick="toggleDatePanel()">직접설정</button>
   <div id="date-range-panel-mo" style="display:none;width:100%;padding:10px;background:var(--bg);border-radius:10px;border:1px solid var(--border);margin-top:4px">
     <div style="display:flex;gap:8px;margin-bottom:8px">
@@ -945,6 +948,7 @@ body.signal-mode .mh-search { display: none; }
   <button class="mf-pill" data-sp="7"  onclick="setSignalPeriod(7)">7일</button>
   <button class="mf-pill on" data-sp="30" onclick="setSignalPeriod(30)">한달</button>
   <button class="mf-pill" data-sp="custom" onclick="setSignalPeriod('custom')">직접 설정</button>
+  <span id="signal-range-label-mo" style="font-size:11px;font-weight:600;color:var(--blue);background:var(--blue-bg);padding:3px 10px;border-radius:20px;white-space:nowrap"></span>
   <div class="mf-sep"></div>
   <button class="mf-pill on-all" data-kc="all"        onclick="setKwCat('all')">전체 유형</button>
   <button class="mf-pill" data-kc="food_cat"  onclick="setKwCat('food_cat')">🍽️ 식품</button>
@@ -1004,6 +1008,22 @@ function fmtDateShort(ms){
     const d=new Date(ms);
     return `${d.getMonth()+1}/${d.getDate()}`;
   }catch{return ''}
+}
+// 뉴스 탭 "기간" 필터(오늘/7일/한달/직접설정) 적용 시 실제 날짜 범위를 라벨로 표시
+function updateNewsRangeLabel(){
+  let fromMs, toMs;
+  if (customFrom && customTo) {
+    fromMs = new Date(customFrom + 'T00:00:00').getTime();
+    toMs   = new Date(customTo + 'T00:00:00').getTime();
+  } else {
+    toMs = Date.now();
+    fromMs = toMs - period * 86400000;
+  }
+  const label = `${fmtDateShort(fromMs)} ~ ${fmtDateShort(toMs)}`;
+  document.querySelectorAll('[id^="custom-range-label"]').forEach(function(el){
+    el.textContent = label;
+    el.style.display = 'inline';
+  });
 }
 function dayKey(iso){
   try{
@@ -1287,6 +1307,7 @@ document.addEventListener('click', function(e) {
 });
 
 function renderAll(){
+  updateNewsRangeLabel();
   renderPcCats();
   renderBottomNav();
   renderSrcSel();
@@ -1344,12 +1365,7 @@ async function applyDateRange(){
   document.querySelectorAll('[data-d]').forEach(function(p){p.classList.remove('on','on-blue');if(p.dataset.d==='0')p.classList.add('on');});
   var pc=document.getElementById('date-range-panel');if(pc)pc.style.display='none';
   var mo=document.getElementById('date-range-panel-mo');if(mo)mo.style.display='none';
-  // 날짜 범위 라벨 표시
-  var fmt=function(s){return s.replace(/^\d{4}-/,'').replace('-','.');};
-  var label=fmt(customFrom)+' ~ '+fmt(customTo);
-  document.querySelectorAll('[id^="custom-range-label"]').forEach(function(el){
-    el.textContent=label; el.style.display='inline';
-  });
+  // 날짜 범위 라벨은 renderAll()에서 일괄 갱신
   // 30일보다 이전 날짜가 포함되면 해당 월 아카이브를 불러와 병합
   var applyBtns=document.querySelectorAll('button[onclick="applyDateRange()"]');
   var cutoff=new Date(Date.now()-30*86400000);
@@ -1371,7 +1387,6 @@ function setPeriod(d){
 
   var panel=document.getElementById('date-range-panel');if(panel)panel.style.display='none';
   var panelMo=document.getElementById('date-range-panel-mo');if(panelMo)panelMo.style.display='none';
-  document.querySelectorAll('[id^="custom-range-label"]').forEach(function(el){el.style.display='none';});
 
   period=d;
 
@@ -2286,6 +2301,9 @@ async function renderSignal() {
   // 시그널 화면을 그릴 땐 뉴스 컨테이너를 항상 확실히 숨김 (반대 상황 방지용 방어 코드)
   const moMain = document.getElementById('mo-main');
   if (moMain) moMain.style.setProperty('display', 'none', 'important');
+  // 분석 기간 필터(오늘/7일/한달/직접설정) 적용 시 실제 기간 범위를 라벨로 표시
+  const rangeLabel = `${fmtDateShort(signalRangeFrom)} ~ ${fmtDateShort(signalRangeTo)}`;
+  document.querySelectorAll('[id^="signal-range-label"]').forEach(el => { el.textContent = rangeLabel; });
   const loadingHtml = `<div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">불러오는 중...</div></div>`;
   if (pcEl) pcEl.innerHTML = loadingHtml;
   if (moEl) moEl.innerHTML = loadingHtml;
