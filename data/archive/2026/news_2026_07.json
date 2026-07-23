@@ -1,7 +1,3163 @@
 {
-  "updated": "2026-07-22T00:27:45.498526+00:00",
-  "total": 2226,
+  "updated": "2026-07-23T00:37:45.446279+00:00",
+  "total": 2372,
   "articles": [
+    {
+      "id": "235e29c05958",
+      "title": "사조푸디스트, 오뚜기와 전국 사업장서 '헬시플레저' 급식 선봬",
+      "url": "https://www.hankyung.com/article/202607229433g",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "사조푸디스트와 오뚜기가 협업하여 전국 급식 사업장에 '헬시플레저' 메뉴 도입",
+        "건강과 맛을 동시에 추구하는 소비자 트렌드를 반영한 급식 서비스 강화"
+      ],
+      "keywords": [
+        "사조푸디스트",
+        "오뚜기",
+        "헬시플레저"
+      ],
+      "kw_cats": {
+        "사조푸디스트": "brand",
+        "오뚜기": "brand",
+        "헬시플레저": "trend"
+      },
+      "date": "2026-07-23T00:24:23.301386+00:00"
+    },
+    {
+      "id": "ba4bcfaaa197",
+      "title": "\"단순 기술 도입 넘어 데이터 자산화로\"…프랜차이즈협회, AX 전략 포럼 개최",
+      "url": "https://www.hankyung.com/article/202607229863g",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "한국프랜차이즈산업협회, 프랜차이즈 업계의 디지털 전환(AX)을 위한 전략 포럼 개최",
+        "단순 기술 도입을 넘어 데이터를 자산화하여 경영 효율성을 높이는 전략 논의"
+      ],
+      "keywords": [
+        "프랜차이즈협회",
+        "디지털 전환"
+      ],
+      "kw_cats": {
+        "프랜차이즈협회": "brand",
+        "디지털 전환": "trend"
+      },
+      "date": "2026-07-23T00:24:14.416786+00:00"
+    },
+    {
+      "id": "cd666ab5fcbf",
+      "title": "\"점심부터 피자에 와인\"…오픈 1년도 안 됐는데 예약 1만명 몰렸다",
+      "url": "https://www.hankyung.com/article/202607229576g",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "낮 시간대 피자와 와인을 함께 즐기는 '낮술' 및 '피와(피자+와인)' 트렌드 확산",
+        "오픈 1년 미만의 외식 매장에 1만 명 이상의 예약이 몰리는 등 높은 소비자 호응 확인"
+      ],
+      "keywords": [
+        "피자",
+        "와인",
+        "낮술"
+      ],
+      "kw_cats": {
+        "피자": "food_cat",
+        "와인": "food_cat",
+        "낮술": "trend"
+      },
+      "date": "2026-07-23T00:24:04.591857+00:00"
+    },
+    {
+      "id": "61283fdffdf4",
+      "title": "본도시락, 3년 연속 결식우려아동 식사권 지원 나서",
+      "url": "https://www.hankyung.com/article/202607230754g",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "본도시락, 3년 연속 결식우려아동 대상 식사권 지원",
+        "기업의 사회적 책임(CSR) 활동을 통한 브랜드 이미지 제고"
+      ],
+      "keywords": [
+        "본도시락"
+      ],
+      "kw_cats": {
+        "본도시락": "brand"
+      },
+      "date": "2026-07-23T00:23:55.603014+00:00"
+    },
+    {
+      "id": "9215e327b8bf",
+      "title": "\"버거와 카스의 만남\"…노브랜드 버거, 카스 제로와 여름 팝업",
+      "url": "https://www.hankyung.com/article/202607230767g",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "노브랜드 버거와 카스 제로의 협업을 통한 여름 시즌 팝업 스토어 운영",
+        "버거와 논알콜 맥주 조합을 통한 새로운 외식 경험 제공"
+      ],
+      "keywords": [
+        "노브랜드 버거",
+        "카스 제로",
+        "논알콜 맥주",
+        "여름 팝업"
+      ],
+      "kw_cats": {
+        "노브랜드 버거": "brand",
+        "카스 제로": "brand",
+        "논알콜 맥주": "food_cat",
+        "여름 팝업": "trend"
+      },
+      "date": "2026-07-23T00:23:45.871893+00:00"
+    },
+    {
+      "id": "4d487e8b1c8d",
+      "title": "\"커피 잘해요\" 소문난 디저트 맛집…원두에 공들이는 이유",
+      "url": "https://www.hankyung.com/article/202607230585g",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "디저트 맛집들이 차별화 전략으로 커피 품질 강화에 집중",
+        "디저트와 어울리는 원두 선별 및 로스팅 등 커피 전문성 확보를 통해 브랜드 경쟁력 제고"
+      ],
+      "keywords": [
+        "디저트",
+        "원두",
+        "커피"
+      ],
+      "kw_cats": {
+        "디저트": "food_cat",
+        "원두": "ingredient",
+        "커피": "food_cat"
+      },
+      "date": "2026-07-23T00:23:36.095132+00:00"
+    },
+    {
+      "id": "cfdf7c87d3a8",
+      "title": "\"뒤돌아보지 마세요\"…메가MGC커피 '괴담 영수증' 통했다",
+      "url": "https://www.hankyung.com/article/202607230843g",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "메가MGC커피가 영수증에 괴담 문구를 인쇄하는 이색 마케팅으로 소비자 호응 유도",
+        "단순 음료 판매를 넘어 재미와 경험을 제공하는 콘텐츠 마케팅 전략으로 브랜드 화제성 확보"
+      ],
+      "keywords": [
+        "메가MGC커피",
+        "이색 마케팅"
+      ],
+      "kw_cats": {
+        "메가MGC커피": "brand",
+        "이색 마케팅": "trend"
+      },
+      "date": "2026-07-23T00:23:25.891095+00:00"
+    },
+    {
+      "id": "7ca5ccc3dd36",
+      "title": "풀무원푸드앤컬처, 상반기 급식 8.5%·컨세션 21.8% 성장",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206587",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "풀무원푸드앤컬처, 상반기 위탁급식 8.5% 및 컨세션 21.8% 매출 성장",
+        "올해 상반기 39개 영업점 신규 수주로 전국 500여 개 영업점 운영 중"
+      ],
+      "keywords": [
+        "풀무원푸드앤컬처"
+      ],
+      "kw_cats": {
+        "풀무원푸드앤컬처": "brand"
+      },
+      "date": "2026-07-23T00:07:26+00:00"
+    },
+    {
+      "id": "b27d89c87350",
+      "title": "[업계단신] CJ제일제당 K-증류주 ‘jari’, 서울바앤스피릿쇼 참가/BBQ, 메이저 2연승 기념행사 열어",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34608",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "CJ제일제당이 프리미엄 증류주 브랜드 'jari'를 론칭하고 '2026 서울바앤스피릿쇼'에 첫 참가",
+        "BBQ가 메이저 대회 2연승을 기념하여 고객 대상 프로모션 및 행사 진행"
+      ],
+      "keywords": [
+        "jari",
+        "CJ제일제당",
+        "BBQ",
+        "증류주"
+      ],
+      "kw_cats": {
+        "jari": "brand",
+        "CJ제일제당": "brand",
+        "BBQ": "brand",
+        "증류주": "food_cat"
+      },
+      "date": "2026-07-23T00:02:00+00:00"
+    },
+    {
+      "id": "c8284876b676",
+      "title": "농협 NH Charge, 휴가철 전기차 비회원 충전요금 회원가 인하",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206586",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "농협 NH Charge, 여름 휴가철 맞아 전기차 충전요금 한시적 인하",
+        "전국 82개 충전소 대상 비회원 고객 대상 혜택 제공"
+      ],
+      "keywords": [
+        "NH Charge",
+        "농협경제지주"
+      ],
+      "kw_cats": {
+        "NH Charge": "brand",
+        "농협경제지주": "brand"
+      },
+      "date": "2026-07-23T00:00:46+00:00"
+    },
+    {
+      "id": "27548474fb96",
+      "title": "삼립, ‘설기이야기' 출시...100% 국내산 쌀가루로 폭신한 식감 구현",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206585",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "삼립, 100% 국내산 쌀가루를 활용한 신제품 '설기이야기' 출시",
+        "식감 소비(Texture Experience) 트렌드를 반영해 부드러운 식감 강조"
+      ],
+      "keywords": [
+        "설기이야기",
+        "삼립",
+        "식감 소비",
+        "쌀가루"
+      ],
+      "kw_cats": {
+        "설기이야기": "food_cat",
+        "삼립": "brand",
+        "식감 소비": "trend",
+        "쌀가루": "ingredient"
+      },
+      "date": "2026-07-22T23:56:04+00:00"
+    },
+    {
+      "id": "fa882f99f168",
+      "title": "식약처, 혁신 의료기기 제품화 지원…‘찾아가는 사전상담’ 착수",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206584",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "식약처, 범부처의료기기연구개발사업단과 연계해 의료기기 제품화 지원",
+        "‘찾아가는 사전상담(With-U)’ 프로그램을 통해 신속한 제품화 및 규제 대응 지원"
+      ],
+      "keywords": [
+        "의료기기",
+        "찾아가",
+        "사전상담",
+        "식약처",
+        "혁신"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-22T23:55:21+00:00"
+    },
+    {
+      "id": "d836ac84c885",
+      "title": "“식품안전도 이제 인공지능 시대” 식품안전정보원, AI 기반 과학적 검증 전략 논한다",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34607",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "식품안전정보원, 한국식품저장유통학회 국제학술대회에서 AI 기반 식품 안전 관리 전략 세션 개최",
+        "식품 산업 내 AI 및 빅데이터 기술 도입에 따른 과학적 검증 기술의 중요성 강조"
+      ],
+      "keywords": [
+        "식품안전정보",
+        "과학적",
+        "검증",
+        "인공지능",
+        "기반"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-22T23:54:14+00:00"
+    },
+    {
+      "id": "a954e35974e8",
+      "title": "대상, 레드닷 디자인 어워드 2관왕…청정원 K-푸드·본된장 수상",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206583",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "대상, 2026 레드닷 디자인 어워드 본상 2관왕 수상",
+        "청정원 'K-푸드 디지털 디자인 시스템' 및 '본된장' 디자인 우수성 인정"
+      ],
+      "keywords": [
+        "대상",
+        "청정원",
+        "본된장"
+      ],
+      "kw_cats": {
+        "대상": "brand",
+        "청정원": "brand",
+        "본된장": "food_cat"
+      },
+      "date": "2026-07-22T23:50:47+00:00"
+    },
+    {
+      "id": "e3bb22d54de9",
+      "title": "풀무원푸드앤컬처, 상반기 위탁급식 8.5%·컨세션 21.8% 성장",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34606",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "풀무원푸드앤컬처, 상반기 위탁급식 8.5% 및 컨세션 21.8% 매출 성장",
+        "신규 영업점 39개 수주 및 AI 기반 운영 혁신을 통한 사업 영역 확대"
+      ],
+      "keywords": [
+        "풀무원푸드앤컬처"
+      ],
+      "kw_cats": {
+        "풀무원푸드앤컬처": "brand"
+      },
+      "date": "2026-07-22T23:49:40+00:00"
+    },
+    {
+      "id": "cc28a7ae0c52",
+      "title": "맥도날드, ‘한국의 맛 충주씨 옥수수 클릭커 팩’ 출시...굿즈도 한정판매",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206582",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "맥도날드 '충주 찰옥수수 치즈 크로켓 버거' 100만 개 판매 돌파 기념 프로모션",
+        "한정판 굿즈가 포함된 '한국의 맛 충주씨 옥수수 클릭커 팩' 출시"
+      ],
+      "keywords": [
+        "맥도날드",
+        "충주 찰옥수수 치즈 크로켓 버거",
+        "옥수수"
+      ],
+      "kw_cats": {
+        "맥도날드": "brand",
+        "충주 찰옥수수 치즈 크로켓 버거": "food_cat",
+        "옥수수": "ingredient"
+      },
+      "date": "2026-07-22T23:49:24+00:00"
+    },
+    {
+      "id": "782fee231af5",
+      "title": "BBQ 윤홍근 회장, 메이저 2연승 유해란 격려…“든든한 동반자 될 것”",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206579",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "제너시스BBQ 그룹이 LPGA 메이저 대회 2연승을 달성한 유해란 프로를 초청해 기념행사를 개최함",
+        "윤홍근 회장은 유해란 프로와의 지속적인 후원 및 파트너십을 강조하며 브랜드 이미지 제고에 나섬"
+      ],
+      "keywords": [
+        "BBQ",
+        "유해란"
+      ],
+      "kw_cats": {
+        "BBQ": "brand",
+        "유해란": "brand"
+      },
+      "date": "2026-07-22T23:47:29+00:00"
+    },
+    {
+      "id": "a4591f1e8788",
+      "title": "굽네몰, 중복 맞아 닭가슴살 최대 55% 할인...복날 보양식 프로모션 진행",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206578",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "중복을 맞아 굽네몰이 닭가슴살 제품 대상 최대 55% 할인 프로모션 진행",
+        "외식 중심의 보양식 문화가 가정간편식(HMR) 및 고단백 식품으로 확산되는 트렌드 반영"
+      ],
+      "keywords": [
+        "닭가슴살",
+        "고단백",
+        "굽네몰",
+        "가정간편식"
+      ],
+      "kw_cats": {
+        "닭가슴살": "food_cat",
+        "고단백": "trend",
+        "굽네몰": "brand",
+        "가정간편식": "food_cat"
+      },
+      "date": "2026-07-22T23:46:11+00:00"
+    },
+    {
+      "id": "1a4aa473ad0d",
+      "title": "CJ제일제당, 증류주 ‘jari’, ‘2026 서울바앤스피릿쇼’ 참가...부스 운영",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206580",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "CJ제일제당, K-증류주 브랜드 'jari(자리)'로 '2026 서울바앤스피릿쇼' 참가",
+        "주류 산업 트렌드 및 바 문화 경험을 통한 브랜드 포지셔닝 강화"
+      ],
+      "keywords": [
+        "CJ제일제당",
+        "jari",
+        "증류주"
+      ],
+      "kw_cats": {
+        "CJ제일제당": "brand",
+        "jari": "brand",
+        "증류주": "food_cat"
+      },
+      "date": "2026-07-22T23:39:02+00:00"
+    },
+    {
+      "id": "c2ae3cb9b748",
+      "title": "유통 기반 깔린 몽골, K-푸드에 기회의 땅",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200786",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "몽골이 한류 확산과 도시화에 힘입어 K-푸드 수출의 새로운 기회의 땅으로 부상",
+        "정상회담 및 경제협력 논의를 통해 식품·외식 분야의 현지 진출 및 협력 확대 기대"
+      ],
+      "keywords": [
+        "K-푸드",
+        "몽골"
+      ],
+      "kw_cats": {
+        "K-푸드": "trend",
+        "몽골": "brand"
+      },
+      "date": "2026-07-22T22:52:00+00:00"
+    },
+    {
+      "id": "6b8e44854dda",
+      "title": "판다 익스프레스 창업자 페기·앤드류 청, CREATE에서 '판다 웨이' 철학 공유",
+      "url": "https://www.nrn.com/restaurant-operations/brand-icon-leaders-peggy-and-andrew-cherng-discuss-the-panda-way-at-create",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": true,
+      "summary": [
+        "판다 익스프레스 창업자들이 기업 운영의 핵심 가치로 사람, 고객, 지역사회에 대한 사랑을 강조함",
+        "기업의 지속 가능한 성장을 위한 브랜드 철학 및 경영 전략 공유"
+      ],
+      "keywords": [
+        "Panda Express"
+      ],
+      "kw_cats": {
+        "Panda Express": "brand"
+      },
+      "date": "2026-07-22T21:34:00+00:00"
+    },
+    {
+      "id": "4490ba4316db",
+      "title": "전문가 3인이 비교하는 레스토랑 자금 조달 방식",
+      "url": "https://www.nrn.com/restaurant-finance/3-experts-compare-different-types-of-restaurant-financing",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "외식업계 신흥 경영자들을 위한 'CREATE' 투자 서밋에서 레스토랑 자금 조달 전략 논의",
+        "전문가들이 다양한 자금 조달 방식의 장단점과 운영 전략 비교"
+      ],
+      "keywords": [
+        "The",
+        "Investment",
+        "Summit",
+        "CREATE"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-22T20:31:48+00:00"
+    },
+    {
+      "id": "ae462c285f17",
+      "title": "필 로젠탈이 말하는 함께 먹고 여행하는 즐거움의 가치",
+      "url": "https://www.nrn.com/independent-restaurants/phil-rosenthal-on-why-the-world-would-be-a-better-place-if-people-eat-together-and-travel",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "넷플릭스 'Somebody Feed Phil'의 제작자 필 로젠탈이 식문화가 가진 연결의 힘을 강조함",
+        "음식과 여행을 통해 국경을 넘어 사람들을 하나로 모으는 식문화의 사회적 가치 공유"
+      ],
+      "keywords": [
+        "Somebody Feed Phil",
+        "식문화"
+      ],
+      "kw_cats": {
+        "Somebody Feed Phil": "brand",
+        "식문화": "trend"
+      },
+      "date": "2026-07-22T18:29:42+00:00"
+    },
+    {
+      "id": "36ebce0b9e3a",
+      "title": "해빗버거, 셰프 레지던시 프로그램 '해빗 앤 코' 런칭 및 제트 틸라 협업 메뉴 출시",
+      "url": "https://www.nrn.com/fast-casual/habit-burger-chef-in-residency-program-debuts-with-jet-tila",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "해빗버거가 셰프 레지던시 플랫폼 '해빗 앤 코(Habit & Co.)'를 새롭게 선보임",
+        "첫 번째 프로젝트로 유명 셰프 제트 틸라(Jet Tila)의 '코리안 스트리트 메뉴'를 한정 기간 판매"
+      ],
+      "keywords": [
+        "Habit Burger",
+        "Jet Tila",
+        "Korean Street Menu"
+      ],
+      "kw_cats": {
+        "Habit Burger": "brand",
+        "Jet Tila": "brand",
+        "Korean Street Menu": "food_cat"
+      },
+      "date": "2026-07-22T17:18:59+00:00"
+    },
+    {
+      "id": "533168b09f7b",
+      "title": "폴란드에서 K-푸드 맛보고, 만들고, 즐기다",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34605",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농식품부와 aT가 폴란드 바르샤바에서 K-푸드 체험형 팝업스토어 운영",
+        "서울의 명소를 구현한 공간에서 3,600여 명의 현지인이 K-푸드 시식 및 조리 체험"
+      ],
+      "keywords": [
+        "K-푸드",
+        "aT"
+      ],
+      "kw_cats": {
+        "K-푸드": "trend",
+        "aT": "brand"
+      },
+      "date": "2026-07-22T17:16:00+00:00"
+    },
+    {
+      "id": "8108c40ebfb8",
+      "title": "우유자조금 “급식 없는 방학, 균형 잡힌 영양 섭취가 성장 좌우”",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34603",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "여름방학 기간 학교 급식 중단에 따른 어린이 영양 불균형 우려 제기",
+        "성장기 필수 영양소 섭취를 위한 가정 내 우유 음용 권장"
+      ],
+      "keywords": [
+        "우유",
+        "성장기 영양"
+      ],
+      "kw_cats": {
+        "우유": "ingredient",
+        "성장기 영양": "trend"
+      },
+      "date": "2026-07-22T17:06:33+00:00"
+    },
+    {
+      "id": "e79eaea128a9",
+      "title": "트루 푸드 키친 CEO 선임, 크래커 배럴의 재기, 파파이스 치킨 텐더 소식",
+      "url": "https://www.nrn.com/casual-dining/true-food-kitchen-ceo-cracker-barrel-comeback-popeyes-chicken-tenders",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "트루 푸드 키친의 새로운 CEO 임명 소식",
+        "크래커 배럴의 브랜드 회복 전략 및 파파이스의 신메뉴 치킨 텐더 출시"
+      ],
+      "keywords": [
+        "True Food Kitchen",
+        "Cracker Barrel",
+        "Popeyes",
+        "chicken tenders"
+      ],
+      "kw_cats": {
+        "True Food Kitchen": "brand",
+        "Cracker Barrel": "brand",
+        "Popeyes": "brand",
+        "chicken tenders": "food_cat"
+      },
+      "date": "2026-07-22T17:05:42+00:00"
+    },
+    {
+      "id": "6133af91a9d8",
+      "title": "농촌융복합산업 활성화 “농촌진흥청-도농업기술원 힘 모은다”",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34604",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농촌진흥청과 도 농업기술원이 농촌융복합산업 활성화를 위한 공동 학술토론회 개최",
+        "중앙-지방 연구 협력 체계를 통해 우리 농산물의 부가가치 제고 및 식품 산업 경쟁력 강화 도모"
+      ],
+      "keywords": [
+        "농촌융복합산업",
+        "농촌진흥청",
+        "농산물"
+      ],
+      "kw_cats": {
+        "농촌융복합산업": "trend",
+        "농촌진흥청": "brand",
+        "농산물": "ingredient"
+      },
+      "date": "2026-07-22T17:00:00+00:00"
+    },
+    {
+      "id": "5343ef99334c",
+      "title": "런던 3일 여행: 영국 음식에 대한 인식 변화와 미식 트렌드",
+      "url": "https://www.eater.com/dining-out/975009/restaurant-recommendations-london-steal-my-3-day-itinerary",
+      "source": "Eater",
+      "lang": "en",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "영국 음식에 대한 부정적인 고정관념이 사라지고 미식 트렌드로서 재평가받고 있음",
+        "미국 내 영국식 레스토랑의 인기가 높아지며 영국 요리에 대한 소비자 선호도가 상승 중"
+      ],
+      "keywords": [
+        "British food",
+        "Dean’s",
+        "Wilde’s"
+      ],
+      "kw_cats": {
+        "British food": "trend",
+        "Dean’s": "brand",
+        "Wilde’s": "brand"
+      },
+      "date": "2026-07-22T16:47:59+00:00"
+    },
+    {
+      "id": "34986ede5c1d",
+      "title": "칠리스(Chili's), 향수를 불러일으키는 독특한 새 매장 디자인 공개",
+      "url": "https://www.nrn.com/casual-dining/check-out-chili-s-nostalgic-quirky-new-restaurant-design",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "칠리스가 과거의 상징적인 요소인 빨간 부스와 타일을 현대적인 감각으로 재해석한 새로운 매장 디자인을 선보임",
+        "바 공간을 확장하여 고객 경험을 개선하고 브랜드 정체성을 강화하는 전략을 취함"
+      ],
+      "keywords": [
+        "Chili's",
+        "restaurant design"
+      ],
+      "kw_cats": {
+        "Chili's": "brand",
+        "restaurant design": "trend"
+      },
+      "date": "2026-07-22T15:36:39+00:00"
+    },
+    {
+      "id": "b13245df86cc",
+      "title": "[러시아] 러 정부, 적합성 평가 간소화 제도 기간 연장…일부 품목은 적용 제외",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=105931&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "러시아 정부가 식품 및 공산품에 대한 적합성 평가 간소화 제도 기간을 연장함",
+        "일부 품목은 적용 대상에서 제외되어 수출입 시 관련 규제 확인 필요"
+      ],
+      "keywords": [
+        "러시아",
+        "정부",
+        "적합성",
+        "평가",
+        "간소화"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-22T15:00:00+00:00"
+    },
+    {
+      "id": "8fd91a139fa0",
+      "title": "[러시아] 온라인 플랫폼 관련 법제 동향",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=105930&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "러시아 내 온라인 플랫폼 관련 법적 규제 및 제도 변화 동향",
+        "온라인 유통 및 플랫폼 비즈니스 환경에 영향을 미치는 법제적 이슈"
+      ],
+      "keywords": [
+        "온라인 플랫폼"
+      ],
+      "kw_cats": {
+        "온라인 플랫폼": "trend"
+      },
+      "date": "2026-07-22T15:00:00+00:00"
+    },
+    {
+      "id": "fc3d0dd47cc3",
+      "title": "고속도로 휴게소 운영 손질…2000원 이하 커피·24시간 편의점",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=384217",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": true,
+      "summary": [
+        "고속도로 휴게소 내 2000원 이하 실속형 커피 도입",
+        "편의점 24시간 운영 및 간편식 판매, 할인 혜택 확대"
+      ],
+      "keywords": [
+        "커피",
+        "간편식",
+        "편의점"
+      ],
+      "kw_cats": {
+        "커피": "food_cat",
+        "간편식": "food_cat",
+        "편의점": "brand"
+      },
+      "date": "2026-07-22T14:55:04+00:00"
+    },
+    {
+      "id": "5bfb143adc1d",
+      "title": "론 샤이치의 Act III, 게이밍 외식 브랜드 'Level99'에 5천만 달러 추가 투자",
+      "url": "https://www.nrn.com/eatertainment/ron-shaich-s-act-iii-invests-another-50m-in-gaming-concept-level99",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "Act III 홀딩스가 엔터테인먼트 결합형 외식 브랜드 Level99에 5천만 달러를 추가 투자함",
+        "이번 투자로 지분을 두 배로 확대하며, 대규모 푸드-게임 복합 매장 확장에 속도를 낼 계획"
+      ],
+      "keywords": [
+        "Level99",
+        "Act III",
+        "food-and-game"
+      ],
+      "kw_cats": {
+        "Level99": "brand",
+        "Act III": "brand",
+        "food-and-game": "trend"
+      },
+      "date": "2026-07-22T14:02:18+00:00"
+    },
+    {
+      "id": "aba17d0e782b",
+      "title": "JM 스머커, 허쉬 임원 출신 더글라스 길헤르미를 운영·공급망 담당 SVP로 영입",
+      "url": "https://www.fooddive.com/news/jm-smucker-snags-hershey-exec-as-svp-of-operations-supply-chain/825845/",
+      "source": "Food Dive",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "JM 스머커가 허쉬와 P&G에서 30년 이상의 경력을 쌓은 더글라스 길헤르미를 운영 및 공급망 담당 수석 부사장(SVP)으로 임명함",
+        "7월 29일부터 공식 업무를 시작하며, 기업의 운영 효율성 및 공급망 전략 강화를 주도할 예정"
+      ],
+      "keywords": [
+        "JM Smucker",
+        "Hershey",
+        "Procter & Gamble"
+      ],
+      "kw_cats": {
+        "JM Smucker": "brand",
+        "Hershey": "brand",
+        "Procter & Gamble": "brand"
+      },
+      "date": "2026-07-22T13:57:00+00:00"
+    },
+    {
+      "id": "aa200b1e0273",
+      "title": "맥도날드, 야구장 반입 가능한 '맥밸류 팩' 출시",
+      "url": "https://www.nrn.com/marketing-branding/mcdonald-s-wants-to-help-you-bring-its-food-into-baseball-parks",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "채널·유통",
+      "is_cvs": true,
+      "summary": [
+        "맥도날드가 야구장 반입 규정을 준수할 수 있는 투명한 '맥밸류 팩'을 한정판으로 출시함",
+        "고객이 외부 음식을 경기장으로 편리하게 가져갈 수 있도록 돕는 유통 및 서비스 전략"
+      ],
+      "keywords": [
+        "맥도날드",
+        "맥밸류 팩",
+        "야구장"
+      ],
+      "kw_cats": {
+        "맥도날드": "brand",
+        "맥밸류 팩": "food_cat",
+        "야구장": "trend"
+      },
+      "date": "2026-07-22T13:48:04+00:00"
+    },
+    {
+      "id": "efaa38c4cfcf",
+      "title": "IFF, 천연 원료 사업부 매각",
+      "url": "https://www.fooddive.com/news/iff-sells-natural-ingredients-business/825841/",
+      "source": "Food Dive",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "향료 및 향수 기업 IFF가 천연 색소 및 기능성 원료 사업부를 뉴트라슈티컬 기업 SuanNutra에 매각함",
+        "기업 포트폴리오 재편을 통한 핵심 사업 집중 전략의 일환"
+      ],
+      "keywords": [
+        "IFF",
+        "SuanNutra",
+        "천연 색소",
+        "기능성 원료"
+      ],
+      "kw_cats": {
+        "IFF": "brand",
+        "SuanNutra": "brand",
+        "천연 색소": "ingredient",
+        "기능성 원료": "ingredient"
+      },
+      "date": "2026-07-22T13:25:00+00:00"
+    },
+    {
+      "id": "4831e2d72250",
+      "title": "마스 스낵킹(Mars Snacking), 미국 뉴저지 본사 폐쇄",
+      "url": "https://www.fooddive.com/news/mars-snacking-close-us-headquarters-job-cuts-employees/825806/",
+      "source": "Food Dive",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "마스 스낵킹이 2027년 말까지 뉴저지 뉴어크 본사를 폐쇄할 예정임",
+        "운영 효율화를 위해 시카고 지역으로 사업 거점을 통합 및 이전함"
+      ],
+      "keywords": [
+        "Mars Snacking",
+        "Pringles"
+      ],
+      "kw_cats": {
+        "Mars Snacking": "brand",
+        "Pringles": "brand"
+      },
+      "date": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "id": "fe1c40ec69f7",
+      "title": "AI 시대, 아날로그적 감성을 담은 레스토랑이 주는 급진적 가치",
+      "url": "https://www.eater.com/trends/975087/restaurants-lean-into-bespoke-handmade-elements-during-ai-flyer-backlash",
+      "source": "Eater",
+      "lang": "en",
+      "category": "소비자·시장",
+      "is_cvs": true,
+      "summary": [
+        "디지털화된 AI 시대에 아날로그적 감성과 독창적인 브랜딩을 강조하는 외식업계의 새로운 흐름",
+        "SNS 마케팅에서 정형화된 방식 대신 예술적이고 감각적인 접근을 통해 브랜드 차별화 시도"
+      ],
+      "keywords": [
+        "Somssi",
+        "아날로그",
+        "레스토랑"
+      ],
+      "kw_cats": {
+        "Somssi": "brand",
+        "아날로그": "trend",
+        "레스토랑": "food_cat"
+      },
+      "date": "2026-07-22T13:00:00+00:00"
+    },
+    {
+      "id": "6d4ab3fada1e",
+      "title": "북미를 뒤덮은 산불 연기, 갈색탄소가 드러낸 2026년 대기질 위기",
+      "url": "https://vegilog.com/north-america-wildfire-smoke-brown-carbon-2026/",
+      "source": "베지로그",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "2026년 북미 지역 산불로 인한 대기질 악화가 식품 시스템의 취약성을 노출함",
+        "갈색탄소 등 대기 오염 물질이 식품 안전 및 공급망에 미치는 영향이 주요 이슈로 부상"
+      ],
+      "keywords": [
+        "갈색탄소",
+        "식품 시스템"
+      ],
+      "kw_cats": {
+        "갈색탄소": "ingredient",
+        "식품 시스템": "trend"
+      },
+      "date": "2026-07-22T11:23:06+00:00"
+    },
+    {
+      "id": "c5698c10dd8e",
+      "title": "골목상권 소상공인 65.7% “세금 혜택 확대 절실”",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68292",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "골목상권 소상공인 63.6%가 상반기 경기 악화를 체감하며 하반기 전망 또한 부정적임",
+        "고물가와 내수 침체 장기화로 인해 소상공인 65.7%가 세금 혜택 확대를 강력히 요구함"
+      ],
+      "keywords": [
+        "골목상권",
+        "소상공인",
+        "세금",
+        "혜택",
+        "확대"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-22T10:00:40+00:00"
+    },
+    {
+      "id": "a01f4f2035c0",
+      "title": "세 끼 식사에서 스낵 유니버스로의 변화",
+      "url": "https://www.foodnavigator.com/Article/2026/07/22/why-consumers-are-replacing-three-square-meals-with-snacks/",
+      "source": "Food Navigator",
+      "lang": "en",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "전통적인 세 끼 식사 중심의 식문화가 간식 중심의 '스낵 유니버스'로 변화하고 있음",
+        "식사 시간의 경계가 모호해지며 간편하고 다양한 스낵류가 식사를 대체하는 트렌드 확산"
+      ],
+      "keywords": [
+        "스낵",
+        "식사 대용"
+      ],
+      "kw_cats": {
+        "스낵": "food_cat",
+        "식사 대용": "trend"
+      },
+      "date": "2026-07-22T09:53:26.127000+00:00"
+    },
+    {
+      "id": "090b9bc6af83",
+      "title": "제로 키우고 장수식품에 새로움 더하고...롯데웰푸드의 ‘여름 매출 공식’",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206576",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "롯데웰푸드, 제로 브랜드 확장 및 장수 제품 리뉴얼로 여름 성수기 매출 공략",
+        "죠스바·스크류바 등 장수 브랜드에 젤리를 결합한 신제품 출시로 시장 경쟁력 강화"
+      ],
+      "keywords": [
+        "제로",
+        "롯데웰푸드",
+        "죠스바",
+        "스크류바",
+        "젤리"
+      ],
+      "kw_cats": {
+        "제로": "trend",
+        "롯데웰푸드": "brand",
+        "죠스바": "food_cat",
+        "스크류바": "food_cat",
+        "젤리": "food_cat"
+      },
+      "date": "2026-07-22T09:36:01+00:00"
+    },
+    {
+      "id": "d431d2bc074a",
+      "title": "압박 완화: 미국 FDA, 공급난 속 오렌지 주스 표준 개정",
+      "url": "https://www.foodingredientsfirst.com/news/fda-orange-juice-standard-update.html",
+      "source": "Food Ingredients First",
+      "lang": "en",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "미국 FDA가 저온 살균 오렌지 주스에 대한 연방 표준(SOI)을 공식 개정함",
+        "공급망 압박과 시장 변화에 대응하기 위한 규제 현대화 조치"
+      ],
+      "keywords": [
+        "오렌지 주스"
+      ],
+      "kw_cats": {
+        "오렌지 주스": "food_cat"
+      },
+      "date": "2026-07-22T09:27:00+00:00"
+    },
+    {
+      "id": "59ff631514e1",
+      "title": "‘한국판 CIA’ 키운다…경주에 한식전문대학 설립 법안 발의",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206577",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": true,
+      "summary": [
+        "미국 CIA를 모델로 한 한식 전문 교육기관 '한국한식대학교' 설립 법안 발의",
+        "경북 경주시를 거점으로 한식 인재 양성 및 한식 세계화 기반 마련 추진"
+      ],
+      "keywords": [
+        "한식"
+      ],
+      "kw_cats": {
+        "한식": "trend"
+      },
+      "date": "2026-07-22T08:59:02+00:00"
+    },
+    {
+      "id": "c3230bac3b27",
+      "title": "롯데웰푸드, 젤리 아이스크림 ‘젤리 먹은 죠스바·스크류바’ 출시",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68295",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "롯데웰푸드, 죠스바·스크류바 활용한 ‘젤리 먹은 아이스크림’ 2종 출시",
+        "얼려먹는 젤리 트렌드를 반영한 ‘겉아속쫀(겉은 아삭, 속은 쫀득)’ 식감 구현"
+      ],
+      "keywords": [
+        "아이스크림",
+        "젤리",
+        "잘파세대",
+        "롯데웰푸드"
+      ],
+      "kw_cats": {
+        "아이스크림": "food_cat",
+        "젤리": "ingredient",
+        "잘파세대": "trend",
+        "롯데웰푸드": "brand"
+      },
+      "date": "2026-07-22T08:56:32+00:00"
+    },
+    {
+      "id": "11b7824e63fc",
+      "title": "아워홈 뷔페 브랜드 ‘테이크’ 오픈 80일 만에 누적 방문객 6만명 돌파",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68294",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "아워홈의 뷔페 브랜드 '테이크(TAKE)'가 오픈 80일 만에 누적 방문객 6만 명을 돌파함",
+        "글로벌 푸드 마켓 콘셉트와 종합식품기업의 F&B 역량을 결합해 일 평균 750명 이상의 방문객을 유치하며 흥행 성공"
+      ],
+      "keywords": [
+        "테이크",
+        "아워홈",
+        "뷔페"
+      ],
+      "kw_cats": {
+        "테이크": "brand",
+        "아워홈": "brand",
+        "뷔페": "food_cat"
+      },
+      "date": "2026-07-22T08:47:29+00:00"
+    },
+    {
+      "id": "f6a65d16f65e",
+      "title": "2026년의 맛 혁신: 스와이시(Swicy) 열풍, 열대 과일의 변주, 그리고 감각적 놀라움",
+      "url": "https://www.foodingredientsfirst.com/news/flavor-trends-swicy-tropical-innovation.html",
+      "source": "Food Ingredients First",
+      "lang": "en",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "경제적 압박 속에서 가성비 있는 즐거움을 찾는 소비자 니즈에 맞춰 맛 혁신이 더욱 정교해지고 있음",
+        "당·나트륨 저감, 단백질 이취 마스킹, 감각적 경험 재현 등 기능적 가치를 결합한 맛 개발이 핵심 과제로 부상"
+      ],
+      "keywords": [
+        "스와이시",
+        "당 저감",
+        "나트륨 저감",
+        "단백질"
+      ],
+      "kw_cats": {
+        "스와이시": "trend",
+        "당 저감": "trend",
+        "나트륨 저감": "trend",
+        "단백질": "ingredient"
+      },
+      "date": "2026-07-22T08:40:00+00:00"
+    },
+    {
+      "id": "769f367755ec",
+      "title": "폴란드 K-푸드 수출 68.8% 급증…aT, 바르샤바 팝업 성료",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206572",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "폴란드 내 K-푸드 수출액 전년 상반기 대비 68.8% 급증",
+        "정부와 aT의 K-콘텐츠 결합 체험형 마케팅을 통한 동유럽 시장 공략 가속화"
+      ],
+      "keywords": [
+        "K-푸드",
+        "aT"
+      ],
+      "kw_cats": {
+        "K-푸드": "food_cat",
+        "aT": "brand"
+      },
+      "date": "2026-07-22T08:36:18+00:00"
+    },
+    {
+      "id": "9a1345b42a1a",
+      "title": "“글루텐프리 카레부터 저당 파스타까지”…사조푸디스트·오뚜기, 건강급식 협업",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206575",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "사조푸디스트와 오뚜기가 협업하여 급식 고객사를 위한 건강식 팝업키친 운영",
+        "글루텐프리 카레, 저당 파스타 등 건강 지향적 메뉴를 급식 현장에 도입"
+      ],
+      "keywords": [
+        "사조푸디스트",
+        "오뚜기",
+        "글루텐프리",
+        "저당",
+        "급식"
+      ],
+      "kw_cats": {
+        "사조푸디스트": "brand",
+        "오뚜기": "brand",
+        "글루텐프리": "trend",
+        "저당": "trend",
+        "급식": "trend"
+      },
+      "date": "2026-07-22T08:29:22+00:00"
+    },
+    {
+      "id": "fdd673a65fd7",
+      "title": "어댑트 풀리, 중국 도우인서 흥행…토마토 팩 클렌저 완판",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206574",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "어댑트의 비건 스킨케어 브랜드 '풀리', 중국 도우인 플랫폼 진출 및 접점 확대",
+        "토마토 팩 클렌저의 도우인 내 흥행 및 완판 기록"
+      ],
+      "keywords": [
+        "풀리",
+        "어댑트",
+        "도우인"
+      ],
+      "kw_cats": {
+        "풀리": "brand",
+        "어댑트": "brand",
+        "도우인": "brand"
+      },
+      "date": "2026-07-22T08:23:16+00:00"
+    },
+    {
+      "id": "17a4f3ee54ef",
+      "title": "엔피케이, 한국인 유아 유래 ‘K-낙산균’ 프로바이오틱스 출시",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206573",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "엔피케이, 한국인 유아 유래 'K-낙산균' 프로바이오틱스 신제품 출시",
+        "비타민하우스 및 플러스엑스팜을 통해 전국 약국 유통망 확보"
+      ],
+      "keywords": [
+        "낙산균",
+        "프로바이오틱스",
+        "엔피케이",
+        "비타민하우스"
+      ],
+      "kw_cats": {
+        "낙산균": "ingredient",
+        "프로바이오틱스": "food_cat",
+        "엔피케이": "brand",
+        "비타민하우스": "brand"
+      },
+      "date": "2026-07-22T08:20:20+00:00"
+    },
+    {
+      "id": "aa11870229f7",
+      "title": "프리미엄 아이스크림 밴루엔, 강남권 상권 공략 속도… 2·3호점 연이어 오픈",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68293",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "투썸플레이스 프리미엄 아이스크림 브랜드 '밴루엔' 강남권 핵심 상권 2·3호점 연이어 오픈",
+        "신세계백화점 강남점 스위트파크 입점 등 상권 특성에 맞춘 매장 전략으로 소비자 접점 확대"
+      ],
+      "keywords": [
+        "밴루엔",
+        "투썸플레이스",
+        "아이스크림"
+      ],
+      "kw_cats": {
+        "밴루엔": "brand",
+        "투썸플레이스": "brand",
+        "아이스크림": "food_cat"
+      },
+      "date": "2026-07-22T08:18:51+00:00"
+    },
+    {
+      "id": "ad217f4008a8",
+      "title": "일본과 한국, 푸드테크 주도권 확보 위해 수십억 달러 투자",
+      "url": "https://www.foodnavigator.com/Article/2026/07/22/japan-korea-pour-billions-into-bid-for-food-tech-dominance/",
+      "source": "Food Navigator",
+      "lang": "en",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "한국과 일본 정부가 푸드테크 산업의 글로벌 경쟁력 강화를 위해 대규모 자본 투자를 단행함",
+        "지속 가능한 식품 생산, 대체 단백질, 스마트 농업 등 미래 식품 기술 확보를 위한 국가적 전략 추진"
+      ],
+      "keywords": [
+        "푸드테크",
+        "대체 단백질",
+        "스마트 농업"
+      ],
+      "kw_cats": {
+        "푸드테크": "trend",
+        "대체 단백질": "ingredient",
+        "스마트 농업": "trend"
+      },
+      "date": "2026-07-22T07:55:49.416000+00:00"
+    },
+    {
+      "id": "001165f48713",
+      "title": "[심층] 콩 생산 늘었지만 재배면적 감소…자급률의 조건",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=384214",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "정부의 식량자급률 목표 재설정에 따른 국산 콩 생산 및 수급 정책 점검",
+        "생산량 증가에도 불구하고 재배면적 감소세가 나타나 계약재배 및 가공 수요 확보가 과제로 부상"
+      ],
+      "keywords": [
+        "콩"
+      ],
+      "kw_cats": {
+        "콩": "ingredient"
+      },
+      "date": "2026-07-22T07:46:27+00:00"
+    },
+    {
+      "id": "022697985a7d",
+      "title": "한식진흥원, '제철 식재료' 주제 7월 한식콘서트 개최",
+      "url": "https://cooknchefnews.com/news/view/1065596762383671",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "한식진흥원, 7월 한식콘서트 개최",
+        "제철 식재료의 사회문화적·영양학적 가치 조명"
+      ],
+      "keywords": [
+        "제철 식재료",
+        "한식진흥원"
+      ],
+      "kw_cats": {
+        "제철 식재료": "ingredient",
+        "한식진흥원": "brand"
+      },
+      "date": "2026-07-22T07:40:05+00:00"
+    },
+    {
+      "id": "e2ad8549a773",
+      "title": "농식품부, 한-뉴 FTA 청년 농산업 창업 지원 확대...현지 연수 추진",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206570",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농식품부, 한-뉴 FTA 활용 청년 농산업 창업 지원 확대",
+        "글로벌 역량 강화 및 해외 기술·인적 교류를 통한 미래 농산업 경쟁력 제고"
+      ],
+      "keywords": [
+        "청년 농업인",
+        "농산업"
+      ],
+      "kw_cats": {
+        "청년 농업인": "trend",
+        "농산업": "trend"
+      },
+      "date": "2026-07-22T07:34:12+00:00"
+    },
+    {
+      "id": "94b9fe3f9ddf",
+      "title": "투라 엠버서더 장지예, 미스인터콘티넨탈 위너 수상...‘윈윈’ 효과로 브랜드 파워 강화",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206571",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "투라 앰버서더 장지예의 미스인터콘티넨탈 위너 수상",
+        "브랜드 앰버서더 활동을 통한 브랜드 파워 강화 및 마케팅 효과 창출"
+      ],
+      "keywords": [
+        "투라"
+      ],
+      "kw_cats": {
+        "투라": "brand"
+      },
+      "date": "2026-07-22T07:31:12+00:00"
+    },
+    {
+      "id": "59890b034bed",
+      "title": "IFT FIRST 2026 리뷰: 단백질 혁신, 단순 강화에서 기능성으로 진화",
+      "url": "https://www.foodingredientsfirst.com/news/ift-first-2026-protein-innovation-trends.html",
+      "source": "Food Ingredients First",
+      "lang": "en",
+      "category": "식재료·원료",
+      "is_cvs": true,
+      "summary": [
+        "단백질 시장이 단순한 함량 경쟁에서 벗어나 기능성과 품질 중심으로 변화하고 있음",
+        "식품 원료 공급업체들이 단백질의 영양적 가치를 넘어선 새로운 가치 창출에 집중하고 있음"
+      ],
+      "keywords": [
+        "단백질",
+        "고단백"
+      ],
+      "kw_cats": {
+        "단백질": "ingredient",
+        "고단백": "trend"
+      },
+      "date": "2026-07-22T07:29:00+00:00"
+    },
+    {
+      "id": "4828557b91f8",
+      "title": "배스킨라빈스, 혼자 즐기는 ‘슈가케인 빙수’ 2종 출시",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206569",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "배스킨라빈스, 여름 시즌 겨냥 '슈가케인 빙수' 2종 출시",
+        "소형 디저트 트렌드 반영한 1~2인용 소용량 기획"
+      ],
+      "keywords": [
+        "빙수",
+        "사탕수수",
+        "소형 디저트",
+        "배스킨라빈스"
+      ],
+      "kw_cats": {
+        "빙수": "food_cat",
+        "사탕수수": "ingredient",
+        "소형 디저트": "trend",
+        "배스킨라빈스": "brand"
+      },
+      "date": "2026-07-22T06:46:39+00:00"
+    },
+    {
+      "id": "62d6c2b06a65",
+      "title": "전통시장 청년 소상공인 최대 1.5억원 지원",
+      "url": "https://cooknchefnews.com/news/view/1065582779553053",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "전통시장육성재단, 2026년 청년 소상공인 상권 활성화 지원 프로젝트 참여팀 모집",
+        "개별 점포 현금 지원이 아닌 공동 행사·홍보·환경개선 등 상권 활성화 사업 지원"
+      ],
+      "keywords": [
+        "전통시장"
+      ],
+      "kw_cats": {
+        "전통시장": "trend"
+      },
+      "date": "2026-07-22T06:15:35+00:00"
+    },
+    {
+      "id": "fd5d63ee7893",
+      "title": "25일 日 스미다강 불꽃축제 '프리미엄 다이닝'",
+      "url": "https://cooknchefnews.com/news/view/1065577909046744",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "일본 스미다강 불꽃축제와 연계한 프리미엄 다이닝 서비스 제공",
+        "축제 관람과 식사를 결합한 체험형 외식 상품 마케팅"
+      ],
+      "keywords": [
+        "프리미엄 다이닝",
+        "스미다강 불꽃축제"
+      ],
+      "kw_cats": {
+        "프리미엄 다이닝": "food_cat",
+        "스미다강 불꽃축제": "trend"
+      },
+      "date": "2026-07-22T06:15:03+00:00"
+    },
+    {
+      "id": "333a26556d4e",
+      "title": "‘에티오피아 모모라 내추럴 구지 G1’ 생두",
+      "url": "https://cooknchefnews.com/news/view/1065573109736369",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "알마씨엘로, 최상급 스페셜티 생두 '에티오피아 모모라 내추럴 구지 G1' 출시",
+        "내추럴 가공 방식을 통해 딸기, 블루베리 등 풍부한 과일 향과 바디감 구현"
+      ],
+      "keywords": [
+        "에티오피아 모모라 내추럴 구지 G1",
+        "알마씨엘로",
+        "스페셜티"
+      ],
+      "kw_cats": {
+        "에티오피아 모모라 내추럴 구지 G1": "ingredient",
+        "알마씨엘로": "brand",
+        "스페셜티": "trend"
+      },
+      "date": "2026-07-22T06:15:01+00:00"
+    },
+    {
+      "id": "792393c15c5e",
+      "title": "한-콜롬비아 옥수수 로드 특별 전시회",
+      "url": "https://cooknchefnews.com/news/view/1065573002986992",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "한식진흥원과 주한콜롬비아대사관이 공동으로 '옥수수' 주제 특별 전시 개최",
+        "양국 수교 및 FTA 발효 기념, 옥수수의 전파 경로와 식문화 영향 비교"
+      ],
+      "keywords": [
+        "옥수수"
+      ],
+      "kw_cats": {
+        "옥수수": "ingredient"
+      },
+      "date": "2026-07-22T06:14:52+00:00"
+    },
+    {
+      "id": "111547051743",
+      "title": "국수나무 ‘산더미 애호박국수’ 신메뉴",
+      "url": "https://cooknchefnews.com/news/view/1065572088022024",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "국수나무 브랜드 21주년 기념 신메뉴 '산더미 애호박국수' 출시",
+        "국내산 애호박을 활용해 재료 본연의 맛과 건강함을 강조한 메뉴 전략"
+      ],
+      "keywords": [
+        "산더미 애호박국수",
+        "애호박",
+        "국수나무"
+      ],
+      "kw_cats": {
+        "산더미 애호박국수": "food_cat",
+        "애호박": "ingredient",
+        "국수나무": "brand"
+      },
+      "date": "2026-07-22T06:14:36+00:00"
+    },
+    {
+      "id": "c83d4abe416d",
+      "title": "세븐일레븐 ‘오하요 브륄레 밀크’ 신상품",
+      "url": "https://cooknchefnews.com/news/view/1065571942433487",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐, 일본 인기 디저트 '오하요 브륄레 밀크' 국내 최초 출시",
+        "크림 브륄레의 맛과 먹는 재미를 구현한 프리미엄 아이스크림"
+      ],
+      "keywords": [
+        "오하요 브륄레 밀크",
+        "세븐일레븐",
+        "아이스크림"
+      ],
+      "kw_cats": {
+        "오하요 브륄레 밀크": "food_cat",
+        "세븐일레븐": "brand",
+        "아이스크림": "food_cat"
+      },
+      "date": "2026-07-22T06:14:23+00:00"
+    },
+    {
+      "id": "52b22832b76e",
+      "title": "한식진흥원, 냉면의 학술적·산업적 가치 재조명",
+      "url": "https://cooknchefnews.com/news/view/1065571441513111",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "한식진흥원, '냉면의 과거와 미래' 주제로 제2차 한식세미나 개최",
+        "냉면의 역사적 맥락과 현대 외식 시장에서의 산업적 가치 재조명"
+      ],
+      "keywords": [
+        "냉면"
+      ],
+      "kw_cats": {
+        "냉면": "food_cat"
+      },
+      "date": "2026-07-22T06:13:44+00:00"
+    },
+    {
+      "id": "f5a2fe28dfb4",
+      "title": "중복·말복엔 삼계탕값 내릴까…닭값은 안정, 외식물가는 '여전히 부담'",
+      "url": "https://cooknchefnews.com/news/view/1065621377687762",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "닭고기 공급 확대로 원재료 가격은 안정세이나 외식 물가는 여전히 높은 수준",
+        "인건비 및 임대료 등 고정비 부담으로 인해 삼계탕 외식 가격 인하가 어려운 상황"
+      ],
+      "keywords": [
+        "삼계탕",
+        "외식 물가"
+      ],
+      "kw_cats": {
+        "삼계탕": "food_cat",
+        "외식 물가": "trend"
+      },
+      "date": "2026-07-22T06:13:27+00:00"
+    },
+    {
+      "id": "ee359d9c0d88",
+      "title": "[윤신혜의 우상향 숫자경영] '7' ... 메뉴 수는 매장의 비밀이 숨어 있다",
+      "url": "https://cooknchefnews.com/news/view/1065581573654651",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "메뉴의 개수는 매장의 경영 전략과 속사정을 보여주는 핵심 지표임",
+        "효율적인 메뉴 운영을 통해 매장의 매출과 수익성을 최적화하는 경영 인사이트 제시"
+      ],
+      "keywords": [
+        "쿳사 연희",
+        "브런치"
+      ],
+      "kw_cats": {
+        "쿳사 연희": "brand",
+        "브런치": "food_cat"
+      },
+      "date": "2026-07-22T06:12:33+00:00"
+    },
+    {
+      "id": "6c0b2553144e",
+      "title": "[식재료 노트] 체하면 매실차 한 잔? 초록빛 ‘천연 소화제’의 진실",
+      "url": "https://cooknchefnews.com/news/view/1065621844178418",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": [
+        "매실의 소화 촉진 효능에 대한 과학적 근거 제시",
+        "매실 속 유기산이 침과 소화액 분비를 돕는 원리 설명"
+      ],
+      "keywords": [
+        "매실"
+      ],
+      "kw_cats": {
+        "매실": "ingredient"
+      },
+      "date": "2026-07-22T06:12:18+00:00"
+    },
+    {
+      "id": "96a48746aeb6",
+      "title": "[염상균의 ‘역사 속 음식이야기’] 담박과 절제로 예(禮)를 실천한 퇴계 이황의 밥상",
+      "url": "https://cooknchefnews.com/news/view/1065589235694103",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "퇴계 이황의 식습관을 통해 담박함과 절제를 중시하는 식문화 가치 조명",
+        "음식을 단순한 배 채우기 수단이 아닌 인격 수양과 예(禮)를 실천하는 과정으로 해석"
+      ],
+      "keywords": [
+        "절제식"
+      ],
+      "kw_cats": {
+        "절제식": "trend"
+      },
+      "date": "2026-07-22T06:11:37+00:00"
+    },
+    {
+      "id": "f037d0f0ac8b",
+      "title": "[리얼푸드] 비노에이치, 이탈리아 바롤로 대표 와이너리 ‘지아코모 그리말디’ 선봬",
+      "url": "https://www.realfoods.co.kr/article/10816596",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "비노에이치, 이탈리아 바롤로 대표 와이너리 '지아코모 그리말디' 와인 7종 국내 단독 출시",
+        "제임스 서클링 95점을 획득한 '바롤로 라베라'를 포함해 다양한 라인업 선보임"
+      ],
+      "keywords": [
+        "와인",
+        "비노에이치",
+        "지아코모 그리말디"
+      ],
+      "kw_cats": {
+        "와인": "food_cat",
+        "비노에이치": "brand",
+        "지아코모 그리말디": "brand"
+      },
+      "date": "2026-07-22T05:58:52+00:00"
+    },
+    {
+      "id": "7b3622896f45",
+      "title": "아인스케어, CJ온스타일 라이브 커머스 성료…매출 순위 상위권",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=384209",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "아인스케어, CJ온스타일 라이브 커머스 통해 건강기능식품 2종 판매",
+        "방송 종료 후 매출 순위 상위권 기록하며 유통 채널 성과 입증"
+      ],
+      "keywords": [
+        "아인스케어",
+        "CJ온스타일",
+        "오메가3",
+        "아슈와간다"
+      ],
+      "kw_cats": {
+        "아인스케어": "brand",
+        "CJ온스타일": "brand",
+        "오메가3": "ingredient",
+        "아슈와간다": "ingredient"
+      },
+      "date": "2026-07-22T05:52:25+00:00"
+    },
+    {
+      "id": "810fb6543181",
+      "title": "NS홈쇼핑, 택배기사에 생수 6만여병 전달",
+      "url": "https://cooknchefnews.com/news/view/1065569055954618",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "NS홈쇼핑, 택배기사 대상 '사랑의 생수' 캠페인 22년째 지속",
+        "주요 배송 파트너사에 생수 6만여 병 전달하며 상생 경영 실천"
+      ],
+      "keywords": [
+        "NS홈쇼핑",
+        "한진택배",
+        "CJ대한통운",
+        "롯데택배"
+      ],
+      "kw_cats": {
+        "NS홈쇼핑": "brand",
+        "한진택배": "brand",
+        "CJ대한통운": "brand",
+        "롯데택배": "brand"
+      },
+      "date": "2026-07-22T05:42:44+00:00"
+    },
+    {
+      "id": "f7dd69cae1c1",
+      "title": "그랜드 하얏트 서울, 직화 그릴 갈비 메뉴",
+      "url": "https://cooknchefnews.com/news/view/1065611932015572",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "그랜드 하얏트 서울 '더 테라스 키친', 시그니처 메뉴로 직화 그릴 갈비 출시",
+        "주문 즉시 조리하는 '아 라 미닛(À la minute)' 방식을 통해 다이닝 경험 강화"
+      ],
+      "keywords": [
+        "갈비",
+        "그랜드 하얏트 서울"
+      ],
+      "kw_cats": {
+        "갈비": "food_cat",
+        "그랜드 하얏트 서울": "brand"
+      },
+      "date": "2026-07-22T05:41:11+00:00"
+    },
+    {
+      "id": "29fbe21c838c",
+      "title": "홈플러스, 회생절차 연장에 영업정상화·구조혁신 박차…핵심점포 67곳 ‘재오픈’",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200848",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "홈플러스, 회생절차 연장에 따른 영업정상화 및 구조혁신 본격화",
+        "2000억 원 규모의 DIP 대출을 통해 임시휴업 중인 핵심점포 67곳 재오픈 추진"
+      ],
+      "keywords": [
+        "홈플러스"
+      ],
+      "kw_cats": {
+        "홈플러스": "brand"
+      },
+      "date": "2026-07-22T05:40:39+00:00"
+    },
+    {
+      "id": "c1d510a327b3",
+      "title": "한호전 호텔경영학과 신입생 모집",
+      "url": "https://cooknchefnews.com/news/view/1065611653388631",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "한국호텔관광실용전문학교(한호전) 2027학년도 신입생 모집",
+        "호텔 및 관광 분야 전문 인재 양성을 위한 학과 운영 및 원서 접수 진행"
+      ],
+      "keywords": [
+        "한호전"
+      ],
+      "kw_cats": {
+        "한호전": "brand"
+      },
+      "date": "2026-07-22T05:39:42+00:00"
+    },
+    {
+      "id": "9e84c86506fd",
+      "title": "CREATE 컨퍼런스에서 얻은 외식 업계 전문가들의 3가지 성공 전략",
+      "url": "https://www.nrn.com/restaurant-insights/takeaways-from-3-industry-pros-at-the-create-conference",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "CREATE 컨퍼런스의 TED 스타일 강연을 통해 신생 외식 브랜드들이 성공하기 위한 핵심 전략 공유",
+        "성장을 목표로 하는 외식 기업들을 위한 운영 및 브랜드 포지셔닝 인사이트 제공"
+      ],
+      "keywords": [
+        "CREATE",
+        "외식 브랜드"
+      ],
+      "kw_cats": {
+        "CREATE": "brand",
+        "외식 브랜드": "trend"
+      },
+      "date": "2026-07-22T05:33:42+00:00"
+    },
+    {
+      "id": "2b2ed7115212",
+      "title": "BBQ 치킨대학서 중국 외식업 대표단 ‘글로벌 성공 노하우 교류’",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68291",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "제너시스BBQ 그룹이 중국 외식업 대표단에게 치킨대학의 교육 시스템과 운영 노하우를 전수함",
+        "치킨대학을 통한 글로벌 매장의 품질 표준화 및 프랜차이즈 운영 전략 공유"
+      ],
+      "keywords": [
+        "BBQ"
+      ],
+      "kw_cats": {
+        "BBQ": "brand"
+      },
+      "date": "2026-07-22T05:33:00+00:00"
+    },
+    {
+      "id": "a1d3b8c3122a",
+      "title": "솔솔 수면 연구소, 건강기능식품 ‘솔솔나잇’ 공개",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=384207",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "솔솔 수면 연구소, 테아닌과 마그네슘을 배합한 건강기능식품 '솔솔나잇' 출시",
+        "식품안전나라에 등록된 신규 건강기능식품으로 신비바이오에서 제조"
+      ],
+      "keywords": [
+        "솔솔나잇",
+        "테아닌",
+        "마그네슘",
+        "솔솔 수면 연구소"
+      ],
+      "kw_cats": {
+        "솔솔나잇": "food_cat",
+        "테아닌": "ingredient",
+        "마그네슘": "ingredient",
+        "솔솔 수면 연구소": "brand"
+      },
+      "date": "2026-07-22T05:21:46+00:00"
+    },
+    {
+      "id": "d90b43a05734",
+      "title": "[동향] 독일 식품산업",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119478",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "독일 식품산업은 건강, 웰빙, 지속가능성, 자원순환 등 소비자 가치관 변화에 직면",
+        "제품 개발부터 공급망 전반에 걸친 혁신이 요구되는 시장 환경 조성"
+      ],
+      "keywords": [
+        "건강과 웰빙",
+        "지속가능성"
+      ],
+      "kw_cats": {
+        "건강과 웰빙": "trend",
+        "지속가능성": "trend"
+      },
+      "date": "2026-07-22T05:21:43+00:00"
+    },
+    {
+      "id": "32acd0c180ea",
+      "title": "[동향] 호주 소스류 시장",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119477",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "호주 소스 시장 내 다문화 식문화 확산 및 한국 소스에 대한 수요 증가",
+        "서구식 기본 소스 중심에서 K-컬처 영향으로 한국식 소스로 소비 트렌드 변화"
+      ],
+      "keywords": [
+        "한국 소스",
+        "K-컬처"
+      ],
+      "kw_cats": {
+        "한국 소스": "food_cat",
+        "K-컬처": "trend"
+      },
+      "date": "2026-07-22T05:18:16+00:00"
+    },
+    {
+      "id": "07c0e58d6ab7",
+      "title": "[동향] 미국 식물성 식품 시장",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119476",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "미국 식물성 식품 시장이 비건 중심에서 고단백·기능성 중심으로 변화",
+        "건강과 영양을 중시하는 젊은 층의 니즈에 맞춰 식품업체들이 제품군 확대 중"
+      ],
+      "keywords": [
+        "식물성 식품",
+        "고단백",
+        "기능성"
+      ],
+      "kw_cats": {
+        "식물성 식품": "food_cat",
+        "고단백": "trend",
+        "기능성": "trend"
+      },
+      "date": "2026-07-22T05:15:40+00:00"
+    },
+    {
+      "id": "b2fb2d763b04",
+      "title": "보성군, 일반음식점 영업주 위생·친절교육 실시",
+      "url": "http://www.kfoodtimes.com/news/articleView.html?idxno=30449",
+      "source": "한국외식신문",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "보성군, 일반음식점 영업주 및 종사자 대상 위생·친절 교육 실시",
+        "식중독 예방, 친절 서비스, 노무관리 등 실무 중심 교육 및 제도 통합 안내"
+      ],
+      "keywords": [
+        "보성군",
+        "일반음식점",
+        "영업주",
+        "위생",
+        "친절교육"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-22T05:04:34+00:00"
+    },
+    {
+      "id": "76281e1d159e",
+      "title": "카페인중독, 여름 신메뉴 ‘생 레몬워터’ 출시",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=384205",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "카페인중독, 여름 신메뉴 '생 레몬워터' 전국 매장 출시",
+        "디저트와 곁들이기 좋은 산뜻한 맛을 강조한 음료 메뉴 기획"
+      ],
+      "keywords": [
+        "생 레몬워터",
+        "레몬",
+        "카페인중독"
+      ],
+      "kw_cats": {
+        "생 레몬워터": "food_cat",
+        "레몬": "ingredient",
+        "카페인중독": "brand"
+      },
+      "date": "2026-07-22T05:01:27+00:00"
+    },
+    {
+      "id": "c4d82a2d3395",
+      "title": "여름철 풀사료 ‘사료피‘ 논 활용도 높이고 자급기반 넓힌다",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34600",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농촌진흥청, 여름철 논 재배에 최적화된 풀사료 작물 '사료피' 신품종 개발",
+        "재배 기술 및 종자 보급 기반 마련을 통해 국내 풀사료 자급률 제고 기대"
+      ],
+      "keywords": [
+        "사료피"
+      ],
+      "kw_cats": {
+        "사료피": "ingredient"
+      },
+      "date": "2026-07-22T05:00:00+00:00"
+    },
+    {
+      "id": "0712175a109c",
+      "title": "한식세미나 '냉면의 과거와 미래' 8월 12일",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119474",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농림축산식품부와 한식진흥원이 '제2차 한식 세미나 냉면의 과거와 미래' 개최",
+        "조선후기 물냉면의 기원부터 일제강점기 평양냉면의 서울 정착 과정 등 식문화사 조명"
+      ],
+      "keywords": [
+        "냉면"
+      ],
+      "kw_cats": {
+        "냉면": "food_cat"
+      },
+      "date": "2026-07-22T04:27:38+00:00"
+    },
+    {
+      "id": "815e99f67a3b",
+      "title": "[신상품] 롯데웰푸드 ‘젤리 먹은 죠스바·스크류바’ 대상 ‘두툼 한돈 김치찌개’ 외",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119473",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "롯데웰푸드, 아이스크림 속에 젤리를 넣은 '젤리 먹은 죠스바·스크류바' 출시",
+        "아삭한 빙과와 쫀득한 젤리의 식감을 결합한 '겉아속쫀' 반전 구조 구현"
+      ],
+      "keywords": [
+        "죠스바",
+        "스크류바",
+        "젤리",
+        "아이스크림",
+        "식감"
+      ],
+      "kw_cats": {
+        "죠스바": "brand",
+        "스크류바": "brand",
+        "젤리": "ingredient",
+        "아이스크림": "food_cat",
+        "식감": "trend"
+      },
+      "date": "2026-07-22T04:27:38+00:00"
+    },
+    {
+      "id": "21bceae387e8",
+      "title": "aT, 국산 밀·콩·가루쌀 등 단체급식 판로 개척 나서",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119472",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농식품부와 aT가 국산 밀·콩·가루쌀의 단체급식 판로 확대를 위한 홍보관 운영",
+        "국산 원료를 활용한 가공식품 전시 및 급식 메뉴 제안을 통해 식재료 구매 활성화 도모"
+      ],
+      "keywords": [
+        "국산 밀",
+        "국산 콩",
+        "가루쌀",
+        "단체급식"
+      ],
+      "kw_cats": {
+        "국산 밀": "ingredient",
+        "국산 콩": "ingredient",
+        "가루쌀": "ingredient",
+        "단체급식": "trend"
+      },
+      "date": "2026-07-22T04:27:38+00:00"
+    },
+    {
+      "id": "bd0a52f42fff",
+      "title": "[현장] ‘건강한 미래를 설계하는 영양사’…전국영양사학술대회 개막",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119471",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "대한영양사협회 주최 '2026년도 전국영양사학술대회' 개최",
+        "영양사의 역할 재조명 및 미래 사회를 위한 영양 서비스 방향성 모색"
+      ],
+      "keywords": [
+        "건강"
+      ],
+      "kw_cats": {
+        "건강": "trend"
+      },
+      "date": "2026-07-22T04:27:38+00:00"
+    },
+    {
+      "id": "36ca951ff0c6",
+      "title": "농식품부·aT, 2026 식품·기기 전시회서 전략작물 홍보관 운영",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206567",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농식품부와 aT가 국산 전략작물(밀, 콩, 가루쌀) 소비 확대를 위한 홍보관 운영",
+        "정부의 전략작물 육성 정책을 단체급식 시장으로 본격 확산"
+      ],
+      "keywords": [
+        "밀",
+        "콩",
+        "가루쌀",
+        "단체급식"
+      ],
+      "kw_cats": {
+        "밀": "ingredient",
+        "콩": "ingredient",
+        "가루쌀": "ingredient",
+        "단체급식": "trend"
+      },
+      "date": "2026-07-22T04:25:47+00:00"
+    },
+    {
+      "id": "a8103aaa58fb",
+      "title": "[포토] 신용한 충북도지사 \"소상공인 체감할 수 있는 지원 추진\"",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206568",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "충북도지사가 결식 우려 아동에게 무료 식사를 제공하는 소상공인 현장을 방문해 격려",
+        "소상공인의 경영 애로사항을 청취하고 실질적인 지원 정책 추진 의지 표명"
+      ],
+      "keywords": [
+        "피슈마라홍탕"
+      ],
+      "kw_cats": {
+        "피슈마라홍탕": "brand"
+      },
+      "date": "2026-07-22T04:21:01+00:00"
+    },
+    {
+      "id": "3523147b88c0",
+      "title": "“참신한 급식 면요리 찾는다”…면사랑, 영양사 요리대회 참가 모집",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206566",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "면사랑, 급식 현장 맞춤형 면요리 레시피 발굴을 위한 '제2회 면사랑 영양사 요리대회' 개최",
+        "자사 제품을 활용한 참신한 급식 메뉴 개발 및 B2B 시장 내 브랜드 영향력 확대"
+      ],
+      "keywords": [
+        "면사랑",
+        "급식",
+        "면요리"
+      ],
+      "kw_cats": {
+        "면사랑": "brand",
+        "급식": "trend",
+        "면요리": "food_cat"
+      },
+      "date": "2026-07-22T03:40:57+00:00"
+    },
+    {
+      "id": "7e69ff9441c9",
+      "title": "국산밀·콩·가루쌀, 단체급식 시장 공략…aT, 소비 확대 본격화",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34601",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "정부와 aT가 국산 밀·콩·가루쌀의 단체급식 시장 진입을 위한 전략적 마케팅 추진",
+        "영양사 대상 조리 적합성 체험 및 식재료 발주 연계로 국산 전략작물 소비 확대 도모"
+      ],
+      "keywords": [
+        "국산밀",
+        "콩",
+        "가루쌀",
+        "단체급식"
+      ],
+      "kw_cats": {
+        "국산밀": "ingredient",
+        "콩": "ingredient",
+        "가루쌀": "ingredient",
+        "단체급식": "trend"
+      },
+      "date": "2026-07-22T03:07:00+00:00"
+    },
+    {
+      "id": "1d706b7d8cdb",
+      "title": "롯데칠성음료, 삼성웰스토리 손잡고 직장인 타깃 ‘오트몬드’ 팝업스토어 가동",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200844",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "롯데칠성음료가 삼성웰스토리와 협업하여 주요 기업 구내식당에서 '오트몬드' 팝업스토어 운영",
+        "바쁜 직장인을 타깃으로 식사 대용 음료로서의 제품 경험 확대 및 브랜드 인지도 제고"
+      ],
+      "keywords": [
+        "오트몬드",
+        "귀리",
+        "식사 대용",
+        "롯데칠성음료",
+        "삼성웰스토리"
+      ],
+      "kw_cats": {
+        "오트몬드": "food_cat",
+        "귀리": "ingredient",
+        "식사 대용": "trend",
+        "롯데칠성음료": "brand",
+        "삼성웰스토리": "brand"
+      },
+      "date": "2026-07-22T02:50:14+00:00"
+    },
+    {
+      "id": "33fb5c63cc7d",
+      "title": "서울우유, 파우치형 ‘파머스그릭 블루베리’ 출시…휴대성 강화",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206565",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "서울우유, 파우치형 그릭요거트 '파머스그릭 후레쉬 블루베리' 출시",
+        "바쁜 일상 속 간편한 섭취를 선호하는 '온 더 고(On the go)' 소비 트렌드 반영"
+      ],
+      "keywords": [
+        "그릭요거트",
+        "블루베리",
+        "온 더 고",
+        "서울우유"
+      ],
+      "kw_cats": {
+        "그릭요거트": "food_cat",
+        "블루베리": "ingredient",
+        "온 더 고": "trend",
+        "서울우유": "brand"
+      },
+      "date": "2026-07-22T02:50:05+00:00"
+    },
+    {
+      "id": "89e1329ed6d0",
+      "title": "\"해외직구 젤리·음료에 마약이?\"…식약처, 22개 제품 국내 반입 차단",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34599",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "식약처, 해외직구 식품 대상 첫 마약류 기획검사 실시",
+        "젤리·음료 등 32개 제품 중 22개에서 마약류 성분 검출 및 반입 차단"
+      ],
+      "keywords": [
+        "젤리",
+        "음료",
+        "대마성분",
+        "임시마약류"
+      ],
+      "kw_cats": {
+        "젤리": "food_cat",
+        "음료": "food_cat",
+        "대마성분": "ingredient",
+        "임시마약류": "ingredient"
+      },
+      "date": "2026-07-22T02:37:00+00:00"
+    },
+    {
+      "id": "40e6c1d3d74b",
+      "title": "맥도날드, 한국의 맛 ‘홍천 우리쌀 칩’ 출시",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68289",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "맥도날드, 강원도 홍천 쌀을 활용한 신메뉴 '홍천 우리쌀 칩' 상시 판매",
+        "백미와 현미를 사용한 스낵으로 버거 세트 및 사이드 메뉴로 선택 가능"
+      ],
+      "keywords": [
+        "홍천 우리쌀 칩",
+        "쌀",
+        "맥도날드"
+      ],
+      "kw_cats": {
+        "홍천 우리쌀 칩": "food_cat",
+        "쌀": "ingredient",
+        "맥도날드": "brand"
+      },
+      "date": "2026-07-22T02:34:00+00:00"
+    },
+    {
+      "id": "766c2557787c",
+      "title": "22개 해외직구식품에 마약류 성분이…국내 반입 차단",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119470",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "해외직구 식품 22개 제품에서 대마 등 마약류 성분 검출",
+        "식약처, 수입식품안전관리 특별법에 의거해 해당 제품 국내 반입 차단 조치"
+      ],
+      "keywords": [
+        "젤리",
+        "음료",
+        "대마",
+        "마약류 성분"
+      ],
+      "kw_cats": {
+        "젤리": "food_cat",
+        "음료": "food_cat",
+        "대마": "ingredient",
+        "마약류 성분": "ingredient"
+      },
+      "date": "2026-07-22T02:27:39+00:00"
+    },
+    {
+      "id": "daf5e03a1ba8",
+      "title": "농진원-LG생활건강, 천연물 기반 뷰티소재 사업화 지원",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119469",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "농진원과 LG생활건강이 천연물 기반 뷰티·식품 소재 사업화 지원 프로그램 참여기업 모집",
+        "농식품 분야 유망기업과 대기업 간 기술 협력을 통한 신규 사업 기회 발굴"
+      ],
+      "keywords": [
+        "LG생활건강",
+        "천연물 소재"
+      ],
+      "kw_cats": {
+        "LG생활건강": "brand",
+        "천연물 소재": "ingredient"
+      },
+      "date": "2026-07-22T02:27:39+00:00"
+    },
+    {
+      "id": "fefe3efad1fa",
+      "title": "매일유업, 두유 등 8종 美 올리브영 입점",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119468",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "매일유업 대표 제품 8종, 미국 올리브영 온라인몰 및 패서디나점 입점",
+        "K-뷰티에서 K-웰니스로 확장되는 미국 내 소비 트렌드 공략"
+      ],
+      "keywords": [
+        "매일두유",
+        "피크닉",
+        "셀렉스",
+        "고단백",
+        "콜라겐"
+      ],
+      "kw_cats": {
+        "매일두유": "food_cat",
+        "피크닉": "food_cat",
+        "셀렉스": "brand",
+        "고단백": "trend",
+        "콜라겐": "ingredient",
+        "올리브영": "brand"
+      },
+      "date": "2026-07-22T02:27:39+00:00"
+    },
+    {
+      "id": "917d8261c9ec",
+      "title": "동원F&B, 서경덕 교수와 글로벌 시장에 ‘김’ 가치 알린다",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119467",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "동원F&B, 서경덕 교수와 협업해 김의 역사와 가치를 알리는 다국어 영상 콘텐츠 제작",
+        "역사·문화·글로벌 3편의 시리즈를 통해 K-푸드로서 김의 위상과 영양학적 가치 홍보"
+      ],
+      "keywords": [
+        "동원F&B",
+        "김"
+      ],
+      "kw_cats": {
+        "동원F&B": "brand",
+        "김": "ingredient"
+      },
+      "date": "2026-07-22T02:27:39+00:00"
+    },
+    {
+      "id": "8cc570e81d39",
+      "title": "롯데칠성, 삼성웰스토리와 협업…직장인 영양 챙긴다",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119466",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "롯데칠성음료가 삼성웰스토리와 협업하여 구내식당 내 '오트몬드' 팝업스토어 운영",
+        "직장인 대상 식사 대용 음료로서의 브랜드 경험 확대 및 접점 강화"
+      ],
+      "keywords": [
+        "오트몬드",
+        "귀리",
+        "식사 대용",
+        "롯데칠성음료",
+        "삼성웰스토리"
+      ],
+      "kw_cats": {
+        "오트몬드": "food_cat",
+        "귀리": "ingredient",
+        "식사 대용": "trend",
+        "롯데칠성음료": "brand",
+        "삼성웰스토리": "brand"
+      },
+      "date": "2026-07-22T02:27:39+00:00"
+    },
+    {
+      "id": "70a97af8cd43",
+      "title": "해외직구 젤리·음료 22개서 마약류 검출…식약처, 국내 반입 차단",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206563",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "해외직구 식품 32개 제품 검사 결과, 22개 제품에서 마약류 성분 검출",
+        "식약처, 마약류 함유 의심 해외직구 식품에 대한 국내 반입 차단 조치"
+      ],
+      "keywords": [
+        "젤리",
+        "음료",
+        "대마",
+        "메셈브린",
+        "미트라지닌"
+      ],
+      "kw_cats": {
+        "젤리": "food_cat",
+        "음료": "food_cat",
+        "대마": "ingredient",
+        "메셈브린": "ingredient",
+        "미트라지닌": "ingredient"
+      },
+      "date": "2026-07-22T02:17:02+00:00"
+    },
+    {
+      "id": "640d429f8c76",
+      "title": "한돈자조금, 한돈케이크 인증점 2기 모집",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68287",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "한돈자조금, 한돈케이크 판매 확대를 위한 2기 인증점 모집",
+        "전국 정육점 및 육가공 전문점 대상 소비자 접점 확대 전략"
+      ],
+      "keywords": [
+        "한돈케이크",
+        "한돈자조금"
+      ],
+      "kw_cats": {
+        "한돈케이크": "food_cat",
+        "한돈자조금": "brand"
+      },
+      "date": "2026-07-22T02:16:00+00:00"
+    },
+    {
+      "id": "2eb1df78bc37",
+      "title": "한국프랜차이즈協, 프랜차이즈 산업의 AX 전략과 방향 수립 포럼 개최",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34597",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "한국프랜차이즈산업협회, 프랜차이즈 산업의 AX(AI 전환) 전략 수립을 위한 포럼 개최",
+        "단순 기술 도입을 넘어 데이터 자산 확보, 법·제도 정비 등 체계적인 AX 전략 필요성 강조"
+      ],
+      "keywords": [
+        "한국프랜차이즈산업협회",
+        "AI"
+      ],
+      "kw_cats": {
+        "한국프랜차이즈산업협회": "brand",
+        "AI": "trend"
+      },
+      "date": "2026-07-22T02:14:56+00:00"
+    },
+    {
+      "id": "d765f2622b08",
+      "title": "신송식품, K-소스.장류로 동남아 시장 본격 공략...말레이시아 식음료 박람회 참가",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206564",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "신송식품, 말레이시아 국제 식음료 박람회 참가",
+        "한국 전통 장류 및 K-소스 활용 동남아 시장 공략 본격화"
+      ],
+      "keywords": [
+        "신송식품",
+        "장류",
+        "K-소스"
+      ],
+      "kw_cats": {
+        "신송식품": "brand",
+        "장류": "ingredient",
+        "K-소스": "food_cat"
+      },
+      "date": "2026-07-22T02:13:44+00:00"
+    },
+    {
+      "id": "bc20e9735245",
+      "title": "한식진흥원-주한콜롬비아대사관, 특별전 ‘옥수수 로드: 옥수수로 잇는 두 나라의 음식 이야기‘ 개막",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34595",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "한식진흥원과 주한콜롬비아대사관이 '옥수수'를 주제로 한 특별전 개최",
+        "아메리카 대륙에서 한반도로 이어진 옥수수의 식문화 이동 경로와 역사적 의미 조명"
+      ],
+      "keywords": [
+        "옥수수",
+        "한식진흥원"
+      ],
+      "kw_cats": {
+        "옥수수": "ingredient",
+        "한식진흥원": "brand"
+      },
+      "date": "2026-07-22T02:04:59+00:00"
+    },
+    {
+      "id": "ad06d48fe322",
+      "title": "벼, 온실가스 늘자 키 자라고 알곡 줄었다… 기후변화가 바꿀 ‘미래 쌀농사’",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34596",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "기후변화로 인한 기온 상승과 이산화탄소 농도 증가가 벼의 생육 속도는 높이나 수량과 품질은 저하시킴",
+        "농촌진흥청의 미래 기후 모의 시험 결과, 쌀 생산성 변화에 따른 농업 대응 전략 마련 필요"
+      ],
+      "keywords": [
+        "쌀",
+        "기후변화"
+      ],
+      "kw_cats": {
+        "쌀": "ingredient",
+        "기후변화": "trend"
+      },
+      "date": "2026-07-22T02:00:00+00:00"
+    },
+    {
+      "id": "2468ab7e41e1",
+      "title": "하이트진로, ‘후지(FUJI) 위스키’ 2026 바앤스피릿쇼 첫 참가...체험형 부스 운영",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206562",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "하이트진로가 유통하는 일본 '후지(FUJI)' 위스키가 '2026 바앤스피릿쇼'에 첫 참가",
+        "체험형 부스 운영을 통해 국내 소비자 접점 확대 및 브랜드 인지도 강화"
+      ],
+      "keywords": [
+        "하이트진로",
+        "후지 위스키",
+        "홈술"
+      ],
+      "kw_cats": {
+        "하이트진로": "brand",
+        "후지 위스키": "brand",
+        "홈술": "trend"
+      },
+      "date": "2026-07-22T01:35:11+00:00"
+    },
+    {
+      "id": "e1e034313227",
+      "title": "한식진흥원, 주한콜롬비아대사관과 특별전 개최",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68286",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "한식진흥원과 주한콜롬비아대사관이 ‘옥수수’를 주제로 한식문화공간 ‘이음’에서 특별전 개최",
+        "옥수수의 식문화 이동 경로를 통해 한국과 콜롬비아 양국의 역사와 정체성을 조명"
+      ],
+      "keywords": [
+        "옥수수",
+        "한식진흥원",
+        "주한콜롬비아대사관"
+      ],
+      "kw_cats": {
+        "옥수수": "ingredient",
+        "한식진흥원": "brand",
+        "주한콜롬비아대사관": "brand"
+      },
+      "date": "2026-07-22T01:34:00+00:00"
+    },
+    {
+      "id": "efeaf5eef7e7",
+      "title": "농관원 전남지원, 휴가철 축산물 원산지 위반 19건 적발",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206559",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농관원 전남지원, 여름 휴가철 대비 축산물 원산지 표시 위반 집중 단속 실시",
+        "축산물 판매업소 및 피서지 주변 음식점 대상 원산지 허위 표시 등 불법 행위 점검"
+      ],
+      "keywords": [
+        "축산물",
+        "전남지원",
+        "농관원",
+        "휴가철",
+        "원산지"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-22T01:33:34+00:00"
+    },
+    {
+      "id": "6b33b6a1866d",
+      "title": "김치유산균 ‘33도 생존’ 비밀 풀렸다…수출 품질 표준화 기대",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206557",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": [
+        "김치 유산균의 온도 적응 메커니즘을 분자 수준에서 최초 규명",
+        "유산균 생존 기술 확보를 통한 김치 수출 품질 표준화 및 경쟁력 강화 기대"
+      ],
+      "keywords": [
+        "김치유산균",
+        "발효기술"
+      ],
+      "kw_cats": {
+        "김치유산균": "ingredient",
+        "발효기술": "trend"
+      },
+      "date": "2026-07-22T01:30:41+00:00"
+    },
+    {
+      "id": "8b8d4b274f0e",
+      "title": "여름방학 아이 집밥 고민…한우자조금, ‘차돌 들깨탕’ 레시피 제안",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206552",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "여름방학 기간 성장기 자녀를 둔 가정을 타깃으로 한우 소비 촉진 활동 전개",
+        "입맛이 떨어지기 쉬운 여름철, 영양과 맛을 고려한 '차돌 들깨탕' 레시피 제안"
+      ],
+      "keywords": [
+        "한우",
+        "집밥",
+        "한우자조금"
+      ],
+      "kw_cats": {
+        "한우": "ingredient",
+        "집밥": "trend",
+        "한우자조금": "brand"
+      },
+      "date": "2026-07-22T01:28:04+00:00"
+    },
+    {
+      "id": "d5d812451503",
+      "title": "농협, ‘복숭아데이’ 할인…국산 복숭아 최대 30% 저렴하게",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206561",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "농협경제지주, 7월 25일부터 29일까지 전국 하나로마트 등에서 '복숭아데이' 할인 행사 진행",
+        "제철 국산 복숭아 소비 촉진을 위해 최대 30% 할인 판매"
+      ],
+      "keywords": [
+        "복숭아",
+        "농협"
+      ],
+      "kw_cats": {
+        "복숭아": "ingredient",
+        "농협": "brand"
+      },
+      "date": "2026-07-22T01:26:04+00:00"
+    },
+    {
+      "id": "123ffff87139",
+      "title": "롯데칠성, 삼성웰스토리와 구내식당서 ‘오트몬드 팝업스토어’ 오픈",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=206560",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "롯데칠성음료, 삼성웰스토리와 협업해 구내식당 내 '오트몬드' 팝업스토어 운영",
+        "직장인 대상 체험형 마케팅을 통해 식물성 음료 소비자 접점 확대"
+      ],
+      "keywords": [
+        "오트몬드",
+        "롯데칠성음료",
+        "삼성웰스토리",
+        "식물성 음료",
+        "귀리"
+      ],
+      "kw_cats": {
+        "오트몬드": "brand",
+        "롯데칠성음료": "brand",
+        "삼성웰스토리": "brand",
+        "식물성 음료": "food_cat",
+        "귀리": "ingredient"
+      },
+      "date": "2026-07-22T01:21:03+00:00"
+    },
+    {
+      "id": "54e92ace7da1",
+      "title": "hy 중앙연구소, 과기부 ‘최우수 기업부설연구소’ 선정",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119465",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "hy 중앙연구소, 과학기술정보통신부 주관 '2026년도 상반기 우수 기업부설연구소' 최우수 등급 선정",
+        "소재 발굴부터 제품화까지의 통합 개발 체계와 연구 경쟁력을 인정받아 3년간 우수 연구소 지위 획득"
+      ],
+      "keywords": [
+        "hy"
+      ],
+      "kw_cats": {
+        "hy": "brand"
+      },
+      "date": "2026-07-22T01:06:45+00:00"
+    },
+    {
+      "id": "b1324cebf19b",
+      "title": "풀무원기술원, 국가 산업기술 발전 기여 부총리 표창",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119464",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "풀무원기술원, 과학기술정보통신부 주최 '2026년 상반기 우수 기업부설연구소' 부총리 표창 수상",
+        "국내 식품업계 최초 '최우수 기업부설연구소' 선정에 이은 R&D 역량 및 기술력 대외 인정"
+      ],
+      "keywords": [
+        "풀무원"
+      ],
+      "kw_cats": {
+        "풀무원": "brand"
+      },
+      "date": "2026-07-22T01:06:45+00:00"
+    },
+    {
+      "id": "7276a1a2c624",
+      "title": "식약처, ‘한국형 정밀영양’ 모델 만든다",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119463",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "식약처, 개인별 생물학적 특성과 생활 환경을 고려한 '한국형 정밀영양' 모델 구축 추진",
+        "정밀영양 안전관리 기반 연구 성과 공유 및 향후 영양 정책 개선 방안 논의"
+      ],
+      "keywords": [
+        "정밀영양"
+      ],
+      "kw_cats": {
+        "정밀영양": "trend"
+      },
+      "date": "2026-07-22T01:06:45+00:00"
+    },
+    {
+      "id": "bcca88eaa205",
+      "title": "EU 식품포장재 규제대응 분석기술 설명회, 22일부터 3개 권역서 개최",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119462",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "식약처, EU 식품포장재 규제 대응을 위한 분석기술 설명회 개최",
+        "9월 시행되는 EU 식품접촉 플라스틱 규정에 따른 국내 수출기업 대응 역량 강화"
+      ],
+      "keywords": [
+        "식품포장재",
+        "EU 규제"
+      ],
+      "kw_cats": {
+        "식품포장재": "trend",
+        "EU 규제": "trend"
+      },
+      "date": "2026-07-22T01:06:45+00:00"
+    },
+    {
+      "id": "7eb12b574450",
+      "title": "온라인 장보기 시대, 식품유통시장의 경계는 어디까지인가",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119461",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "하림그룹 계열사 NS쇼핑의 홈플러스 익스프레스 영업양수 승인",
+        "공정거래위원회의 기업결합 심사 및 유통시장 경쟁압력 분석"
+      ],
+      "keywords": [
+        "하림",
+        "NS쇼핑",
+        "홈플러스 익스프레스"
+      ],
+      "kw_cats": {
+        "하림": "brand",
+        "NS쇼핑": "brand",
+        "홈플러스 익스프레스": "brand"
+      },
+      "date": "2026-07-22T01:06:45+00:00"
+    },
+    {
+      "id": "70570b99e860",
+      "title": "[화담산책] 선택, 삶의 방향을 결정하는 의지의 항해",
+      "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119460",
+      "source": "식품저널",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "화담숲의 브랜드 철학을 담은 에세이 형태의 콘텐츠",
+        "선택과 의지를 주제로 한 브랜드 가치 전달"
+      ],
+      "keywords": [
+        "선택",
+        "삶의",
+        "화담산책",
+        "방향",
+        "결정하"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-22T01:06:45+00:00"
+    },
+    {
+      "id": "f4ad6bf1e606",
+      "title": "식약처, EU 식품포장재 규제 대응 권역별 설명회 개최",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200846",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "식약처, EU의 식품접촉 플라스틱 규제(Regulation (EU) 2025/351) 대응 설명회 개최",
+        "국내 식품 및 포장재 수출기업의 규제 대응 역량 강화 및 안전관리 지원"
+      ],
+      "keywords": [
+        "식품포장재"
+      ],
+      "kw_cats": {
+        "식품포장재": "ingredient"
+      },
+      "date": "2026-07-22T01:05:32+00:00"
+    },
+    {
+      "id": "7845ec06c14a",
+      "title": "\"김치 맛은 균주가 좌우\"…세계김치연구소, 유산균 '온도 적응' 비밀 풀었다",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34592",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": [
+        "김치 유산균의 온도 적응 메커니즘 규명",
+        "발효 환경 최적화 및 김치 품질 관리 과학적 기반 마련"
+      ],
+      "keywords": [
+        "김치유산균",
+        "와이셀라 코리엔시스",
+        "세계김치연구소"
+      ],
+      "kw_cats": {
+        "김치유산균": "ingredient",
+        "와이셀라 코리엔시스": "ingredient",
+        "세계김치연구소": "brand"
+      },
+      "date": "2026-07-22T01:05:00+00:00"
+    },
+    {
+      "id": "e3142fe1bda2",
+      "title": "매일유업, ‘K-웰니스’ 앞세워 북미 영토 확장… 미 올리브영 온·오프라인 8종 입점",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200845",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "매일유업, 북미 시장 공략을 위해 올리브영 미국 온·오프라인 채널 입점",
+        "저당·고단백 두유 및 과일 음료 등 'K-웰니스' 제품군을 앞세워 현지 식문화 공략"
+      ],
+      "keywords": [
+        "매일유업",
+        "매일두유",
+        "피크닉",
+        "고단백",
+        "저당"
+      ],
+      "kw_cats": {
+        "매일유업": "brand",
+        "매일두유": "food_cat",
+        "피크닉": "food_cat",
+        "고단백": "trend",
+        "저당": "trend"
+      },
+      "date": "2026-07-22T01:03:51+00:00"
+    },
+    {
+      "id": "b7ff9d435cc8",
+      "title": "[리얼푸드] 자몽·벌집꿀 올렸어요…설빙 ‘순수요거꿀자몽설빙’",
+      "url": "https://www.realfoods.co.kr/article/10815953",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "설빙, 자몽·귤·요거트 아이스크림·벌집꿀을 활용한 신메뉴 '순수요거꿀자몽설빙' 출시",
+        "설빙 빙수 메뉴 최초로 귤을 활용했으며, 출시 기념 앱 할인 프로모션 진행"
+      ],
+      "keywords": [
+        "설빙",
+        "순수요거꿀자몽설빙",
+        "자몽",
+        "벌집꿀",
+        "귤"
+      ],
+      "kw_cats": {
+        "설빙": "brand",
+        "순수요거꿀자몽설빙": "food_cat",
+        "자몽": "ingredient",
+        "벌집꿀": "ingredient",
+        "귤": "ingredient"
+      },
+      "date": "2026-07-22T00:58:58+00:00"
+    },
+    {
+      "id": "54aaa1c921e3",
+      "title": "세계김치연구소, 유전자 발현 조절서 답 찾았다… 김치유산균 ‘온도 적응력’ 비밀 규명",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200843",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": [
+        "김치유산균의 온도 적응력이 유전자 및 단백질 발현 조절 능력에 의해 결정됨을 세계 최초로 규명",
+        "발효 환경에 최적화된 김치 종균 선발 및 발효 품질 관리의 과학적 기초 마련"
+      ],
+      "keywords": [
+        "김치유산균",
+        "세계김치연구소"
+      ],
+      "kw_cats": {
+        "김치유산균": "ingredient",
+        "세계김치연구소": "brand"
+      },
+      "date": "2026-07-22T00:58:44+00:00"
+    },
+    {
+      "id": "9ba87cce0b2f",
+      "title": "농정원, 양운식 총괄본부장 취임",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200842",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농림수산식품교육문화정보원(농정원) 양운식 총괄본부장 취임",
+        "농식품 정책 전문가로서 농업·농촌 세대전환 및 지속가능 발전 기여 목표"
+      ],
+      "keywords": [
+        "농정원"
+      ],
+      "kw_cats": {
+        "농정원": "brand"
+      },
+      "date": "2026-07-22T00:49:26+00:00"
+    },
+    {
+      "id": "f14f94017982",
+      "title": "[리얼푸드] 성인 10명 중 4명은 ‘당뇨 전 단계’…과일주스도 주의",
+      "url": "https://www.realfoods.co.kr/article/10815926",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "국내 30세 이상 성인 41.1%가 당뇨병 전 단계인 '전당뇨' 상태로 확인됨",
+        "당뇨병 위험 증가에 따라 과일주스 등 당 함량이 높은 음료 섭취에 대한 주의 필요"
+      ],
+      "keywords": [
+        "전당뇨",
+        "과일주스"
+      ],
+      "kw_cats": {
+        "전당뇨": "trend",
+        "과일주스": "food_cat"
+      },
+      "date": "2026-07-22T00:48:07+00:00"
+    },
+    {
+      "id": "fd9765de5d7c",
+      "title": "인천시, 하계 휴가철 특별교통대책 추진…안전하고 편안한 이동 지원!",
+      "url": "http://www.kfoodtimes.com/news/articleView.html?idxno=30440",
+      "source": "한국외식신문",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "인천시, 7월 25일부터 8월 10일까지 하계 휴가철 특별교통대책 추진",
+        "관광지 교통수요 증가에 따른 수송력 강화 및 교통수단 탄력 운영"
+      ],
+      "keywords": [
+        "휴가철",
+        "특별교통대책",
+        "인천시",
+        "하계",
+        "안전하고"
+      ],
+      "kw_cats": {},
+      "date": "2026-07-22T00:43:33+00:00"
+    },
+    {
+      "id": "6d508e25b60d",
+      "title": "[07/22 오늘의 새상품] 대상 청정원 ‘호밍스 두툼 한돈 김치찌개’, 롯데웰푸드 ‘젤리 먹은 죠스바·스크류바’, 맥도날드 ‘홍천 우리쌀 칩’, 서울우유협동조합 ‘파머스그릭 후레쉬 블루베리’, 윌리엄그랜트앤선즈코리아 ‘더 페이머스 그라우스 셰리’, 오비맥주 ‘뉴트럴 레몬’, 버거킹 ‘펜타치즈와퍼’, 이디야커피 ‘더 진한 스페셜 골드블렌드 리치크레마 커피믹",
+      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=200841",
+      "source": "식품음료신문",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "대상 청정원 호밍스, 종가 묵은지와 한돈 앞다리살을 활용한 '두툼 한돈 김치찌개' 출시",
+        "다양한 F&B 브랜드(롯데웰푸드, 맥도날드, 서울우유, 오비맥주, 버거킹, 이디야 등)의 신제품 동시 발표"
+      ],
+      "keywords": [
+        "HMR",
+        "한돈",
+        "김치찌개",
+        "청정원",
+        "롯데웰푸드"
+      ],
+      "kw_cats": {
+        "HMR": "food_cat",
+        "한돈": "ingredient",
+        "김치찌개": "food_cat",
+        "청정원": "brand",
+        "롯데웰푸드": "brand",
+        "맥도날드": "brand",
+        "버거킹": "brand"
+      },
+      "date": "2026-07-22T00:43:19+00:00"
+    },
+    {
+      "id": "15cea6e97717",
+      "title": "매일유업, 미국 올리브영 입점... K-웰니스 제품군으로 북미 공략",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34591",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "매일유업, 미국 올리브영 입점을 통한 북미 시장 공략 본격화",
+        "저당·고단백 등 K-웰니스 컨셉의 대표 제품 8종 미국 현지 판매 시작"
+      ],
+      "keywords": [
+        "매일유업",
+        "올리브영",
+        "고단백",
+        "저당",
+        "매일두유"
+      ],
+      "kw_cats": {
+        "매일유업": "brand",
+        "올리브영": "brand",
+        "고단백": "trend",
+        "저당": "trend",
+        "매일두유": "food_cat"
+      },
+      "date": "2026-07-22T00:42:44+00:00"
+    },
+    {
+      "id": "a532a643dec9",
+      "title": "요아정·오션월드·여행용품…휴가철 할인 일정은",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=384201",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "여름 휴가철을 맞아 외식, 워터파크, 여행용품 등 다양한 분야에서 할인 행사 진행",
+        "요아정, 복날 맞이 '복날의 정석' 메뉴 4종 8,000원 할인 프로모션 실시"
+      ],
+      "keywords": [
+        "요아정",
+        "요거트 아이스크림"
+      ],
+      "kw_cats": {
+        "요아정": "brand",
+        "요거트 아이스크림": "food_cat"
+      },
+      "date": "2026-07-22T00:38:42+00:00"
+    },
+    {
+      "id": "11c6423e79d8",
+      "title": "서울우유협동조합, 편의성 극대화한 ‘파머스그릭 후레쉬 블루베리’ 출시",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68285",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "서울우유, 휴대성과 취식 편의성을 극대화한 파우치형 '파머스그릭 후레쉬 블루베리' 출시",
+        "바쁜 일상 속 간편한 식사를 선호하는 '온 더 고(On the go)' 소비 트렌드 반영"
+      ],
+      "keywords": [
+        "그릭요거트",
+        "블루베리",
+        "온 더 고",
+        "서울우유"
+      ],
+      "kw_cats": {
+        "그릭요거트": "food_cat",
+        "블루베리": "ingredient",
+        "온 더 고": "trend",
+        "서울우유": "brand"
+      },
+      "date": "2026-07-22T00:36:30+00:00"
+    },
+    {
+      "id": "7cb68507bf9e",
+      "title": "[행사] 식약처, EU 식품포장재 규제 대응 위한 분석기술 설명회 개최",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34590",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "식약처, EU의 식품접촉 플라스틱 규정(Regulation (EU) 2025/351) 시행 대비 설명회 개최",
+        "국내 식품 및 포장재 수출 기업의 규제 대응 역량 강화 및 분석기술 지원"
+      ],
+      "keywords": [
+        "EU 식품포장재 규제"
+      ],
+      "kw_cats": {
+        "EU 식품포장재 규제": "trend"
+      },
+      "date": "2026-07-22T00:26:00+00:00"
+    },
+    {
+      "id": "8c421c24114a",
+      "title": "\"한국인 맞춤 영양 시대 연다\"…식약처, 7,500명 빅데이터 기반 '정밀영양' 구축 착수",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34589",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "식약처, 2029년까지 한국인 7,500명 대상 정밀영양 빅데이터 구축 착수",
+        "개인별 식습관·생체정보 기반의 맞춤형 영양관리 모델 및 정책 마련"
+      ],
+      "keywords": [
+        "정밀영양",
+        "맞춤형 영양관리"
+      ],
+      "kw_cats": {
+        "정밀영양": "trend",
+        "맞춤형 영양관리": "trend"
+      },
+      "date": "2026-07-22T00:20:00+00:00"
+    },
     {
       "id": "678bef435bd9",
       "title": "육우자조금, 육군종합군수학교서 특강…군 급식 시장 공략",
@@ -199,6 +3355,52 @@
       "date": "2026-07-22T00:13:36.999343+00:00"
     },
     {
+      "id": "0572b9a7d000",
+      "title": "농진원-LG생활건강, ‘Beauty Tech Greennovation‘ 참여기업 모집",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34588",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "농진원과 LG생활건강이 농식품 천연물 소재와 화장품 기술을 결합하는 오픈 이노베이션 프로그램 추진",
+        "유망 기업의 원료 소재 개발 및 제품 사업화를 지원하는 상생 협력 모델 구축"
+      ],
+      "keywords": [
+        "LG생활건강",
+        "천연물 소재"
+      ],
+      "kw_cats": {
+        "LG생활건강": "brand",
+        "천연물 소재": "ingredient"
+      },
+      "date": "2026-07-22T00:09:00+00:00"
+    },
+    {
+      "id": "74d84a36c766",
+      "title": "BBQ 신메뉴 '필크런치' 광고 2,000만뷰 돌파…글로벌 팬심도 사로잡아",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34587",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "BBQ가 스트레이 키즈 필릭스를 모델로 기용한 신메뉴 '필크런치' 광고 캠페인 진행",
+        "디지털 채널 및 SNS를 통한 바이럴 효과로 광고 누적 조회수 2,000만 회 돌파"
+      ],
+      "keywords": [
+        "BBQ",
+        "필크런치",
+        "스트레이 키즈"
+      ],
+      "kw_cats": {
+        "BBQ": "brand",
+        "필크런치": "food_cat",
+        "스트레이 키즈": "brand"
+      },
+      "date": "2026-07-22T00:04:00+00:00"
+    },
+    {
       "id": "4b1433b0dfc5",
       "title": "한식진흥원, ‘냉면’ 세미나 및 ‘옥수수 로드’ 특별전 개최",
       "url": "https://www.foodtoday.or.kr/news/article.html?no=206547",
@@ -243,6 +3445,32 @@
         "식품영양성분": "ingredient"
       },
       "date": "2026-07-22T00:02:07+00:00"
+    },
+    {
+      "id": "96b3fb9d23a8",
+      "title": "[업계단신] 사조푸디스트X오뚜기, 급식 고객 위한 ‘팝업키친’ 성료/동원F&B, 서경덕 교수와 ‘김(Gim)의 가치’ 세계에 알린다",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=34593",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "사조푸디스트와 오뚜기가 협업하여 급식 고객사를 위한 '팝업키친' 프로그램 진행",
+        "헬시플레저 트렌드를 반영한 건강한 급식 메뉴 및 식단 경험 제공"
+      ],
+      "keywords": [
+        "사조푸디스트",
+        "오뚜기",
+        "헬시플레저",
+        "급식"
+      ],
+      "kw_cats": {
+        "사조푸디스트": "brand",
+        "오뚜기": "brand",
+        "헬시플레저": "trend",
+        "급식": "trend"
+      },
+      "date": "2026-07-22T00:00:00+00:00"
     },
     {
       "id": "9058dfb0b8b3",
@@ -706,6 +3934,132 @@
         "Utz Brands": "brand",
         "Intersnack": "brand",
         "스낵": "food_cat"
+      },
+      "date": "2026-07-21T15:00:00+00:00"
+    },
+    {
+      "id": "ca86233b5e9e",
+      "title": "엄마들이 2000만번 집어 들었다…아기 간식 시장 휩쓴 '떡뻥'",
+      "url": "https://www.hankyung.com/article/202607228452i",
+      "source": "한국경제 F&B",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "아기 간식 시장에서 '떡뻥'이 2000만 개 이상의 판매고를 올리며 압도적인 인기를 구가함",
+        "안전한 원재료와 건강한 간식을 선호하는 육아 트렌드가 시장 성장을 견인함"
+      ],
+      "keywords": [
+        "떡뻥",
+        "아기 간식"
+      ],
+      "kw_cats": {
+        "떡뻥": "food_cat",
+        "아기 간식": "trend"
+      },
+      "date": "2026-07-21T15:00:00+00:00"
+    },
+    {
+      "id": "d9a9927f7a54",
+      "title": "[EU] 식품용 유리병에 대한 EU 중금속 기준 및 시험검사",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=105929&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "EU의 식품용 유리병 내 중금속 함유량에 대한 규제 및 시험검사 기준 안내",
+        "식품 안전성 확보를 위한 유리 용기 관련 법적 준수 사항 및 관리 지침"
+      ],
+      "keywords": [
+        "유리병"
+      ],
+      "kw_cats": {
+        "유리병": "ingredient"
+      },
+      "date": "2026-07-21T15:00:00+00:00"
+    },
+    {
+      "id": "a4d17eadcac6",
+      "title": "[인도] 인도 식품 가공 산업, 가치 중심 성장으로 6천억 달러 도약 전망",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=105928&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "인도 식품 가공 산업이 가치 중심 성장을 통해 6천억 달러 규모로 성장할 전망",
+        "인도 시장의 식품 가공 산업 확대에 따른 글로벌 F&B 시장의 성장 잠재력 확인"
+      ],
+      "keywords": [
+        "식품 가공 산업",
+        "인도 시장"
+      ],
+      "kw_cats": {
+        "식품 가공 산업": "trend",
+        "인도 시장": "trend"
+      },
+      "date": "2026-07-21T15:00:00+00:00"
+    },
+    {
+      "id": "edf39674aa68",
+      "title": "[일본] 올여름 수박주스 열풍",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=105927&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "일본 내 여름 시즌 수박주스 수요 급증",
+        "계절성 음료로서 수박주스의 시장 내 인기 확인"
+      ],
+      "keywords": [
+        "수박주스",
+        "여름 시즌"
+      ],
+      "kw_cats": {
+        "수박주스": "food_cat",
+        "여름 시즌": "trend"
+      },
+      "date": "2026-07-21T15:00:00+00:00"
+    },
+    {
+      "id": "1f8ebc05421b",
+      "title": "[일본] 미니토마토 수확 로봇 개발",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=105926&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "일본에서 미니토마토 수확 자동화 로봇 개발",
+        "농업 생산성 향상 및 인력난 해소를 위한 기술 도입"
+      ],
+      "keywords": [
+        "미니토마토"
+      ],
+      "kw_cats": {
+        "미니토마토": "ingredient"
+      },
+      "date": "2026-07-21T15:00:00+00:00"
+    },
+    {
+      "id": "ff1f528a7a92",
+      "title": "[UAE] 호르무즈 우회 푸자이라(Fujairah) 신항만 건설 협상 추진",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=105925&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "UAE, 호르무즈 해협을 우회하는 푸자이라 신항만 건설 협상 추진",
+        "물류 안정성 확보를 위한 인프라 투자 및 공급망 전략 변화"
+      ],
+      "keywords": [
+        "UAE"
+      ],
+      "kw_cats": {
+        "UAE": "brand"
       },
       "date": "2026-07-21T15:00:00+00:00"
     },
@@ -9506,6 +12860,32 @@
         "빼빼로": "food_cat"
       },
       "date": "2026-07-16T07:35:01+00:00"
+    },
+    {
+      "id": "0c2a5b135ab0",
+      "title": "\"건강한 먹거리 수집 재미 더해\"…세븐일레븐, '요즘그릭요거트·헬로키티마그넷' 출시 - 파이낸셜포스트",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFAyanZ3R3dYZHBoVEJUS3VMRWtOTzlaUmRIZENBUmtzUTg5bkcxSHNBR3phN0xfUGpaaERVdVRwdm4zUlE5N25scHg5ZWY5SmFFaFpndW9La1c2bUVEMGpqR1ZiTGFOU0tENHprLVlycWxyWTct?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐, 건강 트렌드를 반영한 '요즘그릭요거트' 출시",
+        "헬로키티 마그넷을 동봉하여 수집 욕구를 자극하는 굿즈 마케팅 전개"
+      ],
+      "keywords": [
+        "그릭요거트",
+        "세븐일레븐",
+        "헬로키티",
+        "수집"
+      ],
+      "kw_cats": {
+        "그릭요거트": "food_cat",
+        "세븐일레븐": "brand",
+        "헬로키티": "brand",
+        "수집": "trend"
+      },
+      "date": "2026-07-16T07:30:49+00:00"
     },
     {
       "id": "b2213fa0edca",
