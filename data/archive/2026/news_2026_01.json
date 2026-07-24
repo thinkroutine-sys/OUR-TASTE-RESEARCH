@@ -1,7 +1,31 @@
 {
-  "updated": "2026-07-23T00:37:45.533940+00:00",
-  "total": 9,
+  "updated": "2026-07-24T00:38:12.412201+00:00",
+  "total": 11,
   "articles": [
+    {
+      "id": "17d71208f9b8",
+      "title": "세븐일레븐, 파스퇴르 손잡고 '더블크림빅슈' 출시…프리미엄 편의점 디저트 강화 - 신아일보",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFB1cDZXclJvaDdYMjFVVVAzN2lGcnZhZ2RqWm02YUt3bXE3WEhGRDhoSWsxX3VONzc1WUNUMzkxbkgxc3drcGtpdDZraVU0aFFjMFVWT29LMDlkZHlxbFYzX2laYlh1TXJkdG1mQ2pTQmY?oc=5",
+      "source": "편의점 신제품",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐이 파스퇴르와 협업하여 '더블크림빅슈' 신제품 출시",
+        "편의점 디저트 라인업 강화를 통한 프리미엄 디저트 시장 공략"
+      ],
+      "keywords": [
+        "더블크림빅슈",
+        "세븐일레븐",
+        "파스퇴르"
+      ],
+      "kw_cats": {
+        "더블크림빅슈": "food_cat",
+        "세븐일레븐": "brand",
+        "파스퇴르": "brand"
+      },
+      "date": "2026-01-31T08:00:00+00:00"
+    },
     {
       "id": "517d59dc85f3",
       "title": "세븐일레븐, ‘이나피스퀘어’ 콜라보 스낵 신제품 출시 - 스마트투데이",
@@ -36,7 +60,7 @@
       "is_cvs": false,
       "summary": [
         "두바이 초콜릿, 쫀득한 식감, 쿠키를 결합한 '두쫀쿠' 디저트 열풍",
-        "유통업계가 소비자 트렌드를 반영한 관련 신제품을 잇달아 출시"
+        "유통업계의 두쫀쿠 트렌드 반영 신제품 출시 가속화"
       ],
       "keywords": [
         "두쫀쿠",
@@ -139,7 +163,7 @@
       "is_cvs": true,
       "summary": [
         "두바이 초콜릿, 쫀득한 쿠키 등 '두쫀쿠' 조합이 디저트 시장의 핵심 트렌드로 부상",
-        "카페와 편의점을 중심으로 관련 신제품 출시가 봇물을 이루며 소비자 수요를 견인"
+        "카페 및 편의점 업계에서 관련 신제품 출시가 봇물을 이루며 소비자 수요를 공략 중"
       ],
       "keywords": [
         "두바이 초콜릿",
@@ -222,6 +246,30 @@
         "편의점": "brand"
       },
       "date": "2026-01-05T08:00:00+00:00"
+    },
+    {
+      "id": "e557e79d04cd",
+      "title": "세븐일레븐, 다이어트족 위한 '파우치형 단백질쉐이크' 2종 출시 - 더게이트",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1OcjYybHNiOUU0QldnQUllVGJtb0VpOE1iR2NVSVhaU1BPN0Jjczl5eHNYMlp3ZGE1TXpZMWN1TXZIVjVaZWVYZU95N1lJaTVVaEhGeTgwamJ1ZjJUVmRudXNqakw5SjdP0gFsQVVfeXFMTzZBN1M3Mm9KTzQ4ZTA3d1VnbE1yWXJucHZValQxdTZ2N2NveGNfT3p6U1FveFVfVXV5VlJVZzUzWFljWVEtajh3RzY1ZWEyZnVyckJMSWpEb0hicUw4RHZRLTdVLWtGcUNqa2N4?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐, 다이어트족 타겟 파우치형 단백질쉐이크 2종 출시",
+        "간편한 섭취를 강조한 편의점 전용 고단백 제품군 확대"
+      ],
+      "keywords": [
+        "단백질쉐이크",
+        "고단백",
+        "세븐일레븐"
+      ],
+      "kw_cats": {
+        "단백질쉐이크": "food_cat",
+        "고단백": "trend",
+        "세븐일레븐": "brand"
+      },
+      "date": "2026-01-04T08:00:00+00:00"
     }
   ]
 }
