@@ -1894,10 +1894,23 @@ let activeWorkFilter = [];   // 복수 선택 가능
 async function loadAllTags() {
   renderTagFilter(); // 즉시 프리셋 표시
   try {
-    var data = await sbFetch('/rest/v1/article_tags?select=id,article_id,tag,tag_type,user_id,user_name&order=created_at.asc');
-    if (!data) return;
+    // Supabase 기본 응답 행 수 상한(보통 1000건)에 걸려 최근 태그가 잘리는 것을 막기 위해
+    // Range 헤더로 페이지네이션하며 끝까지(더 이상 새 행이 없을 때까지) 가져온다.
+    var PAGE_SIZE = 1000;
+    var all = [];
+    var offset = 0;
+    while (true) {
+      var page = await sbFetch(
+        '/rest/v1/article_tags?select=id,article_id,tag,tag_type,user_id,user_name&order=created_at.desc',
+        { headers: { 'Range-Unit': 'items', 'Range': offset + '-' + (offset + PAGE_SIZE - 1) } }
+      );
+      if (!page || !page.length) break;
+      all = all.concat(page);
+      if (page.length < PAGE_SIZE) break; // 마지막 페이지
+      offset += PAGE_SIZE;
+    }
     _articleTags = {};
-    data.forEach(function(row) {
+    all.forEach(function(row) {
       if (!_articleTags[row.article_id]) _articleTags[row.article_id] = [];
       _articleTags[row.article_id].push(row);
     });
