@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-29T00:27:53.184471+00:00",
-  "total": 10,
+  "updated": "2026-07-30T00:38:16.553467+00:00",
+  "total": 11,
   "articles": [
     {
       "id": "9a99c347b8ca",
@@ -124,7 +124,7 @@
       "is_cvs": true,
       "summary": [
         "삼립, 편의점 채널 타겟의 조리빵 신제품 출시",
-        "간편하게 즐기는 '스내킹(Snacking)' 문화 확산 반영"
+        "간편하게 즐기는 스내킹(Snacking) 문화 트렌드 반영"
       ],
       "keywords": [
         "조리빵",
@@ -171,18 +171,14 @@
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "편의점 업계의 디저트, 주류, 생활용품 등 다양한 카테고리의 신제품 출시 활발",
-        "소비자 니즈를 반영한 다각화된 상품 라인업 확대"
+        "편의점 업계의 디저트, 주류, 생활용품 등 다양한 카테고리 신제품 출시 확대",
+        "소비자 접점 확대를 위한 유통 채널의 상품 다각화 전략"
       ],
       "keywords": [
-        "편의점",
-        "디저트",
-        "주류"
+        "편의점"
       ],
       "kw_cats": {
-        "편의점": "brand",
-        "디저트": "food_cat",
-        "주류": "food_cat"
+        "편의점": "brand"
       },
       "date": "2026-04-03T07:00:00+00:00"
     },
@@ -231,6 +227,30 @@
         "삼립": "brand",
         "베이커리": "food_cat",
         "편의점": "brand"
+      },
+      "date": "2026-04-03T07:00:00+00:00"
+    },
+    {
+      "id": "6b76bee9ab86",
+      "title": "[오늘의신상]편의점서 '버터쫀떡빵' 맛보세요…삼립 11종 신제품 출시 - v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1tMkRkY2JoSWxXYUdDOVhKTnJWdld2QlI2TjlWRHJNeG96bWVrWFpYSkRZM1k3RTR1T21EVXZGVHc1UlQxSWU1Q3ZSZFd6TFJ4ZGdsQQ?oc=5",
+      "source": "편의점 신제품",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "삼립, 편의점 채널 공략을 위한 신제품 11종 출시",
+        "대표 제품으로 '버터쫀떡빵' 등 다양한 베이커리 라인업 선보임"
+      ],
+      "keywords": [
+        "삼립",
+        "베이커리",
+        "버터"
+      ],
+      "kw_cats": {
+        "삼립": "brand",
+        "베이커리": "food_cat",
+        "버터": "ingredient"
       },
       "date": "2026-04-03T07:00:00+00:00"
     }
