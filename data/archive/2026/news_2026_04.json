@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-30T00:38:16.553467+00:00",
+  "updated": "2026-07-31T00:37:13.385748+00:00",
   "total": 11,
   "articles": [
     {
@@ -56,7 +56,7 @@
       "is_cvs": true,
       "summary": [
         "편의점 업계의 신제품 출시 주기가 극도로 짧아지는 '속도 경쟁' 심화",
-        "트렌드 변화에 민감한 소비자 니즈를 반영한 초단기 상품 개발 전략 확산"
+        "트렌드 변화에 민감한 소비자를 잡기 위해 기획부터 출시까지의 기간을 단축하는 전략 채택"
       ],
       "keywords": [
         "편의점",
@@ -94,7 +94,7 @@
     },
     {
       "id": "6bec671a8e2d",
-      "title": "세븐일레븐, `올 뉴 삼각김밥` 출시…간편식 품질 경쟁 본격화 - 디지털데일리",
+      "title": "세븐일레븐, `올 뉴 삼각김밥` 출시…간편식 품질 경쟁 본격화 - ddaily.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBNbmgzZGRNZjZyZ2VLbmdEbU5US0UyZnE4MTBpSUdmb3Y2SGI2bExpYVF4eERYWHV4VWl3aVNBLXk4cFJmNFdqRmF2dW5ITjE4aWt4TWlKS2t5WmNRem5DZjJ3?oc=5",
       "source": "세븐일레븐 소식",
       "lang": "ko",
@@ -106,11 +106,13 @@
       ],
       "keywords": [
         "삼각김밥",
-        "세븐일레븐"
+        "세븐일레븐",
+        "간편식"
       ],
       "kw_cats": {
         "삼각김밥": "food_cat",
-        "세븐일레븐": "brand"
+        "세븐일레븐": "brand",
+        "간편식": "food_cat"
       },
       "date": "2026-04-07T07:00:00+00:00"
     },
@@ -124,7 +126,7 @@
       "is_cvs": true,
       "summary": [
         "삼립, 편의점 채널 타겟의 조리빵 신제품 출시",
-        "간편하게 즐기는 스내킹(Snacking) 문화 트렌드 반영"
+        "간편하게 즐기는 '스내킹(Snacking)' 문화 확산 반영"
       ],
       "keywords": [
         "조리빵",
@@ -171,14 +173,18 @@
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "편의점 업계의 디저트, 주류, 생활용품 등 다양한 카테고리 신제품 출시 확대",
-        "소비자 접점 확대를 위한 유통 채널의 상품 다각화 전략"
+        "편의점 업계의 디저트, 주류, 생활용품 등 다양한 카테고리의 신제품 출시 활발",
+        "소비자 니즈를 반영한 다각화된 상품 라인업 확대"
       ],
       "keywords": [
-        "편의점"
+        "편의점",
+        "디저트",
+        "주류"
       ],
       "kw_cats": {
-        "편의점": "brand"
+        "편의점": "brand",
+        "디저트": "food_cat",
+        "주류": "food_cat"
       },
       "date": "2026-04-03T07:00:00+00:00"
     },
