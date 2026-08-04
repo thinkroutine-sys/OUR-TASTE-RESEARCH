@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-03T00:20:16.485799+00:00",
+  "updated": "2026-08-04T00:46:03.351103+00:00",
   "total": 14,
   "articles": [
     {
@@ -89,12 +89,12 @@
         "줄 서서 먹던 유명 맛집의 메뉴를 편의점 채널을 통해 접근성을 높임"
       ],
       "keywords": [
-        "CU",
-        "빵"
+        "빵",
+        "CU"
       ],
       "kw_cats": {
-        "CU": "brand",
-        "빵": "food_cat"
+        "빵": "food_cat",
+        "CU": "brand"
       },
       "date": "2026-01-20T08:00:00+00:00"
     },
@@ -107,19 +107,17 @@
       "category": "신제품·NPD",
       "is_cvs": false,
       "summary": [
-        "SNS에서 화제가 된 '두바이 초콜릿'의 인기에 힘입어 대기업 및 유통업계가 관련 디저트 제품을 잇달아 출시함",
-        "피스타치오와 카다이프를 활용한 디저트가 편의점 및 베이커리 업계의 핵심 신제품 트렌드로 자리 잡음"
+        "두바이 초콜릿의 폭발적인 인기에 힘입어 대기업들이 관련 디저트 제품을 잇달아 출시함",
+        "편의점 및 식품업계가 SNS 트렌드를 반영한 '두쫀쿠(두바이 초콜릿, 쫀드기, 쿠키)' 등 신제품 경쟁에 돌입"
       ],
       "keywords": [
         "두바이 초콜릿",
         "피스타치오",
-        "카다이프",
         "SNS 트렌드"
       ],
       "kw_cats": {
         "두바이 초콜릿": "food_cat",
         "피스타치오": "ingredient",
-        "카다이프": "ingredient",
         "SNS 트렌드": "trend"
       },
       "date": "2026-01-19T08:00:00+00:00"
@@ -178,23 +176,25 @@
     },
     {
       "id": "09bfc85373af",
-      "title": "'두쫀쿠' 없으면 안 된다…카페·편의점 출시 봇물 - biz.sbs.co.kr",
+      "title": "'두쫀쿠' 없으면 안 된다…카페·편의점 출시 봇물 - SBS Biz",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBleThXd1Bmc3JfanRiU1UwZkR4R1VVenRPcDZ0dUt2Z0M3a2VYVWZndENnSWgtY0ZKWk5vZDMxRlNFM3BwTHpUbHZYOGNfSkEtNjBV?oc=5",
       "source": "편의점 신제품",
       "lang": "ko",
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "두바이 초콜릿, 쫀득한 식감의 쿠키를 결합한 '두쫀쿠'가 디저트 시장의 핵심 트렌드로 부상",
-        "카페 및 편의점 업계에서 두쫀쿠를 활용한 신메뉴 출시가 봇물을 이루며 소비자 인기를 견인"
+        "두바이 초콜릿, 쫀득한 푸딩, 쿠키를 조합한 '두쫀쿠' 디저트가 SNS에서 화제",
+        "카페와 편의점 업계가 관련 신메뉴를 잇달아 출시하며 디저트 시장 트렌드를 주도"
       ],
       "keywords": [
         "두바이 초콜릿",
+        "푸딩",
         "쿠키",
         "디저트"
       ],
       "kw_cats": {
         "두바이 초콜릿": "food_cat",
+        "푸딩": "food_cat",
         "쿠키": "food_cat",
         "디저트": "trend"
       },
@@ -210,7 +210,7 @@
       "is_cvs": true,
       "summary": [
         "두바이 초콜릿 열풍에 이어 '두바이 쫀득 쿠키(두쫀쿠)'가 새로운 디저트 트렌드로 부상",
-        "편의점 업계가 두바이 콘셉트를 적용한 다양한 신제품을 잇따라 출시하며 시장 선점 경쟁"
+        "편의점 업계가 두바이 콘셉트를 적용한 신제품을 잇달아 출시하며 시장 선점 경쟁"
       ],
       "keywords": [
         "두바이 쫀득 쿠키",
@@ -300,15 +300,15 @@
     },
     {
       "id": "b145b782f6d1",
-      "title": "편의점, ‘새해 맞이’ 헬시플레저 고객 겨냥 신제품 출시 - getnews.co.kr",
+      "title": "편의점, ‘새해 맞이’ 헬시플레저 고객 겨냥 신제품 출시 - 글로벌경제신문",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE02bVJTZ2RlM044ZlRZeDdnYUFaLTJDQ0NRb2pHR3BiajNIeURoQ0pqN0FMQmhMRmFxbGh5bnZJMEJiZDYwbUxnR0hFNUNlVGtxNWVKU2RVd2VnTnZ2N3BTTGMtYmRpN2x2eDJCb9IBcEFVX3lxTE93VmNHb0l4ZFM4SmJ4ZkVHUlQ4a09xVkJWU3VSWThWdU9lSkNOZWVmcGhLTDV0ajNqbG5fYjd1cU5KQzRVWndJQzZYYmdDVTRjbE9TVUhWYXNRYU1xZXVLOUcxamJmUHRhLWQ2OU5uUjI?oc=5",
       "source": "편의점 신제품",
       "lang": "ko",
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "편의점 업계가 새해를 맞아 건강 관리에 관심이 높은 '헬시플레저' 소비자를 겨냥한 신제품을 출시함",
-        "건강과 맛을 동시에 고려한 제품군 확대를 통해 연초 다이어트 및 건강 관리 수요를 선점하려는 전략"
+        "편의점 업계가 새해를 맞아 건강 관리에 관심이 높은 '헬시플레저' 고객을 겨냥한 신제품을 출시함",
+        "건강과 맛을 동시에 고려한 제품군 확대를 통해 소비자의 니즈를 충족시키려는 전략"
       ],
       "keywords": [
         "헬시플레저",
