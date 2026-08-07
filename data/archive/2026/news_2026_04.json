@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-06T00:35:59.221975+00:00",
-  "total": 13,
+  "updated": "2026-08-07T02:14:17.497665+00:00",
+  "total": 14,
   "articles": [
     {
       "id": "9a99c347b8ca",
@@ -33,16 +33,16 @@
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "KT&G가 궐련형 전자담배 '릴 에이블' 전용 스틱 신제품 2종 출시",
-        "전국 편의점에서 동시 판매 개시"
+        "KT&G, 릴 에이블 전용 스틱 신제품 2종 출시",
+        "전국 편의점 동시 판매 개시"
       ],
       "keywords": [
-        "릴 에이블",
-        "KT&G"
+        "KT&G",
+        "릴 에이블"
       ],
       "kw_cats": {
-        "릴 에이블": "brand",
-        "KT&G": "brand"
+        "KT&G": "brand",
+        "릴 에이블": "brand"
       },
       "date": "2026-04-20T07:00:00+00:00"
     },
@@ -77,8 +77,8 @@
       "category": "채널·유통",
       "is_cvs": true,
       "summary": [
-        "편의점 업계의 신제품 출시 주기가 극도로 짧아지는 '속도 경쟁' 심화",
-        "트렌드 변화에 민감한 소비자 니즈를 반영하기 위한 유통 채널의 전략적 변화"
+        "편의점 업계의 신제품 출시 주기가 급격히 짧아지는 속도 경쟁 심화",
+        "트렌드 변화에 민감한 소비자 니즈를 반영한 초단기 상품 개발 전략 확산"
       ],
       "keywords": [
         "편의점",
@@ -87,6 +87,28 @@
       "kw_cats": {
         "편의점": "brand",
         "신제품": "trend"
+      },
+      "date": "2026-04-08T07:00:00+00:00"
+    },
+    {
+      "id": "858b78e43dc1",
+      "title": "[슬소생]전자레인지와 이별 선언…세븐일레븐 '삼각김밥' 정말 다를까 - v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFAwZ1JXTHNrSGFrTV9VWGVRd1JqdmhuTnFuRFVzSF9WQkMzQlc0LTJFQXl5VlFlUHdwajNmbjdwNU5NVDNmbXc?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐이 전자레인지 조리 없이 바로 먹을 수 있는 '상온 삼각김밥' 출시",
+        "밥알의 식감과 품질을 유지하는 특수 제조 공법을 통해 편의점 간편식의 취식 편의성 강화"
+      ],
+      "keywords": [
+        "삼각김밥",
+        "세븐일레븐"
+      ],
+      "kw_cats": {
+        "삼각김밥": "food_cat",
+        "세븐일레븐": "brand"
       },
       "date": "2026-04-08T07:00:00+00:00"
     },
@@ -123,7 +145,7 @@
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "세븐일레븐이 삼각김밥 품질을 대폭 개선한 '올 뉴 삼각김밥' 시리즈 출시",
+        "세븐일레븐이 삼각김밥 품질을 전면 개선한 '올 뉴 삼각김밥' 시리즈 출시",
         "편의점 간편식 시장 내 품질 경쟁력 강화를 통한 시장 점유율 확대 전략"
       ],
       "keywords": [
@@ -147,8 +169,8 @@
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "삼립이 편의점 채널을 겨냥한 조리빵 신제품 출시",
-        "식사 대용 및 간식으로 즐기는 '스내킹(Snacking)' 문화 확산 반영"
+        "삼립, 편의점 채널 타겟의 간편 조리빵 신제품 출시",
+        "식사 대용 및 간식으로 즐기는 '스내킹(Snacking)' 문화 트렌드 반영"
       ],
       "keywords": [
         "조리빵",
@@ -196,13 +218,17 @@
       "is_cvs": true,
       "summary": [
         "편의점 업계의 디저트, 주류, 생활용품 등 다양한 카테고리 신제품 출시 확대",
-        "소비자 접점을 넓히기 위한 유통 채널별 상품 다각화 전략"
+        "소비자 접점 확대를 위한 유통 채널별 제품 라인업 강화 전략"
       ],
       "keywords": [
-        "편의점"
+        "편의점",
+        "디저트",
+        "주류"
       ],
       "kw_cats": {
-        "편의점": "brand"
+        "편의점": "brand",
+        "디저트": "food_cat",
+        "주류": "food_cat"
       },
       "date": "2026-04-03T07:00:00+00:00"
     },
@@ -280,23 +306,23 @@
     },
     {
       "id": "59795976f911",
-      "title": "유행 포착 사흘 뒤 진열대로… 1020 ‘광속 트렌드’ 잡는 편의점 - seoul.co.kr",
+      "title": "유행 포착 사흘 뒤 진열대로… 1020 ‘광속 트렌드’ 잡는 편의점 - 서울신문",
       "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOalI0LW9lT0h0WEVLdkl0bG1faS1HWkc3dlVseUJzRzI3YmJPSnk5emRhSzJ2dzlMZXVXRFhYMkhFN25McDlOeS16a0pJRDNURUtxUFB5WFhwZ3hNRDJrODRhUzl6ZG1QOVBhbGNrZVB3Um5Mak9wMjlhZDJiMUpPWA?oc=5",
       "source": "편의점 신제품",
       "lang": "ko",
       "category": "채널·유통",
       "is_cvs": true,
       "summary": [
-        "편의점 업계가 1020 세대의 빠른 트렌드 변화에 대응하기 위해 상품 기획 및 출시 주기를 3일 수준으로 단축함",
-        "SNS 유행을 즉각적으로 반영한 초단기 상품 개발 전략을 통해 젊은 층의 소비를 공략함"
+        "편의점 업계가 1020 세대의 SNS 유행을 즉각 반영한 초단기 상품 개발 전략을 강화함",
+        "유행 포착부터 상품 출시까지 3일 내외로 단축해 트렌드 민감도가 높은 젊은 층 공략"
       ],
       "keywords": [
         "편의점",
-        "트렌드"
+        "광속 트렌드"
       ],
       "kw_cats": {
         "편의점": "brand",
-        "트렌드": "trend"
+        "광속 트렌드": "trend"
       },
       "date": "2026-04-03T07:00:00+00:00"
     }
