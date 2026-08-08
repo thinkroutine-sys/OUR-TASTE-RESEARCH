@@ -1,10 +1,10 @@
 {
-  "updated": "2026-08-08T00:03:35.995670+00:00",
+  "updated": "2026-08-08T23:48:55.237615+00:00",
   "total": 4,
   "articles": [
     {
       "id": "cbcb0be3d7a6",
-      "title": "연세유업, 붉은 말의 해 맞아 ‘딸기 디저트 4종’ 출시 - 푸드투데이",
+      "title": "연세유업, 붉은 말의 해 맞아 ‘딸기 디저트 4종’ 출시 - foodtoday.or.kr",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5oZUdya3RENkgyRUhDMk1scHoxRTFhaWwycnhNYTRpU2Z5WUNZeDhVTTNfZS1DMnh4Uk1INkJXa3BqOF8tVEF5eE5HRHJlMGtzeTBWVVlHVk9LSTRIYzQtRw?oc=5",
       "source": "편의점 신제품",
       "lang": "ko",
@@ -15,11 +15,13 @@
         "시즌성 테마를 활용한 신제품 라인업 확대"
       ],
       "keywords": [
-        "딸기 디저트",
+        "딸기",
+        "디저트",
         "연세유업"
       ],
       "kw_cats": {
-        "딸기 디저트": "food_cat",
+        "딸기": "ingredient",
+        "디저트": "food_cat",
         "연세유업": "brand"
       },
       "date": "2025-12-31T08:00:00+00:00"
@@ -33,18 +35,18 @@
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "GS25가 2025년 을사년 새해를 맞아 춘식이 캐릭터를 활용한 협업 상품 7종을 출시함",
-        "캐릭터 IP를 활용한 마케팅으로 편의점 주 고객층인 MZ세대의 소비 심리를 공략"
+        "GS25, 2025년 을사년 새해를 맞아 춘식이 캐릭터를 활용한 협업 상품 7종 출시",
+        "캐릭터 IP를 활용한 시즌 한정 상품으로 소비자 접점 확대 및 마케팅 강화"
       ],
       "keywords": [
-        "GS25",
         "춘식이",
-        "캐릭터 협업"
+        "GS25",
+        "편의점 간식"
       ],
       "kw_cats": {
-        "GS25": "brand",
         "춘식이": "brand",
-        "캐릭터 협업": "trend"
+        "GS25": "brand",
+        "편의점 간식": "food_cat"
       },
       "date": "2025-12-31T08:00:00+00:00"
     },
