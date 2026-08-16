@@ -1,7 +1,591 @@
 {
-  "updated": "2026-08-15T23:38:34.779525+00:00",
-  "total": 2786,
+  "updated": "2026-08-16T23:36:42.611394+00:00",
+  "total": 2772,
   "articles": [
+    {
+      "id": "47d4ff6ed2c8",
+      "title": "미국 우선주의가 바꾼 Feed the Future Innovation Labs, 글로벌 기아 연구의 축이 흔들린다",
+      "url": "https://vegilog.com/america-first-feed-the-future-innovation-labs-makeover/",
+      "source": "베지로그",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "미국 우선주의 정책에 따른 Feed the Future Innovation Labs의 재편으로 글로벌 농업 연구 및 기후 대응 의제 축소",
+        "니제르 해충 대응 연구 중단 등 식량 안보와 지속가능성 관련 국제 협력 체계의 불안정성 증대"
+      ],
+      "keywords": [
+        "식량안보",
+        "지속가능성"
+      ],
+      "kw_cats": {
+        "식량안보": "trend",
+        "지속가능성": "trend"
+      },
+      "date": "2026-08-16T19:25:04+00:00"
+    },
+    {
+      "id": "235e3f520384",
+      "title": "[비건잇슈] 폐쇄 동물원 사자·호랑이 30마리, 보호구역 이송 시작",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=384769",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "아르헨티나 폐쇄 루한동물원 내 방치된 사자·호랑이 30마리 해외 보호구역 이송 시작",
+        "동물 복지 및 윤리적 소비에 대한 글로벌 인식 확산"
+      ],
+      "keywords": [
+        "동물복지"
+      ],
+      "kw_cats": {
+        "동물복지": "trend"
+      },
+      "date": "2026-08-16T14:44:45+00:00"
+    },
+    {
+      "id": "b5a4a5324bec",
+      "title": "[리얼푸드] Z세대의 PB 상품 구입, 미국 식품 성장 이끈다",
+      "url": "https://www.realfoods.co.kr/article/10842723",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "미국 식품 시장에서 Z세대와 밀레니얼을 중심으로 PB 상품 선호도 급증",
+        "PB 상품 선택 기준이 가격 경쟁력을 넘어 품질, 맛, 혁신성으로 변화"
+      ],
+      "keywords": [
+        "PB 상품",
+        "Z세대"
+      ],
+      "kw_cats": {
+        "PB 상품": "trend",
+        "Z세대": "trend"
+      },
+      "date": "2026-08-16T06:20:51+00:00"
+    },
+    {
+      "id": "d35f328b2776",
+      "title": "[리얼푸드] 미국의 식물성 식품시장, 비건 넘어 고단백 경쟁으로",
+      "url": "https://www.realfoods.co.kr/article/10842722",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "미국 식물성 식품 시장이 비건 중심에서 고단백·기능성 중심으로 재편",
+        "다논 등 주요 기업들이 식물성 제품군 내 단백질 함량을 높인 라인업 확대 전략 추진"
+      ],
+      "keywords": [
+        "고단백",
+        "식물성 식품",
+        "다논",
+        "실크"
+      ],
+      "kw_cats": {
+        "고단백": "trend",
+        "식물성 식품": "trend",
+        "다논": "brand",
+        "실크": "brand"
+      },
+      "date": "2026-08-16T06:20:41+00:00"
+    },
+    {
+      "id": "9702b0714e56",
+      "title": "[리얼푸드] 일본, 쌀값 상승에 보리·잡곡 활용 커진다",
+      "url": "https://www.realfoods.co.kr/article/10842721",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "일본 내 쌀 공급 부족과 가격 급등으로 인해 보리, 잡곡 등 대체 곡물 수요가 증가함",
+        "건강 지향적 소비 트렌드와 맞물려 찰보리 등 잡곡류 시장이 지속적인 성장세를 보임"
+      ],
+      "keywords": [
+        "보리",
+        "잡곡",
+        "건강 지향"
+      ],
+      "kw_cats": {
+        "보리": "ingredient",
+        "잡곡": "ingredient",
+        "건강 지향": "trend"
+      },
+      "date": "2026-08-16T06:20:31+00:00"
+    },
+    {
+      "id": "d18eca33990d",
+      "title": "[리얼푸드] 짠맛에서 감칠맛·발효로…유럽 입맛의 변화",
+      "url": "https://www.realfoods.co.kr/article/10842720",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "유럽 식품 시장에서 감칠맛과 발효가 새로운 혁신 키워드로 부상",
+        "유럽 내 감칠맛 시장의 지속적인 성장과 함께 김치 등 발효 식품 수요 증가"
+      ],
+      "keywords": [
+        "감칠맛",
+        "발효",
+        "김치"
+      ],
+      "kw_cats": {
+        "감칠맛": "ingredient",
+        "발효": "trend",
+        "김치": "food_cat"
+      },
+      "date": "2026-08-16T06:20:21+00:00"
+    },
+    {
+      "id": "7d6dde6f1bc8",
+      "title": "[리얼푸드] 일본 편의점 피자가 달라졌다…셰프 협업 프리미엄 피자",
+      "url": "https://www.realfoods.co.kr/article/10842719",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": true,
+      "summary": [
+        "일본 외식 피자 시장의 침체와 대조적으로 편의점 프리미엄 냉동피자 시장이 급성장 중",
+        "배달 및 전문점 대신 집에서 즐기는 '홈 피자' 수요가 증가하며 셰프 협업 등 제품 고급화 전략이 확산"
+      ],
+      "keywords": [
+        "냉동피자",
+        "홈 피자"
+      ],
+      "kw_cats": {
+        "냉동피자": "food_cat",
+        "홈 피자": "trend"
+      },
+      "date": "2026-08-16T06:20:11+00:00"
+    },
+    {
+      "id": "4e5a222eb16f",
+      "title": "[리얼푸드] 주식 투자처럼 술 마신다…중국의 ‘맥주거래소’",
+      "url": "https://www.realfoods.co.kr/article/10842703",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "중국에서 주식시장 원리를 적용해 실시간으로 가격이 변동되는 '맥주거래소'가 새로운 소비 트렌드로 부상",
+        "단순 음주를 넘어 소비자가 직접 참여하는 몰입형 여가 콘텐츠로서의 외식 경험 제공"
+      ],
+      "keywords": [
+        "맥주거래소",
+        "몰입형 여가"
+      ],
+      "kw_cats": {
+        "맥주거래소": "trend",
+        "몰입형 여가": "trend"
+      },
+      "date": "2026-08-16T05:36:09+00:00"
+    },
+    {
+      "id": "33e401e2f8ad",
+      "title": "[리얼푸드] 단백질과 기능성, 브라질 식품 시장의 핵심",
+      "url": "https://www.realfoods.co.kr/article/10842702",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "브라질 식품 시장에서 건강한 원료와 영양적 가치를 중시하는 소비 트렌드 확산",
+        "클린라벨, 고단백, 저당·저지방 등 제품의 투명성과 기능성이 차별화 핵심 요소로 부상"
+      ],
+      "keywords": [
+        "고단백",
+        "클린라벨",
+        "기능성 원료"
+      ],
+      "kw_cats": {
+        "고단백": "trend",
+        "클린라벨": "trend",
+        "기능성 원료": "ingredient"
+      },
+      "date": "2026-08-16T05:35:59+00:00"
+    },
+    {
+      "id": "1ce9cd4df6e1",
+      "title": "[리얼푸드] 브라질, 한국산 면류·비스킷 수입 늘어난다",
+      "url": "https://www.realfoods.co.kr/article/10842701",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "2026년 상반기 브라질 내 한국산 면류 및 비스킷 수입액 급증",
+        "기타 면류 119.1%, 가당 비스킷 67.2% 등 가공식품 수출 성장세 뚜렷"
+      ],
+      "keywords": [
+        "면류",
+        "비스킷",
+        "아이스크림"
+      ],
+      "kw_cats": {
+        "면류": "food_cat",
+        "비스킷": "food_cat",
+        "아이스크림": "food_cat"
+      },
+      "date": "2026-08-16T05:35:45+00:00"
+    },
+    {
+      "id": "f29f523fb26e",
+      "title": "[포토] 막바지 여름휴가 “변산자연휴양림으로 떠나요”",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=207224",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "국립변산자연휴양림 내 지역 특산물을 활용한 F&B 소비 활성화",
+        "뽕잎과 오디를 활용한 디저트 및 음료가 휴양지 로컬 푸드로 주목"
+      ],
+      "keywords": [
+        "뽕잎",
+        "오디",
+        "디저트",
+        "음료"
+      ],
+      "kw_cats": {
+        "뽕잎": "ingredient",
+        "오디": "ingredient",
+        "디저트": "food_cat",
+        "음료": "food_cat"
+      },
+      "date": "2026-08-16T05:33:14+00:00"
+    },
+    {
+      "id": "512f92f75301",
+      "title": "[리얼푸드] 매끄럽고 쫄깃하고…유럽에서 시작된 ‘식감 경쟁’",
+      "url": "https://www.realfoods.co.kr/article/10842695",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "유럽 식품 시장에서 서로 다른 식감을 조합한 제품이 차별화 요소로 부상",
+        "소비자들은 바삭함, 크리미함, 쫄깃함 등 다채로운 식감 경험을 통해 즐거움과 보상을 추구함"
+      ],
+      "keywords": [
+        "식감"
+      ],
+      "kw_cats": {
+        "식감": "trend"
+      },
+      "date": "2026-08-16T05:21:32+00:00"
+    },
+    {
+      "id": "468c7a447ea5",
+      "title": "[리얼푸드] “어릴 적 생각나네” 일본 ‘컬러 스프링클’ 인기",
+      "url": "https://www.realfoods.co.kr/article/10842694",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "일본 내 디저트 토핑으로 화려한 색감의 '컬러 스프링클' 인기",
+        "동심을 자극하는 비주얼을 강조한 아이스크림 및 초콜릿 제품의 잇따른 출시"
+      ],
+      "keywords": [
+        "컬러 스프링클",
+        "아카기유업",
+        "치로루초코",
+        "동심 자극"
+      ],
+      "kw_cats": {
+        "컬러 스프링클": "ingredient",
+        "아카기유업": "brand",
+        "치로루초코": "brand",
+        "동심 자극": "trend"
+      },
+      "date": "2026-08-16T05:21:19+00:00"
+    },
+    {
+      "id": "3ea2e3fa037e",
+      "title": "[리얼푸드] 말레이시아, 중추절 맞이 월병 세트 경쟁",
+      "url": "https://www.realfoods.co.kr/article/10842693",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "말레이시아 중추절을 맞아 호텔 및 F&B 브랜드들의 월병 선물세트 출시 경쟁 심화",
+        "직접 조리보다 완제품 구매를 선호하는 소비 트렌드 확산"
+      ],
+      "keywords": [
+        "월병",
+        "중추절"
+      ],
+      "kw_cats": {
+        "월병": "food_cat",
+        "중추절": "trend"
+      },
+      "date": "2026-08-16T05:21:12+00:00"
+    },
+    {
+      "id": "cc4ad438f8fc",
+      "title": "[리얼푸드] 우유 아닌 컵라면?…일본 컵라면의 신제품들",
+      "url": "https://www.realfoods.co.kr/article/10842692",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "일본 컵라면 시장이 가격 인상에 따른 수요 감소를 방어하기 위해 브랜드 출시 기념 이벤트 및 프로모션을 강화함",
+        "닛신식품은 컵누들 55주년, 돈베이 및 야키소바 U.F.O. 50주년을 맞아 건더기 증량 등 한정판 마케팅을 전개 중"
+      ],
+      "keywords": [
+        "컵라면",
+        "닛신식품"
+      ],
+      "kw_cats": {
+        "컵라면": "food_cat",
+        "닛신식품": "brand"
+      },
+      "date": "2026-08-16T05:21:03+00:00"
+    },
+    {
+      "id": "a66b38ef77ee",
+      "title": "더벤티, 런콥과 러닝 클래스…전국 7개 권역서 운영",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=207223",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "더벤티가 러닝 전문 기업 '런콥'과 협업하여 러닝 클래스 모집 프로모션 진행",
+        "건강과 자기관리를 중시하는 라이프스타일 트렌드에 맞춰 고객 경험 마케팅 강화"
+      ],
+      "keywords": [
+        "더벤티",
+        "런콥",
+        "러닝"
+      ],
+      "kw_cats": {
+        "더벤티": "brand",
+        "런콥": "brand",
+        "러닝": "trend"
+      },
+      "date": "2026-08-16T04:59:45+00:00"
+    },
+    {
+      "id": "a41762c970a9",
+      "title": "[리얼푸드] 북유럽 와인 주목, 기후위기가 바꾸는 유럽 와인 지도",
+      "url": "https://www.realfoods.co.kr/article/10842631",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "기후위기로 인한 유럽 전통 와인 산지의 생산 타격 및 와인 소비 감소 추세",
+        "기온 상승으로 인해 북유럽이 새로운 와인 생산지로 부상하는 시장 변화 발생"
+      ],
+      "keywords": [
+        "와인",
+        "기후위기",
+        "절주"
+      ],
+      "kw_cats": {
+        "와인": "food_cat",
+        "기후위기": "trend",
+        "절주": "trend"
+      },
+      "date": "2026-08-16T02:04:48+00:00"
+    },
+    {
+      "id": "de8c44d952ed",
+      "title": "[리얼푸드] 로컬 차찬텡 즐긴다…활기띠는 홍콩 팝업스토어",
+      "url": "https://www.realfoods.co.kr/article/10842630",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "홍콩 소매 트렌드가 '체험 중심'으로 전환되며 팝업스토어 인기가 상승함",
+        "팝업스토어는 브랜드의 해외 진출을 위한 비용 효율적인 테스트베드 역할을 수행함"
+      ],
+      "keywords": [
+        "팝업스토어",
+        "홍콩"
+      ],
+      "kw_cats": {
+        "팝업스토어": "trend",
+        "홍콩": "trend"
+      },
+      "date": "2026-08-16T02:03:29+00:00"
+    },
+    {
+      "id": "cee7e121d2d5",
+      "title": "[리얼푸드] 올해도 여전히 바닐라맛…미국 아이스크림 트렌드",
+      "url": "https://www.realfoods.co.kr/article/10842629",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "미국 아이스크림 시장에서 바닐라, 초콜릿 등 전통적인 맛의 선호도가 여전히 압도적임",
+        "인스타카트 2025년 주문 데이터 분석 결과, 바닐라가 1위를 차지하며 대중적인 맛의 견고한 인기 입증"
+      ],
+      "keywords": [
+        "아이스크림",
+        "바닐라",
+        "초콜릿"
+      ],
+      "kw_cats": {
+        "아이스크림": "food_cat",
+        "바닐라": "ingredient",
+        "초콜릿": "ingredient"
+      },
+      "date": "2026-08-16T02:03:10+00:00"
+    },
+    {
+      "id": "8e3236f05459",
+      "title": "[리얼푸드] 두쫀쿠 올린 과일…인도네시아, 초콜릿 과일 컵 인기",
+      "url": "https://www.realfoods.co.kr/article/10842628",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": true,
+      "summary": [
+        "인도네시아에서 과일과 초콜릿 가나슈를 층층이 쌓은 '초콜릿 과일 컵'이 새로운 디저트 트렌드로 부상",
+        "단순한 꼬치 형태에서 벗어나 화려한 비주얼을 강조하는 시각적 만족 중심의 소비 패턴 확산"
+      ],
+      "keywords": [
+        "초콜릿 과일 컵",
+        "비주얼",
+        "암스테르담"
+      ],
+      "kw_cats": {
+        "초콜릿 과일 컵": "food_cat",
+        "비주얼": "trend",
+        "암스테르담": "brand"
+      },
+      "date": "2026-08-16T02:02:59+00:00"
+    },
+    {
+      "id": "86b3fa91b6ae",
+      "title": "[리얼푸드] 나주배부터 옥수수까지…그랜드 머큐어 임피리얼 팰리스의 ‘LOCAL 食ROCK’ 가을 캠페인",
+      "url": "https://www.realfoods.co.kr/article/10842585",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "그랜드 머큐어 임피리얼 팰리스 서울 강남, 가을 미식 캠페인 'LOCAL食ROCK' 론칭",
+        "나주배, 홍시 등 국내 지역 특산물을 활용한 가을 시즌 한정 메뉴 및 음료 출시"
+      ],
+      "keywords": [
+        "나주배",
+        "홍시",
+        "그랜드 머큐어 임피리얼 팰리스",
+        "로컬 식재료"
+      ],
+      "kw_cats": {
+        "나주배": "ingredient",
+        "홍시": "ingredient",
+        "그랜드 머큐어 임피리얼 팰리스": "brand",
+        "로컬 식재료": "trend"
+      },
+      "date": "2026-08-16T00:41:58+00:00"
+    },
+    {
+      "id": "aec55c9df3d7",
+      "title": "[리얼푸드] 러버덕 사케, 신규 패키지 ‘시크 에디션’ 선봬",
+      "url": "https://www.realfoods.co.kr/article/10842578",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "뵐페리미티드, 사케 브랜드 '러버덕'의 신규 패키지 '시크 에디션' 출시",
+        "여름 휴가 시즌 겨냥, 선글라스 쓴 러버덕 캐릭터로 트렌디한 이미지 강조"
+      ],
+      "keywords": [
+        "러버덕 사케",
+        "러버덕 유즈",
+        "GS25",
+        "홈술"
+      ],
+      "kw_cats": {
+        "러버덕 사케": "food_cat",
+        "러버덕 유즈": "food_cat",
+        "GS25": "brand",
+        "홈술": "trend"
+      },
+      "date": "2026-08-16T00:30:41+00:00"
+    },
+    {
+      "id": "b5b016ae00de",
+      "title": "[리얼푸드] 다시 돌아보는 삼겹살 ‘맛’의 뿌리…선진, 40여 년 종돈 개량",
+      "url": "https://www.realfoods.co.kr/article/10842536",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "선진이 1983년부터 40여 년간 자체 종돈 개량을 통해 한국형 종돈 경쟁력을 확보함",
+        "국내 기후와 사육 환경, 한국인 식문화에 최적화된 돼지고기 생산 체계 구축"
+      ],
+      "keywords": [
+        "선진",
+        "종돈",
+        "삼겹살"
+      ],
+      "kw_cats": {
+        "선진": "brand",
+        "종돈": "ingredient",
+        "삼겹살": "food_cat"
+      },
+      "date": "2026-08-15T23:25:59+00:00"
+    },
+    {
+      "id": "c3da459fb789",
+      "title": "[심층] EU 식품포장 PFAS 제한…재활용 넘어 안전성까지",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=384767",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "EU의 식품 접촉 포장재 내 과불화화합물(PFAS) 함량 제한 규제 본격화",
+        "포장재 설계 단계부터 안전성, 재활용, 재사용을 관리하는 체계 도입으로 국내 수출 기업 대응 필요"
+      ],
+      "keywords": [
+        "PFAS",
+        "식품포장"
+      ],
+      "kw_cats": {
+        "PFAS": "ingredient",
+        "식품포장": "trend"
+      },
+      "date": "2026-08-15T14:39:13+00:00"
+    },
+    {
+      "id": "3450a42ea324",
+      "title": "[비건잇슈] 폴란드 포즈난 공공병원 식음매장, 완전 식물성 메뉴 7%에 그쳐",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=384766",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "폴란드 포즈난 공공병원 식음매장의 완전 식물성 메뉴 비중이 7%에 불과함",
+        "전체 메뉴 중 육류 포함 메뉴가 절반을 넘어 병원 내 식단 선택권이 제한적인 것으로 나타남"
+      ],
+      "keywords": [
+        "비건",
+        "식물성 메뉴"
+      ],
+      "kw_cats": {
+        "비건": "trend",
+        "식물성 메뉴": "food_cat"
+      },
+      "date": "2026-08-15T14:18:11+00:00"
+    },
     {
       "id": "2aae1fdb7351",
       "title": "영국 산불 대응 비상, 최고기온 38.1도 속 소방당국 총력…기후위기와 도시 안전 과제",
@@ -62897,908 +63481,6 @@
         "참치": "ingredient"
       },
       "date": "2026-07-18T00:00:04.061593+00:00"
-    },
-    {
-      "id": "98b544663f73",
-      "title": "신메뉴 출시: 내슈빌 핫 팔라펠과 ‘바나나 인 어 박스’",
-      "url": "https://www.nrn.com/independent-restaurants/new-on-the-menu-nashville-hot-falafel-and-bananas-in-a-box-",
-      "source": "Nation's Restaurant News",
-      "lang": "en",
-      "category": "신제품·NPD",
-      "is_cvs": false,
-      "summary": [
-        "내슈빌 핫 치킨 스타일을 접목한 팔라펠 등 이색적인 신메뉴 소개",
-        "지중해식 버섯 요리, 양고기 요리, 19세기 다이닝 클럽 영감 칵테일 등 외식 트렌드 반영"
-      ],
-      "keywords": [
-        "팔라펠",
-        "내슈빌 핫",
-        "양고기",
-        "칵테일"
-      ],
-      "kw_cats": {
-        "팔라펠": "food_cat",
-        "내슈빌 핫": "trend",
-        "양고기": "ingredient",
-        "칵테일": "food_cat"
-      },
-      "date": "2026-07-17T17:09:54+00:00"
-    },
-    {
-      "id": "e68ede420ac8",
-      "title": "환경 규제 준수가 거대 식품 기업의 가장 큰 비용 부담이 되고 있는가?",
-      "url": "https://www.foodnavigator.com/Article/2026/07/17/eudr-spending-cost-centre-or-investment/",
-      "source": "Food Navigator",
-      "lang": "en",
-      "category": "산업·정책",
-      "is_cvs": false,
-      "summary": [
-        "글로벌 식품 대기업들이 강화되는 환경 규제와 지속가능성 준수를 위해 막대한 비용을 지출하고 있음",
-        "환경적 책임이 기업의 수익성과 운영 전략에 미치는 영향이 커지면서 공급망 관리의 핵심 과제로 부상"
-      ],
-      "keywords": [
-        "Big",
-        "Food"
-      ],
-      "kw_cats": {},
-      "date": "2026-07-17T16:31:16.174000+00:00"
-    },
-    {
-      "id": "3bdf22107af0",
-      "title": "토마스 켈러 레스토랑 그룹, 성희롱 소송 합의금 200만 달러 지급",
-      "url": "https://www.nrn.com/independent-restaurants/thomas-keller-restaurant-group-to-pay-2-million-to-settle-sexual-harassment-case",
-      "source": "Nation's Restaurant News",
-      "lang": "en",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "토마스 켈러 레스토랑 그룹이 라스베이거스 부숑(Bouchon)에서 발생한 성희롱 소송에 대해 200만 달러 합의금 지급",
-        "2018년 제기된 소송으로 직원들에 대한 부적절한 언행 및 보복 조치 혐의 포함"
-      ],
-      "keywords": [
-        "Thomas Keller Restaurant Group",
-        "Bouchon"
-      ],
-      "kw_cats": {
-        "Thomas Keller Restaurant Group": "brand",
-        "Bouchon": "brand"
-      },
-      "date": "2026-07-17T16:22:22+00:00"
-    },
-    {
-      "id": "33c461f4b932",
-      "title": "탑골프(Topgolf), 리테일 미디어 네트워크 사업 진출",
-      "url": "https://www.nrn.com/eatertainment/topgolf-launches-a-retail-media-network",
-      "source": "Nation's Restaurant News",
-      "lang": "en",
-      "category": "채널·유통",
-      "is_cvs": false,
-      "summary": [
-        "탑골프가 자사의 게임 및 다이닝 센터를 브랜드 광고 채널로 활용하는 리테일 미디어 네트워크 사업을 시작함",
-        "오프라인 매장을 광고 플랫폼으로 전환하여 브랜드와 소비자 간의 접점을 확대하는 전략"
-      ],
-      "keywords": [
-        "Topgolf"
-      ],
-      "kw_cats": {
-        "Topgolf": "brand"
-      },
-      "date": "2026-07-17T16:20:18+00:00"
-    },
-    {
-      "id": "6a6140d05a6a",
-      "title": "레스토랑 로열티 프로그램이 실패하는 이유",
-      "url": "https://www.nrn.com/expert-opinions/why-restaurant-loyalty-programs-fail",
-      "source": "Nation's Restaurant News",
-      "lang": "en",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "단절된 시스템과 일반적인 제안이 레스토랑의 수익성에 악영향을 미침",
-        "개인화되지 않은 로열티 전략이 기업의 비용 손실을 초래함"
-      ],
-      "keywords": [
-        "loyalty program"
-      ],
-      "kw_cats": {
-        "loyalty program": "trend"
-      },
-      "date": "2026-07-17T16:17:13+00:00"
-    },
-    {
-      "id": "99be483a1f36",
-      "title": "코카콜라, 랜섬웨어 공격으로 미국 유제품 사업부 생산 중단",
-      "url": "https://www.fooddive.com/news/ransomware-attack-coca-cola-suspend-production-dairy/825551/",
-      "source": "Food Dive",
-      "lang": "en",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "코카콜라의 유제품 사업부인 페어라이프(Fairlife)가 랜섬웨어 공격을 받아 미국 내 생산을 일시 중단함",
-        "현재 코카콜라는 이번 보안 침해 사고의 전체적인 영향 범위를 파악 중임"
-      ],
-      "keywords": [
-        "코카콜라",
-        "페어라이프",
-        "유제품"
-      ],
-      "kw_cats": {
-        "코카콜라": "brand",
-        "페어라이프": "brand",
-        "유제품": "food_cat"
-      },
-      "date": "2026-07-17T15:36:00+00:00"
-    },
-    {
-      "id": "e86b2c728ad2",
-      "title": "밥스레드밀, 환경 영향 줄이기 위해 원재료 선정에 집중",
-      "url": "https://www.foodnavigator.com/Article/2026/07/16/bobs-red-mill-links-product-design-to-sustainability/",
-      "source": "Food Navigator",
-      "lang": "en",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "밥스레드밀이 지속가능성을 위해 원재료 조달 및 선정 방식을 개선함",
-        "환경적 영향을 최소화하는 공급망 관리 전략을 강화"
-      ],
-      "keywords": [
-        "밥스레드밀",
-        "지속가능성"
-      ],
-      "kw_cats": {
-        "밥스레드밀": "brand",
-        "지속가능성": "trend"
-      },
-      "date": "2026-07-17T15:04:04.351000+00:00"
-    },
-    {
-      "id": "803b0bd73ddb",
-      "title": "치폴레, 원더, 그리고 상승하는 외식 운영 비용",
-      "url": "https://www.nrn.com/fast-casual/chipotle-wonder-and-climbing-restaurant-operating-expenses",
-      "source": "Nation's Restaurant News",
-      "lang": "en",
-      "category": "산업·정책",
-      "is_cvs": false,
-      "summary": [
-        "외식 업계의 전반적인 운영 비용 상승 추세 분석",
-        "치폴레와 원더 등 주요 외식 기업의 전략적 대응 및 시장 동향"
-      ],
-      "keywords": [
-        "Chipotle",
-        "Wonder",
-        "operating expenses"
-      ],
-      "kw_cats": {
-        "Chipotle": "brand",
-        "Wonder": "brand",
-        "operating expenses": "trend"
-      },
-      "date": "2026-07-17T15:03:57+00:00"
-    },
-    {
-      "id": "1c3e49444570",
-      "title": "텍사스의 작은 바비큐 식당, 월드컵 방문객을 위해 2만 파운드의 브리스킷 준비",
-      "url": "https://www.eater.com/dining-out/974680/zavalas-video-barbecue-texas-world-cup-large-format",
-      "source": "Eater",
-      "lang": "en",
-      "category": "브랜드·기업",
-      "is_cvs": true,
-      "summary": [
-        "텍사스 그랜드 프레리의 '자발라 바비큐(Zavala’s Barbecue)'가 2026년 FIFA 월드컵 기간 동안 30일 연속 영업을 결정함",
-        "300만 명의 관광객 수요에 대응하기 위해 2만 파운드의 브리스킷을 준비하는 등 대규모 운영 전략 수립"
-      ],
-      "keywords": [
-        "브리스킷",
-        "자발라 바비큐",
-        "월드컵"
-      ],
-      "kw_cats": {
-        "브리스킷": "food_cat",
-        "자발라 바비큐": "brand",
-        "월드컵": "trend"
-      },
-      "date": "2026-07-17T15:01:03+00:00"
-    },
-    {
-      "id": "1746cd8df695",
-      "title": "초가공식품(UPF) 규제는 쉽지 않을 것",
-      "url": "https://www.foodnavigator.com/Article/2026/07/17/upf-regulation-will-prove-difficult-to-implement/",
-      "source": "Food Navigator",
-      "lang": "en",
-      "category": "산업·정책",
-      "is_cvs": false,
-      "summary": [
-        "초가공식품(UPF)에 대한 규제 도입의 복잡성과 어려움 분석",
-        "식품 산업 내 UPF 정의 및 규제 정책의 실효성 논란"
-      ],
-      "keywords": [
-        "초가공식품"
-      ],
-      "kw_cats": {
-        "초가공식품": "trend"
-      },
-      "date": "2026-07-17T14:52:50.854000+00:00"
-    },
-    {
-      "id": "98b59a57c8fc",
-      "title": "아프리카의 10대 식품 기업",
-      "url": "https://www.foodnavigator.com/Article/2026/07/16/10-african-food-giants/",
-      "source": "Food Navigator",
-      "lang": "en",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "아프리카 시장을 주도하는 주요 식품 기업 10곳에 대한 분석",
-        "아프리카 식품 산업의 시장 영향력 및 기업 현황 조명"
-      ],
-      "keywords": [
-        "아프리카",
-        "식품 기업"
-      ],
-      "kw_cats": {
-        "아프리카": "trend",
-        "식품 기업": "brand"
-      },
-      "date": "2026-07-17T14:50:06.921000+00:00"
-    },
-    {
-      "id": "f278545b07e5",
-      "title": "프레시 키친(Fresh Kitchen), 성장 가속화를 위해 개발 및 운영 임원 영입",
-      "url": "https://www.nrn.com/fast-casual/fresh-kitchen-adds-development-and-operations-execs-to-accelerate-growth",
-      "source": "Nation's Restaurant News",
-      "lang": "en",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "프레시 키친이 사업 확장을 위해 새로운 개발 및 운영 임원을 영입함",
-        "신임 최고 개발 책임자(CDO)로 퍼스트 워치(First Watch) 출신의 맷 리빙스턴을 선임함"
-      ],
-      "keywords": [
-        "Fresh Kitchen",
-        "First Watch"
-      ],
-      "kw_cats": {
-        "Fresh Kitchen": "brand",
-        "First Watch": "brand"
-      },
-      "date": "2026-07-17T14:36:17+00:00"
-    },
-    {
-      "id": "6ba88f23a246",
-      "title": "MML Hospitality, 댈러스에 '네이버후드 스시' 오픈 및 신규 사업 확장",
-      "url": "https://www.nrn.com/independent-restaurants/mml-hospitality-has-opened-neighborhood-sushi-in-dallas-with-more-concepts-on-the-way",
-      "source": "Nation's Restaurant News",
-      "lang": "en",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "오스틴 기반의 외식 그룹 MML Hospitality가 댈러스에 '네이버후드 스시'를 신규 오픈함",
-        "댈러스 외에도 아스펜, 뉴욕 등 주요 시장에서 호텔 및 레스토랑 사업 확장을 추진 중"
-      ],
-      "keywords": [
-        "Neighborhood Sushi",
-        "MML Hospitality",
-        "Sushi"
-      ],
-      "kw_cats": {
-        "Neighborhood Sushi": "brand",
-        "MML Hospitality": "brand",
-        "Sushi": "food_cat"
-      },
-      "date": "2026-07-17T14:10:20+00:00"
-    },
-    {
-      "id": "0857cf5ccce1",
-      "title": "펩시코, 지속가능한 소싱 강화 및 탄소 배출 보고 연기",
-      "url": "https://www.fooddive.com/news/pepsico-improves-sustainable-sourcing-delays-emissions-reporting/825276/",
-      "source": "Food Dive",
-      "lang": "en",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "펩시코가 실현 가능한 목표 달성을 위해 환경 관련 목표를 조정함",
-        "지속가능한 소싱은 강화하는 한편, 탄소 배출 보고 일정은 연기함"
-      ],
-      "keywords": [
-        "PepsiCo"
-      ],
-      "kw_cats": {
-        "PepsiCo": "brand"
-      },
-      "date": "2026-07-17T13:49:00+00:00"
-    },
-    {
-      "id": "87f448b4e7c7",
-      "title": "메뉴 트래커: 도미노, 스타벅스, KFC 등 신메뉴 출시",
-      "url": "https://www.nrn.com/menu-trends/menu-tracker-new-items-from-domino-s-starbucks-and-kfc",
-      "source": "Nation's Restaurant News",
-      "lang": "en",
-      "category": "신제품·NPD",
-      "is_cvs": false,
-      "summary": [
-        "도미노, 스타벅스, KFC 등 주요 외식 브랜드의 신메뉴 출시 소식",
-        "애플비, 버팔로 와일드 윙스, CAVA, 7 브루, 쉐이크쉑 등 다양한 브랜드의 메뉴 혁신 동향"
-      ],
-      "keywords": [
-        "Domino’s",
-        "Starbucks",
-        "KFC",
-        "Applebee's",
-        "Buffalo Wild Wings"
-      ],
-      "kw_cats": {
-        "Domino’s": "brand",
-        "Starbucks": "brand",
-        "KFC": "brand",
-        "Applebee's": "brand",
-        "Buffalo Wild Wings": "brand",
-        "CAVA": "brand",
-        "7 Brew": "brand",
-        "Shake Shack": "brand",
-        "menu": "food_cat"
-      },
-      "date": "2026-07-17T13:39:13+00:00"
-    },
-    {
-      "id": "df9c48279615",
-      "title": "웰치스, 언크러스터블 시장 진출 및 캠벨의 고단백 수프 출시",
-      "url": "https://www.fooddive.com/news/welchs-pbj-sandwich-campbells-protein-soup-cann-zero-thc/825524/",
-      "source": "Food Dive",
-      "lang": "en",
-      "category": "신제품·NPD",
-      "is_cvs": false,
-      "summary": [
-        "웰치스가 냉장 PB&J(땅콩버터 젤리 샌드위치) 제품을 출시하며 언크러스터블 시장에 도전함",
-        "캠벨은 고단백 수프 라인업을 확장하고, 칸(Cann)은 THC를 제거한 무드 부스팅 음료를 선보임"
-      ],
-      "keywords": [
-        "PB&J",
-        "고단백",
-        "수프",
-        "웰치스",
-        "캠벨"
-      ],
-      "kw_cats": {
-        "PB&J": "food_cat",
-        "고단백": "trend",
-        "수프": "food_cat",
-        "웰치스": "brand",
-        "캠벨": "brand",
-        "칸": "brand"
-      },
-      "date": "2026-07-17T13:34:00+00:00"
-    },
-    {
-      "id": "baebda0a5ba1",
-      "title": "쫄깃·바삭·부드럽게…식품업계, ‘식감 전쟁’ 뜨겁다",
-      "url": "https://www.foodtoday.or.kr/news/article.html?no=206472",
-      "source": "푸드투데이",
-      "lang": "ko",
-      "category": "소비자·시장",
-      "is_cvs": false,
-      "summary": [
-        "식품 선택의 기준이 맛을 넘어 식감으로 확대되는 추세",
-        "식품업계가 면발의 탄력, 바삭함 등 식감을 차별화한 제품 개발에 집중"
-      ],
-      "keywords": [
-        "식감",
-        "면류",
-        "스낵"
-      ],
-      "kw_cats": {
-        "식감": "trend",
-        "면류": "food_cat",
-        "스낵": "food_cat"
-      },
-      "date": "2026-07-17T12:54:58+00:00"
-    },
-    {
-      "id": "e7f31a45acdd",
-      "title": "초고령사회가 바꾼 건기식 소비…KGC 정관장 ‘웰에이징’ 공략 속도",
-      "url": "https://www.foodtoday.or.kr/news/article.html?no=206471",
-      "source": "푸드투데이",
-      "lang": "ko",
-      "category": "소비자·시장",
-      "is_cvs": false,
-      "summary": [
-        "초고령사회 진입에 따른 건강기능식품 소비 트렌드 변화",
-        "건강한 노년을 지향하는 '웰에이징(Well-aging)' 수요 급증 및 관련 시장 확대"
-      ],
-      "keywords": [
-        "웰에이징",
-        "정관장",
-        "건강기능식품"
-      ],
-      "kw_cats": {
-        "웰에이징": "trend",
-        "정관장": "brand",
-        "건강기능식품": "food_cat"
-      },
-      "date": "2026-07-17T12:38:12+00:00"
-    },
-    {
-      "id": "7bc6fc0aa3f0",
-      "title": "식품 폐기물 및 안전 문제 해결을 위한 고체 오존 기술",
-      "url": "https://www.foodingredientsfirst.com/news/solid-ozone-food-safety-technology.html",
-      "source": "Food Ingredients First",
-      "lang": "en",
-      "category": "산업·정책",
-      "is_cvs": false,
-      "summary": [
-        "신선 식품 산업의 고질적인 문제인 식품 안전, 폐기물 감소, 유통기한 연장을 위한 새로운 기술 도입",
-        "기존의 복잡한 장비나 화학적 처리 방식에서 벗어난 고체 오존 기반의 혁신적 솔루션 제시"
-      ],
-      "keywords": [
-        "오존 기술",
-        "식품 안전",
-        "유통기한 연장"
-      ],
-      "kw_cats": {
-        "오존 기술": "trend",
-        "식품 안전": "trend",
-        "유통기한 연장": "trend"
-      },
-      "date": "2026-07-17T12:37:00+00:00"
-    },
-    {
-      "id": "5c1f8f102cc5",
-      "title": "UC 데이비스, 가공식품 내 아보카도 오일 희석 및 품질 저하 문제 제기",
-      "url": "https://www.foodingredientsfirst.com/news/avocado-oil-processed-foods-authenticity-uc-davis.html",
-      "source": "Food Ingredients First",
-      "lang": "en",
-      "category": "산업·정책",
-      "is_cvs": false,
-      "summary": [
-        "UC 데이비스 연구 결과, '아보카도 오일 함유' 표기 가공식품 상당수가 실제로는 다른 저가 오일과 혼합된 것으로 확인됨",
-        "식품 안전 및 원료 투명성에 대한 우려 제기"
-      ],
-      "keywords": [
-        "아보카도 오일",
-        "가공식품",
-        "식품 안전"
-      ],
-      "kw_cats": {
-        "아보카도 오일": "ingredient",
-        "가공식품": "food_cat",
-        "식품 안전": "trend"
-      },
-      "date": "2026-07-17T12:25:00+00:00"
-    },
-    {
-      "id": "44dcc9ad6fed",
-      "title": "전국 극한호우 예보…농식품부, 농업재해 24시간 비상대응",
-      "url": "https://www.foodtoday.or.kr/news/article.html?no=206470",
-      "source": "푸드투데이",
-      "lang": "ko",
-      "category": "산업·정책",
-      "is_cvs": false,
-      "summary": [
-        "전국 극한호우 예보에 따른 농작물 및 농업시설 피해 최소화를 위한 비상 대응체계 가동",
-        "농식품부, 저수지·배수장 등 주요 시설 긴급 점검 및 24시간 상황관리 체제 돌입"
-      ],
-      "keywords": [
-        "전국",
-        "농식품부",
-        "시간",
-        "극한호우",
-        "예보"
-      ],
-      "kw_cats": {},
-      "date": "2026-07-17T12:21:58+00:00"
-    },
-    {
-      "id": "e3620b661fa0",
-      "title": "중기부, 온라인 수출기업 물류비 70% 지원",
-      "url": "https://www.foodtoday.or.kr/news/article.html?no=206468",
-      "source": "푸드투데이",
-      "lang": "ko",
-      "category": "산업·정책",
-      "is_cvs": false,
-      "summary": [
-        "중소벤처기업부, 온라인 수출 중소기업 물류비 최대 70% 지원",
-        "풀필먼트 및 해외 물류센터 비용 지원을 통한 K-푸드 등 소비재 해외 판로 확대"
-      ],
-      "keywords": [
-        "K-푸드"
-      ],
-      "kw_cats": {
-        "K-푸드": "trend"
-      },
-      "date": "2026-07-17T11:55:44+00:00"
-    },
-    {
-      "id": "a9d2f5a84680",
-      "title": "초복 지나 폭염 본격화…황기·오미자·맥문동으로 여름 건강 챙긴다",
-      "url": "https://www.foodtoday.or.kr/news/article.html?no=206467",
-      "source": "푸드투데이",
-      "lang": "ko",
-      "category": "식재료·원료",
-      "is_cvs": false,
-      "summary": [
-        "폭염 대비 여름철 건강 관리를 위한 기능성 약용작물(황기, 오미자, 맥문동) 활용 제안",
-        "농촌진흥청의 식재료 활용 조리법 및 섭취 주의사항 안내를 통한 웰니스 푸드 소비 촉진"
-      ],
-      "keywords": [
-        "황기",
-        "오미자",
-        "맥문동",
-        "웰니스 푸드"
-      ],
-      "kw_cats": {
-        "황기": "ingredient",
-        "오미자": "ingredient",
-        "맥문동": "ingredient",
-        "웰니스 푸드": "trend"
-      },
-      "date": "2026-07-17T11:52:12+00:00"
-    },
-    {
-      "id": "c7b349309672",
-      "title": "식물성 유단백질: 이스라엘 과학자들, 종자 생명공학으로 우유 없는 카제인 생산 기술 개발",
-      "url": "https://www.foodingredientsfirst.com/news/plant-based-beta-casein-dairy-proteins.html",
-      "source": "Food Ingredients First",
-      "lang": "en",
-      "category": "식재료·원료",
-      "is_cvs": false,
-      "summary": [
-        "이스라엘 연구진이 식물 종자 내에서 우유의 핵심 단백질인 β-카제인을 생산하고 저장하는 기술을 발견함",
-        "해당 기술은 식물성 유제품의 질감과 영양적 기능을 개선하여 대체 유제품 시장의 기술적 장벽을 해소할 것으로 기대됨"
-      ],
-      "keywords": [
-        "β-카제인",
-        "식물성 단백질",
-        "대체 유제품"
-      ],
-      "kw_cats": {
-        "β-카제인": "ingredient",
-        "식물성 단백질": "ingredient",
-        "대체 유제품": "trend"
-      },
-      "date": "2026-07-17T11:32:00+00:00"
-    },
-    {
-      "id": "0775fda57b04",
-      "title": "코카콜라, 사이버 공격 확인 및 페어라이프 운영 중단",
-      "url": "https://www.foodnavigator.com/Article/2026/07/17/coca-cola-confirms-ransomware-attack-as-fairlife-us-production-halts/",
-      "source": "Food Navigator",
-      "lang": "en",
-      "category": "산업·정책",
-      "is_cvs": false,
-      "summary": [
-        "코카콜라가 사이버 공격을 공식 확인하며 보안 사고 발생",
-        "해당 공격으로 인해 자회사인 페어라이프(Fairlife)의 운영이 일시 중단됨"
-      ],
-      "keywords": [
-        "코카콜라",
-        "페어라이프"
-      ],
-      "kw_cats": {
-        "코카콜라": "brand",
-        "페어라이프": "brand"
-      },
-      "date": "2026-07-17T11:04:49.298000+00:00"
-    },
-    {
-      "id": "98693139368c",
-      "title": "크레아틴의 확장: 정신 건강 분야로 넓어지는 활용도",
-      "url": "https://www.foodnavigator.com/Article/2026/07/17/mental-health-research-adds-momentum-to-creatine-boom/",
-      "source": "Food Navigator",
-      "lang": "en",
-      "category": "소비자·시장",
-      "is_cvs": false,
-      "summary": [
-        "근력 강화 및 운동 보조제로 알려진 크레아틴이 정신 건강 및 인지 기능 개선 분야로 효능 범위가 확대되고 있음",
-        "운동 영양을 넘어 웰니스 및 뇌 건강을 위한 기능성 원료로서 시장 잠재력이 커지고 있음"
-      ],
-      "keywords": [
-        "크레아틴",
-        "정신 건강",
-        "인지 기능",
-        "웰니스"
-      ],
-      "kw_cats": {
-        "크레아틴": "ingredient",
-        "정신 건강": "trend",
-        "인지 기능": "trend",
-        "웰니스": "trend"
-      },
-      "date": "2026-07-17T10:11:06.690000+00:00"
-    },
-    {
-      "id": "7c29a1ca2903",
-      "title": "온타리오 산불 연기, 동쪽으로 확산하며 대기질 악화…위성 관측이 보여준 2026년 7월의 경고",
-      "url": "https://vegilog.com/ontario-wildfire-smoke-moves-east-2026/",
-      "source": "베지로그",
-      "lang": "ko",
-      "category": "산업·정책",
-      "is_cvs": false,
-      "summary": [
-        "2026년 7월 온타리오 산불로 인한 연기 확산으로 북미 지역 대기질 악화",
-        "위성 관측 데이터를 통해 기후 변화와 열파가 결합된 환경적 위험성 경고"
-      ],
-      "keywords": [
-        "대기질"
-      ],
-      "kw_cats": {
-        "대기질": "trend"
-      },
-      "date": "2026-07-17T09:06:31+00:00"
-    },
-    {
-      "id": "2c741b151fc1",
-      "title": "치즈에 빠진 스위스, 퐁듀에 모인 스위스",
-      "url": "https://www.cooknchefnews.com/news/view/1065575970491790",
-      "source": "쿡앤셰프",
-      "lang": "ko",
-      "category": "소비자·시장",
-      "is_cvs": false,
-      "summary": [
-        "스위스의 대표적인 식문화인 퐁듀의 역사와 사회적 의미 조명",
-        "함께 음식을 나누며 소통하는 퐁듀의 식사 방식과 문화적 가치 강조"
-      ],
-      "keywords": [
-        "퐁듀",
-        "치즈"
-      ],
-      "kw_cats": {
-        "퐁듀": "food_cat",
-        "치즈": "ingredient"
-      },
-      "date": "2026-07-17T06:00:53+00:00"
-    },
-    {
-      "id": "11acaae88f50",
-      "title": "치즈에 빠진 스위스, 퐁듀에 모인 스위스",
-      "url": "https://cooknchefnews.com/news/view/1065575970491790",
-      "source": "쿡앤셰프",
-      "lang": "ko",
-      "category": "소비자·시장",
-      "is_cvs": false,
-      "summary": [
-        "스위스의 대표적인 식문화인 퐁듀의 역사와 사회적 의미 조명",
-        "함께 음식을 나누며 소통하는 퐁듀의 식사 방식과 문화적 가치 강조"
-      ],
-      "keywords": [
-        "퐁듀",
-        "치즈"
-      ],
-      "kw_cats": {
-        "퐁듀": "food_cat",
-        "치즈": "ingredient"
-      },
-      "date": "2026-07-17T06:00:53+00:00"
-    },
-    {
-      "id": "29044ad421f7",
-      "title": "서울시농업기술센터, 고혈압·당뇨 예방 '제철농산물 건강식' 무료 교육",
-      "url": "https://www.foodtoday.or.kr/news/article.html?no=206466",
-      "source": "푸드투데이",
-      "lang": "ko",
-      "category": "산업·정책",
-      "is_cvs": false,
-      "summary": [
-        "서울시농업기술센터, 만성질환 예방을 위한 제철 농산물 활용 건강 식생활 교육 실시",
-        "저염·저당 식단 확산 및 농산물 소비 촉진을 연계한 생활밀착형 정책 추진"
-      ],
-      "keywords": [
-        "저염",
-        "저당",
-        "제철 농산물"
-      ],
-      "kw_cats": {
-        "저염": "trend",
-        "저당": "trend",
-        "제철 농산물": "ingredient"
-      },
-      "date": "2026-07-17T02:47:17+00:00"
-    },
-    {
-      "id": "23516892efe6",
-      "title": "스타벅스, 매출 부진 관련 주주 소송 승소",
-      "url": "https://www.nrn.com/quick-service/starbucks-wins-a-shareholder-lawsuit-over-its-sales-slump",
-      "source": "Nation's Restaurant News",
-      "lang": "en",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "연방법원 판사가 스타벅스를 상대로 제기된 주주 소송을 기각함",
-        "전 CEO의 매출 관련 발언이 '명백히 허위'가 아니라는 법원의 판단"
-      ],
-      "keywords": [
-        "Starbucks"
-      ],
-      "kw_cats": {
-        "Starbucks": "brand"
-      },
-      "date": "2026-07-17T02:32:10+00:00"
-    },
-    {
-      "id": "59756cfe8c5e",
-      "title": "더 건강한 선택: 칼비 그래놀라, 펩시코 영양 제품 및 카페인 프리 차",
-      "url": "https://www.foodnavigator.com/Article/2026/07/17/healthier-choices-calbee-granola-pepsico-nutrition-and-no-caffeine-tea/",
-      "source": "Food Navigator",
-      "lang": "en",
-      "category": "신제품·NPD",
-      "is_cvs": false,
-      "summary": [
-        "칼비(Calbee)의 그래놀라 신제품 출시를 통한 건강 간식 라인업 강화",
-        "펩시코의 영양 강화 제품군 확대 및 카페인 프리 차 시장 공략"
-      ],
-      "keywords": [
-        "그래놀라",
-        "차",
-        "칼비",
-        "펩시코",
-        "카페인 프리"
-      ],
-      "kw_cats": {
-        "그래놀라": "food_cat",
-        "차": "food_cat",
-        "칼비": "brand",
-        "펩시코": "brand",
-        "카페인 프리": "trend"
-      },
-      "date": "2026-07-17T02:27:32.212000+00:00"
-    },
-    {
-      "id": "86fc6398f4ce",
-      "title": "테일러 팜스, 타코벨 공급 상추에서 사이클로스포라 발병 확인",
-      "url": "https://www.nrn.com/quick-service/taco-bell-taylor-farms-identified-as-potential-sources-of-cyclosporia-outbreak",
-      "source": "Nation's Restaurant News",
-      "lang": "en",
-      "category": "산업·정책",
-      "is_cvs": false,
-      "summary": [
-        "타코벨이 특정 지역 매장에 공급된 테일러 팜스의 상추에서 사이클로스포라 감염 위험을 확인하고 해당 제품을 회수함",
-        "식품 안전 문제로 인한 공급망 관리 및 리콜 조치 사례"
-      ],
-      "keywords": [
-        "상추",
-        "타코벨",
-        "테일러 팜스"
-      ],
-      "kw_cats": {
-        "상추": "ingredient",
-        "타코벨": "brand",
-        "테일러 팜스": "brand"
-      },
-      "date": "2026-07-17T01:54:24+00:00"
-    },
-    {
-      "id": "146a67272bef",
-      "title": "카스, 알코올 0.00% '카스 레몬 스퀴즈 제로' 리뉴얼 출시",
-      "url": "https://www.hankyung.com/article/202607169072g",
-      "source": "한국경제 F&B",
-      "lang": "ko",
-      "category": "신제품·NPD",
-      "is_cvs": false,
-      "summary": [
-        "카스 레몬 스퀴즈 제로 리뉴얼 출시",
-        "알코올 0.00%의 무알코올 음료 라인업 강화"
-      ],
-      "keywords": [
-        "카스",
-        "무알코올 음료",
-        "레몬",
-        "제로"
-      ],
-      "kw_cats": {
-        "카스": "brand",
-        "무알코올 음료": "food_cat",
-        "레몬": "ingredient",
-        "제로": "trend"
-      },
-      "date": "2026-07-17T00:21:32.754132+00:00"
-    },
-    {
-      "id": "07b522e3f6dd",
-      "title": "\"1년에 20개 매장 뚝딱\" 벤슨, 서울대입구역점 열고 영토 확장",
-      "url": "https://www.hankyung.com/article/202607169565g",
-      "source": "한국경제 F&B",
-      "lang": "ko",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "외식 브랜드 '벤슨'이 서울대입구역점을 오픈하며 공격적인 매장 확장 전략을 전개함",
-        "1년 만에 20개 매장을 출점하는 등 빠른 속도로 외식 시장 내 영토를 확장 중"
-      ],
-      "keywords": [
-        "벤슨"
-      ],
-      "kw_cats": {
-        "벤슨": "brand"
-      },
-      "date": "2026-07-17T00:21:23.792839+00:00"
-    },
-    {
-      "id": "398c7086bf6a",
-      "title": "KFC, 앱 신규 회원 44%가 '1020'…Z세대 공략 성과",
-      "url": "https://www.hankyung.com/article/202607169657g",
-      "source": "한국경제 F&B",
-      "lang": "ko",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "KFC 앱 신규 회원 중 1020 세대 비중이 44%를 차지하며 Z세대 공략 성과 달성",
-        "디지털 전환 및 젊은 층 타겟 마케팅 전략이 유효하게 작용한 것으로 분석"
-      ],
-      "keywords": [
-        "KFC",
-        "Z세대"
-      ],
-      "kw_cats": {
-        "KFC": "brand",
-        "Z세대": "trend"
-      },
-      "date": "2026-07-17T00:21:04.787458+00:00"
-    },
-    {
-      "id": "e16cbf98fe30",
-      "title": "아웃백, '마라 투움바 파스타' 정식 출시…2030 소통 통했다",
-      "url": "https://www.hankyung.com/article/202607169705g",
-      "source": "한국경제 F&B",
-      "lang": "ko",
-      "category": "신제품·NPD",
-      "is_cvs": false,
-      "summary": [
-        "아웃백 스테이크하우스가 기존 인기 메뉴인 투움바 파스타에 마라 맛을 더한 '마라 투움바 파스타'를 정식 출시함",
-        "2030 세대의 마라 열풍과 트렌드를 반영한 메뉴 개발로 고객 소통 및 브랜드 경쟁력 강화"
-      ],
-      "keywords": [
-        "마라 투움바 파스타",
-        "마라",
-        "아웃백"
-      ],
-      "kw_cats": {
-        "마라 투움바 파스타": "food_cat",
-        "마라": "ingredient",
-        "아웃백": "brand"
-      },
-      "date": "2026-07-17T00:20:55.372498+00:00"
-    },
-    {
-      "id": "6da81edfc2a9",
-      "title": "프리미엄 아이스크림 '벤슨', 1년 만에 20호점 돌파",
-      "url": "https://www.hankyung.com/article/202607169939i",
-      "source": "한국경제 F&B",
-      "lang": "ko",
-      "category": "브랜드·기업",
-      "is_cvs": false,
-      "summary": [
-        "프리미엄 아이스크림 브랜드 '벤슨'이 론칭 1년 만에 20호점을 돌파함",
-        "빠른 매장 확장을 통해 프리미엄 디저트 시장 내 브랜드 입지 강화"
-      ],
-      "keywords": [
-        "벤슨",
-        "아이스크림"
-      ],
-      "kw_cats": {
-        "벤슨": "brand",
-        "아이스크림": "food_cat"
-      },
-      "date": "2026-07-17T00:20:46.467103+00:00"
-    },
-    {
-      "id": "04304b126295",
-      "title": "CJ제일제당, CJ더마켓서 회원 대상 ‘썸머 쿠킹 클래스’ 운영",
-      "url": "https://www.foodtoday.or.kr/news/article.html?no=206464",
-      "source": "푸드투데이",
-      "lang": "ko",
-      "category": "채널·유통",
-      "is_cvs": false,
-      "summary": [
-        "CJ제일제당이 자사몰 CJ더마켓 우수 회원을 대상으로 '썸머 쿠킹 클래스' 운영",
-        "고객 경험 강화 및 충성도 제고를 위한 '더드림' 혜택의 일환"
-      ],
-      "keywords": [
-        "CJ더마켓",
-        "CJ제일제당"
-      ],
-      "kw_cats": {
-        "CJ더마켓": "brand",
-        "CJ제일제당": "brand"
-      },
-      "date": "2026-07-17T00:14:42+00:00"
     }
   ]
 }
