@@ -1,10 +1,10 @@
 {
-  "updated": "2026-08-21T00:12:41.796212+00:00",
-  "total": 7,
+  "updated": "2026-08-22T00:06:27.889898+00:00",
+  "total": 8,
   "articles": [
     {
       "id": "ed1bf386db5d",
-      "title": "편의점 4사 버터떡 신제품 출시 - 통신일보",
+      "title": "편의점 4사 버터떡 신제품 출시 - 여성소비자신문",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5lUWtnU01YSzZnMm9yekNOZElZZ3RJV1Ytd3Q5NVNBOEF1R05jTi1NV1FyRWwtd2VuRVF6SDBKbXdTNmkwNWtiN012S2VKbjE0Smg0NHpiWnRuTDhTVE0wdnp2NA?oc=5",
       "source": "편의점 신제품",
       "lang": "ko",
@@ -16,10 +16,12 @@
       ],
       "keywords": [
         "버터떡",
+        "버터",
         "편의점"
       ],
       "kw_cats": {
         "버터떡": "food_cat",
+        "버터": "ingredient",
         "편의점": "brand"
       },
       "date": "2026-03-31T07:00:00+00:00"
@@ -59,14 +61,14 @@
         "여행지 미식 경험을 편의점 간편식으로 구현한 협업 마케팅 사례"
       ],
       "keywords": [
-        "다카마쓰 우동",
+        "우동",
         "세븐일레븐",
         "진에어",
         "오뚜기",
         "정호영"
       ],
       "kw_cats": {
-        "다카마쓰 우동": "food_cat",
+        "우동": "food_cat",
         "세븐일레븐": "brand",
         "진에어": "brand",
         "오뚜기": "brand",
@@ -83,8 +85,8 @@
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "세븐일레븐과 롯데자이언츠의 협업을 통해 15종의 신규 상품 출시",
-        "식품뿐만 아니라 선수단 굿즈를 포함한 다양한 콜라보레이션 제품 구성"
+        "세븐일레븐과 롯데자이언츠의 협업을 통해 총 15종의 신제품 출시",
+        "식품뿐만 아니라 선수단 굿즈를 포함한 다양한 콜라보레이션 상품 구성"
       ],
       "keywords": [
         "세븐일레븐",
@@ -142,6 +144,30 @@
       "date": "2026-03-11T07:00:00+00:00"
     },
     {
+      "id": "4a59e4bac45c",
+      "title": "[신상템] “두쫀쿠 가고 봄동 왔다”… GS25, 봄동 비빔밥 3월 한정 출시 - 여성조선",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9RcmUwU29KQUxqTlJsZ0NmcU1RY19Da2FRNlVZNF9rM1ZVMm1MRlllYjVHN3h4eTFHVUVDclpkVnBlQXVGaXlNUW81SW81VHktcXBkWWxYbC1YeVA3Vm5TRXhNN1Z6ODdtRFR30gFuQVVfeXFMTk5PU1hvTVNCMTJETUNVOXNIN0E3c3dOaHRncE1xUWg0X28yNVV1X0FoNVZZSnpBVFJNZExrbzhOeWNGZy1UTGFBWGNhZkc2c3ZDbjBvQzVhMlZRRlJmeVFfQ0IxMTBkeGJuLU9GdEE?oc=5",
+      "source": "편의점 신제품",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "GS25, 3월 제철 식재료인 봄동을 활용한 비빔밥 신메뉴 출시",
+        "시즌 한정 상품 운영을 통한 편의점 간편식 라인업 강화"
+      ],
+      "keywords": [
+        "봄동 비빔밥",
+        "봄동",
+        "GS25"
+      ],
+      "kw_cats": {
+        "봄동 비빔밥": "food_cat",
+        "봄동": "ingredient",
+        "GS25": "brand"
+      },
+      "date": "2026-03-11T07:00:00+00:00"
+    },
+    {
       "id": "91b384916394",
       "title": "\"한 달 만에 또?\" 널담, 세븐일레븐서 '초고속 신제품'… 고단백 저당 포카치아 런칭 - 코리아스타트업포스트",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9ZSEhmYm5tNVozUGdZZnhId2JOZWw3S1hUMXpSM1ZXY3BMVDBaU19XRFhidk9DTmV2SEV4aGlJRk82cF9aVng5ZzVkTTIxeTV0RDNGdg?oc=5",
@@ -151,7 +177,7 @@
       "is_cvs": true,
       "summary": [
         "널담, 세븐일레븐과 협업하여 고단백 저당 포카치아 신제품 출시",
-        "한 달 만에 신제품을 선보이는 등 빠른 제품 개발 및 시장 확장 전략 전개"
+        "한 달 만에 신제품을 선보이는 등 빠른 제품 개발 및 시장 대응 속도 강조"
       ],
       "keywords": [
         "포카치아",
