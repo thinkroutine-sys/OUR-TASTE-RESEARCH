@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-22T00:06:27.850951+00:00",
-  "total": 17,
+  "updated": "2026-08-22T23:35:16.373772+00:00",
+  "total": 18,
   "articles": [
     {
       "id": "9a99c347b8ca",
@@ -123,8 +123,8 @@
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "세븐일레븐이 전자레인지 조리 없이도 갓 지은 밥맛을 구현한 삼각김밥 리뉴얼 출시",
-        "상온에서도 밥알의 식감을 유지하는 특수 공법을 적용해 편의점 간편식 품질 차별화 시도"
+        "세븐일레븐이 전자레인지 조리 없이 바로 먹을 수 있는 '상온 삼각김밥' 출시",
+        "특수 제조 공법을 통해 밥의 식감을 유지하고 편의성을 극대화한 제품 전략"
       ],
       "keywords": [
         "삼각김밥",
@@ -214,17 +214,15 @@
       "is_cvs": true,
       "summary": [
         "세븐일레븐이 삼각김밥 품질을 대폭 개선한 '올 뉴 삼각김밥' 시리즈 출시",
-        "편의점 간편식 시장 내 품질 경쟁력 강화를 통한 시장 점유율 확대 전략"
+        "편의점 간편식 시장 내 품질 경쟁력 강화 및 차별화 전략 추진"
       ],
       "keywords": [
         "삼각김밥",
-        "세븐일레븐",
-        "간편식"
+        "세븐일레븐"
       ],
       "kw_cats": {
         "삼각김밥": "food_cat",
-        "세븐일레븐": "brand",
-        "간편식": "food_cat"
+        "세븐일레븐": "brand"
       },
       "date": "2026-04-07T07:00:00+00:00"
     },
@@ -238,6 +236,30 @@
       "is_cvs": true,
       "summary": [
         "삼립, 편의점 채널을 겨냥한 간편 조리빵 신제품 출시",
+        "식사 대용 및 간식으로 즐기는 '스내킹(Snacking)' 문화 트렌드 반영"
+      ],
+      "keywords": [
+        "조리빵",
+        "스내킹",
+        "삼립"
+      ],
+      "kw_cats": {
+        "조리빵": "food_cat",
+        "스내킹": "trend",
+        "삼립": "brand"
+      },
+      "date": "2026-04-06T07:00:00+00:00"
+    },
+    {
+      "id": "c499d8409cd3",
+      "title": "삼립, 편의점서 간편하게 즐기는 '조리빵' 출시…\"스내킹 문화 반영\" - 뉴스1",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5yV0VOSEJtYVpLby1ENlBWbnhvRTRyS3YzV0kzbVFQdnFXR2JHTkJiVnhzR3ZXZXoxcGQ5cUxEWlNLdFFYUlVzQ2RUSVZoN0c3LXYxTFRodTZmVGVsdnJZ0gFkQVVfeXFMTVh0eXpmNHg1dTMtaWJmVExoUkhEdHVEMXBUSUZ5OG1rckRQMnNEOExkZUNkVVkzZThxSzRpVjh6Y2FDWXVJYWRJcHQzM2tqenRWVjNvSWtaTW5pV0sxV3lWcF80bA?oc=5",
+      "source": "편의점 신제품",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "삼립, 편의점 채널 타겟의 간편 조리빵 신제품 출시",
         "식사 대용 및 간식으로 즐기는 '스내킹(Snacking)' 문화 트렌드 반영"
       ],
       "keywords": [
@@ -286,17 +308,13 @@
       "is_cvs": true,
       "summary": [
         "편의점 업계의 디저트, 주류, 생활용품 등 다양한 카테고리 신제품 출시 확대",
-        "소비자 접점을 넓히기 위한 유통 채널의 제품 포트폴리오 다각화 전략"
+        "소비자 접점을 넓히기 위한 유통 채널별 상품 다각화 전략"
       ],
       "keywords": [
-        "편의점",
-        "디저트",
-        "주류"
+        "편의점"
       ],
       "kw_cats": {
-        "편의점": "brand",
-        "디저트": "food_cat",
-        "주류": "food_cat"
+        "편의점": "brand"
       },
       "date": "2026-04-03T07:00:00+00:00"
     },
