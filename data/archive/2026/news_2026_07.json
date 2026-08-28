@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-27T05:07:40.354551+00:00",
-  "total": 3292,
+  "updated": "2026-08-28T07:50:42.596908+00:00",
+  "total": 3293,
   "articles": [
     {
       "id": "1d5abd351258",
@@ -22224,6 +22224,30 @@
       "date": "2026-07-22T07:19:04+00:00"
     },
     {
+      "id": "22477cf9418c",
+      "title": "[유통 브리핑] 세븐일레븐, 삼성웰스토리, 서울우유 - 신아일보",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBveG51LXVCeHNBM3lFcFBnNXE1WHpKUFZGalVybnFHTmhKcnUtSnhLc1lqLWc4ZnQ3aTRzTnNSWU9NRDM2SU5TYjBTUkFyTldoQkY4LTdNYUxtVlMwNE5ILWdMZEVHNTlwSTFqZ3djeHI?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐, 삼성웰스토리, 서울우유 등 주요 유통 및 식품 기업의 단신 브리핑",
+        "각 사의 최근 유통 전략 및 브랜드 활동 소식 전달"
+      ],
+      "keywords": [
+        "세븐일레븐",
+        "삼성웰스토리",
+        "서울우유"
+      ],
+      "kw_cats": {
+        "세븐일레븐": "brand",
+        "삼성웰스토리": "brand",
+        "서울우유": "brand"
+      },
+      "date": "2026-07-22T07:00:00+00:00"
+    },
+    {
       "id": "4828557b91f8",
       "title": "배스킨라빈스, 혼자 즐기는 ‘슈가케인 빙수’ 2종 출시",
       "url": "https://www.foodtoday.or.kr/news/article.html?no=206569",
@@ -31141,16 +31165,18 @@
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "세븐일레븐이 고물가 대응 전략으로 선보인 '천원 시리즈' 3탄 출시",
-        "천원 시리즈 누적 판매량 450만 캔 돌파하며 가성비 상품군 입지 강화"
+        "세븐일레븐이 고물가 대응을 위한 '천원 시리즈' 3탄을 출시함",
+        "천원 시리즈는 가성비를 앞세워 누적 450만 캔 판매를 기록하며 소비자 호응을 얻음"
       ],
       "keywords": [
         "세븐일레븐",
-        "천원 시리즈"
+        "천원 시리즈",
+        "고물가"
       ],
       "kw_cats": {
         "세븐일레븐": "brand",
-        "천원 시리즈": "trend"
+        "천원 시리즈": "food_cat",
+        "고물가": "trend"
       },
       "date": "2026-07-19T07:00:00+00:00"
     },
@@ -51662,7 +51688,7 @@
       "is_cvs": true,
       "summary": [
         "편의점 업계가 1인 가구를 겨냥한 초복 맞이 보양식 신제품을 잇달아 출시함",
-        "이열치열 트렌드를 반영한 다양한 보양 메뉴로 간편식 시장 공략 강화"
+        "이열치열 트렌드를 반영한 다양한 보양 메뉴를 통해 간편식 시장 공략 강화"
       ],
       "keywords": [
         "보양식",

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-27T05:07:40.423391+00:00",
+  "updated": "2026-08-28T07:50:42.698667+00:00",
   "total": 10,
   "articles": [
     {
@@ -100,17 +100,22 @@
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9iWGk3WVJFSEwyZjFlWkV5M1hFa1h5UTMxZFUyZ1o1SkJwMV9pTVhuMGQtcTNUQnZZTDVNd2wxaHlnRTQ3aVRGdzV3YUNIV0NOekhrM3BkZWRTTThmdkxaWg?oc=5",
       "source": "세븐일레븐 소식",
       "lang": "ko",
-      "category": "채널·유통",
+      "category": "신제품·NPD",
       "is_cvs": true,
-      "summary": "농심, '신라면 로제' 18일 베일 벗는다…日 세븐일레븐서 판매 개시 &nbsp;&nbsp; 더구루",
-      "keywords": [
-        "농심",
-        "신라면",
-        "로제",
-        "베일",
-        "벗는다"
+      "summary": [
+        "농심, 신라면 브랜드의 새로운 라인업인 '신라면 로제' 출시",
+        "일본 세븐일레븐을 시작으로 글로벌 시장 판매 본격화"
       ],
-      "kw_cats": {},
+      "keywords": [
+        "신라면 로제",
+        "농심",
+        "로제"
+      ],
+      "kw_cats": {
+        "신라면 로제": "food_cat",
+        "농심": "brand",
+        "로제": "trend"
+      },
       "date": "2026-05-14T07:00:00+00:00"
     },
     {
@@ -217,15 +222,17 @@
       "is_cvs": true,
       "summary": [
         "세븐일레븐이 탄산수를 부으면 바로 탄산음료가 되는 '스파클링아이스컵' 출시",
-        "얼음컵에 탄산 제조 기술을 접목해 편의점 음료 카테고리 확장"
+        "얼음컵에 탄산 제조 기술을 접목해 간편하게 탄산음료를 즐길 수 있는 편의점 전용 신제품"
       ],
       "keywords": [
         "스파클링아이스컵",
-        "세븐일레븐"
+        "세븐일레븐",
+        "탄산음료"
       ],
       "kw_cats": {
         "스파클링아이스컵": "food_cat",
-        "세븐일레븐": "brand"
+        "세븐일레븐": "brand",
+        "탄산음료": "food_cat"
       },
       "date": "2026-05-06T07:00:00+00:00"
     }
