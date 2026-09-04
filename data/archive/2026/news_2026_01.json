@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-03T01:30:28.859981+00:00",
-  "total": 14,
+  "updated": "2026-09-04T01:24:32.960632+00:00",
+  "total": 15,
   "articles": [
     {
       "id": "17d71208f9b8",
@@ -186,19 +186,19 @@
       "is_cvs": true,
       "summary": [
         "두바이 초콜릿, 쫀득한 푸딩, 쿠키를 조합한 '두쫀쿠' 디저트가 SNS에서 화제",
-        "카페와 편의점을 중심으로 관련 신제품 출시가 봇물을 이루며 디저트 시장 트렌드를 주도"
+        "카페와 편의점을 중심으로 두쫀쿠 관련 신제품 출시가 잇따르고 있음"
       ],
       "keywords": [
         "두바이 초콜릿",
         "푸딩",
         "쿠키",
-        "디저트"
+        "SNS 트렌드"
       ],
       "kw_cats": {
         "두바이 초콜릿": "food_cat",
         "푸딩": "food_cat",
         "쿠키": "food_cat",
-        "디저트": "trend"
+        "SNS 트렌드": "trend"
       },
       "date": "2026-01-17T08:00:00+00:00"
     },
@@ -311,8 +311,8 @@
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "편의점 업계가 새해를 맞아 건강 관리에 관심이 많은 '헬시플레저' 고객을 겨냥한 신제품을 출시함",
-        "건강과 맛을 동시에 고려한 제품군 확대를 통해 소비자의 니즈를 충족시키려는 전략"
+        "편의점 업계가 새해를 맞아 건강 관리에 관심이 높은 '헬시플레저' 고객을 겨냥한 신제품을 출시함",
+        "건강과 맛을 동시에 고려한 제품군 확대를 통해 연초 다이어트 및 건강 관리 수요를 선점하려는 전략"
       ],
       "keywords": [
         "헬시플레저",
@@ -345,6 +345,32 @@
         "단백질쉐이크": "food_cat",
         "고단백": "trend",
         "세븐일레븐": "brand"
+      },
+      "date": "2026-01-04T08:00:00+00:00"
+    },
+    {
+      "id": "db2e8ba23790",
+      "title": "세븐일레븐, ‘매일한끼 단백질쉐이크’ 2종 출시 - 조선비즈 - Chosunbiz",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNbmdaTnYxbF9vUnJ0TE9qSXFHVnZDQW44TkhXX1NWTnF6cTlRYkp2eHZSOG16SU5kWDRRRFVxbHV2MjNxdmtST2d4cjl2ZTNUREItcmhIbG1rd1lReUNscENLVmR6X2lNWU5WX2Q1eHFNQnhZTV9CZFZqYzJoWkgzV2ttbk1OS3Nic1HSAZ4BQVVfeXFMTlJmME5GVExHVWYtQi1oTTQ2TFJqaUxXdkxBb01fbC10RExzNGtNeXRkdmhfR1VpaHNmaEd0b21Iek1LWnZqWnBMd19ybEZNU0xpeDRRcGR5YjBPSUUxdUtDZjBlbWJZMi0wY0w1eHp0MXJ0S2xGcDNCWWdEVUlHTlJZTUdrbDR6Nm01SDRKZUQ1ZjNvMlBuV3k4RDd2dHc?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐이 매일유업과 협업하여 '매일한끼 단백질쉐이크' 2종 출시",
+        "편의점 채널을 통해 간편하게 단백질을 섭취하려는 소비자 니즈 공략"
+      ],
+      "keywords": [
+        "단백질쉐이크",
+        "고단백",
+        "세븐일레븐",
+        "매일유업"
+      ],
+      "kw_cats": {
+        "단백질쉐이크": "food_cat",
+        "고단백": "trend",
+        "세븐일레븐": "brand",
+        "매일유업": "brand"
       },
       "date": "2026-01-04T08:00:00+00:00"
     }
