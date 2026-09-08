@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T01:02:02.349951+00:00",
+  "updated": "2026-09-08T01:54:23.231686+00:00",
   "total": 3293,
   "articles": [
     {
@@ -22225,15 +22225,15 @@
     },
     {
       "id": "22477cf9418c",
-      "title": "[유통 브리핑] 세븐일레븐, 삼성웰스토리, 서울우유 - 신아일보",
+      "title": "[유통 브리핑] 세븐일레븐, 삼성웰스토리, 서울우유 - shinailbo.co.kr",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBveG51LXVCeHNBM3lFcFBnNXE1WHpKUFZGalVybnFHTmhKcnUtSnhLc1lqLWc4ZnQ3aTRzTnNSWU9NRDM2SU5TYjBTUkFyTldoQkY4LTdNYUxtVlMwNE5ILWdMZEVHNTlwSTFqZ3djeHI?oc=5",
       "source": "세븐일레븐 소식",
       "lang": "ko",
-      "category": "브랜드·기업",
+      "category": "채널·유통",
       "is_cvs": true,
       "summary": [
         "세븐일레븐, 삼성웰스토리, 서울우유 등 주요 유통 및 식품 기업의 최신 소식 전달",
-        "각 기업의 경영 활동 및 유통 채널 관련 브리핑"
+        "각 기업별 신제품 출시 및 유통 채널 전략 관련 브리핑"
       ],
       "keywords": [
         "세븐일레븐",
@@ -31169,12 +31169,14 @@
         "천원 시리즈 누적 판매량 450만 캔 돌파하며 가성비 상품군 입지 강화"
       ],
       "keywords": [
+        "천원 시리즈",
         "세븐일레븐",
-        "천원 시리즈"
+        "고물가"
       ],
       "kw_cats": {
+        "천원 시리즈": "food_cat",
         "세븐일레븐": "brand",
-        "천원 시리즈": "trend"
+        "고물가": "trend"
       },
       "date": "2026-07-19T07:00:00+00:00"
     },
@@ -44553,23 +44555,23 @@
     },
     {
       "id": "0317295da2d8",
-      "title": "세븐일레븐, 품절 대란 신동엽 위스키 업그레이드 '블랙서클맥스' 출시 - 전자신문",
+      "title": "세븐일레븐, 품절 대란 신동엽 위스키 업그레이드 '블랙서클맥스' 출시 - etnews.com",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1LWk1kRzBlc3lnNmlZUldOYWgtWmJvN19VTGVJSktwWl9wcnp5dEJILXNMN3V6QkFVd3Z4dnYxREp3VjBMamRRLUljZzdhQQ?oc=5",
       "source": "세븐일레븐 소식",
       "lang": "ko",
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "세븐일레븐이 기존 '신동엽 위스키'의 후속작으로 '블랙서클맥스'를 출시",
-        "품절 대란을 일으켰던 인기 제품의 업그레이드 버전으로 프리미엄 주류 라인업 강화"
+        "세븐일레븐이 품절 대란을 일으켰던 '신동엽 위스키'의 업그레이드 버전인 '블랙서클맥스'를 출시함",
+        "기존 제품의 인기를 바탕으로 상품성을 강화하여 주류 라인업 확대 및 소비자 공략 강화"
       ],
       "keywords": [
-        "위스키",
+        "블랙서클맥스",
         "세븐일레븐",
         "홈술"
       ],
       "kw_cats": {
-        "위스키": "food_cat",
+        "블랙서클맥스": "food_cat",
         "세븐일레븐": "brand",
         "홈술": "trend"
       },
@@ -51678,7 +51680,7 @@
     },
     {
       "id": "6b93f52074e0",
-      "title": "[신제품 출시] 편의점 업계, 1인 가구 겨냥 초복 보양식 경쟁…'이열치열' 메뉴 눈길 - 시사캐스트",
+      "title": "[신제품 출시] 편의점 업계, 1인 가구 겨냥 초복 보양식 경쟁…'이열치열' 메뉴 눈길 - sisacast.kr",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5KWWdWU1pQTy1IZ0hpWjBSSUZGS2RmX3RvWWl3YnFscU9jS3JPZjFUWjIyeXlfR0VlMWM5Ti1xNG9GOFM2aUpDejR5SnZvY2E3UDV3WTJud2xlb1U4ak5FT0VnaGEwb3M?oc=5",
       "source": "편의점 신제품",
       "lang": "ko",
@@ -51686,17 +51688,15 @@
       "is_cvs": true,
       "summary": [
         "편의점 업계가 1인 가구를 겨냥한 초복 맞이 보양식 신제품을 잇달아 출시함",
-        "이열치열 트렌드를 반영한 다양한 보양 메뉴를 통해 간편식 시장 공략 강화"
+        "이열치열 트렌드를 반영한 다양한 간편 보양식 메뉴로 여름철 수요 공략"
       ],
       "keywords": [
         "보양식",
-        "HMR",
         "1인 가구",
         "편의점"
       ],
       "kw_cats": {
         "보양식": "food_cat",
-        "HMR": "food_cat",
         "1인 가구": "trend",
         "편의점": "brand"
       },
@@ -55118,15 +55118,15 @@
     },
     {
       "id": "a5ec3d539df6",
-      "title": "세븐일레븐, SNS 화제 디저트·부창제과 협업 신제품 4종 출시 - 신아일보",
+      "title": "세븐일레븐, SNS 화제 디저트·부창제과 협업 신제품 4종 출시 - shinailbo.co.kr",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1rZlUzcGlraVhVTXNNZ3BESlNlejVpbmluczk3Y20xMkhzdmJXbGVUUmI4U0tRazRvUDV5S2M2S2UtTjR2ZnpET1BLZWN4VUI3Z3NyZ0pSdkJQYkZwc2ZoTFcyRTBIdTUxQ0FTMnVnVkM?oc=5",
       "source": "세븐일레븐 소식",
       "lang": "ko",
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "세븐일레븐이 SNS 화제 디저트 및 부창제과와 협업한 신제품 4종 출시",
-        "편의점 디저트 라인업 강화 및 차별화된 상품 전략 추진"
+        "세븐일레븐이 SNS 화제 디저트 및 부창제과와 협업하여 신제품 4종 출시",
+        "편의점 디저트 라인업 강화를 통한 소비자 접점 확대"
       ],
       "keywords": [
         "세븐일레븐",
@@ -58597,8 +58597,8 @@
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "세븐일레븐이 SNS 인기 디저트 및 부창제과와 협업한 신제품 출시",
-        "편의점 디저트 라인업 강화를 통한 소비자 접점 확대"
+        "세븐일레븐이 SNS 인기 디저트와 부창제과 협업을 통해 신제품 출시",
+        "편의점 디저트 라인업 강화 및 트렌디한 제품 확보 전략"
       ],
       "keywords": [
         "세븐일레븐",
