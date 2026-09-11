@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10T02:26:52.868553+00:00",
+  "updated": "2026-09-11T01:25:51.690659+00:00",
   "total": 1473,
   "articles": [
     {
@@ -2016,6 +2016,30 @@
       "date": "2026-06-30T07:00:00+00:00"
     },
     {
+      "id": "b376cd501d2c",
+      "title": "[오늘의 편의점] 세븐일레븐 '럭키 칠일일'·이마트24 '냉동안주' 신제품 - 월요신문",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5CLUc3blp5aHRqSXVkWGsxZm5NRTRJbW1aR09pcHpPeThrRW9KUXQ5WU1RWkhzcDU0dFcxNkgtV3UtVExzb3M0clFuTWlrUi01aXFBMGszV0xKcE83dC1peFdUSlVhMmozSkE?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐, '럭키 칠일일' 신제품 출시",
+        "이마트24, 냉동안주류 신제품 라인업 확대"
+      ],
+      "keywords": [
+        "세븐일레븐",
+        "이마트24",
+        "냉동안주"
+      ],
+      "kw_cats": {
+        "세븐일레븐": "brand",
+        "이마트24": "brand",
+        "냉동안주": "food_cat"
+      },
+      "date": "2026-06-30T07:00:00+00:00"
+    },
+    {
       "id": "37ea69dd62fe",
       "title": "식량과학원-농진원-영광군, 보리산업 활성화 협력",
       "url": "http://www.foodnews.co.kr/news/articleView.html?idxno=119183",
@@ -3829,30 +3853,6 @@
         "파리바게뜨": "brand"
       },
       "date": "2026-06-30T01:15:40+00:00"
-    },
-    {
-      "id": "b376cd501d2c",
-      "title": "[오늘의 편의점] 세븐일레븐 '럭키 칠일일'·이마트24 '냉동안주' 신제품 - 월요신문",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5CLUc3blp5aHRqSXVkWGsxZm5NRTRJbW1aR09pcHpPeThrRW9KUXQ5WU1RWkhzcDU0dFcxNkgtV3UtVExzb3M0clFuTWlrUi01aXFBMGszV0xKcE83dC1peFdUSlVhMmozSkE?oc=5",
-      "source": "세븐일레븐 소식",
-      "lang": "ko",
-      "category": "신제품·NPD",
-      "is_cvs": true,
-      "summary": [
-        "세븐일레븐, '럭키 칠일일' 시리즈 신제품 출시",
-        "이마트24, 냉동안주류 라인업 강화"
-      ],
-      "keywords": [
-        "세븐일레븐",
-        "이마트24",
-        "냉동안주"
-      ],
-      "kw_cats": {
-        "세븐일레븐": "brand",
-        "이마트24": "brand",
-        "냉동안주": "food_cat"
-      },
-      "date": "2026-06-30T01:14:44+00:00"
     },
     {
       "id": "f6fce7af3929",
@@ -9992,8 +9992,8 @@
       "category": "채널·유통",
       "is_cvs": true,
       "summary": [
-        "편의점 업계가 제철 식재료를 활용한 신제품 출시를 통해 차별화 경쟁을 펼치고 있음",
-        "지역 특산물을 활용한 상품 개발로 소비자 니즈를 공략하고 유통 채널 경쟁력을 강화함"
+        "편의점 업계가 제철 식재료를 활용한 신제품 출시를 통해 차별화 경쟁을 강화함",
+        "지역 특산물을 활용한 상품 개발로 소비자 니즈를 공략하고 지역 상생 가치를 창출함"
       ],
       "keywords": [
         "편의점",
@@ -24578,18 +24578,16 @@
       "category": "채널·유통",
       "is_cvs": true,
       "summary": [
-        "오프라인 편집숍 '올다무'가 신제품 테스트베드로서 편의점의 역할을 대체하며 주목받음",
-        "자가비 등 인기 스낵의 신제품을 선제적으로 선보이며 소비자 반응을 확인하는 유통 채널로 부상"
+        "오프라인 편집숍 '올다무'가 식품 브랜드의 신제품 테스트베드로 부상",
+        "편의점 대비 고객 반응을 즉각적으로 확인하고 피드백을 얻을 수 있는 유통 채널로 주목"
       ],
       "keywords": [
         "올다무",
-        "자가비",
-        "스낵"
+        "자가비"
       ],
       "kw_cats": {
         "올다무": "brand",
-        "자가비": "brand",
-        "스낵": "food_cat"
+        "자가비": "brand"
       },
       "date": "2026-06-15T07:00:00+00:00"
     },
@@ -29254,15 +29252,15 @@
     },
     {
       "id": "fd88fe4faa38",
-      "title": "세븐일레븐, 샌드위치 전용 '리치골드마요네즈' 개발…간편식 전면 리뉴얼 - news.tf.co.kr",
+      "title": "세븐일레븐, 샌드위치 전용 '리치골드마요네즈' 개발…간편식 전면 리뉴얼 - 더팩트",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBKN042TnRuWkE2ZlRCOHl1a1c2ZTM4aDF3NHFLcGJER2IyQ3E4NThReDZxVVYzTmloZW9vcnZtc3ZhNnNhMGM3aFJvb1p1YWhEbTFLWF96aWhVd9IBVEFVX3lxTE9Nc3BxMTdRZ3VfUldzS05JejNVanpiRVNlbV9yek5BSlpKRDFHb2NoNWEtYWVjS3hRcDFRZXJmZEstZ1NmZ29XNFdya3VadFRnWFVOWA?oc=5",
       "source": "세븐일레븐 소식",
       "lang": "ko",
       "category": "신제품·NPD",
       "is_cvs": true,
       "summary": [
-        "세븐일레븐이 샌드위치 전용 '리치골드마요네즈'를 자체 개발하여 간편식 품질 강화",
-        "샌드위치 등 간편식 라인업 전면 리뉴얼을 통해 상품 경쟁력 확보"
+        "세븐일레븐이 샌드위치 품질 향상을 위해 전용 '리치골드마요네즈'를 자체 개발함",
+        "샌드위치를 포함한 간편식 전반에 대한 대대적인 리뉴얼 단행"
       ],
       "keywords": [
         "샌드위치",
