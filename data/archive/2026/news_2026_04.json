@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-17T02:28:25.759431+00:00",
+  "updated": "2026-09-18T01:44:29.516940+00:00",
   "total": 24,
   "articles": [
     {
@@ -151,8 +151,8 @@
       "category": "채널·유통",
       "is_cvs": true,
       "summary": [
-        "편의점 업계가 신제품 출시 주기를 대폭 단축하며 속도 경쟁에 돌입",
-        "트렌드 변화에 민감한 소비자 니즈를 반영해 기획부터 출시까지의 기간을 최소화하는 전략 강화"
+        "편의점 업계의 신제품 출시 주기가 극도로 짧아지는 '속도 경쟁' 심화",
+        "트렌드 변화에 민감한 소비자 니즈를 반영하기 위한 유통 채널의 전략적 변화"
       ],
       "keywords": [
         "편의점",
@@ -170,17 +170,20 @@
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFAwZ1JXTHNrSGFrTV9VWGVRd1JqdmhuTnFuRFVzSF9WQkMzQlc0LTJFQXl5VlFlUHdwajNmbjdwNU5NVDNmbXc?oc=5",
       "source": "세븐일레븐 소식",
       "lang": "ko",
-      "category": "채널·유통",
+      "category": "신제품·NPD",
       "is_cvs": true,
-      "summary": "[슬소생]전자레인지와 이별 선언…세븐일레븐 '삼각김밥' 정말 다를까 &nbsp;&nbsp; v.daum.net",
+      "summary": [
+        "세븐일레븐이 전자레인지 조리 없이 바로 먹을 수 있는 '상온 삼각김밥' 출시",
+        "밥알의 식감과 품질을 유지하는 특수 제조 공법을 통해 편의점 간편식의 취식 편의성 강화"
+      ],
       "keywords": [
-        "슬소생",
-        "전자레인지",
-        "이별",
-        "선언",
+        "삼각김밥",
         "세븐일레븐"
       ],
-      "kw_cats": {},
+      "kw_cats": {
+        "삼각김밥": "food_cat",
+        "세븐일레븐": "brand"
+      },
       "date": "2026-04-08T07:00:00+00:00"
     },
     {
@@ -379,13 +382,17 @@
       "is_cvs": true,
       "summary": [
         "편의점 업계의 디저트, 주류, 생활용품 등 다양한 카테고리 신제품 출시 확대",
-        "소비자 접점을 넓히기 위한 유통 채널별 상품 다각화 전략"
+        "소비자 접점 확대를 위한 유통 채널별 제품 라인업 강화 전략"
       ],
       "keywords": [
-        "편의점"
+        "편의점",
+        "디저트",
+        "주류"
       ],
       "kw_cats": {
-        "편의점": "brand"
+        "편의점": "brand",
+        "디저트": "food_cat",
+        "주류": "food_cat"
       },
       "date": "2026-04-03T07:00:00+00:00"
     },
@@ -509,7 +516,7 @@
     },
     {
       "id": "c16beb1516d0",
-      "title": "CJ웰케어, 젤리형 ‘건강구미’ 신제품 7종 출시...GS25·CU 편의점 입점 - 푸드투데이",
+      "title": "CJ웰케어, 젤리형 ‘건강구미’ 신제품 7종 출시...GS25·CU 편의점 입점 - foodtoday.or.kr",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5yOWJvT3AzMW9fTGp3SHVtQ20xMTFESjJNM1R1cWtYVHhWWTVfOW5uRG5TREhnU1JZWmJrdmQ0VFdkSmdCbUVibC1nSHBsZW00cm1YYTlRdkYzN2ozaElHeXVoMFFYZw?oc=5",
       "source": "편의점 신제품",
       "lang": "ko",
@@ -517,7 +524,7 @@
       "is_cvs": true,
       "summary": [
         "CJ웰케어, 젤리 형태의 건강기능식품 '건강구미' 신제품 7종 출시",
-        "GS25 및 CU 편의점 입점을 통해 오프라인 접근성 및 소비자 접점 확대"
+        "GS25 및 CU 편의점 입점을 통해 접근성 및 오프라인 판매 채널 확대"
       ],
       "keywords": [
         "건강구미",
