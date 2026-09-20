@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-19T01:28:10.046595+00:00",
-  "total": 1942,
+  "updated": "2026-09-20T01:05:16.027308+00:00",
+  "total": 1951,
   "articles": [
     {
       "id": "788e28dce50e",
@@ -21,6 +21,210 @@
         "레스토랑 장비": "trend"
       },
       "date": "2026-09-22T05:01:00+00:00"
+    },
+    {
+      "id": "a9475006bc21",
+      "title": "[비건잇슈] 사냥 위해 한 해 최대 7000만마리 방사…영국 동물복지 논쟁",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=386411",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "영국에서 스포츠 사냥을 목적으로 매년 약 7000만 마리의 꿩과 붉은다리자고새가 방사됨",
+        "동물복지 논란과 함께 사냥용 가금류 사육 및 방사에 대한 사회적·정책적 이슈 부상"
+      ],
+      "keywords": [
+        "비건",
+        "동물복지"
+      ],
+      "kw_cats": {
+        "비건": "trend",
+        "동물복지": "trend"
+      },
+      "date": "2026-09-19T20:55:03+00:00"
+    },
+    {
+      "id": "36f5e3a0618a",
+      "title": "기후금융이 좌우하는 칠레 에너지 전환, 스탠리 파크 펠로가 읽는 투자 지형",
+      "url": "https://vegilog.com/climate-finance-chile-energy-transition-stanley-park-fellow/",
+      "source": "베지로그",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "칠레의 태양광·풍력 에너지 전환 과정에서 송전 병목과 전력가격 변동으로 인한 자금조달 리스크 발생",
+        "기후금융 관점에서 에너지 전환을 위한 투자 지형과 자본 흐름 분석"
+      ],
+      "keywords": [
+        "기후금융",
+        "에너지 전환"
+      ],
+      "kw_cats": {
+        "기후금융": "trend",
+        "에너지 전환": "trend"
+      },
+      "date": "2026-09-19T09:38:43+00:00"
+    },
+    {
+      "id": "5056193e1c80",
+      "title": "강화 소 농장서 구제역 추가 발생…방역관리 강화",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208160",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "인천 강화군 소재 소 농장에서 구제역 추가 발생",
+        "중앙사고수습본부의 방역 관리 강화 조치 시행"
+      ],
+      "keywords": [
+        "강화",
+        "구제역",
+        "농장",
+        "발생",
+        "방역관리"
+      ],
+      "kw_cats": {},
+      "date": "2026-09-19T07:46:52+00:00"
+    },
+    {
+      "id": "eed50bd4f98f",
+      "title": "“올 추석엔 국산 농축산물”…푸드투데이, 강화풍물시장서 소비촉진",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208159",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "추석 명절을 맞아 전통시장 내 국산 농축산물 소비 촉진 캠페인 진행",
+        "푸드투데이가 주관하여 지역 특산물 경쟁력 강화 및 장보기 수요 대응"
+      ],
+      "keywords": [
+        "푸드투데이",
+        "강화풍물시장",
+        "국산 농축산물"
+      ],
+      "kw_cats": {
+        "푸드투데이": "brand",
+        "강화풍물시장": "brand",
+        "국산 농축산물": "ingredient"
+      },
+      "date": "2026-09-19T07:08:56+00:00"
+    },
+    {
+      "id": "dc58ee95501d",
+      "title": "[우마이 일본] 양갱은 일본선 ‘명품 다과’",
+      "url": "https://cooknchefnews.com/news/view/1065592071226710",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "한국에서 저렴한 간식으로 인식되는 양갱이 일본에서는 최고급 화과자로 대우받음",
+        "국가별 식문화 차이에 따른 양갱의 브랜드 포지셔닝 및 인식 격차 조명"
+      ],
+      "keywords": [
+        "양갱",
+        "화과자",
+        "연양갱"
+      ],
+      "kw_cats": {
+        "양갱": "food_cat",
+        "화과자": "food_cat",
+        "연양갱": "brand"
+      },
+      "date": "2026-09-19T06:00:02+00:00"
+    },
+    {
+      "id": "9860ed276fe1",
+      "title": "추석 차례상 비용 19만6630원…전년보다 1.5% 하락",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208155",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "올해 추석 차례상 비용 19만6630원으로 전년 대비 1.5% 하락",
+        "성수품 공급 확대 및 정부 할인 지원, 유통업계 할인 경쟁이 주요 원인"
+      ],
+      "keywords": [
+        "차례상",
+        "성수품"
+      ],
+      "kw_cats": {
+        "차례상": "trend",
+        "성수품": "ingredient"
+      },
+      "date": "2026-09-19T05:31:24+00:00"
+    },
+    {
+      "id": "99efd1b297c7",
+      "title": "[포토] “차례상엔 우리 농축산물”…푸드투데이·강화군, ‘우리 농축산물 애용’ 캠페인",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208158",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "푸드투데이와 강화군이 추석을 맞아 우리 농축산물 애용 캠페인을 전개함",
+        "지역 농가 소득 증대 및 국산 농산물 소비 촉진을 위한 민관 협력 활동"
+      ],
+      "keywords": [
+        "강화군",
+        "푸드투데이",
+        "우리 농축산물"
+      ],
+      "kw_cats": {
+        "강화군": "brand",
+        "푸드투데이": "brand",
+        "우리 농축산물": "trend"
+      },
+      "date": "2026-09-19T04:42:58+00:00"
+    },
+    {
+      "id": "e7b1a6f3256d",
+      "title": "[포토] 인천 강화 풍물시장, 온누리상품권 환급행사에 추석 장보기 발길",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208157",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "추석 명절을 맞아 해양수산부 주관 온누리상품권 환급행사 실시",
+        "전국 300개 시장에서 국내산 수산물 구매 시 환급 혜택 제공"
+      ],
+      "keywords": [
+        "수산물",
+        "온누리상품권"
+      ],
+      "kw_cats": {
+        "수산물": "food_cat",
+        "온누리상품권": "brand"
+      },
+      "date": "2026-09-19T04:27:55+00:00"
+    },
+    {
+      "id": "ce62ebde32ca",
+      "title": "[포토] “명절 장보러 왔어요”…강화 풍물시장 성수품 구매 '북적'",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208156",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "추석 명절을 앞두고 강화 풍물시장에 성수품 구매 수요가 집중됨",
+        "해양수산부 주관 온누리상품권 환급행사를 통해 전통시장 소비 활성화 유도"
+      ],
+      "keywords": [
+        "추석",
+        "전통시장"
+      ],
+      "kw_cats": {
+        "추석": "trend",
+        "전통시장": "trend"
+      },
+      "date": "2026-09-19T04:20:23+00:00"
     },
     {
       "id": "b4f0732dd6f3",
