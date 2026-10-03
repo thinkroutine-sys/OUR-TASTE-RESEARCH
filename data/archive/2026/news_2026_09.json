@@ -1,6 +1,6 @@
 {
-  "updated": "2026-10-02T02:43:08.120415+00:00",
-  "total": 2934,
+  "updated": "2026-10-03T02:21:59.947482+00:00",
+  "total": 2938,
   "articles": [
     {
       "id": "c8c650ecb894",
@@ -623,6 +623,48 @@
         "PepsiCo": "brand",
         "snack": "food_cat",
         "flavor": "trend"
+      },
+      "date": "2026-09-30T15:00:00+00:00"
+    },
+    {
+      "id": "c74230f2f806",
+      "title": "[인도네시아] 달콤하고 매콤한 스위시(Swicy) 맛 확산",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=106479&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "인도네시아 시장 내 달콤하고 매콤한 맛을 결합한 '스위시(Swicy)' 트렌드 확산",
+        "현지 소비자들의 복합적인 맛 선호도 변화에 따른 식품 업계의 메뉴 개발 방향성 제시"
+      ],
+      "keywords": [
+        "스위시"
+      ],
+      "kw_cats": {
+        "스위시": "trend"
+      },
+      "date": "2026-09-30T15:00:00+00:00"
+    },
+    {
+      "id": "1502608b18ab",
+      "title": "[브라질] ANVISA, 유제품 디저트용 식품첨가물·가공보조제 허용목록 개정안 공개의견수렴 진행",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=106470&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "브라질 식약위생감시국(ANVISA), 유제품 디저트용 식품첨가물 및 가공보조제 허용 목록 개정안 발표",
+        "해당 개정안에 대한 공개 의견수렴 절차 진행 중"
+      ],
+      "keywords": [
+        "유제품 디저트",
+        "식품첨가물"
+      ],
+      "kw_cats": {
+        "유제품 디저트": "food_cat",
+        "식품첨가물": "ingredient"
       },
       "date": "2026-09-30T15:00:00+00:00"
     },
@@ -3766,6 +3808,52 @@
         "즉석어묵": "food_cat",
         "GS25": "brand",
         "겨울 간식": "trend"
+      },
+      "date": "2026-09-29T15:00:00+00:00"
+    },
+    {
+      "id": "2692a5c84d3e",
+      "title": "[EU] 9월 27일부터 그린워싱 규제 본격 시행…EU 집행위 Q＆A로 본 농식품 수출기업 유의사항",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=106469&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "9월 27일부터 EU 내 그린워싱 방지를 위한 환경성 표시 규제 본격 시행",
+        "농식품 수출기업은 제품의 친환경성 입증 책임 강화 및 표시 광고 전략 재점검 필요"
+      ],
+      "keywords": [
+        "그린워싱",
+        "EU"
+      ],
+      "kw_cats": {
+        "그린워싱": "trend",
+        "EU": "brand"
+      },
+      "date": "2026-09-29T15:00:00+00:00"
+    },
+    {
+      "id": "18bd449909aa",
+      "title": "[브라질] 커피 대형업체, 아이스·RTD 제품 확대… 신규 소비층·음용 상황 공략",
+      "url": "https://www.kati.net/board/exportNewsView.do?board_seq=106468&menu_dept2=35&menu_dept3=71&dateSearch=year&srchFr=\r\n\t\t\t\t\t\t&srchTo=&srchTp=&srchWord=&page=1&srchGubun=",
+      "source": "KATI 수출정보",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "브라질 커피 대형업체들이 아이스 커피 및 RTD(Ready-to-Drink) 제품군을 확대함",
+        "신규 소비층 유입과 다양한 음용 상황(TPO)을 공략하기 위한 전략적 제품 포트폴리오 강화"
+      ],
+      "keywords": [
+        "아이스 커피",
+        "RTD",
+        "커피"
+      ],
+      "kw_cats": {
+        "아이스 커피": "food_cat",
+        "RTD": "food_cat",
+        "커피": "food_cat"
       },
       "date": "2026-09-29T15:00:00+00:00"
     },
