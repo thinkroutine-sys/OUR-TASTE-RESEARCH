@@ -1,7 +1,135 @@
 {
-  "updated": "2026-10-03T02:21:59.928990+00:00",
-  "total": 283,
+  "updated": "2026-10-04T02:40:59.477174+00:00",
+  "total": 290,
   "articles": [
+    {
+      "id": "033129f7691e",
+      "title": "가공식품 26개 중 24개 상승…국·탕은 표본 영향",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=391249",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "다소비 가공식품 26개 품목 중 24개 가격이 전년 대비 상승",
+        "국·탕류의 높은 상승률은 표본 정비에 따른 비교 상품 구성 변화가 반영된 결과"
+      ],
+      "keywords": [
+        "가공식품",
+        "국·탕"
+      ],
+      "kw_cats": {
+        "가공식품": "food_cat",
+        "국·탕": "food_cat"
+      },
+      "date": "2026-10-04T01:14:55+00:00"
+    },
+    {
+      "id": "12f12c744027",
+      "title": "미 심장학회, 식물성 중심 식단 권고…식품의 질 강조",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=391245",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "미국심장학회(ACC)가 심혈관 건강을 위해 식물성 중심의 균형 잡힌 식단을 권고함",
+        "단순 식물성 섭취를 넘어 식품의 가공 정도와 영양 질을 고려하는 식단 관리의 중요성 강조"
+      ],
+      "keywords": [
+        "식물성 중심 식단",
+        "심혈관 건강"
+      ],
+      "kw_cats": {
+        "식물성 중심 식단": "trend",
+        "심혈관 건강": "trend"
+      },
+      "date": "2026-10-04T00:25:11+00:00"
+    },
+    {
+      "id": "d892313ae026",
+      "title": "세븐일레븐, 해외 제품 도입 연이은 '히트' 비결은 [이슈 더보기] - 뉴스저널리즘",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFB3RVU4R21BOEtKUG9lV1RFRG9MMTZUSVVQZFZqbENGX0JhamVDMl9aYURwTmdDbFFPaDgtUGxJRVdMbng4N19SdVgtY21xSWdVRHprXzBWZjlPZkwxRUNhb2Q2bG56RENlRUkw?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐의 해외 제품 도입 전략이 연이은 히트로 이어짐",
+        "해외 직소싱 및 차별화 상품 전략을 통한 유통 경쟁력 강화"
+      ],
+      "keywords": [
+        "세븐일레븐"
+      ],
+      "kw_cats": {
+        "세븐일레븐": "brand"
+      },
+      "date": "2026-10-03T22:10:00+00:00"
+    },
+    {
+      "id": "3c601196c3f1",
+      "title": "트럼프 연비 규제 완화의 진짜 비용: 운전자 부담과 탄소배출이 함께 늘어난다",
+      "url": "https://vegilog.com/trump-fuel-economy-rollbacks-true-cost/",
+      "source": "베지로그",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "트럼프 행정부의 연비 규제 완화로 인한 유가 상승기 연료비 부담 증가 우려",
+        "규제 완화에 따른 탄소 배출 증가 및 에너지 안보 저해 가능성 제기"
+      ],
+      "keywords": [
+        "에너지"
+      ],
+      "kw_cats": {
+        "에너지": "trend"
+      },
+      "date": "2026-10-03T09:14:04+00:00"
+    },
+    {
+      "id": "1a7c99a13b7c",
+      "title": "[우마이 일본] 자판기 캔에 담긴 경양식 수프, '콘 포타주'",
+      "url": "https://cooknchefnews.com/news/view/1065606131559405",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "일본 자판기에서 판매되는 캔 형태의 '콘 포타주' 수프 소개",
+        "간편하게 즐기는 따뜻한 식사 대용식으로서의 편의성 강조"
+      ],
+      "keywords": [
+        "콘 포타주",
+        "자판기 음료"
+      ],
+      "kw_cats": {
+        "콘 포타주": "food_cat",
+        "자판기 음료": "trend"
+      },
+      "date": "2026-10-03T06:01:01+00:00"
+    },
+    {
+      "id": "013dd3862b1c",
+      "title": "[정용선의 알짜 돈지식] (3) 상속세 A to Z②",
+      "url": "https://cooknchefnews.com/news/view/1065587343420693",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "부부간 상속 시 발생하는 1차 상속과 2차 상속의 구조적 차이점 설명",
+        "배우자 상속 재산이 2차 상속 시 자녀에게 미치는 세금 부담 문제 제기"
+      ],
+      "keywords": [
+        "상속",
+        "정용선",
+        "알짜",
+        "돈지식",
+        "상속세"
+      ],
+      "kw_cats": {},
+      "date": "2026-10-03T06:00:12+00:00"
+    },
     {
       "id": "3af0b654c182",
       "title": "저당은 100g당 5g 미만, 무당은 0.5g 미만",
@@ -177,6 +305,32 @@
         "혈당 관리": "trend"
       },
       "date": "2026-10-02T22:00:02+00:00"
+    },
+    {
+      "id": "003d62777afd",
+      "title": "라 플란차다(La Planchada)가 생소한 멕시코 증류주로 고객을 사로잡는 방법",
+      "url": "https://www.nrn.com/independent-restaurants/how-la-planchada-uses-lesser-known-mexican-spirits-to-engage-its-customers",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "소토(Sotol)와 라이시야(Raicilla) 같은 희귀한 멕시코 증류주를 활용해 고객 경험을 차별화함",
+        "독특한 주류 경험을 통해 고객의 대화를 유도하고 매장 내 몰입도를 높이는 전략을 구사함"
+      ],
+      "keywords": [
+        "소토",
+        "라이시야",
+        "라 플란차다",
+        "고객 경험"
+      ],
+      "kw_cats": {
+        "소토": "ingredient",
+        "라이시야": "ingredient",
+        "라 플란차다": "brand",
+        "고객 경험": "trend"
+      },
+      "date": "2026-10-02T21:24:51+00:00"
     },
     {
       "id": "9013f104bc26",
