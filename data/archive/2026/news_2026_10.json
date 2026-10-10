@@ -1,7 +1,654 @@
 {
-  "updated": "2026-10-09T03:30:02.909386+00:00",
-  "total": 770,
+  "updated": "2026-10-10T02:26:19.682614+00:00",
+  "total": 800,
   "articles": [
+    {
+      "id": "4b9496928180",
+      "title": "[2026 국감] 농장 해썹 평가 99.9% '전화 한 통'…436곳 현장 확인 없이 인증",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208671",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농장 해썹(HACCP) 인증 평가의 99.9%가 현장 확인 없이 전화 통화로만 진행됨",
+        "최근 3년간 436곳의 농장이 실질적인 현장 점검 없이 인증을 유지하는 등 관리 부실 문제 제기"
+      ],
+      "keywords": [
+        "농장",
+        "현장",
+        "해썹",
+        "평가",
+        "전화"
+      ],
+      "kw_cats": {},
+      "date": "2026-10-10T00:11:14+00:00"
+    },
+    {
+      "id": "8b80dc8076a4",
+      "title": "[2026 국감] 농수축임산물 절도 피해액 154억…1년 새 2.3배 급증",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208670",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농수축임산물 절도 피해액이 1년 새 2.3배 급증하여 154억 원 기록",
+        "농산물 절도 범죄의 검거율이 절반 수준에 머물러 치안 대책 마련 시급"
+      ],
+      "keywords": [
+        "절도",
+        "피해액",
+        "국감",
+        "농수축임산물",
+        "급증"
+      ],
+      "kw_cats": {},
+      "date": "2026-10-10T00:04:36+00:00"
+    },
+    {
+      "id": "4f6b184c329a",
+      "title": "풀무원, 지리산국립공원과 ESG 협력…지속가능 식생활 확산",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208669",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "풀무원, 지리산국립공원과 ESG 협력 강화",
+        "지속가능한 식생활 및 환경 가치 공유 프로그램 진행"
+      ],
+      "keywords": [
+        "풀무원",
+        "지속가능한 식생활"
+      ],
+      "kw_cats": {
+        "풀무원": "brand",
+        "지속가능한 식생활": "trend"
+      },
+      "date": "2026-10-10T00:01:05+00:00"
+    },
+    {
+      "id": "8d5f3dbc9223",
+      "title": "[2026 국감] 온라인 농축산물 원산지 위반 1858곳…배민 74% 집중",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208668",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "온라인 농축산물 원산지 표시 위반 사례 매년 지속 발생",
+        "배달 플랫폼 배달의민족에서 전체 위반 사례의 74% 집중"
+      ],
+      "keywords": [
+        "배달의민족"
+      ],
+      "kw_cats": {
+        "배달의민족": "brand"
+      },
+      "date": "2026-10-09T23:57:59+00:00"
+    },
+    {
+      "id": "554c0acdcee8",
+      "title": "[2026 국감] 해양바이오 연구과제 31건 중 상용화 7건…사업화 지원 시급",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208667",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "해양바이오 연구과제 31건 중 상용화는 7건에 불과해 사업화 성과 저조",
+        "연구개발 이후 스케일업, 표준화, 인허가 단계에 대한 공공 지원 강화 필요"
+      ],
+      "keywords": [
+        "해양바이오"
+      ],
+      "kw_cats": {
+        "해양바이오": "ingredient"
+      },
+      "date": "2026-10-09T23:48:54+00:00"
+    },
+    {
+      "id": "28a967795726",
+      "title": "[2026 국감] PC방·키즈카페 식품위생법 위반 782건…PC방 75% 집중",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208666",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "최근 6년간 PC방·키즈카페 식품위생법 위반 782건 적발",
+        "위반 사례의 75%가 PC방에 집중되었으며 위생교육 미이수가 가장 큰 비중 차지"
+      ],
+      "keywords": [
+        "키즈카페",
+        "위반",
+        "식품위생법",
+        "PC",
+        "국감"
+      ],
+      "kw_cats": {},
+      "date": "2026-10-09T23:43:23+00:00"
+    },
+    {
+      "id": "b280f67ad67f",
+      "title": "[2026 국감] 식중독 사고 57% 원인식품 못 밝혀…식약처 조사체계 도마",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208665",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "지난해 식중독 사고의 57%가 원인 식품을 규명하지 못해 사후 관리 체계의 한계 노출",
+        "계절을 가리지 않고 식중독이 발생하고 있으나 원인 규명률이 40%대에 머물러 식약처 조사 체계 개선 요구"
+      ],
+      "keywords": [
+        "식중독",
+        "사고",
+        "원인식품",
+        "국감",
+        "밝혀"
+      ],
+      "kw_cats": {},
+      "date": "2026-10-09T23:36:50+00:00"
+    },
+    {
+      "id": "4545614fdc44",
+      "title": "잭스비(Zaxby's), 비전통적 매장 확대에 박차",
+      "url": "https://www.nrn.com/fast-casual/zaxbys-presses-the-gas-on-non-traditional-locations",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "치킨 프랜차이즈 잭스비가 Areas USA와 5개 매장 출점 계약 체결",
+        "플로리다 턴파이크 서비스 플라자 내 입점을 통한 비전통적 채널 확장 전략"
+      ],
+      "keywords": [
+        "Zaxbys",
+        "Areas USA",
+        "chicken"
+      ],
+      "kw_cats": {
+        "Zaxbys": "brand",
+        "Areas USA": "brand",
+        "chicken": "food_cat"
+      },
+      "date": "2026-10-09T17:12:30+00:00"
+    },
+    {
+      "id": "b57f20bf2631",
+      "title": "리틀 시저스, 자체 애슬레저 의류 컬렉션 출시",
+      "url": "https://www.nrn.com/quick-service/little-caesars-has-launched-an-entire-athletic-wear-collection",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "피자 브랜드 리틀 시저스가 'LC Athletics'라는 이름의 자체 의류 컬렉션을 런칭함",
+        "조지 키틀, 트렌트 맥더피, 크리드 험프리 등 NFL 선수들이 경기 전 해당 의류를 착용할 예정"
+      ],
+      "keywords": [
+        "Little Caesars"
+      ],
+      "kw_cats": {
+        "Little Caesars": "brand"
+      },
+      "date": "2026-10-09T17:06:45+00:00"
+    },
+    {
+      "id": "49a84c03df90",
+      "title": "아웃백, 'Best Steaks Ever' 라인업으로 스테이크 품질 강조",
+      "url": "https://www.nrn.com/casual-dining/outback-touts-steak-quality-with-new-best-steaks-ever-lineup",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "아웃백 스테이크하우스가 고기 선별 과정과 풍미를 개선한 새로운 스테이크 라인업을 출시함",
+        "브랜드 차원에서 스테이크 품질 향상을 통한 메뉴 경쟁력 강화에 집중"
+      ],
+      "keywords": [
+        "스테이크",
+        "아웃백"
+      ],
+      "kw_cats": {
+        "스테이크": "food_cat",
+        "아웃백": "brand"
+      },
+      "date": "2026-10-09T16:05:39+00:00"
+    },
+    {
+      "id": "55aac06d8483",
+      "title": "메뉴 신상: 밀크 펀치 5종 살펴보기",
+      "url": "https://www.nrn.com/independent-restaurants/new-on-the-menu-a-look-at-five-milk-punches",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "투명한 칵테일의 일종인 '밀크 펀치'가 트렌디한 바를 중심으로 인기를 얻고 있음",
+        "최근 외식 업계에서 주목받는 밀크 펀치 메뉴 5가지를 소개함"
+      ],
+      "keywords": [
+        "밀크 펀치",
+        "칵테일"
+      ],
+      "kw_cats": {
+        "밀크 펀치": "food_cat",
+        "칵테일": "food_cat"
+      },
+      "date": "2026-10-09T15:58:15+00:00"
+    },
+    {
+      "id": "473022a66bb1",
+      "title": "식사 대용식, 편리함과 포만감 모두 충족",
+      "url": "https://www.foodnavigator.com/Article/2026/10/09/meal-replacement-drinks-can-they-replace-diets/",
+      "source": "Food Navigator",
+      "lang": "en",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "바쁜 현대인의 라이프스타일에 맞춰 편리함과 포만감을 동시에 제공하는 식사 대용식 수요 증가",
+        "단순한 간편식을 넘어 영양학적 만족감과 포만감을 강조하는 방향으로 시장 트렌드 변화"
+      ],
+      "keywords": [
+        "Meal replacements",
+        "satiety",
+        "convenience"
+      ],
+      "kw_cats": {
+        "Meal replacements": "food_cat",
+        "satiety": "trend",
+        "convenience": "trend"
+      },
+      "date": "2026-10-09T15:40:47.361000+00:00"
+    },
+    {
+      "id": "e8482860846d",
+      "title": "스타벅스, 이지케이터, 서브웨이 관련 F&B 뉴스",
+      "url": "https://www.nrn.com/quick-service/starbucks-ezcater-and-subway",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "스타벅스, 이지케이터, 서브웨이의 주요 비즈니스 헤드라인 요약",
+        "레스토랑 데일리 팟캐스트를 통한 외식 업계 최신 동향 전달"
+      ],
+      "keywords": [
+        "Starbucks",
+        "ezCater",
+        "Subway"
+      ],
+      "kw_cats": {
+        "Starbucks": "brand",
+        "ezCater": "brand",
+        "Subway": "brand"
+      },
+      "date": "2026-10-09T15:38:10+00:00"
+    },
+    {
+      "id": "867f8e7043e6",
+      "title": "메뉴 트래커: 보쟁글스, 컬버스, 스무디킹 등 신메뉴 출시",
+      "url": "https://www.nrn.com/food-trends/menu-tracker-new-items-from-bojangles-culver-s-and-smoothie-king",
+      "source": "Nation's Restaurant News",
+      "lang": "en",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "보쟁글스, 컬버스, 스무디킹 등 주요 외식 브랜드의 신메뉴 출시 소식",
+        "BJ's, 데이브 앤 버스터즈, 크리스피 크림, 포틸로스 등 다양한 브랜드의 메뉴 혁신 동향"
+      ],
+      "keywords": [
+        "Bojangles",
+        "Culver’s",
+        "Smoothie King",
+        "BJ's",
+        "Dave & Buster's"
+      ],
+      "kw_cats": {
+        "Bojangles": "brand",
+        "Culver’s": "brand",
+        "Smoothie King": "brand",
+        "BJ's": "brand",
+        "Dave & Buster's": "brand",
+        "Krispy Kreme": "brand",
+        "Portillo's": "brand",
+        "7 Brew": "brand",
+        "Smashburger": "brand"
+      },
+      "date": "2026-10-09T14:30:59+00:00"
+    },
+    {
+      "id": "9933adca3a67",
+      "title": "식음료 단신: 빗박스(BeatBox)와 시나본의 협업, 토포치코의 프리미엄 캔 워터 출시",
+      "url": "https://www.fooddive.com/news/leftovers-beatbox-cinnabon-topo-chico-canned-water-Bauducco-skippy/832606/",
+      "source": "Food Dive",
+      "lang": "en",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "파티 펀치 브랜드 빗박스가 만우절 농담을 실제 제품으로 출시하며 시나본과 협업함",
+        "바두코(Bauducco)는 스키피 땅콩버터를 활용한 파네토네를 미국 시장에 선보일 예정"
+      ],
+      "keywords": [
+        "BeatBox",
+        "Cinnabon",
+        "Topo Chico",
+        "Bauducco",
+        "Skippy"
+      ],
+      "kw_cats": {
+        "BeatBox": "brand",
+        "Cinnabon": "brand",
+        "Topo Chico": "brand",
+        "Bauducco": "brand",
+        "Skippy": "brand",
+        "panettone": "food_cat",
+        "canned water": "food_cat",
+        "peanut butter": "ingredient"
+      },
+      "date": "2026-10-09T14:12:00+00:00"
+    },
+    {
+      "id": "dfa4c0415ff5",
+      "title": "몰슨 쿠어스, 아메리카 지역 최고 공급망 책임자(CSCO) 선임",
+      "url": "https://www.fooddive.com/news/molson-coors-taps-chief-supply-chain-officer-for-americas/832543/",
+      "source": "Food Dive",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "매튜 훅(Matthew Hook)이 몰슨 쿠어스의 아메리카 지역 최고 공급망 책임자로 임명됨",
+        "운영 현대화 및 서비스 수준 향상을 목표로 공급망 전략 강화"
+      ],
+      "keywords": [
+        "Molson Coors"
+      ],
+      "kw_cats": {
+        "Molson Coors": "brand"
+      },
+      "date": "2026-10-09T13:39:00+00:00"
+    },
+    {
+      "id": "c546b200cae2",
+      "title": "펩시코의 스낵 사업 턴어라운드, 부진한 음료 사업의 청사진이 될 수 있을까?",
+      "url": "https://www.foodnavigator.com/Article/2026/10/09/pepsicos-snack-strategy-faces-a-beverage-test/",
+      "source": "Food Navigator",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "펩시코의 스낵 부문 성공 전략을 음료 부문 부진 타개에 적용할 가능성 분석",
+        "브랜드 포트폴리오 재편 및 운영 효율화를 통한 기업 경쟁력 강화 전략"
+      ],
+      "keywords": [
+        "펩시코",
+        "스낵",
+        "음료"
+      ],
+      "kw_cats": {
+        "펩시코": "brand",
+        "스낵": "food_cat",
+        "음료": "food_cat"
+      },
+      "date": "2026-10-09T13:26:08.394000+00:00"
+    },
+    {
+      "id": "71e0d934dcf5",
+      "title": "PB 상품 확대 속에서 CPG 브랜드가 차별화하는 방법",
+      "url": "https://www.foodnavigator.com/Article/2026/10/09/private-label-moves-beyond-value-to-rival-national-brands/",
+      "source": "Food Navigator",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "유통업체의 자체 브랜드(PB) 상품이 시장 점유율을 확대함에 따라 기존 CPG 브랜드의 입지가 위협받고 있음",
+        "CPG 브랜드는 단순 가격 경쟁을 넘어 브랜드 가치 제고, 혁신적인 제품 개발, 소비자 경험 강화를 통해 차별화 전략을 모색해야 함"
+      ],
+      "keywords": [
+        "CPG",
+        "private label",
+        "brand positioning"
+      ],
+      "kw_cats": {
+        "CPG": "brand",
+        "private label": "brand",
+        "brand positioning": "trend"
+      },
+      "date": "2026-10-09T13:07:40.332000+00:00"
+    },
+    {
+      "id": "9fe9af28b951",
+      "title": "초콜릿을 넘어선 배리 칼리보의 전략, 투자자들 설득 실패",
+      "url": "https://www.foodnavigator.com/Article/2026/10/09/barry-callebauts-move-beyond-chocolate-fails-to-convince-investors/",
+      "source": "Food Navigator",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "글로벌 초콜릿 제조사 배리 칼리보가 사업 다각화를 추진했으나 투자자들의 신뢰를 얻지 못함",
+        "핵심 사업인 초콜릿 외 영역으로의 확장이 기업 가치 제고로 이어지지 않으며 시장의 부정적 평가를 받음"
+      ],
+      "keywords": [
+        "배리 칼리보"
+      ],
+      "kw_cats": {
+        "배리 칼리보": "brand"
+      },
+      "date": "2026-10-09T11:27:27.837000+00:00"
+    },
+    {
+      "id": "d009c1741889",
+      "title": "[포토] “10월엔 B-푸드” 부산국제영화제, 먹거리도 ‘풍성’",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208664",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "부산국제영화제 기간 중 영화의 전당 내 식품외식업계 팝업스토어 및 푸드트럭 운영",
+        "오비맥주 한맥, 노랑통닭 등 외식 브랜드의 현장 마케팅 활발"
+      ],
+      "keywords": [
+        "한맥",
+        "노랑통닭",
+        "푸드트럭"
+      ],
+      "kw_cats": {
+        "한맥": "brand",
+        "노랑통닭": "brand",
+        "푸드트럭": "trend"
+      },
+      "date": "2026-10-09T10:44:57+00:00"
+    },
+    {
+      "id": "2d91332ef0e9",
+      "title": "AVPN SCUOLA COREA 서울 대학로에 개교",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68630",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": true,
+      "summary": [
+        "이탈리아 정통 나폴리 피자 협회(AVPN)의 한국 공식 교육기관 'AVPN SCUOLA COREA' 개교",
+        "나폴리 피자 제조 기술 및 문화 전수를 위한 전문 교육 프로그램 운영 시작"
+      ],
+      "keywords": [
+        "나폴리 피자",
+        "AVPN"
+      ],
+      "kw_cats": {
+        "나폴리 피자": "food_cat",
+        "AVPN": "brand"
+      },
+      "date": "2026-10-09T09:49:00+00:00"
+    },
+    {
+      "id": "617098ddd289",
+      "title": "펩시코, 북미 음료 성장 둔화 속 스낵 부문 판매량 증가",
+      "url": "https://www.foodingredientsfirst.com/news/pepsico-snack-growth-north-america-beverages.html",
+      "source": "Food Ingredients First",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "펩시코 3분기 매출 및 영업이익 전년 동기 대비 증가",
+        "국제 사업부 성장세와 달리 북미 식품 및 음료 부문은 혼조세 기록"
+      ],
+      "keywords": [
+        "PepsiCo",
+        "snack",
+        "beverage"
+      ],
+      "kw_cats": {
+        "PepsiCo": "brand",
+        "snack": "food_cat",
+        "beverage": "food_cat"
+      },
+      "date": "2026-10-09T09:28:00+00:00"
+    },
+    {
+      "id": "4158274e2aab",
+      "title": "FDA, 랄망(Lallemand) 비타민 D2 제빵용 효모의 미국 식품 첨가 승인",
+      "url": "https://www.foodingredientsfirst.com/news/lallemand-vitamin-d2-yeast-fda.html",
+      "source": "Food Ingredients First",
+      "lang": "en",
+      "category": "식재료·원료",
+      "is_cvs": true,
+      "summary": [
+        "랄망의 비타민 D2 비활성 제빵용 효모(Lalmin Vita D)가 미국 FDA 승인을 획득함",
+        "식물성 유제품 및 단백질 제품 등 다양한 식품군에 비타민 D 강화 원료로 활용 가능"
+      ],
+      "keywords": [
+        "비타민 D2",
+        "제빵용 효모",
+        "식물성 유제품",
+        "단백질 제품",
+        "랄망"
+      ],
+      "kw_cats": {
+        "비타민 D2": "ingredient",
+        "제빵용 효모": "ingredient",
+        "식물성 유제품": "food_cat",
+        "단백질 제품": "food_cat",
+        "랄망": "brand"
+      },
+      "date": "2026-10-09T09:10:00+00:00"
+    },
+    {
+      "id": "c0ad0c8d1189",
+      "title": "정통 나폴리 피자 개론서 《베라 피자》 출간",
+      "url": "http://www.foodbank.co.kr/news/articleView.html?idxno=68629",
+      "source": "식품외식경제",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "정통 나폴리 피자의 체계적인 지식과 레시피를 담은 개론서 《베라 피자》 출간",
+        "베라 피자 마에스트로 이진형 저자가 정통 나폴리 피자의 기술과 철학을 전수"
+      ],
+      "keywords": [
+        "나폴리 피자",
+        "이진형"
+      ],
+      "kw_cats": {
+        "나폴리 피자": "food_cat",
+        "이진형": "brand"
+      },
+      "date": "2026-10-09T07:48:00+00:00"
+    },
+    {
+      "id": "3294cfd23a13",
+      "title": "더 귀해진 송이…올해 1등품은 1%뿐",
+      "url": "https://cooknchefnews.com/news/view/1065617338451543",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "송이 작황 부진으로 인한 공급량 감소 및 가격 급등",
+        "올해 1등품 송이 비중이 1% 수준으로 희소성 심화"
+      ],
+      "keywords": [
+        "송이"
+      ],
+      "kw_cats": {
+        "송이": "ingredient"
+      },
+      "date": "2026-10-09T07:02:20+00:00"
+    },
+    {
+      "id": "057b6bc902da",
+      "title": "[마실 인문학] 국화주를 마시는 날, 중양절",
+      "url": "https://cooknchefnews.com/news/view/1065571561225368",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "가을 절기인 중양절과 국화의 식문화적 의미 조명",
+        "전통적으로 국화를 활용한 음식과 음료를 즐기던 선조들의 식문화 소개"
+      ],
+      "keywords": [
+        "국화",
+        "중양절"
+      ],
+      "kw_cats": {
+        "국화": "ingredient",
+        "중양절": "trend"
+      },
+      "date": "2026-10-09T06:01:14+00:00"
+    },
+    {
+      "id": "52eb24fa02bb",
+      "title": "글로벌 푸드테크 어워즈 APAC: 올해의 최종 후보 5개 스타트업 소개",
+      "url": "https://www.foodnavigator.com/Article/2026/10/09/five-food-tech-startups-judges-say-could-help-shape-the-future-of-food/",
+      "source": "Food Navigator",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "아시아 태평양 지역의 혁신적인 푸드테크 스타트업 5곳이 최종 후보로 선정됨",
+        "지속가능성, 대체 식품, 푸드테크 솔루션 등 미래 식품 산업을 선도하는 기업들의 성과 조명"
+      ],
+      "keywords": [
+        "푸드테크",
+        "스타트업"
+      ],
+      "kw_cats": {
+        "푸드테크": "trend",
+        "스타트업": "brand"
+      },
+      "date": "2026-10-09T05:38:43.678000+00:00"
+    },
+    {
+      "id": "61373939bdd1",
+      "title": "아세안 포커스: 네슬레 영양식, 칼스버그 말레이시아, 킨자 확장",
+      "url": "https://www.foodnavigator.com/Article/2026/10/09/asean-focus-nestle-nutrition-carlsberg-malaysia-and-kinza-expansion/",
+      "source": "Food Navigator",
+      "lang": "en",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "네슬레의 영양식 사업 전략 및 제품 포트폴리오 강화",
+        "칼스버그 말레이시아의 시장 전략 및 킨자(Kinza) 브랜드의 사업 확장"
+      ],
+      "keywords": [
+        "네슬레",
+        "칼스버그",
+        "킨자",
+        "영양식"
+      ],
+      "kw_cats": {
+        "네슬레": "brand",
+        "칼스버그": "brand",
+        "킨자": "brand",
+        "영양식": "trend"
+      },
+      "date": "2026-10-09T05:15:01.584000+00:00"
+    },
     {
       "id": "1b8b7be3065c",
       "title": "캐시워크 돈버는퀴즈 정답 10월 9일",
@@ -497,6 +1144,32 @@
         "Keurig Dr Pepper": "brand"
       },
       "date": "2026-10-08T14:45:00+00:00"
+    },
+    {
+      "id": "e2f67a2f3de8",
+      "title": "이노바 마켓 인사이트, 2027년 F&B 트렌드 발표: 영양 밀도, 단백질 품질, 대사 건강",
+      "url": "https://www.foodingredientsfirst.com/news/innova-top-ten-trends-2027-nutrient-density-protein.html",
+      "source": "Food Ingredients First",
+      "lang": "en",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "이노바 마켓 인사이트가 소비자 조사와 시장 데이터를 기반으로 2027년 10대 F&B 트렌드를 발표함",
+        "영양 밀도, 단백질 품질, 대사 건강이 향후 식품 시장의 핵심 트렌드로 부상"
+      ],
+      "keywords": [
+        "nutrient density",
+        "protein quality",
+        "metabolic health",
+        "Innova Market Insights"
+      ],
+      "kw_cats": {
+        "nutrient density": "trend",
+        "protein quality": "trend",
+        "metabolic health": "trend",
+        "Innova Market Insights": "brand"
+      },
+      "date": "2026-10-08T14:37:00+00:00"
     },
     {
       "id": "9a8a5d22caa6",
@@ -8024,6 +8697,28 @@
       ],
       "kw_cats": {
         "올 뉴 마끼": "food_cat",
+        "세븐일레븐": "brand"
+      },
+      "date": "2026-10-06T01:35:11+00:00"
+    },
+    {
+      "id": "7250ea93630b",
+      "title": "세븐일레븐, '올 뉴 마끼' 출시 6주만에 30만개 판매...신제품 추가 출시 - 머니투데이 - 머니투데이",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9RMXlFek54cHNKcHdsR1dVaWtxTFdFdS11VU96LXdZZ0FreWh3Q2x5WXE5aFNjVUloV1RmZnNndkV6aXNkakVWWk9KNkNjVkRjbzhna3RXd1JJbjYyb3o1R1lEekhoYkd1TWfSAW9BVV95cUxNUWQ1MFBBRVJ3bTRrZkVINUlEc3R3ck5tdG1XX1ItTGpvVlF6OTBweDhSLUZIaHp2MDl6M3B6bUJla1I1UnlYSVNVR2JNSHJuYUNxRW5BRGdPX1NJLTRWaGk4SlduSy1RRVZpaWJrNlU?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐 '올 뉴 마끼' 출시 6주 만에 30만 개 판매 돌파",
+        "인기에 힘입어 신제품 추가 출시 및 라인업 확대"
+      ],
+      "keywords": [
+        "마끼",
+        "세븐일레븐"
+      ],
+      "kw_cats": {
+        "마끼": "food_cat",
         "세븐일레븐": "brand"
       },
       "date": "2026-10-06T01:35:11+00:00"
