@@ -1,7 +1,435 @@
 {
-  "updated": "2026-10-10T02:26:19.682614+00:00",
-  "total": 800,
+  "updated": "2026-10-11T01:56:44.041827+00:00",
+  "total": 820,
   "articles": [
+    {
+      "id": "a34c4758d5ed",
+      "title": "카카오뱅크 AI 이모지 퀴즈 오전 8시 정답 10월 11일",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=391995",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "카카오뱅크 AI 이모지 퀴즈를 통한 브랜드 마케팅 진행",
+        "팝콘 이미지를 활용한 소비자 참여형 이벤트"
+      ],
+      "keywords": [
+        "카카오뱅크",
+        "팝콘"
+      ],
+      "kw_cats": {
+        "카카오뱅크": "brand",
+        "팝콘": "food_cat"
+      },
+      "date": "2026-10-11T01:14:03+00:00"
+    },
+    {
+      "id": "15afc9a7e297",
+      "title": "[2026 국감] 농공단지 10곳 중 7곳 인구감소지역…정부 지원은 '사각지대'",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208681",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농공단지 10곳 중 7곳이 인구감소지역에 위치해 지역 산업 기반 약화 우려",
+        "노후화된 농공단지에 대한 정부의 스마트그린산단 및 AX 지원 정책 사각지대 발생"
+      ],
+      "keywords": [
+        "농공단지",
+        "인구감소지역",
+        "정부",
+        "국감",
+        "지원"
+      ],
+      "kw_cats": {},
+      "date": "2026-10-11T01:00:13+00:00"
+    },
+    {
+      "id": "fda33eca0e33",
+      "title": "[2026 국감] 양식보험 가입률 40%대 그쳐…고수온 피해 보상에 6개월",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208680",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "기후재해로 인한 어업 피해가 반복됨에도 양식보험 가입률이 40%대에 정체됨",
+        "고수온 피해 발생 시 보험금 지급까지 평균 6개월이 소요되어 경영안전망 역할 미흡"
+      ],
+      "keywords": [
+        "양식보험",
+        "가입률",
+        "고수온",
+        "피해",
+        "국감"
+      ],
+      "kw_cats": {},
+      "date": "2026-10-11T00:53:52+00:00"
+    },
+    {
+      "id": "e1be66f39b8a",
+      "title": "[리얼푸드] 대구 막창구이를 짬뽕에…홍콩반점 ‘막창짬뽕’",
+      "url": "https://www.realfoods.co.kr/article/10898431",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "홍콩반점0410이 전국 지역 특산물을 재해석하는 '팔도 홍콩반점' 프로젝트의 네 번째 메뉴로 '막창짬뽕' 출시",
+        "대구의 막창구이를 짬뽕에 접목하여 지역색을 살린 이색 메뉴 전략 강화"
+      ],
+      "keywords": [
+        "막창짬뽕",
+        "홍콩반점",
+        "더본코리아",
+        "지역 특산물"
+      ],
+      "kw_cats": {
+        "막창짬뽕": "food_cat",
+        "홍콩반점": "brand",
+        "더본코리아": "brand",
+        "지역 특산물": "trend"
+      },
+      "date": "2026-10-11T00:46:52+00:00"
+    },
+    {
+      "id": "e0c0c9d59681",
+      "title": "[2026 국감] 식약처 디지털의료 시스템 사업 파행…선금 3억6800만원 미회수",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208679",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "식약처의 디지털의료제품 전주기 관리시스템 구축 사업이 업체의 파산으로 중단됨",
+        "지급된 선금 3억 6,800만 원이 반년 넘게 회수되지 않고 있어 행정 관리 부실 논란"
+      ],
+      "keywords": [
+        "사업",
+        "파행",
+        "선금",
+        "국감",
+        "식약처"
+      ],
+      "kw_cats": {},
+      "date": "2026-10-11T00:45:21+00:00"
+    },
+    {
+      "id": "1bdd2390723f",
+      "title": "[2026 국감] 식약처, 프로포폴 불법유출 동물병원 5년간 점검 안 했다",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208678",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "프로포폴 불법 유출 사건이 발생한 동물병원이 식약처의 점검 사각지대에 있었음이 확인됨",
+        "의료용 마약류 관리 체계의 허점과 식약처의 관리·감독 부실에 대한 국정감사 지적"
+      ],
+      "keywords": [
+        "동물병원",
+        "프로포폴",
+        "불법유출",
+        "년간",
+        "점검"
+      ],
+      "kw_cats": {},
+      "date": "2026-10-11T00:39:25+00:00"
+    },
+    {
+      "id": "eb73af775b43",
+      "title": "[2026 국감] 수산물 상생할인 수입산 지원 비중 7.3%→25.7% 급증",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208676",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "해양수산부의 '수산물 상생할인 지원사업' 내 수입산 수산물 지원 비중이 7.3%에서 25.7%로 급증함",
+        "어업인 지원 및 국내 수산물 소비 촉진이라는 사업 취지와 달리 수입산 지원에 예산이 과도하게 투입되고 있다는 지적"
+      ],
+      "keywords": [
+        "수산물",
+        "해양수산부"
+      ],
+      "kw_cats": {
+        "수산물": "food_cat",
+        "해양수산부": "brand"
+      },
+      "date": "2026-10-11T00:33:42+00:00"
+    },
+    {
+      "id": "bfaac06bbd00",
+      "title": "풀무원재단, 경남 교원 30여 명 대상 ‘공감교육’ 연수",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208675",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "풀무원재단, 경남권 교원 대상 '공감교육' 연수 프로그램 진행",
+        "지속가능발전교육의 일환으로 아이들에게 공감과 협력의 가치 전달"
+      ],
+      "keywords": [
+        "풀무원재단"
+      ],
+      "kw_cats": {
+        "풀무원재단": "brand"
+      },
+      "date": "2026-10-11T00:24:37+00:00"
+    },
+    {
+      "id": "f3657eb61b2b",
+      "title": "[2026 국감] 식중독 재발 시설 20곳…위생점검 받고도 64일 만에 또 발생",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208674",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "지자체의 위생점검 및 행정지도에도 불구하고 식중독 재발 사례가 빈번하게 발생함",
+        "정부의 먹거리 안전 사후관리 체계의 실효성 부족 및 관리 허점 노출"
+      ],
+      "keywords": [
+        "식중독",
+        "시설",
+        "위생점검",
+        "만에",
+        "국감"
+      ],
+      "kw_cats": {},
+      "date": "2026-10-11T00:19:52+00:00"
+    },
+    {
+      "id": "80390ef7ae1b",
+      "title": "[리얼푸드] G마켓, 12일 하루 ‘CJ제일제당’ 먹거리 할인",
+      "url": "https://www.realfoods.co.kr/article/10898407",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "G마켓, 12일 하루 CJ제일제당 인기 상품 할인 프로모션 '올인' 진행",
+        "스팸, 비비고, 햇반 등 주요 HMR 제품 대상 15% 할인 쿠폰 등 혜택 제공"
+      ],
+      "keywords": [
+        "G마켓",
+        "CJ제일제당",
+        "HMR"
+      ],
+      "kw_cats": {
+        "G마켓": "brand",
+        "CJ제일제당": "brand",
+        "HMR": "food_cat"
+      },
+      "date": "2026-10-11T00:13:51+00:00"
+    },
+    {
+      "id": "f0dc05452fc1",
+      "title": "[리얼푸드] 조기 품절 가을 커피가 돌아왔다…네스프레소 시즌 4종 재출시",
+      "url": "https://www.realfoods.co.kr/article/10898406",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "네스프레소, 지난 시즌 조기 품절된 가을 한정판 커피 4종 재출시",
+        "펌프킨 스파이스 케이크향 및 메이플 피칸향 커피(오리지널, 버츄오) 라인업 구성"
+      ],
+      "keywords": [
+        "네스프레소",
+        "펌프킨 스파이스",
+        "메이플 피칸",
+        "커피"
+      ],
+      "kw_cats": {
+        "네스프레소": "brand",
+        "펌프킨 스파이스": "ingredient",
+        "메이플 피칸": "ingredient",
+        "커피": "food_cat"
+      },
+      "date": "2026-10-11T00:13:40+00:00"
+    },
+    {
+      "id": "cfe0988bf653",
+      "title": "[리얼푸드] 글로벌 ‘소버큐리어스’ 파도 탄 아이긴, 美 베브모! 진출",
+      "url": "https://www.realfoods.co.kr/article/10898388",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": true,
+      "summary": [
+        "한국 논알콜 주류 브랜드 '아이긴(IGIN)'이 미국 서부 최대 주류 유통 체인 '베브모!(BevMo!)'에 입점",
+        "글로벌 '소버큐리어스(의식적 금주)' 트렌드 확산에 따른 해외 시장 진출 성과"
+      ],
+      "keywords": [
+        "아이긴",
+        "베브모",
+        "소버큐리어스",
+        "논알콜 주류"
+      ],
+      "kw_cats": {
+        "아이긴": "brand",
+        "베브모": "brand",
+        "소버큐리어스": "trend",
+        "논알콜 주류": "food_cat"
+      },
+      "date": "2026-10-10T23:45:50+00:00"
+    },
+    {
+      "id": "c23492263a65",
+      "title": "음식물처리기 잔여물, 화분에 쓰기 전 확인할 것",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=391975",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "음식물처리기 잔여물은 단순 건조 상태일 뿐 퇴비화 과정이 완료된 것이 아님",
+        "화분 사용 시 미생물 분해 및 유기물 안정화 여부를 반드시 확인해야 함"
+      ],
+      "keywords": [
+        "음식물처리기"
+      ],
+      "kw_cats": {
+        "음식물처리기": "trend"
+      },
+      "date": "2026-10-10T23:00:00+00:00"
+    },
+    {
+      "id": "2d84ee8e7b68",
+      "title": "달걀 없는 생반죽, 맛봐도 될까…밀가루도 생식 주의",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=391989",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "달걀이 포함되지 않은 반죽이라도 생밀가루에는 식중독균이 존재할 수 있어 생식 주의 필요",
+        "미국 FDA는 밀가루가 가열 조리 전에는 생곡물 상태임을 강조하며 섭취 시 주의 권고"
+      ],
+      "keywords": [
+        "밀가루",
+        "생식"
+      ],
+      "kw_cats": {
+        "밀가루": "ingredient",
+        "생식": "trend"
+      },
+      "date": "2026-10-10T22:01:55+00:00"
+    },
+    {
+      "id": "b40a5cb47784",
+      "title": "[Insight] 캘리포니아 와인, 수확량 줄었지만 풍미는 짙어졌다…2026 빈티지 ‘기대’",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=35616",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "캘리포니아 와인, 기상 여건으로 수확량은 감소했으나 풍미와 산도는 더욱 응축됨",
+        "2026년산 빈티지는 강렬한 아로마와 균형 잡힌 품질로 높은 기대감 형성"
+      ],
+      "keywords": [
+        "캘리포니아 와인",
+        "빈티지"
+      ],
+      "kw_cats": {
+        "캘리포니아 와인": "food_cat",
+        "빈티지": "trend"
+      },
+      "date": "2026-10-10T21:00:00+00:00"
+    },
+    {
+      "id": "200fd0cb1a55",
+      "title": "ARTEX 개발자, 공개 배포·업데이트 중단 발표",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=391971",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "AI 기반 침투 테스트 도구 ARTEX의 개발자가 공개 배포 및 업데이트 중단 발표",
+        "소스코드 비공개 전환 및 향후 유지보수 지원 중단 결정"
+      ],
+      "keywords": [
+        "개발자",
+        "공개",
+        "ARTEX",
+        "배포",
+        "업데이트"
+      ],
+      "kw_cats": {},
+      "date": "2026-10-10T14:18:40+00:00"
+    },
+    {
+      "id": "df5d5f55b96f",
+      "title": "빙그레 김호연 회장, 이봉창 의사 선양사업 지속…제94주기 추모식 거행",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=208673",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "빙그레 김호연 회장의 독립운동가 이봉창 의사 선양사업 지속",
+        "기업의 사회적 책임(CSR) 활동을 통한 브랜드 이미지 제고"
+      ],
+      "keywords": [
+        "빙그레"
+      ],
+      "kw_cats": {
+        "빙그레": "brand"
+      },
+      "date": "2026-10-10T09:37:27+00:00"
+    },
+    {
+      "id": "60e209d08476",
+      "title": "[우마이 일본] 日, 궁극의 자린고비 밥상",
+      "url": "https://cooknchefnews.com/news/view/1065589520719559",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "일본의 장기적인 고물가 현상으로 인한 소비자의 식생활 변화",
+        "가계 지출 방어를 위한 일본식 '자린고비 밥상' 트렌드 확산"
+      ],
+      "keywords": [
+        "고물가",
+        "자린고비 밥상"
+      ],
+      "kw_cats": {
+        "고물가": "trend",
+        "자린고비 밥상": "trend"
+      },
+      "date": "2026-10-10T06:02:26+00:00"
+    },
+    {
+      "id": "43b99f15e72a",
+      "title": "사투리로 남은 우리 음식 이름",
+      "url": "https://cooknchefnews.com/news/view/1065579090067711",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "지역별 향토 음식의 유래와 명칭에 담긴 의미를 재조명",
+        "임자탕 등 낯선 한식 이름 속에 숨겨진 식재료와 지역적 특색 탐구"
+      ],
+      "keywords": [
+        "임자탕",
+        "들깨",
+        "한식"
+      ],
+      "kw_cats": {
+        "임자탕": "food_cat",
+        "들깨": "ingredient",
+        "한식": "trend"
+      },
+      "date": "2026-10-10T06:01:28+00:00"
+    },
     {
       "id": "4b9496928180",
       "title": "[2026 국감] 농장 해썹 평가 99.9% '전화 한 통'…436곳 현장 확인 없이 인증",
@@ -7689,6 +8117,30 @@
       "id": "1fd3d6d888ff",
       "title": "삼각김밥 넘어 ′마끼′ 승부…세븐일레븐, 통소시지 신제품 선봬 - 메가경제",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE0wQVpoWmYtVXg0d0FBakIxbUFHM0F0MW42QmNDakVCWWpxNjNDQjY1b014M0ZrUENKMXZwWHFsbW1mVzFWVGVROXBVM0hQT05UWkswUFh2eTFXN0hObXIwNkRLMDBldnplR2p1WVlkSnB1d9IBckFVX3lxTE0wQVpoWmYtVXg0d0FBakIxbUFHM0F0MW42QmNDakVCWWpxNjNDQjY1b014M0ZrUENKMXZwWHFsbW1mVzFWVGVROXBVM0hQT05UWkswUFh2eTFXN0hObXIwNkRLMDBldnplR2p1WVlkSnB1dw?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐이 삼각김밥을 대체할 새로운 간편식 카테고리로 '마끼' 형태의 신제품을 출시함",
+        "통소시지를 활용한 마끼 신제품을 통해 편의점 간편식 시장 내 차별화된 메뉴 경쟁력 강화"
+      ],
+      "keywords": [
+        "마끼",
+        "통소시지",
+        "세븐일레븐"
+      ],
+      "kw_cats": {
+        "마끼": "food_cat",
+        "통소시지": "ingredient",
+        "세븐일레븐": "brand"
+      },
+      "date": "2026-10-06T08:43:26+00:00"
+    },
+    {
+      "id": "ce028a96ff3d",
+      "title": "삼각김밥 넘어 ′마끼′ 승부…세븐일레븐, 통소시지 신제품 선봬 - 메가경제",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBsWV81WXptSTZnSGhNTkgwdFVrTkNsTUF1dHpjbndTVGR5anNHemZVazFKS2FONjNsN0hLdkFCZHh6UjQzdkdfTzRVVVhFazY1SVNuX0dmc1pPSHEtZWg5a0FYS3B5azVVeEJJV1dXNlplMEI20gFyQVVfeXFMTTBBWmhaZi1VeDR3QUFqQjFtQUczQXQxbjZCY0NqRUJZanE2M0NCNjVvTXgzRmtQQ0oxdnBYcWxtbWZXMVZUZVE5cFUzSFBPTlRaSzBQWHZ5MVc3SE5tcjA2REswMGV2emVHanVZWWRKcHV3?oc=5",
       "source": "세븐일레븐 소식",
       "lang": "ko",
       "category": "신제품·NPD",
