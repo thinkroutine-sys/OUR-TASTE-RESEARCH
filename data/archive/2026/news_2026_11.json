@@ -1,7 +1,533 @@
 {
-  "updated": "2026-11-07T03:05:04.150175+00:00",
-  "total": 732,
+  "updated": "2026-11-08T02:26:06.772433+00:00",
+  "total": 754,
   "articles": [
+    {
+      "id": "a27b6c8a9476",
+      "title": "[리얼푸드] 그릴 다이닝 앞세운다…빕스 잠실점 개장",
+      "url": "https://www.realfoods.co.kr/article/10929539",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "빕스가 '그릴 다이닝' 모델을 앞세워 잠실 롯데캐슬플라자에 신규 매장을 개장함",
+        "광교, 청량리에 이어 핵심 상권 중심의 그릴 다이닝 매장 확대 전략 본격화"
+      ],
+      "keywords": [
+        "빕스",
+        "그릴 다이닝",
+        "스테이크"
+      ],
+      "kw_cats": {
+        "빕스": "brand",
+        "그릴 다이닝": "trend",
+        "스테이크": "food_cat"
+      },
+      "date": "2026-11-08T02:06:49+00:00"
+    },
+    {
+      "id": "7ea94764527b",
+      "title": "돼지 육질 예측해 우수 씨돼지 고른다… 진단 기술 개발",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=36084",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": [
+        "농촌진흥청, 돼지 육질(근내지방 등)을 3시간 내 예측하는 유전자 진단 기술 개발",
+        "도축 전 살아있는 상태에서 우수 씨돼지를 선별해 고품질 돈육 생산 기반 마련"
+      ],
+      "keywords": [
+        "돼지고기",
+        "근내지방"
+      ],
+      "kw_cats": {
+        "돼지고기": "ingredient",
+        "근내지방": "ingredient"
+      },
+      "date": "2026-11-08T02:00:00+00:00"
+    },
+    {
+      "id": "e5fa1abd4279",
+      "title": "전분 함량 높고 병에 강한 신품종 고구마 ‘다온미’, 제주에서 선보인다",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=36083",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": [
+        "농촌진흥청, 전분 함량이 높고 병충해에 강한 고구마 신품종 '다온미' 개발",
+        "제주 지역 적응성 평가 및 가공적성 분석을 통한 고구마 전분 산업 재도약 모색"
+      ],
+      "keywords": [
+        "고구마",
+        "다온미",
+        "전분"
+      ],
+      "kw_cats": {
+        "고구마": "ingredient",
+        "다온미": "ingredient",
+        "전분": "ingredient"
+      },
+      "date": "2026-11-08T02:00:00+00:00"
+    },
+    {
+      "id": "b4ea9b96889f",
+      "title": "aT-한전, AI 활용 업무혁신·조직문화 개선 모색",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=209492",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "한국농수산식품유통공사(aT)와 한국전력공사가 청년 직원 간 교류 간담회 개최",
+        "AI 활용 업무 혁신 및 조직문화 개선을 위한 공공기관 간 협력 모색"
+      ],
+      "keywords": [
+        "aT",
+        "한국전력공사"
+      ],
+      "kw_cats": {
+        "aT": "brand",
+        "한국전력공사": "brand"
+      },
+      "date": "2026-11-08T01:53:04+00:00"
+    },
+    {
+      "id": "077025b9126a",
+      "title": "AI·로봇이 바꾸는 식품공장…농식품부, 푸드테크 국제표준화 추진",
+      "url": "https://www.foodtoday.or.kr/news/article.html?no=209491",
+      "source": "푸드투데이",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농식품부, 식품 제조산업 혁신을 위한 푸드테크 국제 표준화 추진",
+        "AI 및 로봇 기술을 활용한 식품 스마트팩토리 구축 및 글로벌 기술 전략 논의"
+      ],
+      "keywords": [
+        "푸드테크",
+        "스마트팩토리"
+      ],
+      "kw_cats": {
+        "푸드테크": "trend",
+        "스마트팩토리": "trend"
+      },
+      "date": "2026-11-08T01:52:33+00:00"
+    },
+    {
+      "id": "4d8123ab4793",
+      "title": "[리얼푸드] 호주 젤라토부터 일본 음식 거리까지, 싱가포르 사로잡은 브랜드",
+      "url": "https://www.realfoods.co.kr/article/10929529",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "싱가포르는 다문화적 소비 특성과 높은 해외 브랜드 수용도를 바탕으로 글로벌 브랜드의 테스트베드 역할을 함",
+        "호주 젤라토, 일본 음식 등 다양한 해외 브랜드가 현지화 전략을 통해 싱가포르 시장에서 성공적으로 안착 중"
+      ],
+      "keywords": [
+        "젤라토",
+        "젤라토 메시나",
+        "싱가포르"
+      ],
+      "kw_cats": {
+        "젤라토": "food_cat",
+        "젤라토 메시나": "brand",
+        "싱가포르": "trend"
+      },
+      "date": "2026-11-08T01:39:30+00:00"
+    },
+    {
+      "id": "e6111db911b3",
+      "title": "[리얼푸드] 빵에도 단백질·식이섬유 보충…일본 편의점 건강빵",
+      "url": "https://www.realfoods.co.kr/article/10929528",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": true,
+      "summary": [
+        "일본 편의점 건강빵 시장이 저당·저칼로리 중심에서 단백질·식이섬유 보충 중심으로 변화",
+        "바쁜 일상 속 간편한 식사에서도 영양 균형을 중시하는 소비자 니즈가 제품 개발에 반영"
+      ],
+      "keywords": [
+        "건강빵",
+        "단백질",
+        "식이섬유",
+        "고단백"
+      ],
+      "kw_cats": {
+        "건강빵": "food_cat",
+        "단백질": "ingredient",
+        "식이섬유": "ingredient",
+        "고단백": "trend"
+      },
+      "date": "2026-11-08T01:39:19+00:00"
+    },
+    {
+      "id": "b01bbe631b52",
+      "title": "[똑똑한소비] 쿠팡, 신세계백화점, 롯데백화점, 세븐일레븐, CU, 젠틀몬스터, 가연, CJ푸드빌 빕스 - 에너지경제신문",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1DcDlFRXNFQldQUjk4SEZHVEFuakZLRFJiSXdRRXE1d0xjSGcyUVpwQTNWdU5qU18tZkp2U0JkMFdCS2tTbE9ZR2tFcHIyLUJXNWxLRnpqczZac2dRMjdLMmhIbw?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": true,
+      "summary": [
+        "쿠팡, 신세계백화점, 롯데백화점, 세븐일레븐, CU, 젠틀몬스터, 가연, CJ푸드빌 빕스 등 주요 유통 및 외식 기업의 최신 소식 모음",
+        "각 기업별 프로모션 및 브랜드 전략 관련 뉴스 헤드라인 요약"
+      ],
+      "keywords": [
+        "쿠팡",
+        "신세계백화점",
+        "롯데백화점",
+        "세븐일레븐",
+        "CU"
+      ],
+      "kw_cats": {
+        "쿠팡": "brand",
+        "신세계백화점": "brand",
+        "롯데백화점": "brand",
+        "세븐일레븐": "brand",
+        "CU": "brand",
+        "젠틀몬스터": "brand",
+        "CJ푸드빌 빕스": "brand"
+      },
+      "date": "2026-11-08T01:33:33+00:00"
+    },
+    {
+      "id": "b48f5ad7ab4c",
+      "title": "세븐일레븐 ‘스몰 밀’ 겨냥 간편식 신제품 출시 : 경제 - 재경일보",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5mcTdhLTd5Rld5WDY0dDNhYk1Xc1o2QVc0VjdXSnhHUXVKdGJVbFJWaWJHbi1TdlhyWlh1RW4zQjBEOVlVSTI3ZTlLMA?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐이 소량 식사를 선호하는 '스몰 밀(Small Meal)' 트렌드에 맞춰 간편식 신제품 출시",
+        "1인 가구 증가 및 가벼운 식사를 찾는 소비자 니즈를 반영한 제품 전략"
+      ],
+      "keywords": [
+        "간편식",
+        "스몰 밀",
+        "세븐일레븐"
+      ],
+      "kw_cats": {
+        "간편식": "food_cat",
+        "스몰 밀": "trend",
+        "세븐일레븐": "brand"
+      },
+      "date": "2026-11-08T00:55:00+00:00"
+    },
+    {
+      "id": "1f74b79637de",
+      "title": "[리얼푸드] “먹으면서 피부 관리” 독일의 ‘이너뷰티’ 시장",
+      "url": "https://www.realfoods.co.kr/article/10929486",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "독일 내 영양보충제 및 식음료를 통한 '이너뷰티' 소비 트렌드 확산",
+        "영양보충제 이용자의 약 25%가 피부·모발·손톱 건강을 목적으로 제품을 구매"
+      ],
+      "keywords": [
+        "이너뷰티",
+        "콜라겐",
+        "비오틴",
+        "아연"
+      ],
+      "kw_cats": {
+        "이너뷰티": "trend",
+        "콜라겐": "ingredient",
+        "비오틴": "ingredient",
+        "아연": "ingredient"
+      },
+      "date": "2026-11-08T00:39:17+00:00"
+    },
+    {
+      "id": "3be9ea3c8a8f",
+      "title": "[리얼푸드] 소량 일상 배달까지…美 월마트와 샘스클럽 전격 통합",
+      "url": "https://www.realfoods.co.kr/article/10929485",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "채널·유통",
+      "is_cvs": false,
+      "summary": [
+        "월마트와 샘스클럽이 멤버십을 통합하여 대량 구매와 소량·고빈도 배달을 아우르는 결합 서비스 출시",
+        "미국 유통업계가 소비자 일상 전반을 점유하는 '올라운드 경험' 제공 전략으로 전환 중"
+      ],
+      "keywords": [
+        "월마트",
+        "샘스클럽",
+        "멤버십",
+        "배달"
+      ],
+      "kw_cats": {
+        "월마트": "brand",
+        "샘스클럽": "brand",
+        "멤버십": "trend",
+        "배달": "trend"
+      },
+      "date": "2026-11-08T00:39:09+00:00"
+    },
+    {
+      "id": "a767f1d5d008",
+      "title": "[리얼푸드] 싱가포르, 할로윈 맞이 식용곤충 이색 마케팅",
+      "url": "https://www.realfoods.co.kr/article/10929483",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "싱가포르 인섹트윰즈가 유니버설 스튜디오 할로윈 행사에서 식용곤충 활용 이색 메뉴 출시",
+        "밀웜과 귀뚜라미를 식재료로 활용한 치킨 서브, 치킨 레그, 콘도그 등 메뉴 선보임"
+      ],
+      "keywords": [
+        "식용곤충",
+        "밀웜",
+        "귀뚜라미",
+        "인섹트윰즈",
+        "할로윈"
+      ],
+      "kw_cats": {
+        "식용곤충": "ingredient",
+        "밀웜": "ingredient",
+        "귀뚜라미": "ingredient",
+        "인섹트윰즈": "brand",
+        "할로윈": "trend"
+      },
+      "date": "2026-11-08T00:39:00+00:00"
+    },
+    {
+      "id": "ec65353c9f17",
+      "title": "[리얼푸드] 단백질·장 건강, 인도 음료 진열대가 바뀐다",
+      "url": "https://www.realfoods.co.kr/article/10929481",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "인도 음료 시장이 콜라·생수 중심에서 기능성 음료 중심으로 재편",
+        "단백질, 프로바이오틱스, 전해질 등 건강 지향적 기능성 음료 수요 급증"
+      ],
+      "keywords": [
+        "단백질 음료",
+        "프로바이오틱스",
+        "기능성 음료",
+        "고단백"
+      ],
+      "kw_cats": {
+        "단백질 음료": "food_cat",
+        "프로바이오틱스": "ingredient",
+        "기능성 음료": "trend",
+        "고단백": "trend"
+      },
+      "date": "2026-11-08T00:38:52+00:00"
+    },
+    {
+      "id": "5dfd0e6174f4",
+      "title": "[리얼푸드] 고객·점주 아이디어로 신메뉴 발굴…파파존스, ‘레시피 공모전’ 마쳐",
+      "url": "https://www.realfoods.co.kr/article/10929479",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "한국파파존스가 고객 및 가맹점주 참여형 '2026 레시피 공모전' 본선 및 시상식 개최",
+        "소비자 니즈 반영 및 가맹점주와의 상생을 통한 신메뉴 개발 전략 추진"
+      ],
+      "keywords": [
+        "파파존스",
+        "피자"
+      ],
+      "kw_cats": {
+        "파파존스": "brand",
+        "피자": "food_cat"
+      },
+      "date": "2026-11-08T00:38:10+00:00"
+    },
+    {
+      "id": "88e003f45f14",
+      "title": "FAO 토지 식별 도구 GeoID, 디지털 공공재 인증",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=401926",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "유엔식량농업기구(FAO)의 토지 식별 도구 'GeoID'가 디지털 공공재 인증 획득",
+        "농산물 공급망 내 필지 데이터 통합 및 연결을 위한 공개 소프트웨어 표준화"
+      ],
+      "keywords": [
+        "FAO",
+        "공급망"
+      ],
+      "kw_cats": {
+        "FAO": "brand",
+        "공급망": "trend"
+      },
+      "date": "2026-11-07T16:03:22+00:00"
+    },
+    {
+      "id": "8171897a5af8",
+      "title": "[오늘의 운세] 11월 8일 띠별 점심메뉴…일반·채식 추천",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=401924",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "12띠별 운세와 연계한 점심 메뉴 추천 콘텐츠",
+        "일반식과 채식 메뉴를 제안하여 소비자 선택의 폭 확대"
+      ],
+      "keywords": [
+        "채식",
+        "점심 메뉴"
+      ],
+      "kw_cats": {
+        "채식": "trend",
+        "점심 메뉴": "trend"
+      },
+      "date": "2026-11-07T15:10:45+00:00"
+    },
+    {
+      "id": "6f8989c6f720",
+      "title": "병아리콩·렌틸콩 넣은 모로코식 비건 하리라",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=401922",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "모로코 전통 수프인 '하리라'의 비건 레시피 소개",
+        "병아리콩과 렌틸콩을 활용한 고단백 식물성 메뉴 제안"
+      ],
+      "keywords": [
+        "하리라",
+        "병아리콩",
+        "렌틸콩",
+        "비건"
+      ],
+      "kw_cats": {
+        "하리라": "food_cat",
+        "병아리콩": "ingredient",
+        "렌틸콩": "ingredient",
+        "비건": "trend"
+      },
+      "date": "2026-11-07T14:45:09+00:00"
+    },
+    {
+      "id": "37aebe838e4f",
+      "title": "“쌀·콩 반죽을 발효해 찐다”…남인도식 이들리",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=401914",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": [
+        "쌀과 우라드콩을 발효해 만드는 남인도 전통 음식 '이들리' 소개",
+        "발효 과정을 통한 부드러운 식감과 은은한 신맛이 특징인 건강식"
+      ],
+      "keywords": [
+        "이들리",
+        "발효",
+        "우라드콩"
+      ],
+      "kw_cats": {
+        "이들리": "food_cat",
+        "발효": "trend",
+        "우라드콩": "ingredient"
+      },
+      "date": "2026-11-07T14:30:54+00:00"
+    },
+    {
+      "id": "6e8f6f5fbf2c",
+      "title": "식초와 설탕으로 완성하는 시칠리아식 가지 요리",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=401905",
+      "source": "비건뉴스",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": [
+        "시칠리아 전통 요리 '카포나타'의 조리법과 특징 소개",
+        "가지, 셀러리, 토마토 등 채소에 식초와 설탕을 활용한 새콤달콤한 풍미 강조"
+      ],
+      "keywords": [
+        "카포나타",
+        "가지",
+        "식초"
+      ],
+      "kw_cats": {
+        "카포나타": "food_cat",
+        "가지": "ingredient",
+        "식초": "ingredient"
+      },
+      "date": "2026-11-07T14:11:58+00:00"
+    },
+    {
+      "id": "27bb3b8cb0f4",
+      "title": "말론 브란도의 섬에서 출발한 직접공기포집, 햇빛과 염료로 대기 탄소를 빼낸다",
+      "url": "https://vegilog.com/marlon-brando-island-direct-air-capture-photoacid/",
+      "source": "베지로그",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "말론 브란도의 테티아로아 섬 산호 연구에서 파생된 직접공기포집(DAC) 기술 개발",
+        "Banyu Carbon이 햇빛과 염료를 활용해 대기 중 이산화탄소를 포집하는 방식의 실증 시험 진행"
+      ],
+      "keywords": [
+        "Banyu Carbon"
+      ],
+      "kw_cats": {
+        "Banyu Carbon": "brand"
+      },
+      "date": "2026-11-07T12:27:09+00:00"
+    },
+    {
+      "id": "94d628e3f3c7",
+      "title": "[추추의 한끼식사] 팽이버섯볶음 레시피",
+      "url": "https://cooknchefnews.com/news/view/1065594788604866",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "팽이버섯을 활용한 간단한 가정식 레시피 소개",
+        "집에서 쉽게 따라 할 수 있는 조리법 제안"
+      ],
+      "keywords": [
+        "팽이버섯",
+        "레시피"
+      ],
+      "kw_cats": {
+        "팽이버섯": "ingredient",
+        "레시피": "trend"
+      },
+      "date": "2026-11-07T06:01:54+00:00"
+    },
+    {
+      "id": "7f388c93a29a",
+      "title": "[우마이 일본] 일본의 배달 문화, '데마에'",
+      "url": "https://cooknchefnews.com/news/view/1065601196029817",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "일본의 배달 음식 시장 규모는 약 8,000억 엔으로 전체 외식 시장의 5~6% 수준에 머물러 있음",
+        "높은 배달 수수료 등이 배달 문화가 대중적으로 자리 잡지 못한 주요 원인으로 분석됨"
+      ],
+      "keywords": [
+        "데마에"
+      ],
+      "kw_cats": {
+        "데마에": "trend"
+      },
+      "date": "2026-11-07T06:00:53+00:00"
+    },
     {
       "id": "a46e6a0856eb",
       "title": "FAO, 보호구역 밖 생물다양성 보전 지원…OECM 허브 출범",
