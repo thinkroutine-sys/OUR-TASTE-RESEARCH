@@ -1,7 +1,369 @@
 {
-  "updated": "2026-11-21T04:14:38.242878+00:00",
-  "total": 2358,
+  "updated": "2026-11-22T03:20:27.568009+00:00",
+  "total": 2374,
   "articles": [
+    {
+      "id": "9c7ff8888696",
+      "title": "[리얼푸드] 한국산 설렁탕도 간편하게…일본 동결건조 시장",
+      "url": "https://www.realfoods.co.kr/article/10945010",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "일본 동결건조 식품 시장이 전년 대비 14.8% 성장하며 회복세 진입",
+        "된장국과 수프류가 시장 성장을 견인하는 반면, 채소 및 과일류는 감소세"
+      ],
+      "keywords": [
+        "동결건조 식품",
+        "간편식"
+      ],
+      "kw_cats": {
+        "동결건조 식품": "food_cat",
+        "간편식": "trend"
+      },
+      "date": "2026-11-22T02:24:39+00:00"
+    },
+    {
+      "id": "a5738199058c",
+      "title": "[리얼푸드] “바다 지키는 히어로 응원”…스타벅스, 해양경찰서 지원",
+      "url": "https://www.realfoods.co.kr/article/10945009",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "스타벅스 코리아가 해양경찰청 등 해양 관련 기관 근무자들에게 커피와 푸드를 전달하며 감사를 표함",
+        "스타벅스의 사회공헌 활동인 '히어로(Hero) 프로그램'의 일환으로 진행된 상생 및 응원 캠페인"
+      ],
+      "keywords": [
+        "스타벅스"
+      ],
+      "kw_cats": {
+        "스타벅스": "brand"
+      },
+      "date": "2026-11-22T02:24:32+00:00"
+    },
+    {
+      "id": "3aa3a127f8d2",
+      "title": "[리얼푸드] 군것질 줄고 과일 늘고…호주, 비만 치료제 확산으로 소비 변화",
+      "url": "https://www.realfoods.co.kr/article/10944998",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "호주 내 GLP-1 비만 치료제 확산으로 간식 및 가공식품 소비 감소",
+        "식욕 억제 효과로 인해 과일 등 건강식품 위주의 식단 변화 발생"
+      ],
+      "keywords": [
+        "비만 치료제",
+        "GLP-1",
+        "건강식"
+      ],
+      "kw_cats": {
+        "비만 치료제": "trend",
+        "GLP-1": "ingredient",
+        "건강식": "trend"
+      },
+      "date": "2026-11-22T02:03:07+00:00"
+    },
+    {
+      "id": "bfa26142e205",
+      "title": "[리얼푸드] 더 버는 불가리아 소비자, K-푸드 구매도 늘린다",
+      "url": "https://www.realfoods.co.kr/article/10944997",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "불가리아 내 한국 소비재 수출액이 전년 대비 31.7% 증가하며 성장세 기록",
+        "불가리아 소비자의 구매력 향상에 따라 K-푸드를 포함한 한국 소비재 입지 확대"
+      ],
+      "keywords": [
+        "K-푸드"
+      ],
+      "kw_cats": {
+        "K-푸드": "trend"
+      },
+      "date": "2026-11-22T02:02:56+00:00"
+    },
+    {
+      "id": "7dd125871b52",
+      "title": "[리얼푸드] 고구마, 중국 베이커리 시장에서 부상",
+      "url": "https://www.realfoods.co.kr/article/10944996",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "식재료·원료",
+      "is_cvs": false,
+      "summary": [
+        "중국 베이커리 시장에서 고구마가 차별화된 핵심 디저트 원료로 부상",
+        "식빵, 페이스트리, 롤케이크, 바게트, 찹쌀떡 등 다양한 베이커리 제품에 고구마 활용 확대"
+      ],
+      "keywords": [
+        "고구마",
+        "하오리라이",
+        "융후이",
+        "루시허",
+        "베이커리"
+      ],
+      "kw_cats": {
+        "고구마": "ingredient",
+        "하오리라이": "brand",
+        "융후이": "brand",
+        "루시허": "brand",
+        "베이커리": "food_cat"
+      },
+      "date": "2026-11-22T02:02:47+00:00"
+    },
+    {
+      "id": "2870360f6be0",
+      "title": "농촌진흥청, 이달의 신간 3권 발간",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=36354",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농촌진흥청, 2035년 농업 기술 변화와 발전 방향을 담은 신간 발간",
+        "지능형 농업 인프라, 첨단 그린바이오, 지속가능 농업 등 핵심 기술 전망 제시"
+      ],
+      "keywords": [
+        "미래농업",
+        "그린바이오"
+      ],
+      "kw_cats": {
+        "미래농업": "trend",
+        "그린바이오": "ingredient"
+      },
+      "date": "2026-11-22T02:00:00+00:00"
+    },
+    {
+      "id": "0d241ebb0517",
+      "title": "농진청, 정부혁신 박람회서 농사 도우미 ‘AI 이삭이’ 첫선",
+      "url": "http://www.foodicon.co.kr/news/articleView.html?idxno=36353",
+      "source": "푸드아이콘",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "농촌진흥청, 농업 특화 AI 서비스 'AI 이삭이' 공개",
+        "2026년 정부혁신 박람회에서 농업 현장 맞춤형 AI 기술 체험 제공"
+      ],
+      "keywords": [
+        "AI 이삭이",
+        "농촌진흥청"
+      ],
+      "kw_cats": {
+        "AI 이삭이": "brand",
+        "농촌진흥청": "brand"
+      },
+      "date": "2026-11-22T02:00:00+00:00"
+    },
+    {
+      "id": "1b36e1b64589",
+      "title": "[리얼푸드] ‘SIAL Paris 2026’으로 본 세계 식품산업의 혁신",
+      "url": "https://www.realfoods.co.kr/article/10944939",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "세계 최대 식품 박람회 SIAL Paris 2026을 통해 글로벌 식품 산업의 혁신 방향성 확인",
+        "기능성 식품, 조리 편의성, 지속가능한 제조기술, AI 기반 식품 개발이 핵심 트렌드로 부상"
+      ],
+      "keywords": [
+        "기능성 식품",
+        "조리 편의성",
+        "AI 기반 식품 개발"
+      ],
+      "kw_cats": {
+        "기능성 식품": "trend",
+        "조리 편의성": "trend",
+        "AI 기반 식품 개발": "trend"
+      },
+      "date": "2026-11-22T00:36:21+00:00"
+    },
+    {
+      "id": "977365c39f15",
+      "title": "[리얼푸드] 쿠웨이트 커피 시장, 늘어나는 원두 수입",
+      "url": "https://www.realfoods.co.kr/article/10944938",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "쿠웨이트의 커피 수입액이 2020년 대비 2024년 62% 증가하며 시장 성장세 지속",
+        "인스턴트커피보다 원두류 수입 비중이 높으며, 커피 소비의 고급화 및 시장 확대 추세"
+      ],
+      "keywords": [
+        "커피",
+        "원두"
+      ],
+      "kw_cats": {
+        "커피": "food_cat",
+        "원두": "ingredient"
+      },
+      "date": "2026-11-22T00:35:58+00:00"
+    },
+    {
+      "id": "8c943864b37f",
+      "title": "세븐일레븐, 성시경과 ‘바지락짬뽕라면’ 출시…상품 기획·레시피 개발 참여 - 더퍼블릭",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5UNjhvM1E3a2JQRHV6UWRFREFRU3piTVpHZHFBTjRTMkwwQXg0d2NQM1l0MV94VE5yenEwWVJfZlBrMmtMRzg2WXdsS3BsMUVnblg4cDUyaVk4TWlYZmIzcUlUT214SFZJeDNn0gFvQVVfeXFMTVZDOUlmeG1oMVZFbG9NMHVhYV9aOXZOQS1NNzdwTld2MWdKamhkaEcxc29uZzFrSjVneEVFTzlwQjJzRjA4bmpIV3ZoUnJ0OGZfUnZjV29qOXNYOGtwbzRCUnZ2cGlFMFNvaHR4ZVow?oc=5",
+      "source": "세븐일레븐 소식",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": true,
+      "summary": [
+        "세븐일레븐이 성시경과 협업하여 '바지락짬뽕라면' 출시",
+        "성시경이 상품 기획 및 레시피 개발 과정에 직접 참여"
+      ],
+      "keywords": [
+        "바지락짬뽕라면",
+        "세븐일레븐",
+        "성시경"
+      ],
+      "kw_cats": {
+        "바지락짬뽕라면": "food_cat",
+        "세븐일레븐": "brand",
+        "성시경": "brand"
+      },
+      "date": "2026-11-22T00:35:17+00:00"
+    },
+    {
+      "id": "332af9abfede",
+      "title": "[리얼푸드] 풀무원푸드머스, ‘세계 어업의 날’ 기념 MSC 수산물 교육 캠페인",
+      "url": "https://www.realfoods.co.kr/article/10944929",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "풀무원푸드머스, ‘세계 어업의 날’ 맞아 MSC 인증 수산물 교육 캠페인 실시",
+        "지속가능한 수산물 소비 확산을 위해 유치원 및 어린이집 대상 교육 프로그램 확대 운영"
+      ],
+      "keywords": [
+        "풀무원푸드머스",
+        "MSC 인증 수산물"
+      ],
+      "kw_cats": {
+        "풀무원푸드머스": "brand",
+        "MSC 인증 수산물": "trend"
+      },
+      "date": "2026-11-22T00:24:51+00:00"
+    },
+    {
+      "id": "df10886e9587",
+      "title": "[리얼푸드] 런던베이글뮤지엄 운영사 LBM, 근태관리 고도화와 안전 체계 강화",
+      "url": "https://www.realfoods.co.kr/article/10944894",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "브랜드·기업",
+      "is_cvs": false,
+      "summary": [
+        "런던베이글뮤지엄 운영사 LBM, 인사관리 체계 전면 개편 및 환경안전팀 신설",
+        "비콘 기반 근태관리 시스템 도입으로 투명한 근로 환경 및 연장근무수당 지급 체계 정착"
+      ],
+      "keywords": [
+        "런던베이글뮤지엄",
+        "LBM"
+      ],
+      "kw_cats": {
+        "런던베이글뮤지엄": "brand",
+        "LBM": "brand"
+      },
+      "date": "2026-11-21T23:47:49+00:00"
+    },
+    {
+      "id": "fa116f4a99cb",
+      "title": "[리얼푸드] 대기업·동네빵집이 함께 한 빵 축제…‘K-베이커리 페스티벌 in 광화문’",
+      "url": "https://www.realfoods.co.kr/article/10944883",
+      "source": "리얼푸드",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "중소벤처기업부 주최로 대기업과 소상공인 동네빵집이 상생 협력하는 'K-베이커리 페스티벌' 개최",
+        "사흘간 37만 명의 관람객이 방문하며 지역 유명 베이커리 브랜드에 대한 높은 소비자 관심 확인"
+      ],
+      "keywords": [
+        "성심당",
+        "베비에르",
+        "풍년제과",
+        "팡파미유",
+        "베이커리"
+      ],
+      "kw_cats": {
+        "성심당": "brand",
+        "베비에르": "brand",
+        "풍년제과": "brand",
+        "팡파미유": "brand",
+        "베이커리": "food_cat"
+      },
+      "date": "2026-11-21T23:37:36+00:00"
+    },
+    {
+      "id": "bf42641ae62f",
+      "title": "네팔 빙하 붕괴가 드러낸 경고: 빙하 재난 위험과 히말라야 인프라의 취약성",
+      "url": "https://vegilog.com/nepal-glacier-collapse-glacier-disaster-risk-himalaya-infrastructure/",
+      "source": "베지로그",
+      "lang": "ko",
+      "category": "산업·정책",
+      "is_cvs": false,
+      "summary": [
+        "기후변화로 인한 빙하 붕괴가 히말라야 지역의 식량 및 식수 공급 체계에 심각한 위협을 가함",
+        "빙하 재난이 수력발전 및 농업 인프라의 취약성을 드러내며 식량 안보 리스크를 고조시킴"
+      ],
+      "keywords": [
+        "식량 체계"
+      ],
+      "kw_cats": {
+        "식량 체계": "trend"
+      },
+      "date": "2026-11-21T13:59:51+00:00"
+    },
+    {
+      "id": "9bd23033b806",
+      "title": "[추추의 한끼식사] 순두부 계란탕 레시피",
+      "url": "https://cooknchefnews.com/news/view/1065593159793450",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "신제품·NPD",
+      "is_cvs": false,
+      "summary": [
+        "순두부와 계란을 활용한 간편 레시피 소개",
+        "가정에서 쉽게 따라 할 수 있는 한 끼 식사 제안"
+      ],
+      "keywords": [
+        "순두부 계란탕"
+      ],
+      "kw_cats": {
+        "순두부 계란탕": "food_cat"
+      },
+      "date": "2026-11-21T06:01:59+00:00"
+    },
+    {
+      "id": "d746d2c1438b",
+      "title": "[우마이일본] 비싼 술은 차갑게, 싼 술은 뜨겁게",
+      "url": "https://cooknchefnews.com/news/view/1065593628445626",
+      "source": "쿡앤셰프",
+      "lang": "ko",
+      "category": "소비자·시장",
+      "is_cvs": false,
+      "summary": [
+        "일본 전통 주류 문화인 '모키리'를 통해 사케의 풍미를 즐기는 방식 소개",
+        "계절과 술의 종류에 따라 온도를 조절해 마시는 사케 음용 트렌드 조명"
+      ],
+      "keywords": [
+        "사케",
+        "홈술"
+      ],
+      "kw_cats": {
+        "사케": "food_cat",
+        "홈술": "trend"
+      },
+      "date": "2026-11-21T06:00:02+00:00"
+    },
     {
       "id": "411626f4dc58",
       "title": "강화 김장시장 29일까지…옛 풍물시장터서 배추·순무 직거래",
